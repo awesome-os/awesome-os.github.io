@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 47: Ghosts in the Packet Stream — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 047 OF 100 · Act V · Clocks, Retries &amp; Tail Latency</div>
+      <h1>Chapter 47: Ghosts in the Packet Stream</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A warm golden sunset sky over calm harbor water with glowing floating lanterns and a bright heart horizon"><defs><linearGradient id="f5-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#311042"/><stop offset="55%" stop-color="#be185d"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f5-bg)"/><circle cx="320" cy="186" r="56" fill="#fef08a" opacity="0.9"/><rect x="0" y="196" width="640" height="104" fill="#1e1b4b" opacity="0.82"/><ellipse cx="320" cy="224" rx="88" ry="12" fill="#fde047" opacity="0.45"/><circle cx="160" cy="86" r="10" fill="#fef08a" opacity="0.85"/><circle cx="485" cy="74" r="12" fill="#fef08a" opacity="0.85"/><circle cx="220" cy="116" r="7" fill="#fbcfe8" opacity="0.85"/><circle cx="420" cy="112" r="8" fill="#fbcfe8" opacity="0.85"/></svg></div>
+      <p>Once Frank had conquered split-brain quorums, he thought the hardest dragons were dead. Then he met the ghosts.</p>
+<p>They didn't crash servers with loud stack traces or red sirens. They drifted silently through the packet stream, bending reality just enough to make sane programmers doubt their own eyes.</p>
+<p>The first ghost was <strong>time itself</strong>. Frank noticed that a breathing-analysis event recorded on Node B occasionally carried a timestamp forty milliseconds <em>earlier</em> than the request that triggered it on Node A. How could an answer happen before the question? Because physical quartz crystals inside two different servers never tick at the exact same speed. Even with Network Time Protocol nudging them back into line, wall clocks drifted, jumped backward during corrections, and lied about order. Frank stopped trusting wall-clock timestamps for causality and moved to monotonic counters and logical clocks—ordering events by what actually caused what, not by what two slightly drunk wristwatches claimed.</p>
+<p>The second ghost was far nastier: the <strong>retry storm</strong>.</p>
+<p>One afternoon, a downstream storage node slowed down for just three seconds. Thousands of connected clients noticed the timeout and did what polite, well-meaning code was written to do—they immediately retried. All of them. At the exact same instant. When the poor storage node finally caught its breath, it was slammed by ten times its normal traffic from its own loyal clients, knocking it right back onto the floor. The clients timed out again, retried even harder, and accidentally executed a flawless denial-of-service attack against their own home.</p>
+<p>Watching the traffic graph spike into a vertical wall of self-destruction, Frank learned a lesson that sounded like philosophy but compiled like steel: <em>patience is an engineering primitive</em>.</p>
+<p>He rewrote the client transport layer with <strong>exponential backoff and randomized jitter</strong>. If a request failed, the client waited a fraction of a second plus a random slice of noise before trying again, then doubled the wait, spreading the herd out smoothly instead of letting it stampede in lockstep. Around every downstream dependency, he wrapped a <strong>circuit breaker</strong>—a smart fuse that tripped open the moment error rates crossed a threshold, failing fast to let the wounded service heal before cautiously testing the waters with a single probe packet. And he capped every queue with hard bounds, because an unbounded queue doesn't save work; it just hides an outage until the whole machine runs out of memory and explodes.</p>
+<p>The ghosts didn't vanish from the internet—they never do. But now Frank's code knew how to see them coming and step calmly out of their way.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Uncontrolled retries turn a momentary hiccup into a stampede; real resilience knows when to step back and let the system breathe.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="046-the-split-brain-nightmare.html">← Ch. 046</a>
+        <a class="btn" href="index.html">Chapters (47/100)</a>
+        <a class="btn" href="048-pulling-the-plug-on-purpose.html">Ch. 048 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

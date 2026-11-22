@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 18: Glass, Shadows, and the Seven Truce — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 018 OF 100 · Act II · The SX/DX Era &amp; Every Windows Evolution</div>
+      <h1>Chapter 18: Glass, Shadows, and the Seven Truce</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A glowing golden bridge connecting a retro Atari console on the left to a radiant White Dragon star on the right"><rect width="640" height="300" rx="16" fill="#091026"/><path d="M90 210 Q320 90 550 150" fill="none" stroke="#f7c96c" stroke-width="5" stroke-linecap="round"/><rect x="52" y="192" width="110" height="44" rx="8" fill="#1e293b" stroke="#fb923c" stroke-width="3"/><text x="107" y="219" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="14" font-weight="bold">ATARI</text><circle cx="536" cy="148" r="46" fill="#6de6ff" fill-opacity="0.2" stroke="#6de6ff" stroke-width="3.5"/><text x="536" y="154" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="14" font-weight="bold">WHITE DRAGON</text><text x="320" y="264" text-anchor="middle" fill="#4be3a6" font-family="monospace" font-size="13">THE JOURNEY CONTINUES · ADD MORE CHAPTERS ANYTIME</text></svg></div>
+      <p>When Windows Vista arrived, it looked like a glimpse of a science-fiction museum—and ran like someone had poured wet concrete into the gears. Frank installed it on a capable dual-core machine with plenty of RAM, determined to judge it fairly rather than echo internet anger. The Aero glass borders really were gorgeous, catching the light with soft translucency and smooth drop shadows. Then he tried to actually <em>use</em> it.</p>
+<p>Every simple administrative action triggered User Account Control, dimming the entire screen into a frozen shadow while demanding permission to do what he had just clicked. The hard drive LED burned solid red for twenty minutes after boot as SuperFetch and the search indexer thrashed the spinning platters. File copies stalled while estimating <em>forty-seven years remaining</em>. A fresh idle desktop that had taken ninety megabytes on XP now swallowed nearly a gigabyte of RAM just to sit there looking pretty. Frank watched his CPU fan spin up while no applications were even open, and felt a strange, quiet grief. For the first time in his life, a brand-new operating system felt <em>heavier</em> than the hardware leap meant to carry it.</p>
+<p>He didn't abandon the experiment; he dissected it. He saw that Vista had done important, unglamorous groundwork under the hood—a completely rewritten driver model so a crashing graphics card no longer guaranteed a blue screen, a modern audio stack, and real security boundaries that XP had sorely lacked. The tragedy wasn't the engineering beneath the floor; it was the carelessness above it. Visual ambition and background chatter had outrun respect for the user's cycles.</p>
+<p>Then came Windows 7, and the whole industry exhaled. Microsoft did not throw Vista away—they sanded down its rough edges, silenced the most nagging prompts, tuned the compositor, and trimmed the worst disk thrashing. When Frank installed Windows 7 Professional, especially once he paired it with his very first solid-state drive, the truce felt glorious. Programs snapped open again. The taskbar finally grew up into something sleek and practical. Aero glass looked crisp instead of sluggish, and if you wanted raw speed on older hardware, you could still peel the visual effects back with a few checkboxes.</p>
+<p>For years, Windows 7 became the comfortable workshop where Frank built serious systems, ran heavy development tools, and pushed multi-core processors hard. It wasn't as tiny as Windows 2000—nothing with modern networking, multimedia, and security ever would be—but it respected a clear unspoken contract: when you left the computer alone, it stayed quiet; when you asked it to work, it got out of your way.</p>
+<p>Yet Frank never forgot the warning shot Vista had fired. He had seen how easily an entire industry could trade responsiveness for frosted glass and call it progress. Windows 7 felt like a hard-won reprieve, not a permanent cure—and sure enough, the storm clouds were already gathering just beyond the horizon.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Vista proved that prettier glass can suffocate faster silicon, while Windows 7 offered a final truce—reminding Frank that visual polish only earns its keep when the machine stays responsive.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="017-windows-xp-and-the-last-lean-horizon.html">← Ch. 017</a>
+        <a class="btn" href="index.html">Chapters (18/100)</a>
+        <a class="btn" href="019-tiles-telemetry-and-the-noise-machine.html">Ch. 019 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

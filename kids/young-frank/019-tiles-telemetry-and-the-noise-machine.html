@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 19: Tiles, Telemetry, and the Noise Machine — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 019 OF 100 · Act II · The SX/DX Era &amp; Every Windows Evolution</div>
+      <h1>Chapter 19: Tiles, Telemetry, and the Noise Machine</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="Young Frank sitting in warm twilight glow in front of a retro Atari console and glowing CRT television"><defs><linearGradient id="f1-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b1029"/><stop offset="100%" stop-color="#1b2250"/></linearGradient><radialGradient id="f1-glow" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#6de6ff" stop-opacity="0.45"/><stop offset="100%" stop-color="#6de6ff" stop-opacity="0"/></radialGradient></defs><rect width="640" height="300" rx="16" fill="url(#f1-bg)"/><circle cx="320" cy="140" r="170" fill="url(#f1-glow)"/><rect x="195" y="42" width="250" height="168" rx="18" fill="#2c334d" stroke="#f7c96c" stroke-width="3"/><rect x="215" y="60" width="210" height="132" rx="10" fill="#081229" stroke="#6de6ff" stroke-width="2.5"/><g fill="#f7c96c"><rect x="250" y="92" width="16" height="16" rx="2"/><rect x="272" y="108" width="16" height="16" rx="2"/><rect x="294" y="92" width="16" height="16" rx="2"/></g><polygon points="355,152 372,118 389,152" fill="#4be3a6"/><rect x="235" y="222" width="170" height="34" rx="6" fill="#1f2438" stroke="#fb923c" stroke-width="2.5"/><rect x="245" y="232" width="150" height="10" rx="2" fill="#92400e"/><rect x="440" y="218" width="44" height="38" rx="6" fill="#1f2438" stroke="#e2e8f0" stroke-width="2"/><line x1="462" y1="218" x2="462" y2="194" stroke="#f87171" stroke-width="5" stroke-linecap="round"/><circle cx="462" cy="190" r="7" fill="#f87171"/><circle cx="132" cy="186" r="24" fill="#fde68a"/><path d="M108 180 Q132 152 156 180" fill="#78350f"/><circle cx="140" cy="184" r="3" fill="#0f172a"/><path d="M104 256 Q132 212 162 256 Z" fill="#38bdf8"/></svg></div>
+      <p>The unspoken contract broke in broad daylight with Windows 8. Frank stared at the full-screen mosaic of live tiles plastered across a wide desktop monitor, wondering how anyone had looked at a keyboard-and-mouse workstation and decided it needed to pretend to be a giant phone. Removing the Start button felt like taking the steering wheel out of a car and handing the driver a touch panel instead. He tested 8 and 8.1 anyway—measuring their genuinely faster kernel boot times—before shaking his head at the split personality of two completely different interfaces stitched together in one box.</p>
+<p>Windows 10 promised to mend the rift, bringing back the Start menu and uniting the desktop again. At first Frank was hopeful. Then he watched the network monitor. Even when he wasn't touching a single key, packets flowed steadily outward—telemetry, diagnostic pings, suggested apps quietly downloading themselves into his Start menu like uninvited guests slipping through an unlocked back door. Updates stopped asking politely and began scheduling reboots in the middle of overnight builds. Search stopped looking only at his local files and started hitting web servers every time he typed three letters, turning a millisecond local lookup into a sluggish internet errand.</p>
+<p>By the time Windows 11 arrived with its centered taskbar, soft rounded corners, and strict hardware gates, the transformation was complete. Frank installed it on a blistering modern machine—sixteen threads running past four gigahertz, thirty-two gigabytes of fast memory, an NVMe drive capable of reading gigabytes per second. Hardware literally thousands of times more powerful than his beloved 486DX2-66.</p>
+<p>And yet, when he right-clicked a folder on the desktop, there was a perceptible <em>hesitation</em> before the new rounded context menu appeared. Opening File Explorer took a beat as embedded web components hydrated themselves. Task Manager revealed over a hundred and fifty background processes humming away before he had launched a single tool of his own—widgets, chat stubs, cloud sync agents, WebView2 frames, store updaters, and telemetry collectors all sipping from the same glass.</p>
+<p>Frank sat back in his chair, staring at the glowing monitor in disbelief, and felt a sudden flash of clarity. He wasn't angry out of nostalgia; he didn't want to go back to 640 kilobytes of RAM or jumper pins. What stung was the sheer, breathtaking <em>waste</em>. Engineers had spent thirty years performing miracles in silicon—shrinking transistors to the width of a few atoms—only for layers of careless, noisy software to swallow that thousandfold speedup whole.</p>
+<p>The personal computer had quietly been turned into a noise machine: a billboard that happened to run programs on the side. And for someone who had grown up listening to the honest hum of an Atari and the crisp snap of Windows 2000, the noise was impossible to unhear.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Watching Windows 10 and 11 hesitate on thousand-times-faster silicon exposed the quiet scandal of modern computing: hardware miracles swallowed whole by telemetry, web wrappers, and background noise.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="018-glass-shadows-and-the-seven-truce.html">← Ch. 018</a>
+        <a class="btn" href="index.html">Chapters (19/100)</a>
+        <a class="btn" href="020-xray-eyes-for-bloat-and-speed.html">Ch. 020 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

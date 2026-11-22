@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 27: Non-Deterministic Heartbeats — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 027 OF 100 · Act III · The Human Heart</div>
+      <h1>Chapter 27: Non-Deterministic Heartbeats</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A starry midnight sky over a retro music cassette and glowing warm pink and gold hearts"><defs><linearGradient id="f3-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#140c2e"/><stop offset="100%" stop-color="#2b164d"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f3-bg)"/><g fill="#fff4cf" opacity="0.85"><circle cx="92" cy="52" r="2.2"/><circle cx="180" cy="38" r="2.8"/><circle cx="490" cy="48" r="2.4"/><circle cx="555" cy="84" r="3"/></g><path d="M265 110 C265 90 295 82 308 102 C321 82 351 90 351 110 C351 138 308 160 308 160 C308 160 265 138 265 110 Z" fill="#f472b6" opacity="0.88"/><path d="M405 88 C405 76 423 71 431 83 C439 71 457 76 457 88 C457 105 431 119 431 119 C431 119 405 105 405 88 Z" fill="#f7c96c" opacity="0.85"/><rect x="205" y="176" width="230" height="92" rx="12" fill="#1e1b4b" stroke="#6de6ff" stroke-width="3"/><circle cx="272" cy="222" r="22" fill="none" stroke="#f7c96c" stroke-width="4" stroke-dasharray="10 6"/><circle cx="368" cy="222" r="22" fill="none" stroke="#f7c96c" stroke-width="4" stroke-dasharray="10 6"/><rect x="298" y="210" width="44" height="24" rx="4" fill="#0f172a"/></svg></div>
+      <p>That rainy apology by the bicycle racks stayed with Frank long after his jacket dried. Sitting at his desk later that week, watching a clean, deterministic simulation tick across his screen—same inputs, same state transitions, same exact output a million times in a row—he felt a sudden, almost comical wave of humility. For years, he had secretly believed that if you studied any system closely enough, mapped every variable, and traced every edge case, you could predict it completely.</p>
+<p>The human heart, he was discovering, laughed straight in the face of that assumption.</p>
+<p>Give a processor an instruction and it obeys without hesitation, without mood swings, without remembering something embarrassing it said in seventh grade. Give a human being the exact same sentence on two different afternoons, and on Tuesday it makes them laugh until they cry, while on Wednesday—after a rough morning, a sleepless night, or a quiet worry they haven't named yet—it lands like a bruise. There is no single-step debugger for love, no rollback transaction for a careless tone of voice, and no specification document that tells you with mathematical certainty how someone else's soul is wired.</p>
+<p>At first, that unpredictability rattled him. The builder in him wanted guarantees. He wanted to know that if he was kind, attentive, and honest, nobody would ever get hurt and nothing good would ever wobble. Slowly, though, sitting with Lena on a park bench sharing a single paper bag of warm chestnuts while winter wind rattled the bare branches above them, he began to see the flip side.</p>
+<p>If a person were deterministic—if every smile were just a guaranteed output of the right input—then affection wouldn't mean anything at all. The reason Lena's laugh felt like a miracle was precisely because she was free not to laugh. The reason trust felt so sacred was because it was chosen fresh every day by two complicated, imperfect people who could easily have walked away and decided to stay anyway. Uncertainty wasn't a flaw in the design of human connection; it was the very space where courage and tenderness lived.</p>
+<p>Frank stopped trying to rehearse every conversation three moves ahead like a chess engine. He started listening with his whole body instead of preparing his next clever response. He learned to sit comfortably inside &quot;I don't know yet,&quot; to ask gentle questions instead of guessing, and to let a moment be messy without rushing to optimize it.</p>
+<p>That night, he opened his notebook and drew a neat little diagram on the left side of the page: a crisp square labeled <code>CPU</code>, with clean straight arrows entering and leaving. On the right side, he sketched a rough, looping spiral with sparks flying off the edges and labeled it <code>HEART</code>. He looked at both drawings for a long moment, smiled to himself, and realized he needed both of them to be whole.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>A CPU is beautiful because it is predictable; a human heart is beautiful because it is gloriously, bravely not.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="026-the-undocumented-silence.html">← Ch. 026</a>
+        <a class="btn" href="index.html">Chapters (27/100)</a>
+        <a class="btn" href="028-ten-layers-down.html">Ch. 028 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

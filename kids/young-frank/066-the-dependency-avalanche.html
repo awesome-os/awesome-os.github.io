@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 66: The Dependency Avalanche — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 066 OF 100 · Act VII · The Mountain of Abstractions</div>
+      <h1>Chapter 66: The Dependency Avalanche</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A glowing golden bridge connecting a retro Atari console on the left to a radiant White Dragon star on the right"><rect width="640" height="300" rx="16" fill="#091026"/><path d="M90 210 Q320 90 550 150" fill="none" stroke="#f7c96c" stroke-width="5" stroke-linecap="round"/><rect x="52" y="192" width="110" height="44" rx="8" fill="#1e293b" stroke="#fb923c" stroke-width="3"/><text x="107" y="219" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="14" font-weight="bold">ATARI</text><circle cx="536" cy="148" r="46" fill="#6de6ff" fill-opacity="0.2" stroke="#6de6ff" stroke-width="3.5"/><text x="536" y="154" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="14" font-weight="bold">WHITE DRAGON</text><text x="320" y="264" text-anchor="middle" fill="#4be3a6" font-family="monospace" font-size="13">THE JOURNEY CONTINUES · ADD MORE CHAPTERS ANYTIME</text></svg></div>
+      <p>If the layers of runtimes were the stone walls of the mountain, then package dependencies were the loose gravel waiting to slide. Frank watched it happen in real time on a crisp autumn afternoon while setting up a clean, minimal prototype. He wanted just three things: a small parser, a test runner, and a way to bundle a single file. Three modest, sensible dependencies.</p>
+<p>He typed the install command and watched the progress bar begin to crawl. Ten packages. Fifty. Two hundred. By the time the spinner finally stopped, his hard drive had swallowed more than twelve hundred nested directories and nearly forty thousand tiny files—most of them written by strangers he had never met, pulling in other strangers' libraries, including packages whose entire job was to check whether a number was odd or to pad a string with spaces.</p>
+<p>Curious, he opened the dependency tree and scrolled until his thumb grew tired. Buried seven levels deep were three different copies of the same utility library in three slightly different versions, a post-install script quietly trying to compile a C++ binary from scratch, and a warning banner from a maintainer who had archived their repository two years earlier. One broken link anywhere in that twelve-hundred-piece chain—one renamed file, one yanked release, one compiler mismatch—and the entire project would collapse into a heap of cryptic stack traces.</p>
+<p>It hit him hardest when he thought about the next generation of kids—young builders sitting in front of their own glowing screens, full of curiosity and bright ideas, just like he had been with the Atari. Imagine a twelve-year-old trying to build a small game or a music visualizer, typing an install command, and getting slammed in the face by forty-seven vulnerability warnings, a failed native build script, and a gigabyte of mystery folders they could never hope to read in a lifetime. How could anyone feel ownership over a machine when they couldn't even see what was inside their own project folder?</p>
+<p>Even worse, this wasn't just a JavaScript problem. Across Python wheels, Linux distro repositories, Maven archives, and Docker base images, the same pattern repeated like a bad dream: software treated like disposable fast fashion, stitched together from thousands of unverified scraps and thrown away the moment a seam ripped.</p>
+<p>Frank closed the directory inspector and felt a quiet, stubborn resolve hardening in his chest. Real craft was supposed to make things clearer, lighter, and more durable. Somewhere along the way, the industry had confused <em>downloading other people's complexity</em> with <em>solving a problem</em>. And every time the avalanche roared down the slope, everyone just shrugged, wiped the folder, and ran install all over again.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>You do not own software whose foundation is forty thousand mystery files you could never read, audit, or rebuild on a rainy afternoon.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="065-layers-upon-layers.html">← Ch. 065</a>
+        <a class="btn" href="index.html">Chapters (66/100)</a>
+        <a class="btn" href="067-the-midnight-argument-with-the-stack.html">Ch. 067 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

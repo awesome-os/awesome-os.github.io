@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive OS Desktop &amp; Recorded Walkthroughs — Awesome-OS</title>
+  <meta name="description" content="Try the live interactive Awesome-OS Web Desktop (draggable windows, real Uint8Array RAM arena wipe, B8G-ABI v3 hot-swap, S^3 quaternion rollback) and recorded HD proofs." />
+  <link rel="alternate" type="application/rss+xml" title="Awesome-OS Engineering Blog" href="/rss.xml" />
+  <style>
+:root {
+  --bg: #06090f;
+  --panel: #0c121e;
+  --card: #101827;
+  --border: #1e293b;
+  --border-hi: #38bdf866;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --cyan: #38bdf8;
+  --emerald: #4ade80;
+  --amber: #fbbf24;
+  --violet: #c084fc;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.65;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(56,189,248,0.08), transparent 36%),
+    radial-gradient(circle at 88% 14%, rgba(74,222,128,0.06), transparent 34%),
+    linear-gradient(to right, rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+}
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(6, 9, 15, 0.86);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -0.02em; color: #fff; font-size: 1.08rem; }
+.brand:hover { text-decoration: none; }
+.brand svg { width: 30px; height: 30px; }
+.badge { font-family: var(--mono); font-size: 11px; color: var(--emerald); background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); padding: 2px 8px; border-radius: 999px; }
+.nav-links { display: flex; gap: 20px; font-family: var(--mono); font-size: 13px; flex-wrap: wrap; }
+.nav-links a { color: var(--muted); }
+.nav-links a:hover, .nav-links a.active { color: #fff; text-decoration: none; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.hero { padding: 72px 0 48px; display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 40px; align-items: center; }
+@media (max-width: 880px) { .hero { grid-template-columns: 1fr; padding: 44px 0 32px; } }
+.eyebrow { font-family: var(--mono); font-size: 12px; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.hero h1 { font-size: clamp(2.1rem, 4.2vw, 3.35rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 18px; }
+.hero h1 span { background: linear-gradient(90deg, var(--cyan), var(--emerald)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: var(--muted); font-size: 1.08rem; max-width: 60ch; margin-bottom: 26px; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 8px;
+  font-family: var(--mono); font-size: 13px; font-weight: 600; border: 1px solid var(--border);
+  background: var(--card); color: #fff; transition: all 0.15s ease;
+}
+.btn:hover { border-color: var(--cyan); text-decoration: none; transform: translateY(-1px); }
+.btn-primary { background: linear-gradient(135deg, #0ea5e9, #10b981); border: none; color: #041019; }
+.btn-primary:hover { filter: brightness(1.08); }
+.hero-art { display: flex; justify-content: center; align-items: center; padding: 20px; background: radial-gradient(circle, rgba(56,189,248,0.12), transparent 68%); border-radius: 16px; border: 1px solid var(--border); }
+.hero-art svg { width: 100%; max-width: 340px; height: auto; filter: drop-shadow(0 16px 36px rgba(0,0,0,0.6)); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 14px; margin: 12px 0 56px; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+.stat .k { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat .v { font-family: var(--mono); font-size: 1.45rem; font-weight: 800; color: var(--cyan); margin-top: 4px; }
+.stat .v.em { color: var(--emerald); }
+.stat .v.am { color: var(--amber); }
+section { padding: 42px 0; border-top: 1px solid var(--border); }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.sec-head h2 { font-size: 1.65rem; letter-spacing: -0.02em; }
+.sec-head .sub { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 18px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.15s ease, transform 0.15s ease; }
+.card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+.card .tag { font-family: var(--mono); font-size: 11px; color: var(--emerald); text-transform: uppercase; }
+.card h3 { font-size: 1.1rem; line-height: 1.3; }
+.card p { color: var(--muted); font-size: 0.92rem; flex: 1; }
+.card .meta { font-family: var(--mono); font-size: 12px; color: var(--cyan); margin-top: 4px; }
+.demo-frame { background: #04070d; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.demo-frame iframe { width: 100%; height: 620px; border: 0; display: block; }
+.demo-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.demo-tab { font-family: var(--mono); font-size: 12px; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--panel); color: var(--muted); cursor: pointer; }
+.demo-tab.active, .demo-tab:hover { border-color: var(--cyan); color: #fff; background: rgba(56,189,248,0.12); }
+.diagram-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 18px; }
+.diagram-box { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; }
+.diagram-box svg { max-width: 100%; height: auto; max-height: 220px; }
+.diagram-box .cap { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 10px; }
+.article { max-width: 820px; margin: 44px auto 72px; }
+.article h1 { font-size: 2.1rem; line-height: 1.2; margin-bottom: 12px; }
+.article .byline { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.article h2 { font-size: 1.45rem; margin: 32px 0 12px; color: #fff; }
+.article h3 { font-size: 1.15rem; margin: 22px 0 8px; color: var(--cyan); }
+.article p { margin: 12px 0; color: #cbd5e1; }
+.article ul { margin: 12px 0 16px 22px; color: #cbd5e1; }
+.article li { margin: 6px 0; }
+.article blockquote { border-left: 3px solid var(--cyan); padding: 10px 16px; background: rgba(56,189,248,0.06); margin: 16px 0; color: #e2e8f0; border-radius: 0 8px 8px 0; }
+.article code { font-family: var(--mono); font-size: 0.88em; background: #131d2e; padding: 2px 6px; border-radius: 4px; color: var(--emerald); }
+.article pre { background: #090e18; border: 1px solid var(--border); border-radius: 10px; padding: 16px; overflow-x: auto; margin: 16px 0; }
+.article pre code { background: none; padding: 0; color: #e2e8f0; font-size: 13px; }
+.math-block {
+  font-family: "Cambria Math", "STIX Two Math", Georgia, "Times New Roman", serif;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  text-align: center;
+  background: rgba(12, 18, 30, 0.85);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cyan);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 18px 0;
+  overflow-x: auto;
+  color: #f8fafc;
+}
+.math-inline {
+  font-family: "Cambria Math", "STIX Two Math", Georgia, "Times New Roman", serif;
+  font-size: 1.02em;
+  color: #f8fafc;
+  white-space: nowrap;
+}
+.math-block var, .math-inline var { font-style: italic; }
+.math-rm { font-style: normal; font-family: var(--sans); font-size: 0.9em; }
+.math-block sub, .math-block sup, .math-inline sub, .math-inline sup { font-size: 0.72em; line-height: 0; }
+.math-bar { text-decoration: overline; }
+.math-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 3px; font-size: 0.92em; line-height: 1.2; }
+.math-frac .math-num { border-bottom: 1px solid #cbd5e1; padding: 0 4px 2px; }
+.math-frac .math-den { padding: 2px 4px 0; }
+.table-wrap { overflow-x: auto; margin: 18px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; }
+th { background: var(--panel); font-family: var(--mono); font-size: 12px; color: var(--cyan); }
+footer { border-top: 1px solid var(--border); padding: 36px 0; margin-top: 48px; color: var(--muted); font-family: var(--mono); font-size: 12px; }
+.foot-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+</style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <svg id="asset-app-icon" viewBox="0 0 256 256" width="256" height="256" xmlns="http://www.w3.org/2000/svg"><defs>
+    <!-- Crystal White & Prismatic Gradients -->
+    <linearGradient id="crystal-bright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-mid" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <linearGradient id="prism-spectrum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="25%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="75%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="prism-beam" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="obsidian-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b26"/>
+      <stop offset="50%" stop-color="#0d1118"/>
+      <stop offset="100%" stop-color="#07090e"/>
+    </linearGradient>
+
+    <radialGradient id="white-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32"/>
+      <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="green-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="red-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <linearGradient id="purple-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d8b4fe"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+
+    <filter id="prism-glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <pattern id="pcb-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.6"/>
+      <path d="M 10 0 L 10 15 L 25 30 L 40 30" fill="none" stroke="#334155" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="10" cy="15" r="1.5" fill="#475569"/>
+      <circle cx="25" cy="30" r="1.5" fill="#475569"/>
+    </pattern>
+  </defs>
+            <rect x="16" y="16" width="224" height="224" rx="52" fill="#0d111a" stroke="url(#prism-spectrum)" stroke-width="3"/>
+            <g transform="translate(128, 132)">
+              <polygon points="0,-82 -14,-54 0,-42 14,-54" fill="#ffffff"/>
+              <polygon points="-14,-54 -30,-68 -18,-44" fill="url(#crystal-bright)"/>
+              <polygon points="14,-54 30,-68 18,-44" fill="url(#crystal-mid)"/>
+              <polygon points="-18,-22 -84,-64 -62,-10" fill="url(#crystal-bright)"/>
+              <polygon points="18,-22 84,-64 62,-10" fill="url(#crystal-mid)"/>
+              <polygon points="0,-32 -32,6 0,52 32,6" fill="#ffffff"/>
+              <polygon points="0,-10 -14,8 0,26 14,8" fill="url(#prism-spectrum)"/>
+              <polygon points="0,52 -18,78 0,92 18,78" fill="url(#crystal-bright)"/>
+            </g>
+          </svg>
+        <span>AWESOME-OS</span>
+        <span class="badge">B8G-ABI v3</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/" class="">Home</a>
+        <a href="/#demos" class="active">Live Demos</a>
+        <a href="/#ventures">Ventures</a>
+        <a href="/#c-star-roi">ROI</a>
+        <a href="/book/index.html" class="">White Dragon Book</a>
+        <a href="/kids/index.html">Kids Book</a>
+        <a href="/b8g-app/index.html">b8g.app</a>
+        <a href="/evidence/index.html">Evidence Pack</a>
+        <a href="/blog/index.html" class="">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap" style="padding-top:36px">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">LIVE EXECUTABLE OS DESKTOP + RECORDED REAL-SILICON WALKTHROUGHS</div>
+          <h2>Awesome-OS Live Desktop &amp; Demos</h2>
+        </div>
+        <a class="btn" href="/demos/os-desktop.html" target="_blank" rel="noopener">Open Fullscreen Desktop ↗</a>
+      </div>
+      <div class="demo-frame" style="margin-bottom:28px">
+        <iframe src="/demos/os-desktop.html" title="Awesome-OS Live Interactive Desktop"></iframe>
+      </div>
+      <div class="sec-head"><h3>Recorded Real-Silicon Walkthroughs (HTML5 + HD H.264 MP4)</h3></div>
+      <div class="grid">
+        <div class="card">
+              <div class="tag">RECORDED WALKTHROUGH</div>
+              <h3>Live 4D Gaussian Splat (.asog / TRiGS)</h3>
+              <div class="cta-row" style="margin-top:8px">
+                <a class="btn" href="/demos/asog-4dgs.html">Play HTML5 →</a>
+                
+              </div>
+            </div>
+<div class="card">
+              <div class="tag">RECORDED WALKTHROUGH</div>
+              <h3>YC Live Technical Proof</h3>
+              <div class="cta-row" style="margin-top:8px">
+                <a class="btn" href="/demos/yc-b8g-sovereign-demo.html">Play HTML5 →</a>
+                <a class="btn" href="/demos/yc-b8g-sovereign-demo.mp4" download>MP4 (990 KB) ↓</a>
+              </div>
+            </div>
+<div class="card">
+              <div class="tag">RECORDED WALKTHROUGH</div>
+              <h3>B8G-ABI v2 → v3 Step-Wise Upgrade</h3>
+              <div class="cta-row" style="margin-top:8px">
+                <a class="btn" href="/demos/05-abi-v3-stepwise-upgrade-demo.html">Play HTML5 →</a>
+                <a class="btn" href="/demos/05-abi-v3-stepwise-upgrade-demo.mp4" download>MP4 (733 KB) ↓</a>
+              </div>
+            </div>
+<div class="card">
+              <div class="tag">RECORDED WALKTHROUGH</div>
+              <h3>01 · Enterprise Browser</h3>
+              <div class="cta-row" style="margin-top:8px">
+                <a class="btn" href="/demos/01-enterprise-browser-demo.html">Play HTML5 →</a>
+                <a class="btn" href="/demos/01-enterprise-browser-demo.mp4" download>MP4 (729 KB) ↓</a>
+              </div>
+            </div>
+<div class="card">
+              <div class="tag">RECORDED WALKTHROUGH</div>
+              <h3>02 · Sovereign Git Forge</h3>
+              <div class="cta-row" style="margin-top:8px">
+                <a class="btn" href="/demos/02-sovereign-git-forge-demo.html">Play HTML5 →</a>
+                <a class="btn" href="/demos/02-sovereign-git-forge-demo.mp4" download>MP4 (740 KB) ↓</a>
+              </div>
+            </div>
+<div class="card">
+              <div class="tag">RECORDED WALKTHROUGH</div>
+              <h3>03 · Universal Brain + IDE</h3>
+              <div class="cta-row" style="margin-top:8px">
+                <a class="btn" href="/demos/03-universal-brain-ide-demo.html">Play HTML5 →</a>
+                <a class="btn" href="/demos/03-universal-brain-ide-demo.mp4" download>MP4 (786 KB) ↓</a>
+              </div>
+            </div>
+<div class="card">
+              <div class="tag">RECORDED WALKTHROUGH</div>
+              <h3>04 · Zero-Copy Desktop</h3>
+              <div class="cta-row" style="margin-top:8px">
+                <a class="btn" href="/demos/04-zero-copy-desktop-demo.html">Play HTML5 →</a>
+                <a class="btn" href="/demos/04-zero-copy-desktop-demo.mp4" download>MP4 (726 KB) ↓</a>
+              </div>
+            </div>
+<div class="card">
+              <div class="tag">RECORDED WALKTHROUGH</div>
+              <h3>NLnet / NGI0 Proof</h3>
+              <div class="cta-row" style="margin-top:8px">
+                <a class="btn" href="/demos/nlnet-ngi0-grant-demo.html">Play HTML5 →</a>
+                <a class="btn" href="/demos/nlnet-ngi0-grant-demo.mp4" download>MP4 (765 KB) ↓</a>
+              </div>
+            </div>
+      </div>
+    </main>
+  <footer>
+    <div class="wrap foot-inner">
+      <div>AWESOME-OS · <em>Nunquam ante, numquam iterum</em> · Built from source on bare metal.</div>
+      <div><a href="/blog/index.html">Blog</a> · <a href="/book/index.html">White Dragon Book</a> · <a href="/rss.xml">RSS</a></div>
+    </div>
+  </footer>
+</body>
+</html>

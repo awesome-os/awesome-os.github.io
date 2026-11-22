@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 4: LOAD \&quot;*\&quot;,8,1 — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 004 OF 100 · Act I · The CRT Glow &amp; First Machines</div>
+      <h1>Chapter 4: LOAD \&quot;*\&quot;,8,1</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A bright golden lighthouse beam cutting calmly through dramatic stormy clouds and waves"><defs><linearGradient id="f4-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b1124"/><stop offset="100%" stop-color="#1e293b"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f4-bg)"/><polygon points="320,92 640,30 640,154" fill="#fde047" opacity="0.18"/><polygon points="320,92 0,44 0,140" fill="#fde047" opacity="0.14"/><rect x="296" y="106" width="48" height="126" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><rect x="298" y="136" width="44" height="24" fill="#ef4444"/><rect x="298" y="182" width="44" height="24" fill="#ef4444"/><circle cx="320" cy="92" r="18" fill="#fde047"/><path d="M0 242 Q80 218 160 242 T320 242 T480 242 T640 242 L640 300 L0 300 Z" fill="#0284c7" opacity="0.55"/></svg></div>
+      <p>Before the disk drive arrived, saving a program felt like whispering a secret into the wind—turn off the Commodore 64, and every line of BASIC vanished instantly from RAM. Then came the Commodore 1541, a beige monolith nearly as heavy as the computer itself, connected by a thick round serial cable. Inside its boxy shell sat its own 6502 processor and a precision mechanical drive built to read thin, flexible 5.25-inch black jackets lined with dark brown magnetic iron oxide.</p>
+<p>Frank learned the ritual by heart until his fingers could perform it in the dark. Slide a floppy disk gently out of its paper sleeve—never touching the exposed oval window where the magnetic coating gleamed—push it straight into the slot until it seated with a soft click, and rotate the black latch lever downward to clamp the hub. Then came the sacred incantation typed at the <code>READY.</code> prompt: <code>LOAD &quot;*&quot;,8,1</code>.</p>
+<p>The moment he pressed <code>RETURN</code>, the 1541 came alive like a tiny industrial locomotive. The green power light stayed steady while the red drive LED snapped on. The spindle motor spun up with a low, reassuring whirr, followed by the unmistakable rhythmic <em>chug-chug-clack-clack</em> of the read/write head stepping across magnetic tracks. On the blue screen, the computer reported <code>SEARCHING FOR *</code>, then <code>LOADING</code>, and finally went quiet as bytes trickled through the slow serial bus into memory.</p>
+<p>In an age before instant downloads, those sixty seconds of whirring and clicking were pure suspense. Frank sat cross-legged with his chin in his hands, listening to the mechanical tempo of the drive the way a sailor listens to the creak of a wooden hull. You could actually <em>hear</em> when a game was loading smoothly, when a fast-loader kicked in with a rapid buzz, or when a scratched sector caused the dreaded machine-gun <em>rat-tat-tat-tat</em> of the head knocking repeatedly against track zero while the red light blinked an angry distress signal.</p>
+<p>That mechanical honesty taught Frank something software alone never could: data was physical. A program wasn't an abstract cloud floating in nowhere; it was microscopic magnetic domains aligned in concentric rings on a spinning Mylar disc, pulled one bit at a time over copper wire into sixty-four kilobytes of silicon memory. When a disk failed to read, he learned to clean the drive head, inspect the alignment, and always keep a backup copy tucked safely inside a flip-top plastic disk box.</p>
+<p>When the red light finally winked out, the drive sighed to a stop, and the title screen burst to life with scrolling text and bright sprites, the triumph felt earned. Patience, care, and respect for the physical machinery had turned a quiet black square of plastic into a living world.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Listening to a floppy drive step across magnetic tracks teaches a truth modern screens hide: every byte of software is real, physical, and worth treating with care.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="003-ready-flashing-in-blue.html">← Ch. 003</a>
+        <a class="btn" href="index.html">Chapters (4/100)</a>
+        <a class="btn" href="005-peek-poke-and-the-memory-map.html">Ch. 005 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 78: The Day WebContainers Booted in a Tab — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 078 OF 100 · Act VIII · The Unified Bridge</div>
+      <h1>Chapter 78: The Day WebContainers Booted in a Tab</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A glowing golden bridge connecting a retro Atari console on the left to a radiant White Dragon star on the right"><rect width="640" height="300" rx="16" fill="#091026"/><path d="M90 210 Q320 90 550 150" fill="none" stroke="#f7c96c" stroke-width="5" stroke-linecap="round"/><rect x="52" y="192" width="110" height="44" rx="8" fill="#1e293b" stroke="#fb923c" stroke-width="3"/><text x="107" y="219" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="14" font-weight="bold">ATARI</text><circle cx="536" cy="148" r="46" fill="#6de6ff" fill-opacity="0.2" stroke="#6de6ff" stroke-width="3.5"/><text x="536" y="154" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="14" font-weight="bold">WHITE DRAGON</text><text x="320" y="264" text-anchor="middle" fill="#4be3a6" font-family="monospace" font-size="13">THE JOURNEY CONTINUES · ADD MORE CHAPTERS ANYTIME</text></svg></div>
+      <p>Then came the morning the ground shifted beneath the entire web.</p>
+<p>Frank clicked a link expecting another remote cloud IDE—the usual trick where a browser tab merely streamed keystrokes to a sluggish Linux container idling on somebody else's server farm. Instead, the terminal blinked to life in less than a second. He ran a command. Then he unplugged his network cable just to be sure his eyes weren't playing tricks on him.</p>
+<p>It kept running.</p>
+<p>A full Node.js environment, a virtual filesystem, a package runner, and a local dev server—all booting natively <em>inside a single Chromium tab</em>, powered by WebAssembly, <code>SharedArrayBuffer</code>, and Worker threads. WebContainers had arrived.</p>
+<p>Frank stared at the blinking cursor in silence, his heart beating fast against his ribs. Across the internet, developers were amazed at the convenience—instant demos, zero-setup bug reproductions, clickable tutorials. That was neat, sure. But Frank wasn't looking at the convenience. He was looking at the tectonic plates that had just collided.</p>
+<p>For twenty years, the computing world had been split down the middle by an artificial wall. On one side lived the &quot;native&quot; operating system: heavy, privileged, fragile, tangled in platform-specific binaries and endless installation scripts. On the other side lived the &quot;web&quot;: instant, sandboxed, portable, yet dismissed as a toy unable to run real toolchains or OS-level workloads.</p>
+<p>WebContainers just proved that the wall was an illusion. With WebAssembly providing deterministic, near-native execution, <code>SharedArrayBuffer</code> providing zero-copy shared memory arenas across threads, and Chromium's V8 + sandbox acting as the host microkernel, the browser was no longer just a client. It had crossed the threshold into a universal execution substrate.</p>
+<p>At the same time, Frank's sharp eyes spotted what was still missing. WebContainers were brilliant, but they were still emulating legacy POSIX assumptions and Node's sprawling <code>node_modules</code> tree inside the browser. It was like strapping a vintage steam engine onto a brand-new electric train chassis. Amazing that it worked at all—and blindingly obvious that the real breakthrough lay one layer deeper.</p>
+<p>He leaned back, a slow, unstoppable grin spreading across his face. The pieces weren't scattered anymore. They were snapping together right in front of him.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>The moment a full runtime booted offline inside a browser tab, the old wall between native OS and web collapsed forever.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="077-when-engineers-argue-in-public.html">← Ch. 077</a>
+        <a class="btn" href="index.html">Chapters (78/100)</a>
+        <a class="btn" href="079-the-bridge-nobody-else-saw.html">Ch. 079 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

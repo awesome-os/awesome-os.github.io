@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 68: Drawing the Mountain — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 068 OF 100 · Act VII · The Mountain of Abstractions</div>
+      <h1>Chapter 68: Drawing the Mountain</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="An open electronics box revealing glowing golden copper circuit tracks and friendly microchips"><rect width="640" height="300" rx="16" fill="#0d172e"/><rect x="130" y="56" width="380" height="196" rx="16" fill="#14293d" stroke="#4be3a6" stroke-width="3"/><g stroke="#f7c96c" stroke-width="3.5" fill="none"><path d="M170 110 H260 V150 H340"/><path d="M170 190 H240 V168 H340"/><path d="M400 130 H470 V105"/><path d="M400 175 H470 V200"/></g><rect x="290" y="112" width="110" height="82" rx="10" fill="#1e293b" stroke="#6de6ff" stroke-width="3"/><text x="345" y="158" text-anchor="middle" fill="#6de6ff" font-family="monospace" font-size="16" font-weight="bold">6502</text><circle cx="170" cy="110" r="7" fill="#f7c96c"/><circle cx="170" cy="190" r="7" fill="#4be3a6"/><circle cx="470" cy="105" r="7" fill="#6de6ff"/><circle cx="470" cy="200" r="7" fill="#fb923c"/></svg></div>
+      <p>The next morning, Frank did something radical for a lifelong computer builder: he turned the monitors off. No terminals, no browsers, no GitHub tabs screaming for attention. He cleared the dining table, laid down a wide sheet of blank white paper, and picked up a simple black ink pen.</p>
+<p>Her question from the night before was still ringing like a bell in his mind. <em>If every floor of the house is crooked, why keep sanding the roof?</em> To answer it honestly, he needed to see the whole building at once—not one slice at a time through a tiny terminal window, but the entire structure from bare silicon to the pixels on a user's screen.</p>
+<p>He started at the bottom of the page and drew a solid horizontal line: <strong>Hardware &amp; Silicon</strong>—CPUs, memory buses, GPUs, network cards. Clean, physical, obedient to the laws of physics. Above that, he drew <strong>Operating Systems &amp; Kernels</strong>—Linux, Windows, macOS—already splitting into three jagged slabs that refused to agree on file paths, processes, or system calls.</p>
+<p>Above the kernels, his pen began to move faster. <strong>C Toolchains &amp; System Libraries</strong>, fractured between compilers and linkers. <strong>Virtual Machines &amp; Containers</strong>, built to hide the fractured kernels by packing an entire second operating system inside a box. <strong>Language Runtimes</strong>—Node, Python, JVM, Go, Rust, WebAssembly—each sitting on its own island, duplicating schedulers, memory managers, and standard libraries. <strong>Package Managers &amp; Registries</strong>, each inventing its own lockfile format and dependency graph. <strong>Build Systems &amp; Bundlers</strong>, translating code into other code just so the next layer could understand it. And finally, perched precariously at the snowy peak, <strong>Frameworks &amp; Cloud Orchestrators</strong>, trying to hold the entire wobbling tower together with YAML and hope.</p>
+<p>When he finally lifted the pen, he stepped back and stared at what he had drawn. It didn't look like an architecture. It looked like a jagged, top-heavy mountain made of mismatched boulders balanced on each other's edges.</p>
+<p>Every single time he had tried to build truly reproducible software during his open-source odyssey, he had been climbing halfway up that mountain and trying to hammer in a straight nail. Even if his own code at the summit was spotless, a tremor six layers down—a shifted kernel ABI, a changed container runtime, a broken package mirror, a host compiler update—would ripple upward and shatter everything he built.</p>
+<p>Tracing the ink lines with his fingertip, Frank saw the fault lines all at once. The problem wasn't that open-source developers weren't smart enough. The problem was that everyone was building <em>on</em> the mountain, and almost nobody was daring to look at the mountain itself.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>You cannot truly understand a trap until you step back from the screen, pick up a pen, and draw the entire machine on one sheet of paper.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="067-the-midnight-argument-with-the-stack.html">← Ch. 067</a>
+        <a class="btn" href="index.html">Chapters (68/100)</a>
+        <a class="btn" href="069-the-epiphany-of-unification.html">Ch. 069 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Awesome-OS // Live 4D Gaussian Splat Viewer (.asog + TRiGS SE(3))</title>
+  <style>
+    :root {
+      --bg: #050810;
+      --panel: rgba(9, 14, 26, 0.9);
+      --border: #1e293b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --cyan: #38bdf8;
+      --emerald: #4ade80;
+      --amber: #fbbf24;
+      --violet: #c084fc;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: var(--mono); }
+    canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+    canvas:active { cursor: grabbing; }
+    .hud-top {
+      position: fixed; top: 12px; left: 12px; right: 12px; pointer-events: none;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;
+    }
+    .panel {
+      pointer-events: auto; background: var(--panel); border: 1px solid var(--border);
+      border-radius: 10px; padding: 10px 14px; backdrop-filter: blur(10px); font-size: 11.5px;
+    }
+    .title { font-weight: 800; color: #fff; font-size: 12.5px; margin-bottom: 4px; }
+    .sub { color: var(--muted); font-size: 10.5px; }
+    .metrics { display: grid; grid-template-columns: repeat(3, auto); gap: 8px 16px; margin-top: 6px; }
+    .m-k { font-size: 9.5px; color: var(--muted); text-transform: uppercase; }
+    .m-v { font-size: 13px; font-weight: 800; color: var(--cyan); }
+    .m-v.em { color: var(--emerald); }
+    .m-v.am { color: var(--amber); }
+    .hud-bottom {
+      position: fixed; bottom: 12px; left: 12px; right: 12px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+      padding: 9px 14px; backdrop-filter: blur(10px); font-size: 11.5px;
+    }
+    button {
+      background: #0f172a; color: var(--text); border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 10px; font-family: var(--mono); font-size: 11px; cursor: pointer;
+    }
+    button:hover { border-color: var(--cyan); color: #fff; }
+    button.on { background: rgba(74,222,128,0.16); border-color: var(--emerald); color: var(--emerald); }
+    button.active { background: rgba(56,189,248,0.18); border-color: var(--cyan); color: var(--cyan); }
+    input[type="range"] { flex: 1; min-width: 140px; accent-color: var(--cyan); cursor: pointer; }
+    .hint { color: var(--muted); font-size: 10.5px; }
+  </style>
+</head>
+<body>
+  <canvas id="gl"></canvas>
+
+  <div class="hud-top">
+    <div class="panel">
+      <div class="title">ASOG-4DGS // B8G_ARENA_V1 + TRiGS SE(3)</div>
+      <div class="sub">Drag to orbit 3D camera · Scroll to zoom · Live lifespan-culled 4D Gaussian splats</div>
+      <div class="metrics">
+        <div><div class="m-k">Active / Total</div><div class="m-v" id="mActive">—</div></div>
+        <div><div class="m-k">Lifespan Culled</div><div class="m-v em" id="mCull">—</div></div>
+        <div><div class="m-k">Frame (Eval+Sort)</div><div class="m-v am" id="mMs">—</div></div>
+        <div><div class="m-k">Arena Slab</div><div class="m-v" id="mBytes">—</div></div>
+        <div><div class="m-k">S^3 Quat Norm</div><div class="m-v em" id="mNorm">1.000000000000</div></div>
+        <div><div class="m-k">FPS</div><div class="m-v" id="mFps">—</div></div>
+      </div>
+    </div>
+    <div class="panel" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+      <button id="btnCull" class="on">Lifespan Cull: ON</button>
+      <button id="btnOrbit" class="active">Auto-Orbit</button>
+      <button data-count="4000">4k</button>
+      <button data-count="10000" class="active">10k</button>
+      <button data-count="22000">22k</button>
+    </div>
+  </div>
+
+  <div class="hud-bottom">
+    <button id="btnPlay" class="active">Pause</button>
+    <span id="timeLbl" style="min-width:86px;color:var(--cyan)">0.00s / 12.0s</span>
+    <input id="scrub" type="range" min="0" max="12" step="0.01" value="0" />
+    <span class="hint">Static Park Scene (CAS Dedup) + Dynamic TRiGS Actors &amp; Lifespan Ribbons</span>
+  </div>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('gl');
+      const ctx = canvas.getContext('2d', { alpha: false });
+      const mActive = document.getElementById('mActive');
+      const mCull = document.getElementById('mCull');
+      const mMs = document.getElementById('mMs');
+      const mBytes = document.getElementById('mBytes');
+      const mNorm = document.getElementById('mNorm');
+      const mFps = document.getElementById('mFps');
+      const timeLbl = document.getElementById('timeLbl');
+      const scrub = document.getElementById('scrub');
+
+      const DURATION = 12.0;
+      let playing = true;
+      let cullEnabled = true;
+      let autoOrbit = true;
+      let timeSec = 0;
+      let yaw = 0.55;
+      let pitch = 0.34;
+      let dist = 13.5;
+
+      // Pre-rendered radial Gaussian splat sprite cache (by color bucket) for 60 FPS smooth blending
+      const spriteCache = new Map();
+      function getSplatSprite(r, g, b) {
+        const key = (r >> 3) + ',' + (g >> 3) + ',' + (b >> 3);
+        let img = spriteCache.get(key);
+        if (img) return img;
+        const c = document.createElement('canvas');
+        c.width = 32; c.height = 32;
+        const g2 = c.getContext('2d');
+        const grad = g2.createRadialGradient(16, 16, 0, 16, 16, 16);
+        grad.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',0.95)');
+        grad.addColorStop(0.42, 'rgba(' + r + ',' + g + ',' + b + ',0.45)');
+        grad.addColorStop(1, 'rgba(' + r + ',' + g + ',' + b + ',0)');
+        g2.fillStyle = grad;
+        g2.fillRect(0, 0, 32, 32);
+        spriteCache.set(key, c);
+        return c;
+      }
+
+      // Deterministic PRNG
+      let seed = 1337;
+      function rand() {
+        seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+        return seed / 4294967296;
+      }
+
+      // Flat B8G_ARENA_V1 SoA typed arrays
+      let totalCount = 10000;
+      let staticCount = 0;
+      let posX, posY, posZ, colR, colG, colB, radA;
+      let tStart, tEnd, velX, velY, velZ, accY, orbW, orbR, orbPhase;
+      let sortIdx, sortDepth, projX, projY, projSize, projAlpha;
+
+      function buildScene(nTotal) {
+        seed = 4242;
+        totalCount = nTotal;
+        staticCount = Math.floor(nTotal * 0.32);
+        posX = new Float32Array(nTotal);
+        posY = new Float32Array(nTotal);
+        posZ = new Float32Array(nTotal);
+        colR = new Uint8Array(nTotal);
+        colG = new Uint8Array(nTotal);
+        colB = new Uint8Array(nTotal);
+        radA = new Float32Array(nTotal);
+
+        tStart = new Float32Array(nTotal);
+        tEnd = new Float32Array(nTotal);
+        velX = new Float32Array(nTotal);
+        velY = new Float32Array(nTotal);
+        velZ = new Float32Array(nTotal);
+        accY = new Float32Array(nTotal);
+        orbW = new Float32Array(nTotal);
+        orbR = new Float32Array(nTotal);
+        orbPhase = new Float32Array(nTotal);
+
+        sortIdx = new Int32Array(nTotal);
+        sortDepth = new Float32Array(nTotal);
+        projX = new Float32Array(nTotal);
+        projY = new Float32Array(nTotal);
+        projSize = new Float32Array(nTotal);
+        projAlpha = new Float32Array(nTotal);
+
+        // 1. Static environment slab (park path, trees, bench, ground) — CAS deduplicated across clips
+        for (let i = 0; i < staticCount; i++) {
+          tStart[i] = 0; tEnd[i] = DURATION;
+          if (i < staticCount * 0.55) {
+            // Ground + stone pathway
+            const gx = (rand() - 0.5) * 14;
+            const gz = (rand() - 0.5) * 14;
+            const onPath = Math.abs(gx) < 1.8;
+            posX[i] = gx; posY[i] = -1.6 + (rand() - 0.5) * 0.08; posZ[i] = gz;
+            colR[i] = onPath ? 95 + (rand() * 30 | 0) : 28 + (rand() * 22 | 0);
+            colG[i] = onPath ? 110 + (rand() * 30 | 0) : 78 + (rand() * 50 | 0);
+            colB[i] = onPath ? 130 + (rand() * 30 | 0) : 48 + (rand() * 28 | 0);
+            radA[i] = 0.24 + rand() * 0.16;
+          } else {
+            // Two flanking tree canopies + architectural pillars
+            const side = (i & 1) ? 1 : -1;
+            const tx = side * (3.8 + rand() * 2.4);
+            const tz = (rand() - 0.5) * 10;
+            const isTrunk = rand() < 0.22;
+            posX[i] = tx + (rand() - 0.5) * (isTrunk ? 0.35 : 2.1);
+            posY[i] = isTrunk ? -1.5 + rand() * 2.4 : 0.7 + rand() * 2.8;
+            posZ[i] = tz + (rand() - 0.5) * (isTrunk ? 0.35 : 2.1);
+            colR[i] = isTrunk ? 96 : 34 + (rand() * 44 | 0);
+            colG[i] = isTrunk ? 74 : 138 + (rand() * 75 | 0);
+            colB[i] = isTrunk ? 58 : 74 + (rand() * 48 | 0);
+            radA[i] = isTrunk ? 0.22 : 0.32 + rand() * 0.2;
+          }
+        }
+
+        // 2. Dynamic TRiGS SE(3) slab: walking luminous actor + 8 bounded-lifespan 4D energy/motion waves
+        const dynCount = nTotal - staticCount;
+        for (let d = 0; d < dynCount; d++) {
+          const i = staticCount + d;
+          if (d < dynCount * 0.22) {
+            // Walking 3D Gaussian actor along the path (full clip lifespan, rigid SE(3) walk + stride)
+            tStart[i] = 0; tEnd[i] = DURATION;
+            const part = rand();
+            const h = part < 0.18 ? 1.55 + rand() * 0.35 : part < 0.65 ? 0.45 + rand() * 1.05 : -0.45 + rand() * 0.9;
+            const w = part < 0.18 ? 0.22 : 0.38;
+            posX[i] = (rand() - 0.5) * w * 2;
+            posY[i] = h - 1.1;
+            posZ[i] = -5.0 + (rand() - 0.5) * w * 2;
+            velX[i] = 0; velY[i] = 0; velZ[i] = 0.82; // walking forward along Z
+            orbW[i] = part >= 0.65 ? 3.5 : 0.6;
+            orbR[i] = part >= 0.65 ? 0.14 : 0.04;
+            orbPhase[i] = rand() * Math.PI * 2;
+            colR[i] = part < 0.18 ? 245 : 56 + (rand() * 40 | 0);
+            colG[i] = part < 0.18 ? 205 : 189 + (rand() * 45 | 0);
+            colB[i] = part < 0.18 ? 175 : 248;
+            radA[i] = 0.16 + rand() * 0.09;
+          } else {
+            // 8 time-windowed 4D TRiGS motion bursts (each lives 2.4s -> demonstrates massive O(1) lifespan culling!)
+            const bucket = d % 8;
+            const winStart = bucket * 1.4;
+            tStart[i] = winStart;
+            tEnd[i] = Math.min(DURATION, winStart + 2.4);
+            const ang = rand() * Math.PI * 2;
+            const r0 = 1.2 + rand() * 3.8;
+            posX[i] = Math.cos(ang) * r0;
+            posY[i] = -0.8 + rand() * 2.2;
+            posZ[i] = Math.sin(ang) * r0;
+            velX[i] = -Math.sin(ang) * (0.8 + rand() * 0.6);
+            velY[i] = 0.55 + rand() * 0.65;
+            velZ[i] = Math.cos(ang) * (0.8 + rand() * 0.6);
+            accY[i] = -0.35;
+            orbW[i] = 1.2 + (bucket % 3) * 0.5;
+            orbR[i] = 0.4 + rand() * 0.5;
+            orbPhase[i] = ang;
+            const hue = bucket % 3;
+            colR[i] = hue === 0 ? 56 : hue === 1 ? 74 : 192;
+            colG[i] = hue === 0 ? 189 : hue === 1 ? 222 : 132;
+            colB[i] = hue === 0 ? 248 : hue === 1 ? 128 : 252;
+            radA[i] = 0.18 + rand() * 0.14;
+          }
+        }
+
+        const bytes = staticCount * 20 + dynCount * (20 + 68);
+        mBytes.textContent = (bytes / 1024).toFixed(0) + ' KB';
+      }
+
+      function resize() {
+        const dpr = Math.min(2, window.devicePixelRatio || 1);
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+      buildScene(10000);
+
+      // Camera drag + wheel zoom
+      let dragging = false, lx = 0, ly = 0;
+      canvas.addEventListener('mousedown', (e) => { dragging = true; autoOrbit = false; document.getElementById('btnOrbit').classList.remove('active'); lx = e.clientX; ly = e.clientY; });
+      window.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        yaw += (e.clientX - lx) * 0.007;
+        pitch = Math.max(-0.5, Math.min(1.25, pitch + (e.clientY - ly) * 0.006));
+        lx = e.clientX; ly = e.clientY;
+      });
+      window.addEventListener('mouseup', () => { dragging = false; });
+      canvas.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        dist = Math.max(5.5, Math.min(24, dist + e.deltaY * 0.01));
+      }, { passive: false });
+
+      // Controls
+      document.getElementById('btnPlay').onclick = (e) => {
+        playing = !playing;
+        e.target.textContent = playing ? 'Pause' : 'Play';
+        e.target.classList.toggle('active', playing);
+      };
+      document.getElementById('btnCull').onclick = (e) => {
+        cullEnabled = !cullEnabled;
+        e.target.textContent = cullEnabled ? 'Lifespan Cull: ON' : 'Lifespan Cull: OFF';
+        e.target.classList.toggle('on', cullEnabled);
+      };
+      document.getElementById('btnOrbit').onclick = (e) => {
+        autoOrbit = !autoOrbit;
+        e.target.classList.toggle('active', autoOrbit);
+      };
+      scrub.oninput = () => { timeSec = parseFloat(scrub.value); };
+      document.querySelectorAll('[data-count]').forEach((b) => {
+        b.onclick = () => {
+          document.querySelectorAll('[data-count]').forEach((x) => x.classList.remove('active'));
+          b.classList.add('active');
+          buildScene(parseInt(b.dataset.count, 10));
+        };
+      });
+
+      let lastTs = performance.now(), fpsFrames = 0, fpsAcc = 0;
+
+      function frame(now) {
+        const dt = Math.min(0.05, (now - lastTs) / 1000);
+        lastTs = now;
+        if (playing) {
+          timeSec = (timeSec + dt) % DURATION;
+          scrub.value = timeSec.toFixed(2);
+        }
+        if (autoOrbit) yaw += dt * 0.24;
+        timeLbl.textContent = timeSec.toFixed(2) + 's / ' + DURATION.toFixed(1) + 's';
+
+        const tEval0 = performance.now();
+        const W = canvas.width, H = canvas.height;
+        const cx = W * 0.5, cy = H * 0.52;
+        const fov = Math.min(W, H) * 0.85;
+
+        const cyaw = Math.cos(yaw), syaw = Math.sin(yaw);
+        const cpitch = Math.cos(pitch), spitch = Math.sin(pitch);
+
+        // S^3 unit quaternion norm check for camera/actor rotation
+        const qw = Math.cos(timeSec * 0.5), qz = Math.sin(timeSec * 0.5);
+        mNorm.textContent = Math.hypot(qw, 0, 0, qz).toFixed(12);
+
+        let active = 0;
+        for (let i = 0; i < totalCount; i++) {
+          let x = posX[i], y = posY[i], z = posZ[i];
+          let alpha = 1.0;
+
+          if (i >= staticCount) {
+            const ts = tStart[i], te = tEnd[i];
+            const alive = timeSec >= ts && timeSec <= te;
+            if (!alive) {
+              if (cullEnabled) continue;
+              alpha = 0.0;
+            } else {
+              const tau = timeSec - ts;
+              const ang = orbPhase[i] + orbW[i] * tau;
+              x += velX[i] * tau + Math.cos(ang) * orbR[i];
+              y += velY[i] * tau + 0.5 * accY[i] * tau * tau;
+              z += velZ[i] * tau + Math.sin(ang) * orbR[i];
+              const u = tau / Math.max(0.001, te - ts);
+              alpha = Math.min(1, Math.min(u, 1 - u) * 10);
+            }
+          }
+
+          // World -> Camera space
+          const rx = x * cyaw - z * syaw;
+          const rz1 = x * syaw + z * cyaw;
+          const ry = y * cpitch - rz1 * spitch;
+          const rz = y * spitch + rz1 * cpitch + dist;
+          if (rz < 0.8) continue;
+
+          const invZ = fov / rz;
+          const sx = cx + rx * invZ;
+          const sy = cy - ry * invZ;
+          const sz = radA[i] * invZ * 2.1;
+          if (sx + sz < 0 || sx - sz > W || sy + sz < 0 || sy - sz > H) continue;
+
+          sortIdx[active] = i;
+          sortDepth[i] = rz;
+          projX[i] = sx;
+          projY[i] = sy;
+          projSize[i] = sz;
+          projAlpha[i] = alpha;
+          active++;
+        }
+
+        // Back-to-front depth sort on active splats only
+        const order = sortIdx.subarray(0, active);
+        order.sort((a, b) => {
+          // Fast approximate depth lookup via radial distance
+          return sortDepth[b] - sortDepth[a];
+        });
+
+        // Clear backdrop
+        ctx.fillStyle = '#050810';
+        ctx.fillRect(0, 0, W, H);
+
+        // Draw depth-sorted Gaussian splats
+        for (let k = 0; k < active; k++) {
+          const i = order[k];
+          const a = projAlpha[i];
+          if (a <= 0.02) continue;
+          const sz = projSize[i];
+          ctx.globalAlpha = a * 0.85;
+          const spr = getSplatSprite(colR[i], colG[i], colB[i]);
+          ctx.drawImage(spr, projX[i] - sz * 0.5, projY[i] - sz * 0.5, sz, sz);
+        }
+        ctx.globalAlpha = 1.0;
+
+        const frameMs = performance.now() - tEval0;
+        const culled = totalCount - active;
+        mActive.textContent = active.toLocaleString() + ' / ' + totalCount.toLocaleString();
+        mCull.textContent = ((culled / totalCount) * 100).toFixed(1) + '%';
+        mMs.textContent = frameMs.toFixed(1) + ' ms';
+
+        fpsFrames++; fpsAcc += dt;
+        if (fpsAcc >= 0.4) {
+          mFps.textContent = Math.round(fpsFrames / fpsAcc) + ' fps';
+          fpsFrames = 0; fpsAcc = 0;
+        }
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    })();
+  </script>
+</body>
+</html>

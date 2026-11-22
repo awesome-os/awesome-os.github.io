@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 71: Trusting the Source Code Over the Pitch — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 071 OF 100 · Act VIII · V8 &amp; Chromium</div>
+      <h1>Chapter 71: Trusting the Source Code Over the Pitch</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A warm golden sunset sky over calm harbor water with glowing floating lanterns and a bright heart horizon"><defs><linearGradient id="f5-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#311042"/><stop offset="55%" stop-color="#be185d"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f5-bg)"/><circle cx="320" cy="186" r="56" fill="#fef08a" opacity="0.9"/><rect x="0" y="196" width="640" height="104" fill="#1e1b4b" opacity="0.82"/><ellipse cx="320" cy="224" rx="88" ry="12" fill="#fde047" opacity="0.45"/><circle cx="160" cy="86" r="10" fill="#fef08a" opacity="0.85"/><circle cx="485" cy="74" r="12" fill="#fef08a" opacity="0.85"/><circle cx="220" cy="116" r="7" fill="#fbcfe8" opacity="0.85"/><circle cx="420" cy="112" r="8" fill="#fbcfe8" opacity="0.85"/></svg></div>
+      <p>The pitches came in glossy slide decks with pastel gradients and words like <em>disruptive</em> and <em>next-generation</em> stretched across forty-point fonts. Every few months, someone in a chat room, a conference hallway, or a late-night call would lean in and tell Frank that V8 was yesterday's news, that Chromium was too heavy, that some brand-new runtime or boutique engine was about to sweep the board clean. They always had benchmarks printed on neat bar charts. They almost never had scars.</p>
+<p>Frank had stopped believing bar charts back when he was tuning servers for millions of impatient visitors who didn't care whose logo sat on the press release. When someone pitched him a miracle engine, he didn't argue in the comments. He cloned the repository, poured himself a mug of black coffee, and opened the source tree in the quiet blue glow of his monitor.</p>
+<p>What he found in the alternative pitches almost always told the same story: clever prototypes held together by optimistic assumptions, thin edge-case handling, and a mountain of unexamined dependencies waiting to buckle the moment real-world traffic hit them. Then he opened V8 and Chromium. They were huge, yes—sprawling cities of C++ and build graphs that made newcomers flinch—but when Frank walked their streets, he saw load-bearing stone. He saw decades of battle-tested security mitigations, hardened parsers, memory fences written by engineers who had survived real exploits, and commit histories that read like field journals from the front lines of computing.</p>
+<p>It reminded him of the old days cracking open a beige PC tower or peering into an Amiga's schematics. Marketing could promise you the moon, but copper traces didn't lie, and neither did source code. If you read the hot paths—the object layouts, the garbage collector barriers, the sandbox boundaries—you could hear the honesty of the people who built them.</p>
+<p>Choosing V8 and Chromium wasn't about following the crowd or worshipping a giant tech company. In fact, plenty of his peers thought he was being stubborn, even old-fashioned, for refusing to chase the newest shiny framework. But Frank wasn't chasing trends. He was laying a foundation meant to hold an entire unified computing mountain, and you don't pour a skyscraper onto wet sand just because the sand has a nicer brochure.</p>
+<p>That night, with rain tapping softly against the windowpane and a dozen C++ headers open across his screen, he closed the glossy pitch decks for good. He didn't need anyone's permission to trust his own eyes. The code had already spoken.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Slide decks sell dreams, but source code tells the truth—and a real builder always trusts the metal they can inspect.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="070-the-compass-points-to-the-engine.html">← Ch. 070</a>
+        <a class="btn" href="index.html">Chapters (71/100)</a>
+        <a class="btn" href="072-inside-the-v8-engine-room.html">Ch. 072 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

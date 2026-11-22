@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The History of Computers &amp; The Internet — Kids Edition</title>
+  <style>
+  :root {
+    --bg: #090e24;
+    --card: #141c3d;
+    --border: rgba(247, 201, 108, 0.28);
+    --text: #f6f1e3;
+    --muted: #bfc9e6;
+    --gold: #f7c96c;
+    --cyan: #6de6ff;
+    --emerald: #4be3a6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(circle at 20% 0%, rgba(109,230,255,0.1), transparent 45%), var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.72;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 960px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 960px; margin: 0 auto; padding: 12px 22px 64px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(247,201,108,0.16); color: var(--gold); border: 1px solid rgba(247,201,108,0.4);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.18; margin-bottom: 8px; }
+  .sub { color: var(--cyan); font-size: 1.05rem; margin-bottom: 18px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.08rem; color: var(--text); }
+  .box {
+    margin: 18px 0; padding: 16px 20px; border-radius: 12px;
+    background: rgba(109,230,255,0.08); border-left: 4px solid var(--cyan);
+  }
+  .box.honest { background: rgba(247,201,108,0.1); border-left-color: var(--gold); }
+  .box-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--gold); color: #090e24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--cyan); }
+  .tile h3 { font-size: 1.08rem; color: #fff; }
+  .tile p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="../index.html">← Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+    <a href="/b8g-app/index.html">b8g.app Games</a>
+  </header>
+  <main>
+    <div class="card" style="text-align:center;margin-bottom:24px">
+      <div class="badge ui">KIDS BOOK 2 · 12 ILLUSTRATED PAGES · 1843 → TODAY</div>
+      <h1>The History of Computers &amp; The Internet</h1>
+      <p style="max-width:60ch;margin:12px auto 20px;color:var(--muted)">
+        The honest lineup of the real builders who invented programming, bits, compilers, Moon-landing safe gates, the mouse, Unix, the Internet, the free Web, and open-source software — starting with the first programmer, Ada Lovelace.
+      </p>
+      <a class="btn ui" href="01-ada-lovelace.html" style="background:var(--gold);color:#090e24">Start Reading: 01. Ada Lovelace →</a>
+    </div>
+    <div class="grid ui">
+      <a class="tile" href="01-ada-lovelace.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">01 · 1843</span>
+          <h3>Ada Lovelace</h3>
+          <p><strong style="color:var(--cyan)">The First Computer Programmer</strong> — The first published computer algorithm — and the vision of general-purpose computing</p>
+        </a>
+<a class="tile" href="02-boole-and-shannon.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">02 · 1854 → 1937</span>
+          <h3>George Boole & Claude Shannon</h3>
+          <p><strong style="color:var(--cyan)">True, False, and the Bit</strong> — Boolean logic (AND, OR, NOT) + electrical logic circuits + Information Theory (the Bit)</p>
+        </a>
+<a class="tile" href="03-alan-turing.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">03 · 1936</span>
+          <h3>Alan Turing</h3>
+          <p><strong style="color:var(--cyan)">The Universal Machine</strong> — The Universal Turing Machine — proof that ONE programmable machine can run ANY program</p>
+        </a>
+<a class="tile" href="04-zuse-eniac-von-neumann.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">04 · 1941–1945</span>
+          <h3>Konrad Zuse, the ENIAC Six & John von Neumann</h3>
+          <p><strong style="color:var(--cyan)">The First Real Electronic Computers</strong> — First programmable binary computer (Z3), first electronic general computer (ENIAC), and stored-program architecture</p>
+        </a>
+<a class="tile" href="05-grace-hopper.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">05 · 1952</span>
+          <h3>Grace Hopper</h3>
+          <p><strong style="color:var(--cyan)">The Compiler — Teaching Machines Human Words</strong> — The first compiler (A-0) and machine-independent programming languages (COBOL)</p>
+        </a>
+<a class="tile" href="06-margaret-hamilton.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">06 · 1969</span>
+          <h3>Margaret Hamilton</h3>
+          <p><strong style="color:var(--cyan)">Software Engineering & Safe Gates to the Moon</strong> — Software Engineering as a discipline + fault-tolerant priority recovery software for Apollo 11</p>
+        </a>
+<a class="tile" href="07-douglas-engelbart.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">07 · 1968</span>
+          <h3>Douglas Engelbart</h3>
+          <p><strong style="color:var(--cyan)">The Mother of All Demos</strong> — The computer mouse, hypertext links, windows, video calls, and live shared documents</p>
+        </a>
+<a class="tile" href="08-thompson-ritchie-unix-c.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">08 · 1969–1972</span>
+          <h3>Ken Thompson & Dennis Ritchie</h3>
+          <p><strong style="color:var(--cyan)">Unix & C — The Quiet River Underneath</strong> — The Unix operating system and the C programming language</p>
+        </a>
+<a class="tile" href="09-cerf-kahn-perlman-internet.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">09 · 1974–1985</span>
+          <h3>Vint Cerf, Bob Kahn & Radia Perlman</h3>
+          <p><strong style="color:var(--cyan)">TCP/IP & The Spanning Tree of the Internet</strong> — TCP/IP (how the Internet sends packets across Earth) + Spanning Tree Protocol (how networks avoid infinite loops)</p>
+        </a>
+<a class="tile" href="10-tim-berners-lee.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">10 · 1989–1991</span>
+          <h3>Tim Berners-Lee</h3>
+          <p><strong style="color:var(--cyan)">The World Wide Web — Given Away for Free</strong> — HTML, HTTP, URLs, the first web browser, and the first web server</p>
+        </a>
+<a class="tile" href="11-stallman-torvalds-open-source.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">11 · 1983–1991</span>
+          <h3>Richard Stallman & Linus Torvalds</h3>
+          <p><strong style="color:var(--cyan)">Free & Open-Source Software (GNU + Linux)</strong> — The Free Software movement (GNU, GPL) + the Linux kernel & Git version control</p>
+        </a>
+<a class="tile" href="12-your-turn-builders.html">
+          <span class="badge" style="margin-bottom:4px;align-self:flex-start">12 · Today → Tomorrow</span>
+          <h3>You — The Next Generation of Builders</h3>
+          <p><strong style="color:var(--cyan)">Own Your Machine, Question the Noise</strong> — Clean, deterministic, sovereign computing — built by curious minds who look underneath the hood</p>
+        </a>
+    </div>
+  </main>
+</body>
+</html>

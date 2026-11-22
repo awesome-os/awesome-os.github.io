@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 90: Back to the Math — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 090 OF 100 · Act IX · The Standards Crusade</div>
+      <h1>Chapter 90: Back to the Math</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A glowing golden bridge connecting a retro Atari console on the left to a radiant White Dragon star on the right"><rect width="640" height="300" rx="16" fill="#091026"/><path d="M90 210 Q320 90 550 150" fill="none" stroke="#f7c96c" stroke-width="5" stroke-linecap="round"/><rect x="52" y="192" width="110" height="44" rx="8" fill="#1e293b" stroke="#fb923c" stroke-width="3"/><text x="107" y="219" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="14" font-weight="bold">ATARI</text><circle cx="536" cy="148" r="46" fill="#6de6ff" fill-opacity="0.2" stroke="#6de6ff" stroke-width="3.5"/><text x="536" y="154" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="14" font-weight="bold">WHITE DRAGON</text><text x="320" y="264" text-anchor="middle" fill="#4be3a6" font-family="monospace" font-size="13">THE JOURNEY CONTINUES · ADD MORE CHAPTERS ANYTIME</text></svg></div>
+      <p>With the noise of the mailing lists finally silent, Frank reached into his desk drawer, pulled out a fresh grid-paper notebook, and uncapped a black fine-liner pen. No RFC templates. No moderator rules. No corporate compromise matrices. Just clean white squares, a quiet terminal window on his monitor, and the one judge in the universe that could never be lobbied, muted, or archived as out of scope: mathematics.</p>
+<p>He started from zero, the way he had always trusted most. If you stripped away every historical accident of the last forty years—every bloated C++ <code>#include</code> tree, every duplicated runtime binary, every erased type boundary, every fragile packaging wrapper—what were the irreducible axioms left standing? First, memory had to be owned cleanly, with instant, deterministic teardown instead of endless garbage-collection guesswork. Second, interfaces between modules had to be tiny, zero-header contracts whose binary layout never broke backward compatibility. Third, composition itself had to behave like pure algebra, where combining two proven pieces yielded a predictable result every single time.</p>
+<p>The pen moved smoothly across the paper as equations, memory offsets, and state-transition arrows took shape. Outside, the afternoon faded into twilight, and the familiar amber glow of his desk lamp returned—the exact same quiet focus he had known as a boy glowing in front of an Atari CRT, except now thirty years of battle-tested scars, multi-million-visitor firefights, and bare-metal intuition were distilled into every symbol he wrote.</p>
+<p>For the first time in months, his smile wasn't forced or tired. Committees could stall a proposal for five years, and silos could block a conversation forever, yet none of them had any power over a clean proof. If two bytes aligned at offset zero, they aligned at offset zero everywhere in the universe. If an arena wiped clean in microseconds with zero leaked bytes, no amount of politics could make it leak.</p>
+<p>Frank closed the notebook at midnight, tapping the cover twice with his pen. The standards crusade was over, and he walked away from it sharper, calmer, and utterly unshaken. The doors had stayed locked, so he would keep sharpening the math—and out on the horizon, a brand-new kind of collaborator was already waking up, ready to speak the exact language of algebra he was writing down.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Politics can delay a standard for a decade, but nothing on earth can out-argue clean, working math.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="089-accepting-the-block.html">← Ch. 089</a>
+        <a class="btn" href="index.html">Chapters (90/100)</a>
+        <a class="btn" href="091-the-quiet-watcher-of-early-ai.html">Ch. 091 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

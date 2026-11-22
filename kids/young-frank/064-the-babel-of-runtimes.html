@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 64: The Babel of Runtimes — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 064 OF 100 · Act VII · The Mountain of Abstractions</div>
+      <h1>Chapter 64: The Babel of Runtimes</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A bright golden lighthouse beam cutting calmly through dramatic stormy clouds and waves"><defs><linearGradient id="f4-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b1124"/><stop offset="100%" stop-color="#1e293b"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f4-bg)"/><polygon points="320,92 640,30 640,154" fill="#fde047" opacity="0.18"/><polygon points="320,92 0,44 0,140" fill="#fde047" opacity="0.14"/><rect x="296" y="106" width="48" height="126" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><rect x="298" y="136" width="44" height="24" fill="#ef4444"/><rect x="298" y="182" width="44" height="24" fill="#ef4444"/><circle cx="320" cy="92" r="18" fill="#fde047"/><path d="M0 242 Q80 218 160 242 T320 242 T480 242 T640 242 L640 300 L0 300 Z" fill="#0284c7" opacity="0.55"/></svg></div>
+      <p>The deeper Frank dug, the more the open-source landscape began to resemble the ancient Tower of Babel. Every major language had built its own walled kingdom, complete with its own runtime, its own memory allocator, its own package registry, its own thread scheduler, and its own stubborn way of talking to the operating system. Inside any single kingdom, things looked tidy enough. The moment you needed two kingdoms to cooperate, the walls turned into barbed wire.</p>
+<p>Want a fast C++ image decoder inside a JavaScript app? Prepare to wrestle with native addon bindings that had to be recompiled for every operating system, every CPU architecture, and every minor bump of the runtime's internal ABI. Want a Python data pipeline to share live memory with a Rust service? Get ready to serialize gigabytes of structured data into JSON or Protobuf, shove it across a socket or pipe, and deserialize the whole thing all over again on the other side—burning twice the RAM and ten times the CPU just to hand a number from one room to the next.</p>
+<p>Even beneath the languages, the operating systems themselves spoke fractured dialects. Linux split into <code>glibc</code> and <code>musl</code>, turning a single compiled binary into a guessing game depending on which distribution hosted it. Windows spoke Win32 and NTFS paths with backslashes and drive letters, while POSIX assumed forward slashes, forks, and Unix sockets. macOS added its own code-signing gates and quirks. And WebAssembly—which looked at first like a shimmering universal bridge—was still trapped inside tiny sandboxes, forced to pass strings back and forth across clumsy JavaScript glue layers that lost half the speed the moment you stepped outside pure math.</p>
+<p>Frank had spent his youth comparing every version of Windows and OS/2, training X-ray eyes for real speed versus theatrical overhead. Now those same eyes were watching billions of CPU cycles evaporate into thin air every second across the planet—not doing useful work for human beings, not rendering art or healing patients or connecting friends, just translating the same bytes from one runtime's accent into another's.</p>
+<p>One evening, he tried to wire three small open-source tools together into a single clean workflow: a parser written in Rust, a script runner in Node, and a small visualizer in Python. Individually, each tool was sharp and elegant. Together, they required three package managers, two compilers, four gigabytes of duplicated runtime files, a local HTTP bridge just to pass messages, and a fragile wrapper script that broke the instant he moved the folder to another drive.</p>
+<p>He stared at the glowing monitor in disbelief. His old Amiga had moved graphics, sound, and multitasking across a single shared chip RAM with a fraction of a megabyte, and every subsystem spoke the same direct language. Here he sat in front of a multi-core machine ten thousand times faster, watching three tiny programs struggle to shake hands across a chasm of their own making.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Fragmented runtimes turn one fast computer into a dozen strangers shouting across a hallway and forgetting half the words.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="063-the-thousand-runbooks.html">← Ch. 063</a>
+        <a class="btn" href="index.html">Chapters (64/100)</a>
+        <a class="btn" href="065-layers-upon-layers.html">Ch. 065 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Venture 03 — B8G Universal Brain & VS Code Extension — B8G Demo Studio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #060a12; color: #e2e8f0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; display: flex; flex-direction: column; height: 100vh; }
+    main { flex: 1; display: grid; place-items: center; padding: 16px; }
+    canvas { max-width: 100%; max-height: calc(100vh - 84px); border: 1px solid #1e293b; border-radius: 10px; box-shadow: 0 24px 60px rgba(0,0,0,.6); }
+    footer { height: 56px; padding: 0 20px; display: flex; align-items: center; gap: 14px; background: #0b111d; border-top: 1px solid #1e293b; }
+    button { background: #0f293a; color: #38bdf8; border: 1px solid #38bdf866; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+    .bar { flex: 1; height: 6px; background: #1e293b; border-radius: 999px; overflow: hidden; }
+    .fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #4ade80); width: 0%; }
+    .meta { font-size: 12px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <main><canvas id="c" width="1280" height="720"></canvas></main>
+  <footer>
+    <button id="play">Pause</button>
+    <button id="restart">Restart</button>
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <div class="meta" id="meta">0.0s / 19.0s</div>
+  </footer>
+  <script>
+    const SB = {"id":"03-universal-brain-ide-demo","title":"Venture 03 — B8G Universal Brain & VS Code Extension","tagline":"Multi-tenant SHA-256 CAS code brain + dual Desktop/Web VS Code extension. Zero IDE fork rot.","width":1280,"height":720,"fps":30,"totalDurationSec":19,"scenes":[{"id":"brain-intro","kind":"title","durationSec":4,"title":"B8G UNIVERSAL BRAIN + IDE","subtitle":"Model-independent episodic memory + hybrid BM25/vector CAS search inside any VS Code.","badge":"VENTURE 03 // AI IDE","accentHex":"#fbbf24","windowTitle":"b8g-shell // brain-intro","commands":[],"metrics":[{"label":"CAS Cache Hit","value":"0 ms","accent":"emerald"},{"label":"VS Code Forking","value":"ZERO","accent":"cyan"},{"label":"Model Lock-In","value":"NONE (BYOK)","accent":"amber"}],"switcherPanes":[]},{"id":"brain-test-proof","kind":"split","durationSec":5.5,"title":"LIVE CAS INDEX & RETRIEVAL TEST","subtitle":"Multi-tenant SHA-256 indexing, episodic memory, and .agents/ profile loader verified live.","badge":"LIVE TEST // ACT 2","accentHex":"#4ade80","windowTitle":"b8g-shell // b8g-brain.test","commands":[{"prompt":"b8g$","cmd":".\\bin\\node --test intersections/b8g-brain/b8g-brain.test.mts","outputLines":["✔ B8G Universal Brain isolates tenants/sessions, indexes incrementally via CAS, and serves HTTP API (57.7024ms)","✔ B8G-Brain 1:1 Profile Loader reads .agents/rules + SKILL.md and scaffolds brain/<session>/transcript.jsonl (7.9026ms)","ℹ tests 2","ℹ suites 0","ℹ pass 2","ℹ fail 0","ℹ cancelled 0","ℹ skipped 0","ℹ todo 0","ℹ duration_ms 162.6698"],"durationMs":530.3,"exitCode":0}],"metrics":[{"label":"Index Engine","value":"SHA-256 CAS","accent":"emerald","barPct":100},{"label":"Retrieval","value":"BM25 + 64d","accent":"cyan","barPct":98},{"label":"Code-OSS Clean","value":"99.29%","accent":"amber","barPct":99},{"label":"HTTP Brain Port","value":":7440","accent":"violet","barPct":100}],"switcherPanes":[]},{"id":"brain-switcher","kind":"switcher","durationSec":6,"title":"DESKTOP + WEB + LOCAL SANDBOX","subtitle":"Installs in 2 seconds on VS Code Desktop, vscode.dev, or B8G Code-OSS.","badge":"ECOSYSTEM // ACT 3","accentHex":"#fbbf24","windowTitle":"b8g-shell // brain-switcher","commands":[],"metrics":[],"switcherPanes":[{"title":"SHA-256 CAS Code Index","badge":"INCREMENTAL","lines":["+ Unchanged files skip in 0 ms","+ Hybrid BM25 + 64-dim vectors","+ Multi-tenant workspace isolation","+ Zero cloud source upload"],"accentHex":"#4ade80"},{"title":"OpenRouter + Ollama BYOK","badge":"NO MARKUP","lines":["+ Swap Claude / Gemini / DeepSeek","+ Offline local Ollama fallback","+ Shared episodic memory persists","+ Pay raw API cost, zero tax"],"accentHex":"#38bdf8"},{"title":"1:1 .agents/ Compatibility","badge":"PORTABLE","lines":["+ Reads .agents/rules/*.md","+ Loads .agents/skills/*/SKILL.md","+ Imports transcript.jsonl logs","+ Zero vendor lock-in"],"accentHex":"#fbbf24"},{"title":"Dual Desktop + Web Ext","badge":"VS CODE","lines":["+ Runs on VS Code Desktop & Web","+ Pairs with b8g-workerd preview","+ Pairs with B8G-Forge repos","+ 2-second install wedge"],"accentHex":"#c084fc"}]},{"id":"brain-outro","kind":"title","durationSec":3.5,"title":"YOUR BRAIN. YOUR MODELS. YOUR SILICON.","subtitle":"Free open-source extension + local brain. Team Brain Sync at $29/mo per workspace.","badge":"VENTURE 03 // READY","accentHex":"#fbbf24","windowTitle":"b8g-shell // brain-outro","commands":[],"metrics":[{"label":"Local Brain","value":"FREE","accent":"emerald"},{"label":"Telemetry","value":"0 BYTES","accent":"cyan"}],"switcherPanes":[]}]};
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    const fill = document.getElementById('fill');
+    const meta = document.getElementById('meta');
+    let playing = true, elapsed = 0, last = performance.now();
+    document.getElementById('play').onclick = (e) => { playing = !playing; e.target.textContent = playing ? 'Pause' : 'Play'; };
+    document.getElementById('restart').onclick = () => { elapsed = 0; playing = true; };
+
+    function activeScene(sec) {
+      let acc = 0;
+      for (let i = 0; i < SB.scenes.length; i++) {
+        const s = SB.scenes[i];
+        if (sec < acc + s.durationSec) return { s, i, lt: sec - acc };
+        acc += s.durationSec;
+      }
+      return { s: SB.scenes[SB.scenes.length - 1], i: SB.scenes.length - 1, lt: 0 };
+    }
+
+    function drawWindow(x, y, w, h, title, accent, active) {
+      ctx.fillStyle = 'rgba(10,15,25,0.95)';
+      ctx.fillRect(x, y, w, h);
+      ctx.fillStyle = '#101826';
+      ctx.fillRect(x, y, w, 34);
+      ctx.strokeStyle = active ? accent : 'rgba(148,163,184,0.3)';
+      ctx.lineWidth = active ? 2 : 1;
+      ctx.strokeRect(x, y, w, h);
+      ['#f87171','#fbbf24','#4ade80'].forEach((c, k) => {
+        ctx.fillStyle = c; ctx.beginPath(); ctx.arc(x + 18 + k * 18, y + 17, 5, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.fillStyle = active ? '#e2e8f0' : '#94a3b8';
+      ctx.font = '13px ui-monospace, monospace';
+      ctx.fillText(title, x + 76, y + 22);
+    }
+
+    function loop(now) {
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      if (playing) elapsed = (elapsed + dt) % Math.max(1, SB.totalDurationSec);
+      const { s, i, lt } = activeScene(elapsed);
+      fill.style.width = ((elapsed / SB.totalDurationSec) * 100).toFixed(1) + '%';
+      meta.textContent = 'SCENE ' + (i + 1) + '/' + SB.scenes.length + ' · ' + elapsed.toFixed(1) + 's / ' + SB.totalDurationSec.toFixed(1) + 's';
+
+      const W = canvas.width, H = canvas.height;
+      ctx.fillStyle = '#070c16'; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = s.accentHex + '18'; ctx.lineWidth = 1;
+      for (let gx = (elapsed * 14) % 48; gx < W; gx += 48) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+      for (let gy = (elapsed * 8) % 48; gy < H; gy += 48) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+      ctx.fillStyle = '#080d16'; ctx.fillRect(0, 0, W, 38);
+      ctx.fillStyle = s.accentHex; ctx.font = 'bold 13px ui-monospace, monospace';
+      ctx.fillText('B8G-OS // OFFSCREEN RAM COMPOSITOR', 18, 24);
+      ctx.fillStyle = '#94a3b8'; ctx.fillText(s.badge, W - 240, 24);
+
+      if (s.kind === 'title') {
+        drawWindow(W * 0.08, H * 0.16, W * 0.84, H * 0.62, s.badge, s.accentHex, true);
+        ctx.fillStyle = '#f8fafc'; ctx.font = 'bold 34px ui-monospace, monospace';
+        ctx.fillText(s.title, W * 0.12, H * 0.36);
+        ctx.fillStyle = '#94a3b8'; ctx.font = '16px ui-monospace, monospace';
+        ctx.fillText(SB.tagline, W * 0.12, H * 0.43);
+      } else if (s.kind === 'terminal' || s.kind === 'split') {
+        const lw = s.kind === 'split' ? W * 0.57 : W - 56;
+        drawWindow(28, 60, lw, H - 150, s.windowTitle, s.accentHex, true);
+        let y = 114;
+        ctx.font = '13px ui-monospace, monospace';
+        for (const c of s.commands) {
+          ctx.fillStyle = s.accentHex; ctx.fillText(c.prompt + ' ' + c.cmd, 44, y); y += 22;
+          for (const ln of c.outputLines.slice(0, 14)) {
+            ctx.fillStyle = ln.includes('PASS') || ln.includes('0 ') ? '#4ade80' : '#e2e8f0';
+            ctx.fillText(ln, 44, y); y += 20;
+          }
+          y += 10;
+        }
+        if (s.kind === 'split') {
+          drawWindow(48 + lw, 60, W - lw - 76, H - 150, 'LIVE TELEMETRY // B8G-ABI', '#4ade80', false);
+          let my = 118;
+          for (const m of s.metrics) {
+            ctx.fillStyle = '#94a3b8'; ctx.font = '12px ui-monospace, monospace'; ctx.fillText(m.label.toUpperCase(), 66 + lw, my);
+            ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 22px ui-monospace, monospace'; ctx.fillText(m.value, 66 + lw, my + 26);
+            my += 78;
+          }
+        }
+      } else if (s.kind === 'switcher') {
+        const panes = s.switcherPanes;
+        const activeIdx = Math.floor((lt / Math.max(0.5, s.durationSec)) * panes.length) % Math.max(1, panes.length);
+        const cw = (W - 74) / 2, ch = (H - 168) / 2;
+        panes.slice(0, 4).forEach((p, idx) => {
+          const px = 28 + (idx % 2) * (cw + 18), py = 60 + Math.floor(idx / 2) * (ch + 18);
+          drawWindow(px, py, cw, ch, p.title + ' [' + p.badge + ']', p.accentHex, idx === activeIdx);
+          ctx.font = '13px ui-monospace, monospace';
+          p.lines.slice(0, 7).forEach((ln, k) => {
+            ctx.fillStyle = idx === activeIdx ? '#e2e8f0' : '#64748b';
+            ctx.fillText(ln, px + 16, py + 58 + k * 22);
+          });
+        });
+      }
+
+      ctx.fillStyle = '#060a12'; ctx.fillRect(0, H - 66, W, 66);
+      ctx.fillStyle = s.accentHex; ctx.fillRect(0, H - 66, W * (elapsed / SB.totalDurationSec), 3);
+      ctx.font = 'bold 14px ui-monospace, monospace'; ctx.fillText(s.title.toUpperCase(), 24, H - 42);
+      ctx.fillStyle = '#e2e8f0'; ctx.font = '14px ui-monospace, monospace'; ctx.fillText(s.subtitle, 24, H - 18);
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

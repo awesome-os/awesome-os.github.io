@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>07. Douglas Engelbart — History of Computers &amp; The Internet</title>
+  <style>
+  :root {
+    --bg: #090e24;
+    --card: #141c3d;
+    --border: rgba(247, 201, 108, 0.28);
+    --text: #f6f1e3;
+    --muted: #bfc9e6;
+    --gold: #f7c96c;
+    --cyan: #6de6ff;
+    --emerald: #4be3a6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(circle at 20% 0%, rgba(109,230,255,0.1), transparent 45%), var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.72;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 960px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 960px; margin: 0 auto; padding: 12px 22px 64px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(247,201,108,0.16); color: var(--gold); border: 1px solid rgba(247,201,108,0.4);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.18; margin-bottom: 8px; }
+  .sub { color: var(--cyan); font-size: 1.05rem; margin-bottom: 18px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.08rem; color: var(--text); }
+  .box {
+    margin: 18px 0; padding: 16px 20px; border-radius: 12px;
+    background: rgba(109,230,255,0.08); border-left: 4px solid var(--cyan);
+  }
+  .box.honest { background: rgba(247,201,108,0.1); border-left-color: var(--gold); }
+  .box-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--gold); color: #090e24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--cyan); }
+  .tile h3 { font-size: 1.08rem; color: #fff; }
+  .tile p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All 12 Pioneers (Timeline)</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 07 OF 12 · 1968</div>
+      <h1>Douglas Engelbart</h1>
+      <div class="sub ui">The Mother of All Demos</div>
+      <div class="art"><svg viewBox="0 0 640 280" role="img" aria-label="A wooden retro computer mouse connected by a wire to a screen with two windows and a cursor arrow"><rect width="640" height="280" rx="16" fill="#0d1b2a"/><rect x="260" y="38" width="320" height="204" rx="14" fill="#162840" stroke="#4ade80" stroke-width="3"/><rect x="282" y="64" width="128" height="150" rx="8" fill="#0f1d30" stroke="#6de6ff" stroke-width="2"/><rect x="428" y="64" width="130" height="150" rx="8" fill="#0f1d30" stroke="#f7c96c" stroke-width="2"/><rect x="78" y="106" width="94" height="122" rx="22" fill="#92400e" stroke="#f7c96c" stroke-width="3"/><rect x="132" y="122" width="22" height="26" rx="4" fill="#ef4444"/><path d="M125 106 Q125 60 260 135" fill="none" stroke="#94a3b8" stroke-width="4"/><text x="125" y="254" text-anchor="middle" fill="#f7c96c" font-family="monospace" font-size="13">1968 WOODEN MOUSE</text></svg></div>
+      <div class="box ui">
+        <div class="box-title" style="color:var(--cyan)">What They Invented</div>
+        <p style="margin:0;font-size:0.98rem">The computer mouse, hypertext links, windows, video calls, and live shared documents</p>
+      </div>
+      <p>In 1968, most computers didn’t even have screens — they printed answers onto rolls of paper! Then Douglas Engelbart walked onto a stage in San Francisco and gave a 90-minute live demonstration that left a thousand engineers speechless.</p>
+<p>In a single afternoon, he unveiled the very first wooden computer mouse, clickable hypertext links, split-screen windows, live video calling, and two people editing the same document over a network at the same time.</p>
+<p>His goal wasn’t to replace humans with machines — it was to "augment human intellect" so small teams could solve huge problems together.</p>
+      <div class="box ui">
+        <div class="box-title" style="color:var(--emerald)">Why It Still Runs Inside Your Device Today</div>
+        <p style="margin:0;font-size:0.98rem">Every time you move a mouse, click a link, open a window, or join a video call, you are using Douglas Engelbart’s 1968 vision.</p>
+      </div>
+      <div class="box honest ui">
+        <div class="box-title">Honest History Note</div>
+        <p style="margin:0;font-size:0.98rem">Engelbart and his teammate Bill English built the first mouse out of a carved block of wood with two metal wheels inside!</p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="06-margaret-hamilton.html">← 06. Margaret Hamilton</a>
+        <a class="btn" href="index.html">Timeline (07/12)</a>
+        <a class="btn" href="08-thompson-ritchie-unix-c.html">08. Ken Thompson & Dennis Ritchie →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

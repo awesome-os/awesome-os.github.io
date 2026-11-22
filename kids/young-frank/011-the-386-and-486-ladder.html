@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 11: The 386 and 486 Ladder — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 011 OF 100 · Act II · The SX/DX Era &amp; Every Windows Evolution</div>
+      <h1>Chapter 11: The 386 and 486 Ladder</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A warm golden sunset sky over calm harbor water with glowing floating lanterns and a bright heart horizon"><defs><linearGradient id="f5-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#311042"/><stop offset="55%" stop-color="#be185d"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f5-bg)"/><circle cx="320" cy="186" r="56" fill="#fef08a" opacity="0.9"/><rect x="0" y="196" width="640" height="104" fill="#1e1b4b" opacity="0.82"/><ellipse cx="320" cy="224" rx="88" ry="12" fill="#fde047" opacity="0.45"/><circle cx="160" cy="86" r="10" fill="#fef08a" opacity="0.85"/><circle cx="485" cy="74" r="12" fill="#fef08a" opacity="0.85"/><circle cx="220" cy="116" r="7" fill="#fbcfe8" opacity="0.85"/><circle cx="420" cy="112" r="8" fill="#fbcfe8" opacity="0.85"/></svg></div>
+      <p>Leaving the sleek, sealed wedge of the Atari behind for a beige IBM-compatible tower felt like trading a violin for a toolbox full of wrenches. The Atari had been a complete world in one shell; the PC was an open skeleton of sheet metal, ribbon cables, and sharp steel edges that bit your knuckles the moment you reached inside. Yet the first time Frank flipped the big red rocker switch on the side of an AT power supply and heard the heavy mechanical <em>chunk</em> followed by the rising whine of a spinning hard drive, a different kind of electricity ran up his spine. This machine was not finished at the factory. It was a ladder, and every rung could be pried out, swapped, and pushed harder.</p>
+<p>His climb began in the humblest basement of the x86 world: a 386SX running at twenty-five megahertz. On paper it sounded modern, a thirty-two-bit processor for the new decade, but the letters <em>SX</em> hid a quiet compromise—a sixteen-bit external data bus and no floating-point math coprocessor. Frank learned what a missing FPU felt like not from a textbook, but by watching a Mandelbrot fractal crawl down his CRT scanline by scanline while the cooling fan hummed into the night. When he finally traded up to a 386DX-40, the difference hit him in the gut. Suddenly the bus was wide open, the cache breathed, and the same programs that had plodded like tired mules began to sprint.</p>
+<p>From there, every saved mark, every repaired neighbor's computer, and every Saturday spent hauling parts from flea markets went straight into the next rung of the ladder. The 486SX-33 taught him that Intel's silicon marketing was full of locked doors—a chip with its math unit disabled at the factory just to hit a lower price tier. Then came the crown jewel of his teenage workbench: the 486DX2-66. With its internal clock doubler and built-in math coprocessor, it felt like strapping a jet turbine onto a bicycle. On the front of the beige tower glowed a two-digit green seven-segment LED display wired to the Turbo button. Pressing it dropped the readout from <code>66</code> to <code>33</code> so older DOS games wouldn't run at comical cartoon speeds, and pressing it back to <code>66</code> felt like engaging afterburners.</p>
+<p>He didn't stop until he had mounted a 486DX4-100 with a tiny, screaming clip-on fan perched atop a hot ceramic square—the first time he realized processors had crossed the threshold from warm stones into miniature furnaces. Between every upgrade, Frank kept a battered spiral notebook beside his monitor, logging boot times, Doom framerates in timedemo mode, and how fast a large archive unpacked. He wasn't chasing prestige or bragging rights at school. He was measuring cause and effect with his own hands.</p>
+<p>Most kids saw a computer as a magic box that either worked or was &quot;too slow.&quot; Because Frank climbed every single step from 386SX to 486DX4 with a screwdriver in his pocket and thermal dust on his sleeves, the magic dissolved into physics. Bus width wasn't an abstract number; it was the highway lanes feeding the engine. Cache wasn't a buzzword; it was the shelf within arm's reach of the carpenter. Every megahertz had a texture, a sound, and a cost.</p>
+<p>Years later, when other engineers would shrug at sluggish software and say, &quot;Just buy a faster CPU,&quot; Frank would remember the 386SX waiting patiently to draw a single curve, and the 486DX2-66 leaping to life the instant the bottleneck cleared. Hardware never lied to you if you were willing to open the case and listen.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Climbing every rung of the 386 and 486 ladder taught Frank that speed is never magic—it is the honest physics of buses, cache, and bottlenecks you can measure with your own hands.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="010-silicon-obeys-honest-rules.html">← Ch. 010</a>
+        <a class="btn" href="index.html">Chapters (11/100)</a>
+        <a class="btn" href="012-jumpers-irqs-and-the-sound-blaster-war.html">Ch. 012 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

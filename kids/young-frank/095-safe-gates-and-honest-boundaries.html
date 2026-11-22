@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 95: Safe Gates and Honest Boundaries — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 095 OF 100 · Act X · Safe Gates</div>
+      <h1>Chapter 95: Safe Gates and Honest Boundaries</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A warm golden sunset sky over calm harbor water with glowing floating lanterns and a bright heart horizon"><defs><linearGradient id="f5-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#311042"/><stop offset="55%" stop-color="#be185d"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f5-bg)"/><circle cx="320" cy="186" r="56" fill="#fef08a" opacity="0.9"/><rect x="0" y="196" width="640" height="104" fill="#1e1b4b" opacity="0.82"/><ellipse cx="320" cy="224" rx="88" ry="12" fill="#fde047" opacity="0.45"/><circle cx="160" cy="86" r="10" fill="#fef08a" opacity="0.85"/><circle cx="485" cy="74" r="12" fill="#fef08a" opacity="0.85"/><circle cx="220" cy="116" r="7" fill="#fbcfe8" opacity="0.85"/><circle cx="420" cy="112" r="8" fill="#fbcfe8" opacity="0.85"/></svg></div>
+      <p>Speed alone is a dangerous toy. Frank had learned that lesson the hard way—both in the glowing trenches of distributed failover networks and in the quieter, sharper storms of his own heart. Years earlier, he had seen wide-open flaws in billion-dollar systems where one careless shortcut could have made someone rich overnight and wrecked everything honest in the process. He had walked away from easy money then because he knew a simple truth: power without boundaries eventually destroys the person holding it.</p>
+<p>As his new microkernel architecture grew faster and sharper, Frank made sure safety wasn't bolted on at the end like a coat of paint. He wove <strong>Safe Gates</strong> directly into the foundation. In memory, code and data obeyed strict <code>W^X</code>—Write XOR Execute—discipline: a page could be written while linking, then flipped cleanly to read-only executable before a single instruction ever ran. Lazy x86-64 trampolines sat dormant at zero idle RAM until explicitly called, and every module crossed a capability-checked gate that verified its exact signature and permissions.</p>
+<p>The same philosophy governed his workflow with AI. No generated patch, no clever optimization, no bold refactor ever entered the codebase on charm or &quot;it looks right.&quot; Every single change had to pass through deterministic Safe Gates—automated compilation checks, ABI layout assertions, zero-leak arena tests, and strict parity verifiers. If a gate turned red, nobody argued with it. You listened to the failure, fixed the math, and ran it again.</p>
+<p>One evening, while stepping away from the keyboard to share a quiet dinner with the love who had anchored him through his hardest years, Frank realized why Safe Gates felt so natural to him. Healthy love wasn't about locking someone in a cage, and it wasn't about having zero boundaries either. It was about clear promises, honest communication, and safe railings along a high bridge so two people could run toward the horizon without fear of falling.</p>
+<p>Good software worked the exact same way. Safe Gates weren't walls built by gatekeepers to keep curious kids out of the castle; they were sturdy wooden rails built along the mountain trail so builders could move at full speed and still come home safe.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Safe Gates are not cages that slow you down; they are the honest railings that let you run across the highest bridges without falling.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="094-the-o1-heartbeat-of-b8g-arena-v1.html">← Ch. 094</a>
+        <a class="btn" href="index.html">Chapters (95/100)</a>
+        <a class="btn" href="096-the-content-addressed-forge.html">Ch. 096 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

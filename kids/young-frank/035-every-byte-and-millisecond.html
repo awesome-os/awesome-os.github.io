@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 35: Every Byte and Millisecond — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 035 OF 100 · Act IV · The Unsexy Hustle</div>
+      <h1>Chapter 35: Every Byte and Millisecond</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A warm golden sunset sky over calm harbor water with glowing floating lanterns and a bright heart horizon"><defs><linearGradient id="f5-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#311042"/><stop offset="55%" stop-color="#be185d"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f5-bg)"/><circle cx="320" cy="186" r="56" fill="#fef08a" opacity="0.9"/><rect x="0" y="196" width="640" height="104" fill="#1e1b4b" opacity="0.82"/><ellipse cx="320" cy="224" rx="88" ry="12" fill="#fde047" opacity="0.45"/><circle cx="160" cy="86" r="10" fill="#fef08a" opacity="0.85"/><circle cx="485" cy="74" r="12" fill="#fef08a" opacity="0.85"/><circle cx="220" cy="116" r="7" fill="#fbcfe8" opacity="0.85"/><circle cx="420" cy="112" r="8" fill="#fbcfe8" opacity="0.85"/></svg></div>
+      <p>Once you cross into multi-million-visitor territory, a funny thing happens to your sense of scale: small numbers stop feeling small. When a single thumbnail or HTML document is just twenty kilobytes heavier than it needs to be, twenty kilobytes sounds harmless—smaller than a single song, smaller than a snapshot on a phone. Multiply twenty kilobytes by twenty million page views a day, and suddenly you are hauling four hundred gigabytes of pure wasted air across undersea fiber cables every twenty-four hours, paying real money for every useless byte and making millions of people wait longer on slow connections.</p>
+<p>Frank went to war on waste with the precision of a watchmaker. He opened the network waterfall of the platform's heaviest streaming pages and stared at every single bar like a hawk. Each request was a tiny round trip across the planet, constrained by the stubborn speed of light. You couldn't negotiate with physics, so you had to stop making the light travel back and forth unnecessarily.</p>
+<p>First came the bytes. He audited every HTTP response header, stripping out chatty server signatures, redundant cookies sent on static image domains, and bloated inline scripts that repeated themselves on every card in a grid. He tuned <code>gzip</code> compression levels so the servers weren't burning precious CPU cycles chasing an extra half-percent of compression on hot dynamic pages, while pre-compressing static assets once at build time so the web server could stream them straight from disk via <code>sendfile()</code> with almost zero CPU cost. Thumbnails were re-encoded cleanly—crisp to the human eye, half the weight on the wire.</p>
+<p>Then came the milliseconds. Frank re-architected the caching layers like a set of nested shields. Static media and immutable video segments got aggressive, far-future <code>Cache-Control</code> headers so edge nodes and browsers didn't even have to ask the origin twice. Hot page fragments moved out of the groaning SQL database and into blistering-fast in-memory caches with tight, predictable footprints. He tuned HTTP <code>Keep-Alive</code> timeouts carefully—long enough for a browser to pull the entire page and its thumbnails over a single warm TCP handshake, short enough that idle mobile connections didn't squat on worker slots forever.</p>
+<p>The afternoon those changes rolled out across the cluster, Frank sat watching the live telemetry dashboards with his coffee growing cold beside him. One by one, the graphs bent downward. Average time-to-first-byte dropped from 680 milliseconds to 42. Outbound bandwidth fell by nearly forty percent—saving the company a small fortune in datacenter transit bills every single month—while the site actually handled <em>more</em> simultaneous viewers than before. On his own screen, clicking through the catalog felt less like browsing a remote server across an ocean and more like flipping pages on a local Atari cartridge.</p>
+<p>Nobody in the millions of living rooms around the world knew Frank's name. None of them saw the late-night profiler traces or the careful byte math. They only knew that when they clicked, the stream started right away instead of spinning in a frustrating circle. For Frank, that invisible smoothness was the highest compliment an engineer could ever earn.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Every wasted byte is a tax you charge the whole world; shave off the noise, and speed becomes a gift everyone can feel.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="034-the-first-million-at-the-door.html">← Ch. 034</a>
+        <a class="btn" href="index.html">Chapters (35/100)</a>
+        <a class="btn" href="036-the-thundering-herd-at-midnight.html">Ch. 036 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

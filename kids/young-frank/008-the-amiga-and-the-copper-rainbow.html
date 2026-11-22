@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 8: The Amiga and the Copper Rainbow — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 008 OF 100 · Act I · The CRT Glow &amp; First Machines</div>
+      <h1>Chapter 8: The Amiga and the Copper Rainbow</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="An open electronics box revealing glowing golden copper circuit tracks and friendly microchips"><rect width="640" height="300" rx="16" fill="#0d172e"/><rect x="130" y="56" width="380" height="196" rx="16" fill="#14293d" stroke="#4be3a6" stroke-width="3"/><g stroke="#f7c96c" stroke-width="3.5" fill="none"><path d="M170 110 H260 V150 H340"/><path d="M170 190 H240 V168 H340"/><path d="M400 130 H470 V105"/><path d="M400 175 H470 V200"/></g><rect x="290" y="112" width="110" height="82" rx="10" fill="#1e293b" stroke="#6de6ff" stroke-width="3"/><text x="345" y="158" text-anchor="middle" fill="#6de6ff" font-family="monospace" font-size="16" font-weight="bold">6502</text><circle cx="170" cy="110" r="7" fill="#f7c96c"/><circle cx="170" cy="190" r="7" fill="#4be3a6"/><circle cx="470" cy="105" r="7" fill="#6de6ff"/><circle cx="470" cy="200" r="7" fill="#fb923c"/></svg></div>
+      <p>Nothing in Frank's life—not the Atari's first spark, nor the C64's midnight melodies—prepared him for the afternoon he first stood in front of a Commodore Amiga. On the crisp RGB monitor sat a red-and-white checkered sphere spinning smoothly in three dimensions, bouncing across a lavender grid with a deep, reverberating <em>thud</em> that alternated cleanly between the left and right stereo speakers. Around it, overlapping windows floated on a bright blue-and-orange desktop called Workbench, while a clock ticked and a music player hummed effortlessly at the exact same moment.</p>
+<p>Frank leaned so close to the screen he could feel the static electricity tugging gently at the hair on his forearms. &quot;Wait,&quot; he whispered. &quot;It's doing <em>all</em> of that at once?&quot; While other computers stalled completely whenever you moved a window or loaded a disk, the Amiga ran true preemptive multitasking on a sleek Motorola 68000 processor—and even more astonishingly, it didn't force the CPU to do all the heavy lifting alone.</p>
+<p>When Frank finally got his hands on an Amiga of his own and dove into the Hardware Reference Manual, he discovered the secret behind its seemingly impossible grace: a team of custom co-processors with names that sounded like characters from a legend—Agnus, Denise, and Paula. Inside Agnus lived two marvels that made Frank's jaw drop: the Blitter and the Copper.</p>
+<p>The Blitter was a dedicated memory-moving powerhouse, sliding rectangular blocks of graphics and masks across chip RAM at blinding speed while the 68000 calmly handled game logic or user input. And the Copper—short for Co-Processor—was pure poetry in silicon. Using just three simple instructions (<code>WAIT</code>, <code>MOVE</code>, and <code>SKIP</code>), the Copper raced in lockstep with the television's electron beam, rewriting color palette registers mid-frame on every single horizontal scanline. That was how the Amiga painted silky, impossible vertical rainbows and split the screen into multiple resolutions simultaneously without breaking a sweat.</p>
+<p>Meanwhile, Paula streamed four channels of crisp, stereo sampled audio straight from memory using DMA—real drums, real guitars, real human voices—leaving the CPU almost untouched. For the first time, Frank saw what happens when hardware and software are designed in true harmony instead of brute-forcing everything through one overworked bottleneck. The Amiga didn't feel like a mere appliance; it felt like a symphony orchestra where every custom chip knew its part and played in perfect time.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>The Amiga revealed the secret of effortless speed: you don't make a machine extraordinary by forcing one processor to do everything, but by letting specialized silicon work in concert.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="007-two-brains-in-one-beige-case.html">← Ch. 007</a>
+        <a class="btn" href="index.html">Chapters (8/100)</a>
+        <a class="btn" href="009-screwdrivers-on-the-kitchen-table.html">Ch. 009 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 65: Layers Upon Layers — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 065 OF 100 · Act VII · The Mountain of Abstractions</div>
+      <h1>Chapter 65: Layers Upon Layers</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A warm golden sunset sky over calm harbor water with glowing floating lanterns and a bright heart horizon"><defs><linearGradient id="f5-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#311042"/><stop offset="55%" stop-color="#be185d"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f5-bg)"/><circle cx="320" cy="186" r="56" fill="#fef08a" opacity="0.9"/><rect x="0" y="196" width="640" height="104" fill="#1e1b4b" opacity="0.82"/><ellipse cx="320" cy="224" rx="88" ry="12" fill="#fde047" opacity="0.45"/><circle cx="160" cy="86" r="10" fill="#fef08a" opacity="0.85"/><circle cx="485" cy="74" r="12" fill="#fef08a" opacity="0.85"/><circle cx="220" cy="116" r="7" fill="#fbcfe8" opacity="0.85"/><circle cx="420" cy="112" r="8" fill="#fbcfe8" opacity="0.85"/></svg></div>
+      <p>To test his own sanity, Frank ran a quiet little experiment on a Sunday morning. He took one of the most popular modern web-and-cloud starter stacks—the kind every tutorial praised as &quot;production-ready&quot;—and decided to trace a single, humble task from top to bottom: taking ten bytes of text from a user and printing them back on the screen.</p>
+<p>He started at the top and began peeling the onion. The text entered a browser component wrapped in a state framework, compiled from TypeScript through a JavaScript bundler that ran a plugin pipeline written in another language, served by a dev proxy running inside a Node process, which talked over a virtual network to a backend container, which sat inside a container runtime, which ran inside a Linux virtual machine on top of a host hypervisor, orchestrated by thousands of lines of YAML that no human being actually enjoyed reading.</p>
+<p>Every single layer had been invented by smart people for a reasonable excuse. One layer existed to hide the messiness of the layer directly underneath it. Then a new generation of engineers arrived, found the hiding layer too rigid, and built a fresh abstraction on top of <em>that</em> one. Nobody ever went back downstairs to clean the basement. They just kept pouring new concrete floors higher and higher into the clouds, until the building swayed in the slightest breeze and nobody alive could remember what the foundation even looked like.</p>
+<p>Frank pulled up a system monitor and watched the numbers tick while the starter app sat completely idle, doing nothing at all. Hundreds of megabytes of memory consumed. Dozens of background threads waking up and going back to sleep. Thousands of tiny files being watched by file-system daemons just in case a single comma changed. All of that machinery humming like a power plant, just to wait for ten bytes of text.</p>
+<p>A sudden, sharp wave of nostalgia hit him—not the sentimental kind that wants to live in the past, but the fierce clarity of someone who remembers what honest engineering feels like. On the C64, you could hold the entire memory map in your head. On the 486, when you tuned an IRQ or stripped a bloated driver, you could <em>feel</em> the machine snap back to life under your fingertips. Even during the brutal freelance years optimizing global streaming traffic, every millisecond had a face and a cost.</p>
+<p>Here, inside the modern mountain of abstractions, the cost had been hidden so thoroughly that people mistook heaviness for sophistication. If a stack needed twelve config files and a gigabyte of RAM to say &quot;Hello,&quot; people assumed it must be &quot;enterprise-grade.&quot; Frank knew better. It wasn't enterprise-grade; it was an archaeological dig of unsolved compromises, piled ten miles high.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Adding a sleek new layer on top of a broken one never fixes the foundation—it only makes the weight harder to see until the floor gives way.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="064-the-babel-of-runtimes.html">← Ch. 064</a>
+        <a class="btn" href="index.html">Chapters (65/100)</a>
+        <a class="btn" href="066-the-dependency-avalanche.html">Ch. 066 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

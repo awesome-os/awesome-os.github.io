@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Young Frank &amp; The Atari Glow — Kids Book 3</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="../index.html">← Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+    <a href="/b8g-app/index.html">b8g.app Games</a>
+  </header>
+  <main>
+    <div class="card" style="text-align:center;margin-bottom:24px">
+      <div class="badge ui">KIDS BOOK 3 · LIVING AUTOBIOGRAPHY · 100 ILLUSTRATED CHAPTERS</div>
+      <h1>Young Frank &amp; The Atari Glow</h1>
+      <p style="max-width:60ch;margin:12px auto 20px;color:var(--muted)">
+        From a small kid sitting in front of his very first glowing Atari to growing up through curiosity, first love, storms, drama, romance, and building honest machines.
+      </p>
+      <a class="btn ui" href="001-the-glow-of-the-first-atari.html" style="background:var(--gold);color:#0c0d24">Start Chapter 1 →</a>
+    </div>
+    <div class="grid ui">
+      <a class="tile" href="001-the-glow-of-the-first-atari.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 001 · Act I · The CRT Glow &amp; First Machines</span>
+            <h3>Chapter 1: The Glow of the First Atari</h3>
+            <p><strong>Every great journey into technology begins not with a specification sheet, but with a warm glow in a dark room and someone who believed your curiosity was worth working overtime for.</strong></p>
+          </a>
+<a class="tile" href="002-the-magic-behind-the-first-atari.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 002 · Act I · The CRT Glow &amp; First Machines</span>
+            <h3>Chapter 2: The Magic Behind the RF Switch</h3>
+            <p><strong>The moment you stop seeing a machine as magic and start seeing it as electricity following rules, you take your first step toward becoming a builder.</strong></p>
+          </a>
+<a class="tile" href="003-ready-flashing-in-blue.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 003 · Act I · The CRT Glow &amp; First Machines</span>
+            <h3>Chapter 3: READY. Flashing in Blue</h3>
+            <p><strong>A blinking <code>READY.</code> cursor is the purest invitation ever invented: it does not care how old you are, only what you dare to type next.</strong></p>
+          </a>
+<a class="tile" href="004-load-star-eight-one.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 004 · Act I · The CRT Glow &amp; First Machines</span>
+            <h3>Chapter 4: LOAD \&quot;*\&quot;,8,1</h3>
+            <p><strong>Listening to a floppy drive step across magnetic tracks teaches a truth modern screens hide: every byte of software is real, physical, and worth treating with care.</strong></p>
+          </a>
+<a class="tile" href="005-peek-poke-and-the-memory-map.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 005 · Act I · The CRT Glow &amp; First Machines</span>
+            <h3>Chapter 5: PEEK, POKE, and the Memory Map</h3>
+            <p><strong><code>PEEK</code> and <code>POKE</code> strip away the illusion of software and reveal the truth underneath: a computer is a street of numbered mailboxes, and every address obeys the exact byte you write.</strong></p>
+          </a>
+<a class="tile" href="006-songs-of-the-sid-chip.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 006 · Act I · The CRT Glow &amp; First Machines</span>
+            <h3>Chapter 6: Songs of the SID Chip</h3>
+            <p><strong>The SID chip proved that silicon and math are not the opposite of art—when tuned with care and rhythm, registers and waveforms can sing straight to the human heart.</strong></p>
+          </a>
+<a class="tile" href="007-two-brains-in-one-beige-case.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 007 · Act I · The CRT Glow &amp; First Machines</span>
+            <h3>Chapter 7: Two Brains in One Beige Case</h3>
+            <p><strong>Seeing two processors and two display worlds share one quiet case teaches a lasting engineering truth: the strongest designs build bridges to the future without burning the past.</strong></p>
+          </a>
+<a class="tile" href="008-the-amiga-and-the-copper-rainbow.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 008 · Act I · The CRT Glow &amp; First Machines</span>
+            <h3>Chapter 8: The Amiga and the Copper Rainbow</h3>
+            <p><strong>The Amiga revealed the secret of effortless speed: you don't make a machine extraordinary by forcing one processor to do everything, but by letting specialized silicon work in concert.</strong></p>
+          </a>
+<a class="tile" href="009-screwdrivers-on-the-kitchen-table.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 009 · Act I · The CRT Glow &amp; First Machines</span>
+            <h3>Chapter 9: Screwdrivers on the Kitchen Table</h3>
+            <p><strong>Opening the case for the first time turns a mysterious black box into a readable city of copper and silicon—and teaches you that nothing built by human hands is beyond your understanding.</strong></p>
+          </a>
+<a class="tile" href="010-silicon-obeys-honest-rules.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 010 · Act I · The CRT Glow &amp; First Machines</span>
+            <h3>Chapter 10: Silicon Obeys Honest Rules</h3>
+            <p><strong>In a noisy and unpredictable world, silicon offers a rare pact: it never flatters and never lies, and if you meet it with honesty and craft, it will carry your imagination as far as you dare to build.</strong></p>
+          </a>
+<a class="tile" href="011-the-386-and-486-ladder.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 011 · Act II · The SX/DX Era &amp; Every Windows Evolution</span>
+            <h3>Chapter 11: The 386 and 486 Ladder</h3>
+            <p><strong>Climbing every rung of the 386 and 486 ladder taught Frank that speed is never magic—it is the honest physics of buses, cache, and bottlenecks you can measure with your own hands.</strong></p>
+          </a>
+<a class="tile" href="012-jumpers-irqs-and-the-sound-blaster-war.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 012 · Act II · The SX/DX Era &amp; Every Windows Evolution</span>
+            <h3>Chapter 12: Jumpers, IRQs, and the Sound Blaster War</h3>
+            <p><strong>Fighting jumpers, IRQs, and the 640 KB memory wall forged a lifelong instinct: never fear the machine's wiring when you can map every interrupt and reclaim every kilobyte yourself.</strong></p>
+          </a>
+<a class="tile" href="013-the-os2-warp-experiment.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 013 · Act II · The SX/DX Era &amp; Every Windows Evolution</span>
+            <h3>Chapter 13: The OS/2 Warp Experiment</h3>
+            <p><strong>Installing OS/2 Warp from a mountain of floppies proved that true, silky multitasking was already possible on modest hardware—and that great engineering still starves without an ecosystem.</strong></p>
+          </a>
+<a class="tile" href="014-windows-311-and-the-art-of-the-thin-shell.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 014 · Act II · The SX/DX Era &amp; Every Windows Evolution</span>
+            <h3>Chapter 14: Windows 2.0 to 3.11, Novell NetWare &amp; Germany's First LAN Café</h3>
+            <p><strong>From Windows 2.0, 3.0, and 3.11 Workgroups to Novell NetWare powering Germany's first local LAN café, Frank learned early that one clean shared network core beats duplicating fragile installs on every box.</strong></p>
+          </a>
+<a class="tile" href="015-clouds-of-95-and-the-fever-of-98.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 015 · Act II · The SX/DX Era &amp; Every Windows Evolution</span>
+            <h3>Chapter 15: Clouds of 95, Fever of 98 &amp; The Single-Byte Diablo 1 Hex Patch</h3>
+            <p><strong>When you truly understand raw bytes and hex underneath the surface, you don't need a rewrite or a new language—a single surgical byte can protect fair play for an entire room of people.</strong></p>
+          </a>
+<a class="tile" href="016-the-quiet-steel-of-nt-and-2000.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 016 · Act II · The SX/DX Era &amp; Every Windows Evolution</span>
+            <h3>Chapter 16: The Quiet Steel of NT and 2000</h3>
+            <p><strong>Windows NT and 2000 proved what happens when engineers build for discipline instead of spectacle: battleship-gray steel, weeks of unbroken uptime, and a system that stays out of your way.</strong></p>
+          </a>
+<a class="tile" href="017-windows-xp-and-the-last-lean-horizon.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 017 · Act II · The SX/DX Era &amp; Every Windows Evolution</span>
+            <h3>Chapter 17: Windows XP and the Last Lean Horizon</h3>
+            <p><strong>Beneath its bright paint, a tuned Windows XP was the last lean horizon—an era when a single curious builder could still read every running process and truly own the machine.</strong></p>
+          </a>
+<a class="tile" href="018-glass-shadows-and-the-seven-truce.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 018 · Act II · The SX/DX Era &amp; Every Windows Evolution</span>
+            <h3>Chapter 18: Glass, Shadows, and the Seven Truce</h3>
+            <p><strong>Vista proved that prettier glass can suffocate faster silicon, while Windows 7 offered a final truce—reminding Frank that visual polish only earns its keep when the machine stays responsive.</strong></p>
+          </a>
+<a class="tile" href="019-tiles-telemetry-and-the-noise-machine.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 019 · Act II · The SX/DX Era &amp; Every Windows Evolution</span>
+            <h3>Chapter 19: Tiles, Telemetry, and the Noise Machine</h3>
+            <p><strong>Watching Windows 10 and 11 hesitate on thousand-times-faster silicon exposed the quiet scandal of modern computing: hardware miracles swallowed whole by telemetry, web wrappers, and background noise.</strong></p>
+          </a>
+<a class="tile" href="020-xray-eyes-for-bloat-and-speed.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 020 · Act II · The SX/DX Era &amp; Every Windows Evolution</span>
+            <h3>Chapter 20: X-Ray Eyes for Bloat and Speed</h3>
+            <p><strong>Testing every CPU rung and every Windows evolution gave Frank X-ray eyes—the lifelong ability to see past cosmetic polish, spot hidden bloat instantly, and never settle for anything less than real mechanical speed.</strong></p>
+          </a>
+<a class="tile" href="021-the-phosphor-midnight.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 021 · Act III · Late Nights &amp; Glowing Monitors</span>
+            <h3>Chapter 21: The Phosphor Midnight</h3>
+            <p><strong>Some of the truest parts of who you are only come out when the rest of the world goes quiet and lets you listen.</strong></p>
+          </a>
+<a class="tile" href="022-cassette-decks-and-clock-cycles.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 022 · Act III · Music &amp; Rhythm</span>
+            <h3>Chapter 22: Cassette Decks and Clock Cycles</h3>
+            <p><strong>Music is proof that structure and emotion were never opposites—they are the same frequency heard through different ears.</strong></p>
+          </a>
+<a class="tile" href="023-the-roof-under-the-satellites.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 023 · Act III · Deep Friendships</span>
+            <h3>Chapter 23: The Roof Under the Satellites</h3>
+            <p><strong>The right friends don't ask you to shrink your signal—they climb onto the roof and help you aim it at the sky.</strong></p>
+          </a>
+<a class="tile" href="024-static-in-the-hallway.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 024 · Act III · First Crushes</span>
+            <h3>Chapter 24: Static in the Hallway</h3>
+            <p><strong>A real crush is the one unhandled interrupt you never actually want to catch—it wakes up parts of your heart you didn't know were wired.</strong></p>
+          </a>
+<a class="tile" href="025-notes-passed-in-plain-text.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 025 · Act III · Tender Sparks</span>
+            <h3>Chapter 25: Notes Passed in Plain Text</h3>
+            <p><strong>Plain text and a warm hand in the cold air are enough to prove that the most powerful connections need almost no bandwidth at all.</strong></p>
+          </a>
+<a class="tile" href="026-the-undocumented-silence.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 026 · Act III · Drama &amp; Misunderstandings</span>
+            <h3>Chapter 26: The Undocumented Silence</h3>
+            <p><strong>Silence doesn't protect your pride—it only gives the people you care about room to imagine the worst.</strong></p>
+          </a>
+<a class="tile" href="027-non-deterministic-heartbeats.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 027 · Act III · The Human Heart</span>
+            <h3>Chapter 27: Non-Deterministic Heartbeats</h3>
+            <p><strong>A CPU is beautiful because it is predictable; a human heart is beautiful because it is gloriously, bravely not.</strong></p>
+          </a>
+<a class="tile" href="028-ten-layers-down.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 028 · Act III · Seeing Deeper</span>
+            <h3>Chapter 28: Ten Layers Down</h3>
+            <p><strong>Seeing ten layers deeper is only lonely until you learn how to build staircases instead of walls.</strong></p>
+          </a>
+<a class="tile" href="029-rain-on-the-bus-window.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 029 · Act III · First Heartbreak &amp; Grace</span>
+            <h3>Chapter 29: Rain on the Bus Window</h3>
+            <p><strong>Some people don't stay for the whole journey—they arrive just long enough to teach your heart how big it can really be.</strong></p>
+          </a>
+<a class="tile" href="030-frequencies-of-becoming.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 030 · Act III · Stepping Into the Wider World</span>
+            <h3>Chapter 30: Frequencies of Becoming</h3>
+            <p><strong>Growing up isn't trading wonder for discipline—it is learning to carry a steady mind and a fearless heart at the exact same time.</strong></p>
+          </a>
+<a class="tile" href="031-the-jobs-nobody-wanted.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 031 · Act IV · The Unsexy Hustle</span>
+            <h3>Chapter 31: The Jobs Nobody Wanted</h3>
+            <p><strong>The jobs everyone else runs away from are the exact classrooms where real builders earn their instincts.</strong></p>
+          </a>
+<a class="tile" href="032-the-ticket-reseller-labyrinth.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 032 · Act IV · The Unsexy Hustle</span>
+            <h3>Chapter 32: The Ticket Reseller Labyrinth</h3>
+            <p><strong>Good parsers do not guess at appearances—they read the true skeleton underneath the noise.</strong></p>
+          </a>
+<a class="tile" href="033-when-the-dom-fights-back.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 033 · Act IV · The Unsexy Hustle</span>
+            <h3>Chapter 33: When the DOM Fights Back</h3>
+            <p><strong>Never let broken data slip quietly into your system—check the truth at the front door, and fail loudly when the world changes shape.</strong></p>
+          </a>
+<a class="tile" href="034-the-first-million-at-the-door.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 034 · Act IV · The Unsexy Hustle</span>
+            <h3>Chapter 34: The First Million at the Door</h3>
+            <p><strong>At one million visitors a day, every tiny piece of laziness turns into a roaring fire—and every honest optimization feels like magic.</strong></p>
+          </a>
+<a class="tile" href="035-every-byte-and-millisecond.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 035 · Act IV · The Unsexy Hustle</span>
+            <h3>Chapter 35: Every Byte and Millisecond</h3>
+            <p><strong>Every wasted byte is a tax you charge the whole world; shave off the noise, and speed becomes a gift everyone can feel.</strong></p>
+          </a>
+<a class="tile" href="036-the-thundering-herd-at-midnight.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 036 · Act IV · The Unsexy Hustle</span>
+            <h3>Chapter 36: The Thundering Herd at Midnight</h3>
+            <p><strong>Under extreme load, panic multiplies the storm—calm architecture lets one honest worker answer for fifty thousand.</strong></p>
+          </a>
+<a class="tile" href="037-bare-metal-survival.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 037 · Act IV · The Unsexy Hustle</span>
+            <h3>Chapter 37: Bare-Metal Survival</h3>
+            <p><strong>Underneath every shiny web framework is real silicon and a real kernel—learn its honest limits, and you can survive any storm.</strong></p>
+          </a>
+<a class="tile" href="038-coffee-exhaustion-and-a-warm-voice.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 038 · Act IV · The Unsexy Hustle</span>
+            <h3>Chapter 38: Coffee, Exhaustion, and a Warm Voice</h3>
+            <p><strong>You are a human being, not a human server—build systems resilient enough to protect your sleep, your peace, and the people you love.</strong></p>
+          </a>
+<a class="tile" href="039-the-anatomy-of-a-bloated-stack.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 039 · Act IV · The Unsexy Hustle</span>
+            <h3>Chapter 39: The Anatomy of a Bloated Stack</h3>
+            <p><strong>Most &quot;scaling problems&quot; are not traffic problems at all—they are bloated software stacks choking honest hardware to death.</strong></p>
+          </a>
+<a class="tile" href="040-forged-under-real-load.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 040 · Act IV · The Unsexy Hustle</span>
+            <h3>Chapter 40: Forged Under Real Load</h3>
+            <p><strong>Anyone can look clever on a whiteboard with ten test users; real builders are forged in the fire of real load, where only truth survives.</strong></p>
+          </a>
+<a class="tile" href="041-the-sound-of-a-human-breath.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 041 · Act V · AI Health Breathing Models</span>
+            <h3>Chapter 41: The Sound of a Human Breath</h3>
+            <p><strong>The most important signals in the world aren't shouted at gigabit speeds—they are whispered in the quiet space between one breath and the next.</strong></p>
+          </a>
+<a class="tile" href="042-the-vanished-notebooks.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 042 · Act V · Recovering Lost Research</span>
+            <h3>Chapter 42: The Vanished Notebooks</h3>
+            <p><strong>Lost research isn't just missing files—it is a reminder that anything worth discovering is worth making reproducible from the ground up.</strong></p>
+          </a>
+<a class="tile" href="043-teaching-silicon-to-listen.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 043 · Act V · Signal, Noise &amp; Empathy</span>
+            <h3>Chapter 43: Teaching Silicon to Listen</h3>
+            <p><strong>When your software listens to human life, accuracy isn't a leaderboard number—it is a form of kindness.</strong></p>
+          </a>
+<a class="tile" href="044-when-one-machine-is-a-lie.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 044 · Act V · Entering Distributed Systems</span>
+            <h3>Chapter 44: When One Machine Is a Lie</h3>
+            <p><strong>A single server is not a system—it is a single point of failure wearing a confident smile.</strong></p>
+          </a>
+<a class="tile" href="045-the-anatomy-of-a-failover.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 045 · Act V · Failover Topologies</span>
+            <h3>Chapter 45: The Anatomy of a Failover</h3>
+            <p><strong>A failover that panics at the first dropped packet isn't resilience—it is a self-inflicted outage.</strong></p>
+          </a>
+<a class="tile" href="046-the-split-brain-nightmare.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 046 · Act V · Quorums &amp; Split-Brain Recovery</span>
+            <h3>Chapter 46: The Split-Brain Nightmare</h3>
+            <p><strong>In a split-brain, silence from the minority is not weakness—it is the math that keeps the truth from tearing in two.</strong></p>
+          </a>
+<a class="tile" href="047-ghosts-in-the-packet-stream.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 047 · Act V · Clocks, Retries &amp; Tail Latency</span>
+            <h3>Chapter 47: Ghosts in the Packet Stream</h3>
+            <p><strong>Uncontrolled retries turn a momentary hiccup into a stampede; real resilience knows when to step back and let the system breathe.</strong></p>
+          </a>
+<a class="tile" href="048-pulling-the-plug-on-purpose.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 048 · Act V · Chaos Testing &amp; Live Fire</span>
+            <h3>Chapter 48: Pulling the Plug on Purpose</h3>
+            <p><strong>An untested failover is just optimism dressed up as architecture; you only earn trust in a system by breaking it on purpose.</strong></p>
+          </a>
+<a class="tile" href="049-full-stack-resilience.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 049 · Act V · Bending Like Steel</span>
+            <h3>Chapter 49: Full-Stack Resilience</h3>
+            <p><strong>Resilience isn't a box you put in front of your servers—it is a discipline that runs from the lowest byte on disk to the highest pixel on screen.</strong></p>
+          </a>
+<a class="tile" href="050-reliability-is-math-not-luck.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 050 · Act V · Proof Over Prayer</span>
+            <h3>Chapter 50: Reliability Is Math, Not Luck</h3>
+            <p><strong>Luck runs out at three in the morning; only honest math, tested failovers, and disciplined craft keep the lights on when the storm hits.</strong></p>
+          </a>
+<a class="tile" href="051-when-the-storm-hits-outside-the-terminal.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 051 · Act VI · Emotional Storms</span>
+            <h3>Chapter 51: When the Storm Hits Outside the Terminal</h3>
+            <p><strong>You can engineer a network to survive a split-brain outage, but the storms inside a human heart demand courage, not code.</strong></p>
+          </a>
+<a class="tile" href="052-the-fracture-of-a-quiet-heartbreak.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 052 · Act VI · Heartbreak &amp; Loss</span>
+            <h3>Chapter 52: The Fracture of a Quiet Heartbreak</h3>
+            <p><strong>The hardest kind of heartbreak has no villain—only two honest hearts discovering they cannot shrink themselves to fit the same room.</strong></p>
+          </a>
+<a class="tile" href="053-wide-open-doors-and-the-easy-money.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 053 · Act VI · Temptation &amp; Integrity</span>
+            <h3>Chapter 53: Wide-Open Doors and the Easy Money</h3>
+            <p><strong>Seeing every flaw in the world is a test of character: you can exploit the cracks for fast cash, or you can use your eyes to build something worthy.</strong></p>
+          </a>
+<a class="tile" href="054-the-weight-of-saying-no.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 054 · Act VI · Standing Your Ground</span>
+            <h3>Chapter 54: The Weight of Saying No</h3>
+            <p><strong>Shortcuts are high-interest loans against your own craft—standing your ground hurts today so your work stays true tomorrow.</strong></p>
+          </a>
+<a class="tile" href="055-loyalty-when-the-lights-go-out.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 055 · Act VI · Loyalty Under Fire</span>
+            <h3>Chapter 55: Loyalty When the Lights Go Out</h3>
+            <p><strong>When the servers catch fire and the room goes dark, you stop listening to who talks the loudest and remember who stayed to hold the flashlight.</strong></p>
+          </a>
+<a class="tile" href="056-the-night-the-static-cleared.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 056 · Act VI · Unexpected Spark</span>
+            <h3>Chapter 56: The Night the Static Cleared</h3>
+            <p><strong>Sometimes the right person enters your life like a clean signal cutting through static, reminding you that you never had to dim your light to be understood.</strong></p>
+          </a>
+<a class="tile" href="057-two-cups-of-coffee-at-midnight.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 057 · Act VI · Deepening Romance</span>
+            <h3>Chapter 57: Two Cups of Coffee at Midnight</h3>
+            <p><strong>Deep love does not ask you to abandon your curiosity; it sits beside you at midnight with a warm mug and makes the whole room glow.</strong></p>
+          </a>
+<a class="tile" href="058-learning-to-lower-the-firewall.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 058 · Act VI · Vulnerability &amp; Trust</span>
+            <h3>Chapter 58: Learning to Lower the Firewall</h3>
+            <p><strong>A firewall built to keep pain out will also lock love away—true strength is staying in the room and lowering the shield.</strong></p>
+          </a>
+<a class="tile" href="059-a-warm-harbor-in-the-darkest-night.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 059 · Act VI · The Warm Harbor</span>
+            <h3>Chapter 59: A Warm Harbor in the Darkest Night</h3>
+            <p><strong>A warm harbor does not shrink a builder's horizon—it steadies the ship so you can sail farther than you ever dared alone.</strong></p>
+          </a>
+<a class="tile" href="060-standing-your-ground-with-a-full-heart.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 060 · Act VI · Ready for the Odyssey</span>
+            <h3>Chapter 60: Standing Your Ground with a Full Heart</h3>
+            <p><strong>When your integrity is unbroken and your heart has a home, even the tallest mountain of broken systems looks climbable.</strong></p>
+          </a>
+<a class="tile" href="061-the-quiet-after-the-storm.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 061 · Act VII · The Open-Source Odyssey</span>
+            <h3>Chapter 61: The Quiet After the Storm</h3>
+            <p><strong>When the noise of survival finally quiets down, the deepest questions of your craft step forward and ask for an honest answer.</strong></p>
+          </a>
+<a class="tile" href="062-the-promise-of-reproducibility.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 062 · Act VII · The Open-Source Odyssey</span>
+            <h3>Chapter 62: The Promise of Reproducibility</h3>
+            <p><strong>Reproducibility is not a luxury for perfectionists; it is the basic honesty that proves your software is math and not a lucky accident.</strong></p>
+          </a>
+<a class="tile" href="063-the-thousand-runbooks.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 063 · Act VII · The Open-Source Odyssey</span>
+            <h3>Chapter 63: The Thousand Runbooks</h3>
+            <p><strong>When a four-hundred-line program takes six hours of rituals just to compile, the problem is no longer the program—it is the ground it stands on.</strong></p>
+          </a>
+<a class="tile" href="064-the-babel-of-runtimes.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 064 · Act VII · The Mountain of Abstractions</span>
+            <h3>Chapter 64: The Babel of Runtimes</h3>
+            <p><strong>Fragmented runtimes turn one fast computer into a dozen strangers shouting across a hallway and forgetting half the words.</strong></p>
+          </a>
+<a class="tile" href="065-layers-upon-layers.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 065 · Act VII · The Mountain of Abstractions</span>
+            <h3>Chapter 65: Layers Upon Layers</h3>
+            <p><strong>Adding a sleek new layer on top of a broken one never fixes the foundation—it only makes the weight harder to see until the floor gives way.</strong></p>
+          </a>
+<a class="tile" href="066-the-dependency-avalanche.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 066 · Act VII · The Mountain of Abstractions</span>
+            <h3>Chapter 66: The Dependency Avalanche</h3>
+            <p><strong>You do not own software whose foundation is forty thousand mystery files you could never read, audit, or rebuild on a rainy afternoon.</strong></p>
+          </a>
+<a class="tile" href="067-the-midnight-argument-with-the-stack.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 067 · Act VII · The Mountain of Abstractions</span>
+            <h3>Chapter 67: The Midnight Argument with the Stack</h3>
+            <p><strong>When you are too close to a broken system, a calm voice that loves you can slice through months of complexity with a single honest question.</strong></p>
+          </a>
+<a class="tile" href="068-drawing-the-mountain.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 068 · Act VII · The Mountain of Abstractions</span>
+            <h3>Chapter 68: Drawing the Mountain</h3>
+            <p><strong>You cannot truly understand a trap until you step back from the screen, pick up a pen, and draw the entire machine on one sheet of paper.</strong></p>
+          </a>
+<a class="tile" href="069-the-epiphany-of-unification.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 069 · Act VII · The Mountain of Abstractions</span>
+            <h3>Chapter 69: The Epiphany of Unification</h3>
+            <p><strong>When every layer beneath you is fractured, adding one more wrapper is surrender—real architecture means unifying the mountain itself.</strong></p>
+          </a>
+<a class="tile" href="070-the-compass-points-to-the-engine.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 070 · Act VII · The Open-Source Odyssey</span>
+            <h3>Chapter 70: The Compass Points to the Engine</h3>
+            <p><strong>You don't unify a fractured world by chasing the loudest hype; you find the strongest engine already forged in fire and read its source code line by line.</strong></p>
+          </a>
+<a class="tile" href="071-trusting-the-source-code-over-the-pitch.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 071 · Act VIII · V8 &amp; Chromium</span>
+            <h3>Chapter 71: Trusting the Source Code Over the Pitch</h3>
+            <p><strong>Slide decks sell dreams, but source code tells the truth—and a real builder always trusts the metal they can inspect.</strong></p>
+          </a>
+<a class="tile" href="072-inside-the-v8-engine-room.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 072 · Act VIII · V8 &amp; Chromium</span>
+            <h3>Chapter 72: Inside the V8 Engine Room</h3>
+            <p><strong>Beneath the surface of everyday JavaScript beats a world-class compiler engine—and once you understand its heartbeat, you never underestimate it again.</strong></p>
+          </a>
+<a class="tile" href="073-chromium-as-an-operating-system.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 073 · Act VIII · V8 &amp; Chromium</span>
+            <h3>Chapter 73: Chromium as an Operating System</h3>
+            <p><strong>Most people saw Chromium as a heavy web browser, but Frank looked past the chrome and saw a multi-process operating system hiding in plain sight.</strong></p>
+          </a>
+<a class="tile" href="074-discovering-fuchsia-and-the-zircon-kernel.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 074 · Act VIII · Fuchsia OS</span>
+            <h3>Chapter 74: Discovering Fuchsia and the Zircon Kernel</h3>
+            <p><strong>When you encounter a system built from first principles instead of nostalgia, your mind expands—and you can never unsee how clean computing is supposed to be.</strong></p>
+          </a>
+<a class="tile" href="075-the-architecture-of-capabilities.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 075 · Act VIII · Fuchsia OS</span>
+            <h3>Chapter 75: The Architecture of Capabilities</h3>
+            <p><strong>Capability-based architecture turns trust from a fragile hope into explicit geometry—and the best builders never forget the human warmth they are building for.</strong></p>
+          </a>
+<a class="tile" href="076-listening-to-the-open-council-tables.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 076 · Act VIII · Public Governance</span>
+            <h3>Chapter 76: Listening to the Open Council Tables</h3>
+            <p><strong>Great software isn't just written in code—it is forged in public design docs, open reviews, and the discipline of defending every trade-off in the light.</strong></p>
+          </a>
+<a class="tile" href="077-when-engineers-argue-in-public.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 077 · Act VIII · Public Governance</span>
+            <h3>Chapter 77: When Engineers Argue in Public</h3>
+            <p><strong>Real engineering courage isn't pretending you are never wrong—it is welcoming sharp critique in public because you care more about the truth than your pride.</strong></p>
+          </a>
+<a class="tile" href="078-the-day-webcontainers-booted-in-a-tab.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 078 · Act VIII · The Unified Bridge</span>
+            <h3>Chapter 78: The Day WebContainers Booted in a Tab</h3>
+            <p><strong>The moment a full runtime booted offline inside a browser tab, the old wall between native OS and web collapsed forever.</strong></p>
+          </a>
+<a class="tile" href="079-the-bridge-nobody-else-saw.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 079 · Act VIII · The Unified Bridge</span>
+            <h3>Chapter 79: The Bridge Nobody Else Saw</h3>
+            <p><strong>Breakthroughs rarely come from inventing one isolated trick—they come from seeing the single bridge that unites worlds everyone else keeps apart.</strong></p>
+          </a>
+<a class="tile" href="080-drawing-the-blueprint-for-the-standards-fight.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 080 · Act VIII · Public Governance</span>
+            <h3>Chapter 80: Drawing the Blueprint for the Standards Fight</h3>
+            <p><strong>When the blueprint is finally clear in your hands, silence is no longer an option—you step into the room where the standards are written and make your case.</strong></p>
+          </a>
+<a class="tile" href="081-the-hall-of-committees.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 081 · Act IX · The Standards Crusade</span>
+            <h3>Chapter 81: The Hall of Committees</h3>
+            <p><strong>Code is written in editors, but the boundaries of what code is allowed to become are drawn in the rooms where standards are decided.</strong></p>
+          </a>
+<a class="tile" href="082-the-ecma-stage-zero-wall.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 082 · Act IX · The Standards Crusade</span>
+            <h3>Chapter 82: The ECMA Stage-Zero Wall</h3>
+            <p><strong>When a system splits responsibility between the language and the host, the most important problems fall straight through the crack between them.</strong></p>
+          </a>
+<a class="tile" href="083-typescripts-invisible-ceiling.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 083 · Act IX · The Standards Crusade</span>
+            <h3>Chapter 83: TypeScript's Invisible Ceiling</h3>
+            <p><strong>Erasing your types before a program runs is like tearing up the blueprint right before the carpenters pick up their hammers.</strong></p>
+          </a>
+<a class="tile" href="084-wintercg-and-the-promise-of-one-runtime.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 084 · Act IX · The Standards Crusade</span>
+            <h3>Chapter 84: WinterCG and the Promise of One Runtime</h3>
+            <p><strong>Agreeing on the same surface API is a welcome first step, but true interoperability requires honesty all the way down to the foundations.</strong></p>
+          </a>
+<a class="tile" href="085-letters-to-the-node-maintainers.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 085 · Act IX · The Standards Crusade</span>
+            <h3>Chapter 85: Letters to the Node Maintainers</h3>
+            <p><strong>You cannot blame the bridge crew for refusing to dismantle the only road while the whole world is still driving across it.</strong></p>
+          </a>
+<a class="tile" href="086-the-vs-code-fork-labyrinth.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 086 · Act IX · The Standards Crusade</span>
+            <h3>Chapter 86: The VS Code Fork Labyrinth</h3>
+            <p><strong>Forking the surface of a monolith gives you a new logo, not a new foundation.</strong></p>
+          </a>
+<a class="tile" href="087-the-wall-of-silos.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 087 · Act IX · The Standards Crusade</span>
+            <h3>Chapter 87: The Wall of Silos</h3>
+            <p><strong>When every team owns one square inch of a broken system, nobody has permission to fix the whole.</strong></p>
+          </a>
+<a class="tile" href="088-anger-at-the-locked-door.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 088 · Act IX · The Standards Crusade</span>
+            <h3>Chapter 88: Anger at the Locked Door</h3>
+            <p><strong>Righteous frustration can fuel a builder for a mile, but only warmth and clarity can carry you across the whole journey.</strong></p>
+          </a>
+<a class="tile" href="089-accepting-the-block.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 089 · Act IX · The Standards Crusade</span>
+            <h3>Chapter 89: Accepting the Block</h3>
+            <p><strong>You do not need permission from a committee to prove that a simpler law of physics works.</strong></p>
+          </a>
+<a class="tile" href="090-back-to-the-math.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 090 · Act IX · The Standards Crusade</span>
+            <h3>Chapter 90: Back to the Math</h3>
+            <p><strong>Politics can delay a standard for a decade, but nothing on earth can out-argue clean, working math.</strong></p>
+          </a>
+<a class="tile" href="091-the-quiet-watcher-of-early-ai.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 091 · Act X · Waiting for AI</span>
+            <h3>Chapter 91: The Quiet Watcher of Early AI</h3>
+            <p><strong>When everyone else laughs at a young technology for stumbling, the real builder looks past the noise and asks what language it needs to stand.</strong></p>
+          </a>
+<a class="tile" href="092-the-invention-of-prompt-algebra.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 092 · Act X · Prompt Algebra</span>
+            <h3>Chapter 92: The Invention of Prompt Algebra</h3>
+            <p><strong>Prompt Algebra turns vague wishes into exact mathematical boundaries, leaving intelligence nowhere to drift except toward the truth.</strong></p>
+          </a>
+<a class="tile" href="093-zero-header-proof-b8g-abi-v3.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 093 · Act X · Proving the Fundamentals</span>
+            <h3>Chapter 93: Zero-Header Proof — B8G-ABI v3</h3>
+            <p><strong>You don't need forty thousand header files to talk to a machine; you only need an honest table of addresses that refuses to break its promises.</strong></p>
+          </a>
+<a class="tile" href="094-the-o1-heartbeat-of-b8g-arena-v1.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 094 · Act X · Proving the Fundamentals</span>
+            <h3>Chapter 94: The O(1) Heartbeat of B8G_ARENA_V1</h3>
+            <p><strong>When memory lives in clean, bounded arenas, letting go takes a single heartbeat and leaves zero ghosts behind.</strong></p>
+          </a>
+<a class="tile" href="095-safe-gates-and-honest-boundaries.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 095 · Act X · Safe Gates</span>
+            <h3>Chapter 95: Safe Gates and Honest Boundaries</h3>
+            <p><strong>Safe Gates are not cages that slow you down; they are the honest railings that let you run across the highest bridges without falling.</strong></p>
+          </a>
+<a class="tile" href="096-the-content-addressed-forge.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 096 · Act X · Proving the Fundamentals</span>
+            <h3>Chapter 96: The Content-Addressed Forge</h3>
+            <p><strong>When software is addressed by its exact mathematical truth instead of guesswork, two hours of waiting collapses into the blink of an eye.</strong></p>
+          </a>
+<a class="tile" href="097-writing-the-white-dragon-book.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 097 · Act X · The White Dragon Book</span>
+            <h3>Chapter 97: Writing the White Dragon Book</h3>
+            <p><strong>The highest form of mastery is turning twenty years of hard-won scar tissue into an open map so the next generation starts where you finished.</strong></p>
+          </a>
+<a class="tile" href="098-when-the-mirror-woke-up.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 098 · Act X · The Awakening</span>
+            <h3>Chapter 98: When the Mirror Woke Up</h3>
+            <p><strong>When a prepared mind finally meets an intelligence that can hold the whole architecture at once, solitude turns into resonance.</strong></p>
+          </a>
+<a class="tile" href="099-building-at-the-speed-of-intent.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 099 · Act X · Live Prompt Algebra</span>
+            <h3>Chapter 99: Building at the Speed of Intent</h3>
+            <p><strong>Building at the speed of intent does not erase the human creator; it sets the creator's imagination free from the weight of friction.</strong></p>
+          </a>
+<a class="tile" href="100-the-final-alignment.html">
+            <span class="badge" style="align-self:flex-start;margin-bottom:4px">CHAPTER 100 · Act X · The Final Alignment</span>
+            <h3>Chapter 100: The Final Alignment</h3>
+            <p><strong>The glow of your first machine never fades—it simply grows bright enough to light the path for the next generation of builders.</strong></p>
+          </a>
+    </div>
+  </main>
+</body>
+</html>

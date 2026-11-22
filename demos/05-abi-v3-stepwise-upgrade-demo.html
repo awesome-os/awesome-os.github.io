@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>B8G-ABI v2 -> v3 — Step-Wise Zero-Flag-Day Upgrade Proof — B8G Demo Studio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #060a12; color: #e2e8f0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; display: flex; flex-direction: column; height: 100vh; }
+    main { flex: 1; display: grid; place-items: center; padding: 16px; }
+    canvas { max-width: 100%; max-height: calc(100vh - 84px); border: 1px solid #1e293b; border-radius: 10px; box-shadow: 0 24px 60px rgba(0,0,0,.6); }
+    footer { height: 56px; padding: 0 20px; display: flex; align-items: center; gap: 14px; background: #0b111d; border-top: 1px solid #1e293b; }
+    button { background: #0f293a; color: #38bdf8; border: 1px solid #38bdf866; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+    .bar { flex: 1; height: 6px; background: #1e293b; border-radius: 999px; overflow: hidden; }
+    .fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #4ade80); width: 0%; }
+    .meta { font-size: 12px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <main><canvas id="c" width="1280" height="720"></canvas></main>
+  <footer>
+    <button id="play">Pause</button>
+    <button id="restart">Restart</button>
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <div class="meta" id="meta">0.0s / 19.0s</div>
+  </footer>
+  <script>
+    const SB = {"id":"05-abi-v3-stepwise-upgrade-demo","title":"B8G-ABI v2 -> v3 — Step-Wise Zero-Flag-Day Upgrade Proof","tagline":"Offset-0 prefix compatibility + live RAM subsystem hot-swap. Compiled & verified natively in C11.","width":1280,"height":720,"fps":30,"totalDurationSec":19,"scenes":[{"id":"v3-intro","kind":"title","durationSec":4,"title":"STEP-WISE B8G-ABI v2 -> v3","subtitle":"Zero flag-day rebuilds. Legacy v2 callers and modern v3 subsystems coexist in RAM.","badge":"WHITE DRAGON // ART 5","accentHex":"#38bdf8","windowTitle":"b8g-shell // v3-intro","svgAsset":"asset-dragon-lineage","svgMarkup":"<svg id=\"asset-dragon-lineage\" viewBox=\"0 0 460 220\" width=\"460\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><defs>\n    <!-- Crystal White & Prismatic Gradients -->\n    <linearGradient id=\"crystal-bright\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\"/>\n      <stop offset=\"45%\" stop-color=\"#e2e8f0\"/>\n      <stop offset=\"100%\" stop-color=\"#94a3b8\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"crystal-mid\" x1=\"0%\" y1=\"100%\" x2=\"100%\" y2=\"0%\">\n      <stop offset=\"0%\" stop-color=\"#64748b\"/>\n      <stop offset=\"50%\" stop-color=\"#cbd5e1\"/>\n      <stop offset=\"100%\" stop-color=\"#f8fafc\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"crystal-shadow\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#475569\"/>\n      <stop offset=\"100%\" stop-color=\"#1e293b\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"prism-spectrum\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#38bdf8\"/>\n      <stop offset=\"25%\" stop-color=\"#34d399\"/>\n      <stop offset=\"50%\" stop-color=\"#fbbf24\"/>\n      <stop offset=\"75%\" stop-color=\"#f87171\"/>\n      <stop offset=\"100%\" stop-color=\"#c084fc\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"prism-beam\" x1=\"0%\" y1=\"50%\" x2=\"100%\" y2=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\" stop-opacity=\"0.95\"/>\n      <stop offset=\"40%\" stop-color=\"#38bdf8\" stop-opacity=\"0.6\"/>\n      <stop offset=\"100%\" stop-color=\"#c084fc\" stop-opacity=\"0\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"obsidian-bg\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#161b26\"/>\n      <stop offset=\"50%\" stop-color=\"#0d1118\"/>\n      <stop offset=\"100%\" stop-color=\"#07090e\"/>\n    <\/linearGradient>\n\n    <radialGradient id=\"white-halo\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\" stop-opacity=\"0.32\"/>\n      <stop offset=\"45%\" stop-color=\"#38bdf8\" stop-opacity=\"0.1\"/>\n      <stop offset=\"100%\" stop-color=\"#000000\" stop-opacity=\"0\"/>\n    <\/radialGradient>\n\n    <linearGradient id=\"green-dragon\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#6ee7b7\"/>\n      <stop offset=\"100%\" stop-color=\"#059669\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"red-dragon\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#fca5a5\"/>\n      <stop offset=\"100%\" stop-color=\"#dc2626\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"purple-dragon\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#d8b4fe\"/>\n      <stop offset=\"100%\" stop-color=\"#7c3aed\"/>\n    <\/linearGradient>\n\n    <filter id=\"prism-glow\" x=\"-25%\" y=\"-25%\" width=\"150%\" height=\"150%\">\n      <feGaussianBlur stdDeviation=\"4\" result=\"blur\"/>\n      <feMerge>\n        <feMergeNode in=\"blur\"/>\n        <feMergeNode in=\"SourceGraphic\"/>\n      <\/feMerge>\n    <\/filter>\n\n    <pattern id=\"pcb-grid\" width=\"40\" height=\"40\" patternUnits=\"userSpaceOnUse\">\n      <path d=\"M 40 0 L 0 0 0 40\" fill=\"none\" stroke=\"#1e293b\" stroke-width=\"0.6\"/>\n      <path d=\"M 10 0 L 10 15 L 25 30 L 40 30\" fill=\"none\" stroke=\"#334155\" stroke-width=\"0.8\" opacity=\"0.5\"/>\n      <circle cx=\"10\" cy=\"15\" r=\"1.5\" fill=\"#475569\"/>\n      <circle cx=\"25\" cy=\"30\" r=\"1.5\" fill=\"#475569\"/>\n    <\/pattern>\n  <\/defs>\n            <!-- Green 1977 -->\n            <g transform=\"translate(65, 95)\">\n              <polygon points=\"0,-42 -36,-10 0,34 36,-10\" fill=\"url(#green-dragon)\" opacity=\"0.9\"/>\n              <polygon points=\"-18,-18 -46,-38 -32,-6\" fill=\"#34d399\"/>\n              <polygon points=\"18,-18 46,-38 32,-6\" fill=\"#059669\"/>\n              <text x=\"0\" y=\"58\" text-anchor=\"middle\" fill=\"#6ee7b7\" font-family=\"monospace\" font-size=\"11\" font-weight=\"bold\">GREEN<\/text>\n              <text x=\"0\" y=\"74\" text-anchor=\"middle\" fill=\"#64748b\" font-family=\"monospace\" font-size=\"10\">1977<\/text>\n            <\/g>\n            <!-- Red 1986 -->\n            <g transform=\"translate(165, 95)\">\n              <polygon points=\"0,-42 -36,-10 0,34 36,-10\" fill=\"url(#red-dragon)\" opacity=\"0.9\"/>\n              <polygon points=\"-18,-18 -46,-38 -32,-6\" fill=\"#f87171\"/>\n              <polygon points=\"18,-18 46,-38 32,-6\" fill=\"#b91c1c\"/>\n              <text x=\"0\" y=\"58\" text-anchor=\"middle\" fill=\"#fca5a5\" font-family=\"monospace\" font-size=\"11\" font-weight=\"bold\">RED<\/text>\n              <text x=\"0\" y=\"74\" text-anchor=\"middle\" fill=\"#64748b\" font-family=\"monospace\" font-size=\"10\">1986<\/text>\n            <\/g>\n            <!-- Purple 2006 -->\n            <g transform=\"translate(265, 95)\">\n              <polygon points=\"0,-42 -36,-10 0,34 36,-10\" fill=\"url(#purple-dragon)\" opacity=\"0.9\"/>\n              <polygon points=\"-18,-18 -46,-38 -32,-6\" fill=\"#c084fc\"/>\n              <polygon points=\"18,-18 46,-38 32,-6\" fill=\"#6d28d9\"/>\n              <text x=\"0\" y=\"58\" text-anchor=\"middle\" fill=\"#d8b4fe\" font-family=\"monospace\" font-size=\"11\" font-weight=\"bold\">PURPLE<\/text>\n              <text x=\"0\" y=\"74\" text-anchor=\"middle\" fill=\"#64748b\" font-family=\"monospace\" font-size=\"10\">2006<\/text>\n            <\/g>\n            <!-- Convergence Beams -->\n            <line x1=\"95\" y1=\"85\" x2=\"345\" y2=\"85\" stroke=\"#10b981\" stroke-width=\"1.5\" opacity=\"0.7\"/>\n            <line x1=\"195\" y1=\"90\" x2=\"345\" y2=\"90\" stroke=\"#ef4444\" stroke-width=\"1.5\" opacity=\"0.7\"/>\n            <line x1=\"295\" y1=\"95\" x2=\"345\" y2=\"95\" stroke=\"#8b5cf6\" stroke-width=\"1.5\" opacity=\"0.7\"/>\n            <!-- White 2026 -->\n            <g transform=\"translate(380, 95)\" filter=\"url(#prism-glow)\">\n              <polygon points=\"0,-52 -44,-12 0,44 44,-12\" fill=\"#ffffff\" stroke=\"url(#prism-spectrum)\" stroke-width=\"1.5\"/>\n              <polygon points=\"-22,-22 -56,-48 -38,-8\" fill=\"url(#crystal-bright)\"/>\n              <polygon points=\"22,-22 56,-48 38,-8\" fill=\"url(#crystal-mid)\"/>\n              <polygon points=\"0,-16 -14,2 0,20 14,2\" fill=\"url(#prism-spectrum)\"/>\n              <text x=\"0\" y=\"64\" text-anchor=\"middle\" fill=\"#ffffff\" font-family=\"monospace\" font-size=\"12\" font-weight=\"bold\">WHITE<\/text>\n              <text x=\"0\" y=\"80\" text-anchor=\"middle\" fill=\"#38bdf8\" font-family=\"monospace\" font-size=\"10\" font-weight=\"bold\">2026<\/text>\n            <\/g>\n          <\/svg>","commands":[],"metrics":[{"label":"Prefix Offset","value":"0 BYTES","accent":"emerald"},{"label":"C11 Warnings","value":"0","accent":"cyan"},{"label":"Duplicate V8","value":"0 BYTES","accent":"amber"}],"switcherPanes":[]},{"id":"v3-live-c11-proof","kind":"split","durationSec":6,"title":"LIVE NATIVE C11 VERIFICATION","subtitle":"Compiles b8g_abi_v3_test.c with zig cc -std=c11 -O2 -Wall -Wextra and executes live.","badge":"REAL SILICON // ACT 2","accentHex":"#4ade80","windowTitle":"b8g-shell // b8g-abi-v3-upgrade.test","commands":[{"prompt":"b8g$","cmd":".\\bin\\node --test sections/chromium-build/abi-v3-upgrade/b8g-abi-v3-upgrade.test.mts","outputLines":["(node:28692) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.","(Use `node --trace-deprecation ...` to show where the warning was created)","✔ B8G-ABI v2 -> v3 step-wise native C11 upgrade compiles and passes on real silicon (647.7835ms)","ℹ tests 1","ℹ suites 0","ℹ pass 1","ℹ fail 0","ℹ cancelled 0","ℹ skipped 0","ℹ todo 0","ℹ duration_ms 723.9881"],"durationMs":1073.8,"exitCode":0}],"metrics":[{"label":"ABI Version","value":"0x00030000","accent":"cyan","barPct":100},{"label":"v2 Prefix Compat","value":"100%","accent":"emerald","barPct":100},{"label":"Arena Layout","value":"ARENA_V1","accent":"amber","barPct":100},{"label":"Fail-Fast Gate","value":"ARMED","accent":"violet","barPct":100}],"switcherPanes":[]},{"id":"v3-capabilities","kind":"switcher","durationSec":5.5,"title":"LIVE STEP-WISE HOT-SWAP CAPABILITIES","subtitle":"Activate new subsystems one by one in RAM without restarting or relinking Chrome.","badge":"CAPABILITY MASK // ACT 3","accentHex":"#c084fc","windowTitle":"b8g-shell // v3-capabilities","commands":[],"metrics":[],"switcherPanes":[{"title":"B8G_CAP_ORIGIN_ARENA","badge":"O(1) WIPE","lines":["+ create_arena / wipe_o1","+ VirtualFree / munmap","+ 0 leaked bytes verified","+ Hot-swapped live in RAM"],"accentHex":"#4ade80"},{"title":"B8G_CAP_CLOUD_SYNC","badge":"350 us","lines":["+ oss <-> local <-> google","+ Zero Chromium recompile","+ Verified live provider swap","+ Enterprise air-gap ready"],"accentHex":"#38bdf8"},{"title":"B8G_CAP_LIBNODE_SHARED_V8","badge":"0 B DUP","lines":["+ Shared 88.69 MB v8.dll","+ duplicate_v8_bytes() == 0","+ Native C11 module eval","+ Eliminates Node/V8 bloat"],"accentHex":"#fbbf24"},{"title":"B8gAbiUpgradeDispatchTable","badge":"IMMORTAL","lines":["+ negotiate(min, max, &act)","+ has_capability(cap_bit)","+ hot_swap_subsystem(id)","+ Ready for v4 / v5 append"],"accentHex":"#c084fc"}]},{"id":"v3-outro","kind":"title","durationSec":3.5,"title":"NEVER BREAK BINARY CALLERS AGAIN","subtitle":"B8G-ABI v3 — Semantic ABI Stability proven live on real silicon.","badge":"B8G-ABI // V3","accentHex":"#4ade80","windowTitle":"b8g-shell // v3-outro","svgAsset":"asset-ch03","svgMarkup":"<svg id=\"asset-ch03\" viewBox=\"0 0 360 220\" width=\"360\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><defs>\n    <!-- Crystal White & Prismatic Gradients -->\n    <linearGradient id=\"crystal-bright\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\"/>\n      <stop offset=\"45%\" stop-color=\"#e2e8f0\"/>\n      <stop offset=\"100%\" stop-color=\"#94a3b8\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"crystal-mid\" x1=\"0%\" y1=\"100%\" x2=\"100%\" y2=\"0%\">\n      <stop offset=\"0%\" stop-color=\"#64748b\"/>\n      <stop offset=\"50%\" stop-color=\"#cbd5e1\"/>\n      <stop offset=\"100%\" stop-color=\"#f8fafc\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"crystal-shadow\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#475569\"/>\n      <stop offset=\"100%\" stop-color=\"#1e293b\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"prism-spectrum\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#38bdf8\"/>\n      <stop offset=\"25%\" stop-color=\"#34d399\"/>\n      <stop offset=\"50%\" stop-color=\"#fbbf24\"/>\n      <stop offset=\"75%\" stop-color=\"#f87171\"/>\n      <stop offset=\"100%\" stop-color=\"#c084fc\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"prism-beam\" x1=\"0%\" y1=\"50%\" x2=\"100%\" y2=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\" stop-opacity=\"0.95\"/>\n      <stop offset=\"40%\" stop-color=\"#38bdf8\" stop-opacity=\"0.6\"/>\n      <stop offset=\"100%\" stop-color=\"#c084fc\" stop-opacity=\"0\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"obsidian-bg\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#161b26\"/>\n      <stop offset=\"50%\" stop-color=\"#0d1118\"/>\n      <stop offset=\"100%\" stop-color=\"#07090e\"/>\n    <\/linearGradient>\n\n    <radialGradient id=\"white-halo\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\" stop-opacity=\"0.32\"/>\n      <stop offset=\"45%\" stop-color=\"#38bdf8\" stop-opacity=\"0.1\"/>\n      <stop offset=\"100%\" stop-color=\"#000000\" stop-opacity=\"0\"/>\n    <\/radialGradient>\n\n    <linearGradient id=\"green-dragon\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#6ee7b7\"/>\n      <stop offset=\"100%\" stop-color=\"#059669\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"red-dragon\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#fca5a5\"/>\n      <stop offset=\"100%\" stop-color=\"#dc2626\"/>\n    <\/linearGradient>\n\n    <linearGradient id=\"purple-dragon\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#d8b4fe\"/>\n      <stop offset=\"100%\" stop-color=\"#7c3aed\"/>\n    <\/linearGradient>\n\n    <filter id=\"prism-glow\" x=\"-25%\" y=\"-25%\" width=\"150%\" height=\"150%\">\n      <feGaussianBlur stdDeviation=\"4\" result=\"blur\"/>\n      <feMerge>\n        <feMergeNode in=\"blur\"/>\n        <feMergeNode in=\"SourceGraphic\"/>\n      <\/feMerge>\n    <\/filter>\n\n    <pattern id=\"pcb-grid\" width=\"40\" height=\"40\" patternUnits=\"userSpaceOnUse\">\n      <path d=\"M 40 0 L 0 0 0 40\" fill=\"none\" stroke=\"#1e293b\" stroke-width=\"0.6\"/>\n      <path d=\"M 10 0 L 10 15 L 25 30 L 40 30\" fill=\"none\" stroke=\"#334155\" stroke-width=\"0.8\" opacity=\"0.5\"/>\n      <circle cx=\"10\" cy=\"15\" r=\"1.5\" fill=\"#475569\"/>\n      <circle cx=\"25\" cy=\"30\" r=\"1.5\" fill=\"#475569\"/>\n    <\/pattern>\n  <\/defs>\n            <text x=\"18\" y=\"26\" fill=\"#34d399\" font-family=\"monospace\" font-size=\"10\" font-weight=\"bold\">CH. 3 · ZERO-HEADER B8G-ABI DISPATCH<\/text>\n            <rect x=\"22\" y=\"48\" width=\"110\" height=\"130\" rx=\"6\" fill=\"#0f172a\" stroke=\"#334155\"/>\n            <text x=\"77\" y=\"70\" text-anchor=\"middle\" fill=\"#94a3b8\" font-family=\"monospace\" font-size=\"9.5\">CALLER MODULE<\/text>\n            <rect x=\"34\" y=\"84\" width=\"86\" height=\"24\" rx=\"3\" fill=\"#1e293b\"/>\n            <text x=\"77\" y=\"99\" text-anchor=\"middle\" fill=\"#38bdf8\" font-family=\"monospace\" font-size=\"9.5\">sym_hash[0]<\/text>\n            <rect x=\"34\" y=\"116\" width=\"86\" height=\"24\" rx=\"3\" fill=\"#1e293b\"/>\n            <text x=\"77\" y=\"131\" text-anchor=\"middle\" fill=\"#34d399\" font-family=\"monospace\" font-size=\"9.5\">sym_hash[1]<\/text>\n            <!-- Direct Arrows -->\n            <line x1=\"120\" y1=\"96\" x2=\"215\" y2=\"82\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/>\n            <line x1=\"120\" y1=\"128\" x2=\"215\" y2=\"128\" stroke=\"#34d399\" stroke-width=\"1.5\"/>\n            <!-- B8G ABI Table -->\n            <rect x=\"215\" y=\"48\" width=\"125\" height=\"130\" rx=\"6\" fill=\"#131c2e\" stroke=\"#34d399\"/>\n            <text x=\"277\" y=\"70\" text-anchor=\"middle\" fill=\"#34d399\" font-family=\"monospace\" font-size=\"9.5\" font-weight=\"bold\">B8G-ABI TABLE<\/text>\n            <text x=\"277\" y=\"92\" text-anchor=\"middle\" fill=\"#fff\" font-family=\"monospace\" font-size=\"9\">0x00 → fn_entry_a<\/text>\n            <text x=\"277\" y=\"116\" text-anchor=\"middle\" fill=\"#fff\" font-family=\"monospace\" font-size=\"9\">0x08 → fn_entry_b<\/text>\n            <text x=\"277\" y=\"155\" text-anchor=\"middle\" fill=\"#64748b\" font-family=\"monospace\" font-size=\"8.5\">0 .h FILES PARSED<\/text>\n          <\/svg>","commands":[],"metrics":[{"label":"Flag-Day Rebuilds","value":"ZERO","accent":"emerald"},{"label":"Binary Stability","value":"PERMANENT","accent":"cyan"}],"switcherPanes":[]}],"diagnostics":[{"severity":"info","sceneId":"v3-live-c11-proof","cmd":".\\bin\\node --test sections/chromium-build/abi-v3-upgrade/b8g-abi-v3-upgrade.test.mts","exitCode":0,"durationMs":1073.8,"message":"(node:28692) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated."}]};
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    const fill = document.getElementById('fill');
+    const meta = document.getElementById('meta');
+    let playing = true, elapsed = 0, last = performance.now();
+    document.getElementById('play').onclick = (e) => { playing = !playing; e.target.textContent = playing ? 'Pause' : 'Play'; };
+    document.getElementById('restart').onclick = () => { elapsed = 0; playing = true; };
+
+    // Pre-decode embedded White Dragon Book SVG vector assets for 60 FPS crisp compositing
+    const svgImages = new Map();
+    for (const sc of SB.scenes) {
+      if (sc.svgMarkup && !svgImages.has(sc.id)) {
+        const img = new Image();
+        img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(sc.svgMarkup);
+        svgImages.set(sc.id, img);
+      }
+    }
+
+    function activeScene(sec) {
+      let acc = 0;
+      for (let i = 0; i < SB.scenes.length; i++) {
+        const s = SB.scenes[i];
+        if (sec < acc + s.durationSec) return { s, i, lt: sec - acc };
+        acc += s.durationSec;
+      }
+      return { s: SB.scenes[SB.scenes.length - 1], i: SB.scenes.length - 1, lt: 0 };
+    }
+
+    function drawWindow(x, y, w, h, title, accent, active) {
+      ctx.fillStyle = 'rgba(10,15,25,0.95)';
+      ctx.fillRect(x, y, w, h);
+      ctx.fillStyle = '#101826';
+      ctx.fillRect(x, y, w, 34);
+      ctx.strokeStyle = active ? accent : 'rgba(148,163,184,0.3)';
+      ctx.lineWidth = active ? 2 : 1;
+      ctx.strokeRect(x, y, w, h);
+      ['#f87171','#fbbf24','#4ade80'].forEach((c, k) => {
+        ctx.fillStyle = c; ctx.beginPath(); ctx.arc(x + 18 + k * 18, y + 17, 5, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.fillStyle = active ? '#e2e8f0' : '#94a3b8';
+      ctx.font = '13px ui-monospace, monospace';
+      ctx.fillText(title, x + 76, y + 22);
+    }
+
+    function loop(now) {
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      if (playing) elapsed = (elapsed + dt) % Math.max(1, SB.totalDurationSec);
+      const { s, i, lt } = activeScene(elapsed);
+      fill.style.width = ((elapsed / SB.totalDurationSec) * 100).toFixed(1) + '%';
+      meta.textContent = 'SCENE ' + (i + 1) + '/' + SB.scenes.length + ' · ' + elapsed.toFixed(1) + 's / ' + SB.totalDurationSec.toFixed(1) + 's';
+
+      const W = canvas.width, H = canvas.height;
+      ctx.fillStyle = '#070c16'; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = s.accentHex + '18'; ctx.lineWidth = 1;
+      for (let gx = (elapsed * 14) % 48; gx < W; gx += 48) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+      for (let gy = (elapsed * 8) % 48; gy < H; gy += 48) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+      ctx.fillStyle = '#080d16'; ctx.fillRect(0, 0, W, 38);
+      ctx.fillStyle = s.accentHex; ctx.font = 'bold 13px ui-monospace, monospace';
+      ctx.fillText('B8G-OS // OFFSCREEN RAM COMPOSITOR', 18, 24);
+      ctx.fillStyle = '#94a3b8'; ctx.fillText(s.badge, W - 240, 24);
+
+      if (s.kind === 'title') {
+        drawWindow(W * 0.08, H * 0.16, W * 0.84, H * 0.62, s.badge, s.accentHex, true);
+        const svgImg = svgImages.get(s.id);
+        const textMaxW = svgImg && svgImg.complete && svgImg.naturalWidth > 0 ? W * 0.52 : W * 0.78;
+        ctx.fillStyle = '#f8fafc'; ctx.font = 'bold 34px ui-monospace, monospace';
+        ctx.fillText(s.title, W * 0.12, H * 0.36, textMaxW);
+        ctx.fillStyle = '#94a3b8'; ctx.font = '16px ui-monospace, monospace';
+        ctx.fillText(SB.tagline, W * 0.12, H * 0.43, textMaxW);
+        if (svgImg && svgImg.complete && svgImg.naturalWidth > 0) {
+          const maxBox = H * 0.44;
+          const aspect = svgImg.naturalWidth / Math.max(1, svgImg.naturalHeight);
+          const dw = aspect >= 1 ? maxBox : maxBox * aspect;
+          const dh = aspect >= 1 ? maxBox / aspect : maxBox;
+          ctx.drawImage(svgImg, W * 0.88 - dw - 24, H * 0.25 + (H * 0.46 - dh) * 0.5, dw, dh);
+        }
+      } else if (s.kind === 'terminal' || s.kind === 'split') {
+        const lw = s.kind === 'split' ? W * 0.57 : W - 56;
+        drawWindow(28, 60, lw, H - 150, s.windowTitle, s.accentHex, true);
+        let y = 114;
+        ctx.font = '13px ui-monospace, monospace';
+        for (const c of s.commands) {
+          ctx.fillStyle = s.accentHex; ctx.fillText(c.prompt + ' ' + c.cmd, 44, y); y += 22;
+          for (const ln of c.outputLines.slice(0, 14)) {
+            ctx.fillStyle = ln.includes('PASS') || ln.includes('0 ') ? '#4ade80' : '#e2e8f0';
+            ctx.fillText(ln, 44, y); y += 20;
+          }
+          y += 10;
+        }
+        if (s.kind === 'split') {
+          drawWindow(48 + lw, 60, W - lw - 76, H - 150, 'LIVE TELEMETRY // B8G-ABI', '#4ade80', false);
+          let my = 118;
+          for (const m of s.metrics) {
+            ctx.fillStyle = '#94a3b8'; ctx.font = '12px ui-monospace, monospace'; ctx.fillText(m.label.toUpperCase(), 66 + lw, my);
+            ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 22px ui-monospace, monospace'; ctx.fillText(m.value, 66 + lw, my + 26);
+            my += 72;
+          }
+          const svgImg = svgImages.get(s.id);
+          if (svgImg && svgImg.complete && svgImg.naturalWidth > 0) {
+            const boxW = W - lw - 112;
+            const boxH = Math.max(80, H - 104 - my);
+            const aspect = svgImg.naturalWidth / Math.max(1, svgImg.naturalHeight);
+            const dw = Math.min(boxW, boxH * aspect);
+            const dh = dw / Math.max(0.1, aspect);
+            ctx.drawImage(svgImg, 66 + lw + (boxW - dw) * 0.5, my, dw, dh);
+          }
+        }
+      } else if (s.kind === 'switcher') {
+        const panes = s.switcherPanes;
+        const activeIdx = Math.floor((lt / Math.max(0.5, s.durationSec)) * panes.length) % Math.max(1, panes.length);
+        const cw = (W - 74) / 2, ch = (H - 168) / 2;
+        panes.slice(0, 4).forEach((p, idx) => {
+          const px = 28 + (idx % 2) * (cw + 18), py = 60 + Math.floor(idx / 2) * (ch + 18);
+          drawWindow(px, py, cw, ch, p.title + ' [' + p.badge + ']', p.accentHex, idx === activeIdx);
+          ctx.font = '13px ui-monospace, monospace';
+          p.lines.slice(0, 7).forEach((ln, k) => {
+            ctx.fillStyle = idx === activeIdx ? '#e2e8f0' : '#64748b';
+            ctx.fillText(ln, px + 16, py + 58 + k * 22);
+          });
+        });
+      }
+
+      ctx.fillStyle = '#060a12'; ctx.fillRect(0, H - 66, W, 66);
+      ctx.fillStyle = s.accentHex; ctx.fillRect(0, H - 66, W * (elapsed / SB.totalDurationSec), 3);
+      ctx.font = 'bold 14px ui-monospace, monospace'; ctx.fillText(s.title.toUpperCase(), 24, H - 42);
+      ctx.fillStyle = '#e2e8f0'; ctx.font = '14px ui-monospace, monospace'; ctx.fillText(s.subtitle, 24, H - 18);
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

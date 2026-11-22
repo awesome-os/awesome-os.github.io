@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Venture 04 — B8G Zero-Copy Desktop App Runtime — B8G Demo Studio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #060a12; color: #e2e8f0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; display: flex; flex-direction: column; height: 100vh; }
+    main { flex: 1; display: grid; place-items: center; padding: 16px; }
+    canvas { max-width: 100%; max-height: calc(100vh - 84px); border: 1px solid #1e293b; border-radius: 10px; box-shadow: 0 24px 60px rgba(0,0,0,.6); }
+    footer { height: 56px; padding: 0 20px; display: flex; align-items: center; gap: 14px; background: #0b111d; border-top: 1px solid #1e293b; }
+    button { background: #0f293a; color: #38bdf8; border: 1px solid #38bdf866; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+    .bar { flex: 1; height: 6px; background: #1e293b; border-radius: 999px; overflow: hidden; }
+    .fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #4ade80); width: 0%; }
+    .meta { font-size: 12px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <main><canvas id="c" width="1280" height="720"></canvas></main>
+  <footer>
+    <button id="play">Pause</button>
+    <button id="restart">Restart</button>
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <div class="meta" id="meta">0.0s / 19.0s</div>
+  </footer>
+  <script>
+    const SB = {"id":"04-zero-copy-desktop-demo","title":"Venture 04 — B8G Zero-Copy Desktop App Runtime","tagline":"Electron, NW.js, Node.js, Code-OSS & Workerd all sharing ONE 88.69 MB v8.dll. Zero duplicate browsers.","width":1280,"height":720,"fps":30,"totalDurationSec":19,"scenes":[{"id":"desk-intro","kind":"title","durationSec":4,"title":"ZERO-COPY DESKTOP RUNTIME","subtitle":"Stop shipping 300 MB duplicate Chromium monoliths with every desktop app.","badge":"VENTURE 04 // RUNTIME","accentHex":"#c084fc","windowTitle":"b8g-shell // desk-intro","commands":[],"metrics":[{"label":"Duplicate Chromium","value":"0 MB","accent":"emerald"},{"label":"b8g_node.exe","value":"150.5 KB","accent":"cyan"},{"label":"v8.dll Bind Time","value":"1.83 ms","accent":"amber"}],"switcherPanes":[]},{"id":"desk-live-proof","kind":"split","durationSec":5.5,"title":"SHARED-CORE WORKERD + WASI + SHELLS","subtitle":"Live verification of b8g-workerd + zero-CLR b8g-pwsh + zero-MSYS2 b8g-sh.","badge":"LIVE TEST // ACT 2","accentHex":"#4ade80","windowTitle":"b8g-shell // runtime-intersections","commands":[{"prompt":"b8g$","cmd":".\\bin\\node --test intersections/b8g-workerd-wasi/b8g-worker-wasi-host.test.mts intersections/b8g-posix-sh/posix-sh.test.mts","outputLines":["✔ b8g-sh executes POSIX variables, ${VAR:-def}, $(cmd), pipes, grep, sort, uniq, wc, if/for (9.755ms)","✔ b8g-sh modern terminal builtins: Kitty Graphics icat + Truecolor ANSI fallback + OSC 133/7 (6.8591ms)","✔ B8gWorkerdHost executes Cloudflare Worker fetch() + KV + V8 WebAssembly/WASI natively (20.4494ms)","ℹ tests 3","ℹ suites 0","ℹ pass 3","ℹ fail 0","ℹ cancelled 0","ℹ skipped 0","ℹ todo 0","ℹ duration_ms 127.349"],"durationMs":494.1,"exitCode":0}],"metrics":[{"label":"Shared v8.dll","value":"88.69 MB","accent":"cyan","barPct":100},{"label":"Per-App Overhead","value":"< 200 KB","accent":"emerald","barPct":99},{"label":"b8g_libnode_abi","value":"109 KB","accent":"amber","barPct":96},{"label":"ISV SDK License","value":"$2,500/yr","accent":"violet","barPct":88}],"switcherPanes":[]},{"id":"desk-switcher","kind":"switcher","durationSec":6,"title":"FOUR DESKTOP ECOSYSTEMS, ONE CORE","subtitle":"Strict semantic B8G-ABI dispatch tables eliminate C++ ABI version hell.","badge":"SHARED CORE // ACT 3","accentHex":"#c084fc","windowTitle":"b8g-shell // desk-switcher","commands":[],"metrics":[],"switcherPanes":[{"title":"b8g-electron","badge":"0 MB DUP","lines":["+ Drop-in app & BrowserWindow","+ ipcMain / ipcRenderer / preload","+ contextBridge verified on Chrome","+ Zero 250 MB Electron bloat"],"accentHex":"#38bdf8"},{"title":"b8g-nwjs","badge":"MIXED-CTX","lines":["+ Manifest-first package.json","+ window.nw + require('fs'|'os')","+ Runs on exact same Chromium","+ Sparse-audited 1.66 MB upstream"],"accentHex":"#4ade80"},{"title":"b8g_node.exe","badge":"150.5 KB","lines":["+ 19th B8G-ABI DLL: 109 KB","+ Binds to shared v8.dll (1.83ms)","+ Zero duplicate V8 / ICU / SSL","+ Native C11 zero-header ABI"],"accentHex":"#fbbf24"},{"title":"b8g-vscode (Code-OSS)","badge":"99.29%","lines":["+ Audited 7,779 TS files (v1.148)","+ 7,724 files have ZERO Electron","+ 55 thin adapter files only","+ Boots live on B8G Chromium"],"accentHex":"#c084fc"}]},{"id":"desk-outro","kind":"title","durationSec":3.5,"title":"ONE ENGINE. INFINITE APPS.","subtitle":"Open-source runtime core + Commercial ISV SDK for Windows & Linux.","badge":"VENTURE 04 // READY","accentHex":"#c084fc","windowTitle":"b8g-shell // desk-outro","commands":[],"metrics":[{"label":"RAM Saved / 5 Apps","value":"~1.5 GB","accent":"emerald"},{"label":"ABI Stability","value":"C11 ZERO-HDR","accent":"cyan"}],"switcherPanes":[]}]};
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    const fill = document.getElementById('fill');
+    const meta = document.getElementById('meta');
+    let playing = true, elapsed = 0, last = performance.now();
+    document.getElementById('play').onclick = (e) => { playing = !playing; e.target.textContent = playing ? 'Pause' : 'Play'; };
+    document.getElementById('restart').onclick = () => { elapsed = 0; playing = true; };
+
+    function activeScene(sec) {
+      let acc = 0;
+      for (let i = 0; i < SB.scenes.length; i++) {
+        const s = SB.scenes[i];
+        if (sec < acc + s.durationSec) return { s, i, lt: sec - acc };
+        acc += s.durationSec;
+      }
+      return { s: SB.scenes[SB.scenes.length - 1], i: SB.scenes.length - 1, lt: 0 };
+    }
+
+    function drawWindow(x, y, w, h, title, accent, active) {
+      ctx.fillStyle = 'rgba(10,15,25,0.95)';
+      ctx.fillRect(x, y, w, h);
+      ctx.fillStyle = '#101826';
+      ctx.fillRect(x, y, w, 34);
+      ctx.strokeStyle = active ? accent : 'rgba(148,163,184,0.3)';
+      ctx.lineWidth = active ? 2 : 1;
+      ctx.strokeRect(x, y, w, h);
+      ['#f87171','#fbbf24','#4ade80'].forEach((c, k) => {
+        ctx.fillStyle = c; ctx.beginPath(); ctx.arc(x + 18 + k * 18, y + 17, 5, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.fillStyle = active ? '#e2e8f0' : '#94a3b8';
+      ctx.font = '13px ui-monospace, monospace';
+      ctx.fillText(title, x + 76, y + 22);
+    }
+
+    function loop(now) {
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      if (playing) elapsed = (elapsed + dt) % Math.max(1, SB.totalDurationSec);
+      const { s, i, lt } = activeScene(elapsed);
+      fill.style.width = ((elapsed / SB.totalDurationSec) * 100).toFixed(1) + '%';
+      meta.textContent = 'SCENE ' + (i + 1) + '/' + SB.scenes.length + ' · ' + elapsed.toFixed(1) + 's / ' + SB.totalDurationSec.toFixed(1) + 's';
+
+      const W = canvas.width, H = canvas.height;
+      ctx.fillStyle = '#070c16'; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = s.accentHex + '18'; ctx.lineWidth = 1;
+      for (let gx = (elapsed * 14) % 48; gx < W; gx += 48) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+      for (let gy = (elapsed * 8) % 48; gy < H; gy += 48) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+      ctx.fillStyle = '#080d16'; ctx.fillRect(0, 0, W, 38);
+      ctx.fillStyle = s.accentHex; ctx.font = 'bold 13px ui-monospace, monospace';
+      ctx.fillText('B8G-OS // OFFSCREEN RAM COMPOSITOR', 18, 24);
+      ctx.fillStyle = '#94a3b8'; ctx.fillText(s.badge, W - 240, 24);
+
+      if (s.kind === 'title') {
+        drawWindow(W * 0.08, H * 0.16, W * 0.84, H * 0.62, s.badge, s.accentHex, true);
+        ctx.fillStyle = '#f8fafc'; ctx.font = 'bold 34px ui-monospace, monospace';
+        ctx.fillText(s.title, W * 0.12, H * 0.36);
+        ctx.fillStyle = '#94a3b8'; ctx.font = '16px ui-monospace, monospace';
+        ctx.fillText(SB.tagline, W * 0.12, H * 0.43);
+      } else if (s.kind === 'terminal' || s.kind === 'split') {
+        const lw = s.kind === 'split' ? W * 0.57 : W - 56;
+        drawWindow(28, 60, lw, H - 150, s.windowTitle, s.accentHex, true);
+        let y = 114;
+        ctx.font = '13px ui-monospace, monospace';
+        for (const c of s.commands) {
+          ctx.fillStyle = s.accentHex; ctx.fillText(c.prompt + ' ' + c.cmd, 44, y); y += 22;
+          for (const ln of c.outputLines.slice(0, 14)) {
+            ctx.fillStyle = ln.includes('PASS') || ln.includes('0 ') ? '#4ade80' : '#e2e8f0';
+            ctx.fillText(ln, 44, y); y += 20;
+          }
+          y += 10;
+        }
+        if (s.kind === 'split') {
+          drawWindow(48 + lw, 60, W - lw - 76, H - 150, 'LIVE TELEMETRY // B8G-ABI', '#4ade80', false);
+          let my = 118;
+          for (const m of s.metrics) {
+            ctx.fillStyle = '#94a3b8'; ctx.font = '12px ui-monospace, monospace'; ctx.fillText(m.label.toUpperCase(), 66 + lw, my);
+            ctx.fillStyle = '#38bdf8'; ctx.font = 'bold 22px ui-monospace, monospace'; ctx.fillText(m.value, 66 + lw, my + 26);
+            my += 78;
+          }
+        }
+      } else if (s.kind === 'switcher') {
+        const panes = s.switcherPanes;
+        const activeIdx = Math.floor((lt / Math.max(0.5, s.durationSec)) * panes.length) % Math.max(1, panes.length);
+        const cw = (W - 74) / 2, ch = (H - 168) / 2;
+        panes.slice(0, 4).forEach((p, idx) => {
+          const px = 28 + (idx % 2) * (cw + 18), py = 60 + Math.floor(idx / 2) * (ch + 18);
+          drawWindow(px, py, cw, ch, p.title + ' [' + p.badge + ']', p.accentHex, idx === activeIdx);
+          ctx.font = '13px ui-monospace, monospace';
+          p.lines.slice(0, 7).forEach((ln, k) => {
+            ctx.fillStyle = idx === activeIdx ? '#e2e8f0' : '#64748b';
+            ctx.fillText(ln, px + 16, py + 58 + k * 22);
+          });
+        });
+      }
+
+      ctx.fillStyle = '#060a12'; ctx.fillRect(0, H - 66, W, 66);
+      ctx.fillStyle = s.accentHex; ctx.fillRect(0, H - 66, W * (elapsed / SB.totalDurationSec), 3);
+      ctx.font = 'bold 14px ui-monospace, monospace'; ctx.fillText(s.title.toUpperCase(), 24, H - 42);
+      ctx.fillStyle = '#e2e8f0'; ctx.font = '14px ui-monospace, monospace'; ctx.fillText(s.subtitle, 24, H - 18);
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

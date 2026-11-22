@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>02 · Formal Security &amp; S³ Quaternion Invariants — Awesome-OS Evidence Pack</title>
+  <meta name="description" content="Unit-quaternion conjugation rollback formalism, monotonic capability narrowing lattice, W^X linking, and O(1) zero-wipe proof sketches." />
+  <link rel="alternate" type="application/rss+xml" title="Awesome-OS Engineering Blog" href="/rss.xml" />
+  <style>
+:root {
+  --bg: #06090f;
+  --panel: #0c121e;
+  --card: #101827;
+  --border: #1e293b;
+  --border-hi: #38bdf866;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --cyan: #38bdf8;
+  --emerald: #4ade80;
+  --amber: #fbbf24;
+  --violet: #c084fc;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.65;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(56,189,248,0.08), transparent 36%),
+    radial-gradient(circle at 88% 14%, rgba(74,222,128,0.06), transparent 34%),
+    linear-gradient(to right, rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+}
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(6, 9, 15, 0.86);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -0.02em; color: #fff; font-size: 1.08rem; }
+.brand:hover { text-decoration: none; }
+.brand svg { width: 30px; height: 30px; }
+.badge { font-family: var(--mono); font-size: 11px; color: var(--emerald); background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); padding: 2px 8px; border-radius: 999px; }
+.nav-links { display: flex; gap: 20px; font-family: var(--mono); font-size: 13px; flex-wrap: wrap; }
+.nav-links a { color: var(--muted); }
+.nav-links a:hover, .nav-links a.active { color: #fff; text-decoration: none; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.hero { padding: 72px 0 48px; display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 40px; align-items: center; }
+@media (max-width: 880px) { .hero { grid-template-columns: 1fr; padding: 44px 0 32px; } }
+.eyebrow { font-family: var(--mono); font-size: 12px; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.hero h1 { font-size: clamp(2.1rem, 4.2vw, 3.35rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 18px; }
+.hero h1 span { background: linear-gradient(90deg, var(--cyan), var(--emerald)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: var(--muted); font-size: 1.08rem; max-width: 60ch; margin-bottom: 26px; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 8px;
+  font-family: var(--mono); font-size: 13px; font-weight: 600; border: 1px solid var(--border);
+  background: var(--card); color: #fff; transition: all 0.15s ease;
+}
+.btn:hover { border-color: var(--cyan); text-decoration: none; transform: translateY(-1px); }
+.btn-primary { background: linear-gradient(135deg, #0ea5e9, #10b981); border: none; color: #041019; }
+.btn-primary:hover { filter: brightness(1.08); }
+.hero-art { display: flex; justify-content: center; align-items: center; padding: 20px; background: radial-gradient(circle, rgba(56,189,248,0.12), transparent 68%); border-radius: 16px; border: 1px solid var(--border); }
+.hero-art svg { width: 100%; max-width: 340px; height: auto; filter: drop-shadow(0 16px 36px rgba(0,0,0,0.6)); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 14px; margin: 12px 0 56px; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+.stat .k { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat .v { font-family: var(--mono); font-size: 1.45rem; font-weight: 800; color: var(--cyan); margin-top: 4px; }
+.stat .v.em { color: var(--emerald); }
+.stat .v.am { color: var(--amber); }
+section { padding: 42px 0; border-top: 1px solid var(--border); }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.sec-head h2 { font-size: 1.65rem; letter-spacing: -0.02em; }
+.sec-head .sub { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 18px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.15s ease, transform 0.15s ease; }
+.card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+.card .tag { font-family: var(--mono); font-size: 11px; color: var(--emerald); text-transform: uppercase; }
+.card h3 { font-size: 1.1rem; line-height: 1.3; }
+.card p { color: var(--muted); font-size: 0.92rem; flex: 1; }
+.card .meta { font-family: var(--mono); font-size: 12px; color: var(--cyan); margin-top: 4px; }
+.demo-frame { background: #04070d; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.demo-frame iframe { width: 100%; height: 620px; border: 0; display: block; }
+.demo-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.demo-tab { font-family: var(--mono); font-size: 12px; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--panel); color: var(--muted); cursor: pointer; }
+.demo-tab.active, .demo-tab:hover { border-color: var(--cyan); color: #fff; background: rgba(56,189,248,0.12); }
+.diagram-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 18px; }
+.diagram-box { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; }
+.diagram-box svg { max-width: 100%; height: auto; max-height: 220px; }
+.diagram-box .cap { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 10px; }
+.article { max-width: 820px; margin: 44px auto 72px; }
+.article h1 { font-size: 2.1rem; line-height: 1.2; margin-bottom: 12px; }
+.article .byline { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.article h2 { font-size: 1.45rem; margin: 32px 0 12px; color: #fff; }
+.article h3 { font-size: 1.15rem; margin: 22px 0 8px; color: var(--cyan); }
+.article p { margin: 12px 0; color: #cbd5e1; }
+.article ul { margin: 12px 0 16px 22px; color: #cbd5e1; }
+.article li { margin: 6px 0; }
+.article blockquote { border-left: 3px solid var(--cyan); padding: 10px 16px; background: rgba(56,189,248,0.06); margin: 16px 0; color: #e2e8f0; border-radius: 0 8px 8px 0; }
+.article code { font-family: var(--mono); font-size: 0.88em; background: #131d2e; padding: 2px 6px; border-radius: 4px; color: var(--emerald); }
+.article pre { background: #090e18; border: 1px solid var(--border); border-radius: 10px; padding: 16px; overflow-x: auto; margin: 16px 0; }
+.article pre code { background: none; padding: 0; color: #e2e8f0; font-size: 13px; }
+.math-block {
+  font-family: "Cambria Math", "STIX Two Math", Georgia, "Times New Roman", serif;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  text-align: center;
+  background: rgba(12, 18, 30, 0.85);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cyan);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 18px 0;
+  overflow-x: auto;
+  color: #f8fafc;
+}
+.math-inline {
+  font-family: "Cambria Math", "STIX Two Math", Georgia, "Times New Roman", serif;
+  font-size: 1.02em;
+  color: #f8fafc;
+  white-space: nowrap;
+}
+.math-block var, .math-inline var { font-style: italic; }
+.math-rm { font-style: normal; font-family: var(--sans); font-size: 0.9em; }
+.math-block sub, .math-block sup, .math-inline sub, .math-inline sup { font-size: 0.72em; line-height: 0; }
+.math-bar { text-decoration: overline; }
+.math-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 3px; font-size: 0.92em; line-height: 1.2; }
+.math-frac .math-num { border-bottom: 1px solid #cbd5e1; padding: 0 4px 2px; }
+.math-frac .math-den { padding: 2px 4px 0; }
+.table-wrap { overflow-x: auto; margin: 18px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; }
+th { background: var(--panel); font-family: var(--mono); font-size: 12px; color: var(--cyan); }
+footer { border-top: 1px solid var(--border); padding: 36px 0; margin-top: 48px; color: var(--muted); font-family: var(--mono); font-size: 12px; }
+.foot-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+</style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <svg id="asset-app-icon" viewBox="0 0 256 256" width="256" height="256" xmlns="http://www.w3.org/2000/svg"><defs>
+    <!-- Crystal White & Prismatic Gradients -->
+    <linearGradient id="crystal-bright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-mid" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <linearGradient id="prism-spectrum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="25%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="75%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="prism-beam" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="obsidian-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b26"/>
+      <stop offset="50%" stop-color="#0d1118"/>
+      <stop offset="100%" stop-color="#07090e"/>
+    </linearGradient>
+
+    <radialGradient id="white-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32"/>
+      <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="green-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="red-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <linearGradient id="purple-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d8b4fe"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+
+    <filter id="prism-glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <pattern id="pcb-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.6"/>
+      <path d="M 10 0 L 10 15 L 25 30 L 40 30" fill="none" stroke="#334155" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="10" cy="15" r="1.5" fill="#475569"/>
+      <circle cx="25" cy="30" r="1.5" fill="#475569"/>
+    </pattern>
+  </defs>
+            <rect x="16" y="16" width="224" height="224" rx="52" fill="#0d111a" stroke="url(#prism-spectrum)" stroke-width="3"/>
+            <g transform="translate(128, 132)">
+              <polygon points="0,-82 -14,-54 0,-42 14,-54" fill="#ffffff"/>
+              <polygon points="-14,-54 -30,-68 -18,-44" fill="url(#crystal-bright)"/>
+              <polygon points="14,-54 30,-68 18,-44" fill="url(#crystal-mid)"/>
+              <polygon points="-18,-22 -84,-64 -62,-10" fill="url(#crystal-bright)"/>
+              <polygon points="18,-22 84,-64 62,-10" fill="url(#crystal-mid)"/>
+              <polygon points="0,-32 -32,6 0,52 32,6" fill="#ffffff"/>
+              <polygon points="0,-10 -14,8 0,26 14,8" fill="url(#prism-spectrum)"/>
+              <polygon points="0,52 -18,78 0,92 18,78" fill="url(#crystal-bright)"/>
+            </g>
+          </svg>
+        <span>AWESOME-OS</span>
+        <span class="badge">B8G-ABI v3</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/" class="">Home</a>
+        <a href="/#demos" class="">Live Demos</a>
+        <a href="/#ventures">Ventures</a>
+        <a href="/#c-star-roi">ROI</a>
+        <a href="/book/index.html" class="active">White Dragon Book</a>
+        <a href="/kids/index.html">Kids Book</a>
+        <a href="/b8g-app/index.html">b8g.app</a>
+        <a href="/evidence/index.html">Evidence Pack</a>
+        <a href="/blog/index.html" class="">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap"><article class="article">
+        <div class="eyebrow">UNASSAILABLE EVIDENCE PACK · PEER-AUDIT EDITION</div>
+        <div class="byline">Source: <code>docs/FORMAL-SECURITY-AND-QUATERNION-INVARIANTS.md</code> · Reproducible via <code>.\bin\node.ps1 scripts/run-verification-suite.host.mts</code></div>
+        <h1>Formal Security &amp; Quaternion Invariants Statement</h1>
+<blockquote><strong>Status:</strong> Audit-Grade Formal Specification (grounded in live workspace implementations)</blockquote>
+<blockquote><strong>Scope:</strong> <code>sections/manifold/b8g-kernel-engine.mts</code>, <code>sections/ephemeral-token/index.mts</code>, <code>sections/chromium-build/inmem-linker/b8g_origin_linker.h</code>, and <code>B8G-ABI v2 -&gt; v3</code> C-ABI contracts.</blockquote>
+<blockquote><strong>Machine-Checkable Verification:</strong> <a href="#"><code>sections/manifold/quaternion-security-invariants.test.mts</code></a></blockquote>
+<hr />
+<h2>Executive Summary &amp; Trust Boundary</h2>
+<p>This document establishes four formal invariants governing mathematical state-space evolution, capability confinement, executable memory isolation, and binary ABI compatibility across Awesome-OS:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Domain</th>
+<th>Core Invariant</th>
+<th>Primary Implementation</th>
+</tr></thead><tbody>
+<tr>
+<td>:-</td>
+<td>:---</td>
+<td>:---</td>
+<td>:---</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td><strong><span class="math-inline"><var>S</var><sup>3</sup></span> Unit-Quaternion Algebra</strong></td>
+<td>$\</td>
+<td>q\</td>
+<td>= 1$, <span class="math-inline"><var>q</var><sup>-1</sup> = <var>q</var><sup>*</sup></span>, exact rollback <span class="math-inline"><var>q</var><sup>*</sup>(<var>q</var> <var>v</var> <var>q</var><sup>*</sup>)<var>q</var> = <var>v</var></span></td>
+<td><a href="#"><code>sections/manifold/b8g-kernel-engine.mts</code></a></td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td><strong>Ephemeral Capability Lattice</strong></td>
+<td><span class="math-inline"><var>C</var><sub><span class="math-rm">child</span></sub> ≤ <var>C</var><sub><span class="math-rm">parent</span></sub></span>, RAM-only lease, <code>fill(0)</code> + <code>revoke()</code> on <code>dispose()</code></td>
+<td><a href="#"><code>sections/ephemeral-token/index.mts</code></a></td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>Strict <code>W^X</code> &amp; <code>O(1)</code> Origin Arena</strong></td>
+<td><span class="math-inline">∀ <var>i</var>,<var>p</var>:&thinsp;¬(<span class="math-rm">Write</span>(<var>p</var>,<var>i</var>) ∧ <span class="math-rm">Exec</span>(<var>p</var>,<var>i</var>))</span>, <code>0xCC</code> guards, atomic <code>VirtualFree</code>/<code>munmap</code></td>
+<td><a href="#"><code>sections/chromium-build/inmem-linker/b8g_origin_linker.h</code></a></td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td><strong><code>B8G-ABI v2 -&gt; v3</code> Prefix Contract</strong></td>
+<td><code>_Static_assert(offsetof(V3, base) == 0)</code> + runtime <code>struct_size</code> bounds check</td>
+<td><a href="#"><code>packages/@awesome-os/b8g/b8g-abi/b8g_abi.h</code></a>, <a href="#"><code>b8g_origin_linker.h</code></a></td>
+</tr>
+</tbody></table></div>
+<hr />
+<h2>Section 1: Algebraic <span class="math-inline"><var>S</var><sup>3</sup></span> Unit-Quaternion State &amp; Conjugation Rollback Formalism</h2>
+<h3>1.1 Mathematical Definition</h3>
+<p>Let <span class="math-inline">ℍ = { <var>w</var> + <var>x</var><var>i</var> + <var>y</var><var>j</var> + <var>z</var><var>k</var> ∣ <var>w</var>, <var>x</var>, <var>y</var>, <var>z</var> ∈ ℝ }</span> be the division ring of Hamilton quaternions with basis relations:</p>
+<div class="math-block"><var>i</var><sup>2</sup> = <var>j</var><sup>2</sup> = <var>k</var><sup>2</sup> = <var>i</var><var>j</var><var>k</var> = -1.</div>
+<p>For <span class="math-inline"><var>q</var> = <var>w</var> + <var>x</var><var>i</var> + <var>y</var><var>j</var> + <var>z</var><var>k</var> ∈ ℍ</span>, define:</p>
+<ul>
+<li><strong>Euclidean Norm:</strong> <span class="math-inline">‖<var>q</var>‖ = √(<span class="math-sqrt"><var>w</var><sup>2</sup> + <var>x</var><sup>2</sup> + <var>y</var><sup>2</sup> + <var>z</var><sup>2</sup></span>)</span>.</li>
+<li><strong>Conjugate:</strong> <span class="math-inline"><var>q</var><sup>*</sup> = <var>w</var> - <var>x</var><var>i</var> - <var>y</var><var>j</var> - <var>z</var><var>k</var></span>.</li>
+<li><strong>Unit 3-Sphere Group:</strong> <span class="math-inline"><var>S</var><sup>3</sup> = { <var>q</var> ∈ ℍ ∣ ‖<var>q</var>‖ = 1 } ≅ <span class="math-rm">SU</span>(2)</span>.</li>
+</ul>
+<p>For every <span class="math-inline"><var>q</var> ∈ <var>S</var><sup>3</sup></span>:</p>
+<div class="math-block"><var>q</var> <var>q</var><sup>*</sup> = <var>q</var><sup>*</sup> <var>q</var> = ‖<var>q</var>‖<sup>2</sup> = 1 ⇒ <var>q</var><sup>-1</sup> = <var>q</var><sup>*</sup>.</div>
+<p>Embed any 3D vector <span class="math-inline">vec<var>v</var> = (<var>v</var><sub>x</sub>, <var>v</var><sub>y</sub>, <var>v</var><sub>z</sub>) ∈ ℝ<sup>3</sup></span> as a pure imaginary quaternion <span class="math-inline"><var>v</var> = 0 + <var>v</var><sub>x</sub> <var>i</var> + <var>v</var><sub>y</sub> <var>j</var> + <var>v</var><sub>z</sub> <var>k</var> ∈ <span class="math-rm">Im</span>(ℍ)</span>. The adjoint (conjugation) action of <span class="math-inline"><var>q</var> ∈ <var>S</var><sup>3</sup></span> on <span class="math-inline"><span class="math-rm">Im</span>(ℍ)</span> is:</p>
+<div class="math-block"><var>v</var>' = Φ<sub>q</sub>(<var>v</var>) = <var>q</var> <var>v</var> <var>q</var><sup>*</sup>.</div>
+<p>The map <span class="math-inline">π: <var>S</var><sup>3</sup> → <span class="math-rm">SO</span>(3)</span> defined by <span class="math-inline">π(<var>q</var>) = Φ<sub>q</sub></span> is a surjective Lie group homomorphism with <span class="math-inline">ker(π) = { +1, -1 }</span> (the spinor double cover of <span class="math-inline"><span class="math-rm">SO</span>(3)</span>).</p>
+<h3>1.2 Exact Conjugation Rollback</h3>
+<p>Because <span class="math-inline"><var>q</var><sup>-1</sup> = <var>q</var><sup>*</sup></span> on <span class="math-inline"><var>S</var><sup>3</sup></span> and quaternion multiplication is associative, applying the conjugate action <span class="math-inline">Φ<sub><var>q</var><sup>*</sup></sub></span> to <span class="math-inline"><var>v</var>' = <var>q</var> <var>v</var> <var>q</var><sup>*</sup></span> yields exact algebraic rollback:</p>
+<div class="math-block">Φ<sub><var>q</var><sup>*</sup></sub>(<var>v</var>') = <var>q</var><sup>*</sup> <var>v</var>' <var>q</var> = <var>q</var><sup>*</sup> (<var>q</var> <var>v</var> <var>q</var><sup>*</sup>) <var>q</var> = (<var>q</var><sup>*</sup> <var>q</var>)&thinsp; <var>v</var>&thinsp; (<var>q</var><sup>*</sup> <var>q</var>) = 1 · <var>v</var> · 1 = <var>v</var>.</div>
+<p>For a sequence of state-space orientation transitions <span class="math-inline"><var>q</var><sub>1</sub>, <var>q</var><sub>2</sub>, …, <var>q</var><sub>n</sub> ∈ <var>S</var><sup>3</sup></span> with composite rotor <span class="math-inline"><var>Q</var> = <var>q</var><sub>n</sub> ⋯ <var>q</var><sub>2</sub> <var>q</var><sub>1</sub> ∈ <var>S</var><sup>3</sup></span>, the exact inverse transition is <span class="math-inline"><var>Q</var><sup>*</sup> = <var>q</var><sub>1</sub><sup>*</sup> <var>q</var><sub>2</sub><sup>*</sup> ⋯ <var>q</var><sub>n</sub><sup>*</sup></span>, restoring <span class="math-inline"><var>v</var> = <var>Q</var><sup>*</sup> (<var>Q</var> <var>v</var> <var>Q</var><sup>*</sup>) <var>Q</var></span> in a single conjugation step.</p>
+<h3>1.3 Verified Mathematical Properties</h3>
+<p>In <a href="#"><code>sections/manifold/b8g-kernel-engine.mts</code></a> (<code>UnitQuaternion</code>, lines 151–263; <code>B8GKernelArena.step</code>, lines 508–536):</p>
+<ul>
+<li><strong>Norm Preservation (Closure on <span class="math-inline"><var>S</var><sup>3</sup></span>):</strong></li>
+<li>Analytically: <span class="math-inline">‖<var>q</var><sub>1</sub> <var>q</var><sub>2</sub>‖ = ‖<var>q</var><sub>1</sub>‖‖<var>q</var><sub>2</sub>‖ = 1</span> and <span class="math-inline">‖<var>q</var> <var>v</var> <var>q</var><sup>*</sup>‖ = ‖<var>q</var>‖‖<var>v</var>‖‖<var>q</var><sup>*</sup>‖ = ‖<var>v</var>‖</span>.</li>
+<li>Numerically: <code>UnitQuaternion</code> normalizes on construction (<code>normalize()</code>), and <code>B8GKernelArena.step()</code> re-projects every integrated rotor onto <span class="math-inline"><var>S</var><sup>3</sup></span> (<code>qw = nqw / rawNorm</code>, etc.), with <code>auditNormInvariants()</code> tracking <span class="math-inline"><span class="math-rm">max</span><sub>i</sub> |‖<var>q</var><sub>i</sub>‖ - 1|</span> and emitting <code>TRAP_QUATERNION_NORM_DRIFT</code> if drift exceeds tolerance.</li>
+<li><strong>Exact Invertibility (Conjugation Rollback):</strong></li>
+<li>Given <code>v' = q.rotateVec3(vx, vy, vz)</code> and <code>qConj = new UnitQuaternion(q.w, -q.x, -q.y, -q.z)</code>, <code>v'' = qConj.rotateVec3(v'.x, v'.y, v'.z)</code> satisfies <span class="math-inline">‖<var>v</var>'' - <var>v</var>‖<sub>2</sub> &lt; 10<sup>-12</sup></span> under IEEE-754 <code>float64</code> arithmetic.</li>
+<li><strong>Gimbal-Lock-Free Geodesic Interpolation (SLERP):</strong></li>
+<li><code>UnitQuaternion.slerp(target, t)</code> canonicalizes the antipodal hemisphere (<code>if (cosOmega &lt; 0) negate target</code>) to guarantee shortest-arc geodesic interpolation on <span class="math-inline"><var>S</var><sup>3</sup></span>, clamps <code>cosOmega</code> to <span class="math-inline">[-1, 1]</span> to prevent <code>NaN</code>, falls back to normalized linear interpolation (NLERP) for <span class="math-inline"><span class="math-rm">cos</span>Ω &gt; 0.9995</span>, and preserves unit norm across all <span class="math-inline"><var>t</var> ∈ [0, 1]</span> with exact endpoints at <span class="math-inline"><var>t</var> = 0</span> and <span class="math-inline"><var>t</var> = 1</span>.</li>
+</ul>
+<h3>1.4 Honest Security Boundary Note</h3>
+<blockquote>[!IMPORTANT]</blockquote>
+<blockquote><strong>Architectural Honesty Boundary:</strong> <code>UnitQuaternion</code> on <span class="math-inline"><var>S</var><sup>3</sup></span> models <strong>geometric and state-space orientation and algebraically reversible transitions</strong> (specifically the nonholonomic multi-sphere rolling manifold <span class="math-inline"><span class="math-rm">SO</span>(3) × ℝ<sup>2</sup></span> in <a href="#"><code>sections/manifold/b8g-kernel-engine.mts</code></a>).</blockquote>
+<p>&gt;</p>
+<blockquote>Quaternion multiplication and conjugation are <strong>not cryptographic primitives</strong>: they are linear over <span class="math-inline">ℝ<sup>4</sup></span>, trivially invertible by any observer who knows <span class="math-inline"><var>q</var></span>, and provide neither confidentiality, integrity authentication, nor memory isolation.</blockquote>
+<p>&gt;</p>
+<blockquote><strong>Cryptographic, capability, and memory-isolation guarantees</strong> are enforced exclusively by the concrete runtime mechanisms formalized in <strong>Sections 2–4</strong> below—together with the branchless 64-bit constant-time capability gate (<code>B8GMemoryArena64.ctEq64</code> / <code>UniversalCapabilityGate</code>, lines 98–145 of <code>b8g-kernel-engine.mts</code>), which verifies <code>((capabilityToken &amp; requiredMask) ^ requiredMask) == 0</code> without data-dependent branching.</blockquote>
+<hr />
+<h2>Section 2: Monotonic Capability Narrowing &amp; Ephemeral Token Invariants</h2>
+<p><strong>Implementation:</strong> <a href="#"><code>sections/ephemeral-token/index.mts</code></a></p>
+<h3>2.1 Formal Capability Lattice &amp; Monotonic Narrowing</h3>
+<p>Model the authority space as a bounded meet-semilattice <span class="math-inline">(𝒞, ≤, sqcap, bot)</span> where each capability <span class="math-inline"><var>C</var> = (<span class="math-rm">scope</span>, [<var>t</var><sub><span class="math-rm">issue</span></sub>, <var>t</var><sub><span class="math-rm">exp</span></sub>], <span class="math-rm">state</span>)</span> carries a scope set, a finite validity interval, and a lifecycle state <span class="math-inline"><span class="math-rm">state</span> ∈ {<span class="math-rm">ACTIVE</span>, <span class="math-rm">REVOKED</span>}</span>, with <span class="math-inline">bot</span> denoting the revoked / zero-authority element.</p>
+<ul>
+<li><strong>Partial Order (<span class="math-inline">≤</span>):</strong> <span class="math-inline"><var>C</var><sub><span class="math-rm">child</span></sub> ≤ <var>C</var><sub><span class="math-rm">parent</span></sub></span> iff:</li>
+<li><span class="math-inline"><span class="math-rm">scope</span>(<var>C</var><sub><span class="math-rm">child</span></sub>) ⊆ <span class="math-rm">scope</span>(<var>C</var><sub><span class="math-rm">parent</span></sub>)</span>,</li>
+<li><span class="math-inline">[<var>t</var><sub><span class="math-rm">issue</span></sub>(<var>C</var><sub><span class="math-rm">child</span></sub>), <var>t</var><sub><span class="math-rm">exp</span></sub>(<var>C</var><sub><span class="math-rm">child</span></sub>)] ⊆ [<var>t</var><sub><span class="math-rm">issue</span></sub>(<var>C</var><sub><span class="math-rm">parent</span></sub>), <var>t</var><sub><span class="math-rm">exp</span></sub>(<var>C</var><sub><span class="math-rm">parent</span></sub>)]</span>, and</li>
+<li><span class="math-inline"><span class="math-rm">state</span>(<var>C</var><sub><span class="math-rm">parent</span></sub>) = <span class="math-rm">REVOKED</span> ⇒ <span class="math-rm">state</span>(<var>C</var><sub><span class="math-rm">child</span></sub>) = <span class="math-rm">REVOKED</span></span> (i.e., <span class="math-inline"><var>C</var><sub><span class="math-rm">child</span></sub> = bot</span>).</li>
+<li><strong>Monotonic Attenuation Invariant:</strong> Every delegation or sub-lease derivation applies <span class="math-inline"><var>C</var><sub><span class="math-rm">child</span></sub> = <var>C</var><sub><span class="math-rm">parent</span></sub> sqcap <var>C</var><sub><span class="math-rm">req</span></sub> ≤ <var>C</var><sub><span class="math-rm">parent</span></sub></span>. No operation in the capability API can synthesize a capability <span class="math-inline"><var>C</var>'</span> with <span class="math-inline"><var>C</var>' not≤ <var>C</var><sub><span class="math-rm">parent</span></sub></span>.</li>
+</ul>
+<h3>2.2 RAM-Only Lease Lifecycle</h3>
+<p><code>EphemeralCapabilityIntersection</code> replaces static long-lived secrets with short-lived, scope-bound leases held exclusively in process RAM:</p>
+<ul>
+<li><strong>Acquisition (<code>acquire()</code>):</strong> Mints a scoped lease via <code>provider.mint(this.scope, this.ttlMs)</code> (minimum <code>ttlMs</code> clamped to <code>50</code> ms). Stores secret bytes in a private <code>Buffer</code> (<code>this.secretBuf</code>) and schedules an unref'd auto-refresh timer at <span class="math-inline">60%</span> of TTL (<code>Math.max(25, Math.floor(ttlMs * 0.6))</code>). Rejects immediately with <code>CapabilityRevokedError</code> (<code>ERR_CAPABILITY_REVOKED</code>) if <code>this.revoked === true</code>.</li>
+<li><strong>Scoped Use (<code>withSecret(fn)</code>):</strong> Checks <code>!this.revoked &amp;&amp; this.secretBuf &amp;&amp; this.lease</code>. If <code>Date.now() &gt; this.lease.expiresAtMs</code>, attempts a synchronous-await <code>tryRefresh()</code>; if refresh fails or the lease remains expired/revoked, it <strong>fails closed</strong> by throwing <code>CapabilityRevokedError</code>.</li>
+<li><strong>Refresh Hygiene (<code>storeSecret()</code>):</strong> Before replacing <code>this.secretBuf</code> on refresh, overwrites the previous buffer in-place via <code>this.secretBuf.fill(0)</code>.</li>
+<li><strong>Automatic Log Redaction (<code>redact(text)</code>):</strong> Replaces every occurrence of the active secret (length <span class="math-inline">≥ 4</span>) in outbound logs/strings with <code>***EPHEMERAL_REDACTED***</code>.</li>
+</ul>
+<h3>2.3 Deterministic Disposal (<code>fill(0)</code> + <code>provider.revoke()</code>)</h3>
+<p><code>EphemeralCapabilityIntersection.dispose()</code> (lines 120–136) enforces an irreversible transition to <span class="math-inline">bot</span>:</p>
+<ul>
+<li><strong>Idempotent Lockout:</strong> <code>if (this.revoked) return; this.revoked = true;</code> — immediately blocks concurrent <code>acquire()</code>, <code>tryRefresh()</code>, and <code>withSecret()</code> calls.</li>
+<li><strong>Timer Teardown:</strong> <code>clearInterval(this.refreshTimer); this.refreshTimer = null;</code> — halts any future background refresh.</li>
+<li><strong>In-Place Memory Zeroing:</strong> <code>this.secretBuf.fill(0); this.secretBuf = null;</code> — deterministically overwrites every byte of the backing <code>Buffer</code> with <code>0x00</code> before releasing the reference.</li>
+<li><strong>Upstream Revocation:</strong> Detaches <code>this.lease = null</code> and awaits <code>this.provider.revoke(oldLease)</code> so the remote/local issuer invalidates the token immediately.</li>
+</ul>
+<h3>2.4 Proof Sketch of Non-Escalation &amp; Post-Disposal Unreachability</h3>
+<ul>
+<li><strong>Theorem (Non-Escalation):</strong> Given a parent intersection bound to <code>scope</code> and monotonic derivation <span class="math-inline"><var>C</var><sub><span class="math-rm">child</span></sub> ≤ <var>C</var><sub><span class="math-rm">parent</span></sub></span>, no call sequence on <code>EphemeralCapabilityIntersection</code> can widen <code>this.scope</code> (declared <code>private readonly</code>), extend authority past <code>dispose()</code>, or recover a secret after <code>dispose()</code>.</li>
+<li><strong>Proof Sketch:</strong></li>
+<li><code>scope</code> is immutable (<code>private readonly</code>) after construction; <code>acquire()</code> and <code>tryRefresh()</code> only request <code>this.scope</code>.</li>
+<li><code>revoked</code> transitions monotonically <span class="math-inline"><span class="math-rm">false</span> → <span class="math-rm">true</span></span> and has no reset path.</li>
+<li>On <code>dispose()</code>, <code>revoked</code> is set to <code>true</code> <strong>before</strong> any <code>await</code> (<code>provider.revoke</code>), eliminating TOCTOU re-entry windows during async revocation. Both <code>acquire()</code> and <code>withSecret()</code> check <code>this.revoked</code> as their first guard and throw <code>CapabilityRevokedError</code>.</li>
+<li><code>secretBuf.fill(0)</code> zeroes the mutable backing store prior to dereferencing, ensuring residual heap inspection of the <code>Buffer</code> yields only <code>0x00</code> bytes.</li>
+<li><strong>Audit Caveat (JS Runtime Boundary):</strong> Because JavaScript <code>string</code> values passed to <code>withSecret(fn)</code> callbacks are immutable and GC-managed by V8, <code>fill(0)</code> deterministically zeroes the <code>Buffer</code> backing store but cannot forcibly zero transient JS <code>string</code> copies inside user callbacks. Callers MUST NOT copy or cache the <code>secret</code> argument outside <code>withSecret</code>.</li>
+</ul>
+<hr />
+<h2>Section 3: Strict <code>W^X</code> (<code>RW -&gt; RX</code>) In-Memory Linking &amp; <code>O(1)</code> Origin Disposal</h2>
+<p><strong>Implementation:</strong> <a href="#"><code>sections/chromium-build/inmem-linker/b8g_origin_linker.h</code></a> and <a href="#"><code>sections/chromium-build/inmem-linker/b8g_inmem_linker_bench.cc</code></a></p>
+<h3>3.1 Strict <code>W^X</code> Invariant</h3>
+<p>For every virtual memory page <span class="math-inline"><var>p</var></span> owned by a <code>B8gOriginArena</code> and every CPU instruction retirement point <span class="math-inline"><var>i</var></span>:</p>
+<div class="math-block">∀ <var>p</var>, ∀ <var>i</var>:&emsp; ¬(<span class="math-rm">Write</span>(<var>p</var>, <var>i</var>) ∧ <span class="math-rm">Exec</span>(<var>p</var>, <var>i</var>)).</div>
+<p>No page in <code>B8gOriginArena</code> is ever allocated or protected with <code>PAGE_EXECUTE_READWRITE</code> (<code>RWX</code>).</p>
+<h3>3.2 <code>RW -&gt; RX</code> Trampoline Emission &amp; <code>0xCC</code> Slot Guards</h3>
+<p>In <code>B8gOriginArena::InstallWxTrampoline(uint32_t slot, void* target_fn)</code> (lines 164–192):</p>
+<ul>
+<li><strong>Initial Allocation (<code>RW</code> only):</strong> Allocates one 4096-byte per-origin <code>wx_trampoline_page</code> via <code>VirtualAlloc(..., PAGE_READWRITE)</code>.</li>
+<li><strong>Slot Layout (16-byte stride, up to <code>B8G_DEP_MAX = 32</code> slots):</strong></li>
+<li>Transitions page protection to <code>PAGE_READWRITE</code>.</li>
+<li>Writes the 12-byte x86-64 direct jump stub at <code>wx_trampoline_page + slot * 16</code>:</li>
+<li><code>code[0..1] = 0x48, 0xB8</code> (<code>movabs rax, imm64</code>)</li>
+<li><code>code[2..9] = &lt;uint64_t target_fn&gt;</code></li>
+<li><code>code[10..11] = 0xFF, 0xE0</code> (<code>jmp rax</code>)</li>
+<li>Writes <strong>4 bytes of <code>0xCC</code> (<code>INT3</code> software breakpoint trap)</strong> into <code>code[12..15]</code> as hardware-enforced slot guards. Any miscalculated jump offset or linear fallthrough past a stub traps immediately instead of sliding into the next dependency slot.</li>
+<li><strong>Finalization (<code>RX</code> only + I-Cache Coherence):</strong></li>
+<li>Transitions page protection to <code>PAGE_EXECUTE_READ</code> (<code>RX</code>) via <code>VirtualProtect</code>.</li>
+<li>Calls <code>FlushInstructionCache(GetCurrentProcess(), code, 16)</code> before returning the callable function pointer.</li>
+<li><strong>Data Arena Isolation:</strong> <code>B8gOriginArena::base</code> (<code>B8G_ARENA_V1</code>) is allocated strictly <code>PAGE_READWRITE</code> (<code>PROT_READ | PROT_WRITE</code> on POSIX) and is never transitioned to executable.</li>
+</ul>
+<blockquote>[!NOTE]</blockquote>
+<blockquote><strong>Platform &amp; Concurrency Audit Notes:</strong></blockquote>
+<blockquote>- <strong>Single-Writer Patching:</strong> On Windows, <code>InstallWxTrampoline</code> toggles the per-origin trampoline page <code>RX -&gt; RW -&gt; RX</code> while installing a new lazy slot. Lazy loading on an origin MUST be serialized with respect to calls through previously installed slots on that same origin.</blockquote>
+<blockquote>- <strong>POSIX Path:</strong> On non-Windows builds (<code>#else</code> branch, line 190), <code>InstallWxTrampoline</code> currently returns <code>reinterpret_cast&lt;RawFn&gt;(target_fn)</code> directly without allocating a separate trampoline page (preserving <code>W^X</code> by avoiding any writable code page).</blockquote>
+<h3>3.3 <code>O(1)</code> Atomic Origin Disposal &amp; Zero-Persistence Proof</h3>
+<p>Every origin binds its dependency allocations to a per-origin bump allocator (<code>AllocCb</code> / <code>FreeCb</code> no-op, lines 114–138) backed by <code>B8gOriginArena::base</code>. Individual frees are <code>O(1)</code> no-ops; cross-origin heap reuse is structurally impossible because no two origins share a backing region.</p>
+<p>On tab/context teardown or cross-origin navigation, <code>B8gOriginArena::Dispose()</code> (lines 234–270):</p>
+<ul>
+<li>Invokes each loaded module's <code>dep_disposers[i](dep_states[i])</code> and unloads module handles (<code>FreeLibrary</code> / <code>dlclose</code>).</li>
+<li>Atomically releases <code>wx_trampoline_page</code> via <code>VirtualFree(wx_trampoline_page, 0, MEM_RELEASE)</code> (Windows).</li>
+<li>Atomically unmaps the entire data arena <code>base</code> via <code>VirtualFree(base, 0, MEM_RELEASE)</code> (Windows) or <code>munmap(base, capacity)</code> (POSIX).</li>
+<li>Resets <code>loaded_mask = 0</code>, <code>loaded_count = 0</code>, <code>capacity = 0</code>, <code>offset = 0</code>.</li>
+</ul>
+<p><strong>Empirical Stress Verification:</strong> <a href="#"><code>sections/chromium-build/inmem-linker/b8g_inmem_linker_bench.cc</code></a> (lines 115–129) executes <strong>100 consecutive full origin lifecycles</strong> (<code>Init(id, 1 MiB)</code> <span class="math-inline">→</span> <code>64 KiB</code> arena allocation + <code>memset</code> <span class="math-inline">→</span> <code>O(1) Dispose()</code>), verifying complete reclamation with <strong><code>0</code> leaked bytes</strong> across all 100 tab lifecycles.</p>
+<hr />
+<h2>Section 4: Step-Wise <code>B8G-ABI v2 -&gt; v3</code> Binary Prefix Invariant</h2>
+<h3>4.1 ABI Lineage</h3>
+<ul>
+<li><strong><code>B8G Component ABI v2</code>:</strong> <a href="#"><code>packages/@awesome-os/b8g/b8g-abi/b8g_abi.h</code></a> (<code>COMPONENT_API_VERSION 2</code>, <code>component_api_t</code>) and <a href="#"><code>sections/b8g-abi-v8/b8g_abi_v8_section.h</code></a> (<code>B8G_V8_SECTION_ABI_VERSION 2u</code>).</li>
+<li><strong><code>B8G-ABI v3</code> (Origin-Scoped Dependency Contract):</strong> <a href="#"><code>sections/chromium-build/inmem-linker/b8g_origin_linker.h</code></a> (<code>B8G_DEP_ABI_VERSION 3u</code>, <code>B8gDepModuleV3</code>).</li>
+</ul>
+<h3>4.2 Formal Binary Prefix &amp; <code>struct_size</code> Bounds Contract</h3>
+<p>To guarantee zero-UB, step-wise ABI evolution across independently compiled C, C++, Zig, and Rust modules without recompiling the entire dependency graph, any versioned ABI extension <span class="math-inline"><var>S</var><sub><var>v</var>+1</sub></span> that extends <span class="math-inline"><var>S</var><sub>v</sub></span> MUST satisfy two invariants:</p>
+<ul>
+<li><strong>Compile-Time Prefix Identity (<code>_Static_assert</code>):</strong></li>
+</ul>
+<p>Embed the previous ABI version as the first member (<code>base</code>) at byte offset <code>0</code>, and enforce it at compile time:</p>
+<p>```c</p>
+<p>typedef struct B8gAbiV3Extended {</p>
+<p>B8gAbiV2Base base;         // MUST remain at offset 0</p>
+<p>uint32_t     struct_size;  // sizeof(B8gAbiV3Extended) set by producer</p>
+<p>uint32_t     abi_version;  // &gt;= 3u</p>
+<p>/<em> ... v3-only trailing fields ... </em>/</p>
+<p>} B8gAbiV3Extended;</p>
+<p>_Static_assert(offsetof(B8gAbiV3Extended, base) == 0,</p>
+<p>&quot;B8G-ABI v3 must preserve v2 binary prefix at offset 0&quot;);</p>
+<p>_Static_assert(sizeof(B8gAbiV3Extended) &gt;= sizeof(B8gAbiV2Base),</p>
+<p>&quot;B8G-ABI v3 struct cannot shrink below v2 prefix&quot;);</p>
+<p>```</p>
+<p>Because <code>offsetof(S_{v+1}, base) == 0</code>, any pointer <code>const S_{v+1}*</code> is strictly layout-compatible with <code>const S_v*</code> under ISO C11 §6.7.2.1p15 (&quot;a pointer to a structure object, suitably converted, points to its initial member&quot;).</p>
+<ul>
+<li><strong>Runtime <code>struct_size</code> Bounds Check (Fail-Closed):</strong></li>
+</ul>
+<p>Before any consumer dereferences an extended field <code>f</code> introduced in ABI version <span class="math-inline"><var>v</var>+1</span>, it MUST verify:</p>
+<p>```c</p>
+<p>#define B8G_ABI_HAS_FIELD(ptr, Type, field) \</p>
+<p>((ptr) != NULL &amp;&amp; \</p>
+<p>(ptr)-&gt;struct_size &gt;= (offsetof(Type, field) + sizeof(((const Type*)0)-&gt;field)))</p>
+<p>```</p>
+<p>If <code>abi_version</code> is unsupported or <code>B8G_ABI_HAS_FIELD</code> evaluates to false, the loader <strong>fails closed</strong> (returns <code>NULL</code> / error code) and never reads past the caller-allocated descriptor boundary.</p>
+<h3>4.3 Current Implementation Status Note</h3>
+<p>In <a href="#"><code>b8g_origin_linker.h</code></a> (<code>B8gDepModuleV3</code>, lines 55–63), the origin-scoped dependency descriptor is currently a standalone v3 struct validated by exact version equality (<code>mod-&gt;abi_version != B8G_DEP_ABI_VERSION</code>, checked in <a href="#"><code>b8g_18_dep_origin_proof.cc</code></a>). Any future v3 <span class="math-inline">→</span> v4 extension or v2-bridged descriptor MUST adopt the <code>_Static_assert(offsetof == 0)</code> prefix layout and <code>struct_size</code> bounds check above.</p>
+<hr />
+<h2>Section 5: Verification Matrix</h2>
+<div class="table-wrap"><table><thead><tr>
+<th>Invariant</th>
+<th>Verification Artifact</th>
+<th>Command</th>
+</tr></thead><tbody>
+<tr>
+<td><span class="math-inline"><var>S</var><sup>3</sup></span> unit norm, conjugation rollback ($\</td>
+<td>q^<em>(qvq^</em>)q - v\</td>
+<td>&lt; 10^{-12}$), SLERP endpoints</td>
+<td><a href="#"><code>quaternion-security-invariants.test.mts</code></a></td>
+<td><code>.\bin\node.ps1 --test sections/manifold/quaternion-security-invariants.test.mts</code></td>
+</tr>
+<tr>
+<td>Ephemeral token redaction, <code>fill(0)</code> zero-wipe, <code>provider.revoke()</code>, fail-closed post-dispose</td>
+<td><a href="#"><code>quaternion-security-invariants.test.mts</code></a></td>
+<td><code>.\bin\node.ps1 --test sections/manifold/quaternion-security-invariants.test.mts</code></td>
+</tr>
+<tr>
+<td><code>W^X</code> <code>RW -&gt; RX</code> trampoline &amp; 100-tab <code>O(1)</code> <code>VirtualFree</code> (<code>0</code> leaked bytes)</td>
+<td><a href="#"><code>b8g_inmem_linker_bench.cc</code></a></td>
+<td>Native C++ benchmark target</td>
+</tr>
+<tr>
+<td>18-target <code>B8G-ABI v3</code> version-checked origin linking &amp; disposal</td>
+<td><a href="#"><code>b8g_18_dep_origin_proof.cc</code></a></td>
+<td>Native C++ proof target</td>
+</tr>
+</tbody></table></div>
+        <p style="margin-top:36px"><a href="/evidence/index.html">← Back to Evidence Pack index</a></p>
+      </article></main>
+  <footer>
+    <div class="wrap foot-inner">
+      <div>AWESOME-OS · <em>Nunquam ante, numquam iterum</em> · Built from source on bare metal.</div>
+      <div><a href="/blog/index.html">Blog</a> · <a href="/book/index.html">White Dragon Book</a> · <a href="/rss.xml">RSS</a></div>
+    </div>
+  </footer>
+</body>
+</html>

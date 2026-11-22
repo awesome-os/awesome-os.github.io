@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 20: X-Ray Eyes for Bloat and Speed — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 020 OF 100 · Act II · The SX/DX Era &amp; Every Windows Evolution</div>
+      <h1>Chapter 20: X-Ray Eyes for Bloat and Speed</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="An open electronics box revealing glowing golden copper circuit tracks and friendly microchips"><rect width="640" height="300" rx="16" fill="#0d172e"/><rect x="130" y="56" width="380" height="196" rx="16" fill="#14293d" stroke="#4be3a6" stroke-width="3"/><g stroke="#f7c96c" stroke-width="3.5" fill="none"><path d="M170 110 H260 V150 H340"/><path d="M170 190 H240 V168 H340"/><path d="M400 130 H470 V105"/><path d="M400 175 H470 V200"/></g><rect x="290" y="112" width="110" height="82" rx="10" fill="#1e293b" stroke="#6de6ff" stroke-width="3"/><text x="345" y="158" text-anchor="middle" fill="#6de6ff" font-family="monospace" font-size="16" font-weight="bold">6502</text><circle cx="170" cy="110" r="7" fill="#f7c96c"/><circle cx="170" cy="190" r="7" fill="#4be3a6"/><circle cx="470" cy="105" r="7" fill="#6de6ff"/><circle cx="470" cy="200" r="7" fill="#fb923c"/></svg></div>
+      <p>Looking back across a decade and a half of beige steel cases, floppy stacks, dual-boot partitions, and every Windows edition from 3.11 to 11, Frank realized he hadn't just been collecting operating systems. Without ever planning it, he had been training a rare sense—what he eventually came to think of as <em>X-ray eyes</em> for software.</p>
+<p>Most people judge speed by surface polish: a silky fade-in animation, a spinning ring that looks reassuring, a splash screen that hides a four-second stall. Frank could no longer be fooled by theater. The instant a menu lagged by eighty milliseconds, his mind stripped away the pretty paint and saw the machinery underneath: unnecessary disk hits, synchronous network calls blocking the UI thread, bloated frameworks spinning up an entire browser engine just to draw three buttons, layers of compatibility wrappers stacked ten stories high like a crooked house.</p>
+<p>He knew the unmistakable difference between <em>cosmetic smoothness</em> and <em>real mechanical speed</em>. Real speed is when the cursor never drops a frame because the path from your finger to the screen is short, direct, and honest. Real speed is when idle means <em>truly idle</em>—zero fan spin, zero mystery packets, zero wasted watts. Real speed is what he had felt in the Atari's instant boot, in OS/2's unbroken multitasking, in Windows 3.11's zero-delay window snap, and in Windows 2000's silent steel endurance.</p>
+<p>Every operating system he had tested had left a permanent blueprint inside his head. From DOS and the 386/486 ladder, he kept the physics of memory and hardware bottlenecks. From OS/2, he kept the conviction that real architecture matters—and that ecosystems decide survival. From 95 and 98, he kept empathy for the everyday human whose work hangs in the balance when software fails. From NT, 2000, and XP, he kept the standard of quiet, disciplined engineering. And from Vista, 10, and 11, he kept a fierce, protective allergy to bloat.</p>
+<p>Late one evening, sitting in front of a quiet terminal with his old spiral notebook of 486 benchmarks resting beside a sleek modern laptop, a dangerous and exhilarating question took root in Frank's chest. For years he had been the kid who tuned other people's operating systems—disabling services, patching registries, fighting to peel back layers of waste so the silicon could breathe again.</p>
+<p>What happened, he wondered, when a builder stopped merely cleaning up someone else's house and started asking how a modern system ought to be built from the ground up? He didn't have all the answers yet. The road ahead would lead through Linux terminals, bare-metal servers, global web traffic, and sleepless nights of real-world engineering. But one thing was already unshakably clear: once you develop X-ray eyes for bloat, you can never unsee it—and you can never settle for slow again.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Testing every CPU rung and every Windows evolution gave Frank X-ray eyes—the lifelong ability to see past cosmetic polish, spot hidden bloat instantly, and never settle for anything less than real mechanical speed.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="019-tiles-telemetry-and-the-noise-machine.html">← Ch. 019</a>
+        <a class="btn" href="index.html">Chapters (20/100)</a>
+        <a class="btn" href="021-the-phosphor-midnight.html">Ch. 021 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

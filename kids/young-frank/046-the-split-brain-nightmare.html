@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 46: The Split-Brain Nightmare — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 046 OF 100 · Act V · Quorums &amp; Split-Brain Recovery</div>
+      <h1>Chapter 46: The Split-Brain Nightmare</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A bright golden lighthouse beam cutting calmly through dramatic stormy clouds and waves"><defs><linearGradient id="f4-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b1124"/><stop offset="100%" stop-color="#1e293b"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f4-bg)"/><polygon points="320,92 640,30 640,154" fill="#fde047" opacity="0.18"/><polygon points="320,92 0,44 0,140" fill="#fde047" opacity="0.14"/><rect x="296" y="106" width="48" height="126" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><rect x="298" y="136" width="44" height="24" fill="#ef4444"/><rect x="298" y="182" width="44" height="24" fill="#ef4444"/><circle cx="320" cy="92" r="18" fill="#fde047"/><path d="M0 242 Q80 218 160 242 T320 242 T480 242 T640 242 L640 300 L0 300 Z" fill="#0284c7" opacity="0.55"/></svg></div>
+      <p>If a single crashed server is a paper cut, a <strong>split-brain</strong> is a nightmare that wakes engineers up in a cold sweat.</p>
+<p>Frank saw his first real split-brain at three in the morning during a simulated cross-region link failure. On the left side of the cluster sat two nodes in Frankfurt. On the right side sat two nodes in Amsterdam. When he severed the virtual fiber cable between them, neither side actually died. Both sides were still fast, healthy, and eager to serve. Frankfurt called out to Amsterdam, heard only silence, and concluded: <em>&quot;Amsterdam is gone. I am the leader now.&quot;</em> At the exact same millisecond, Amsterdam called out to Frankfurt, heard only silence, and concluded: <em>&quot;Frankfurt is gone. I am the leader now.&quot;</em></p>
+<p>For six horrifying minutes, both halves of the cluster happily accepted writes, updated user records, and appended health telemetry to two diverging realities. When Frank plugged the virtual cable back in, the two halves stared at each other like twins who had lived different lives and both insisted their memories were the true history. Records collided. Timestamps disagreed. Which version of the truth won? Neither—both were tainted.</p>
+<p>It struck Frank with a sudden, almost poetic jolt how painfully human the problem was. He had seen the exact same disaster happen in real relationships: two people cut off from honest communication, each filling the silence with their own assumptions, both walking forward convinced they were right until the reunion turned into wreckage.</p>
+<p>In distributed systems, at least, mathematics offered a ruthless cure.</p>
+<p>Frank tore down the four-node even split and rebuilt the cluster around <strong>odd-numbered quorums</strong>: three nodes, or five, never two or four. To act as leader and commit a single byte of state, a node wasn't allowed to just <em>feel</em> alive—it had to gather signed votes from a strict majority, more than half of the total cluster. When the network split a five-node ring into three nodes on one side and two on the other, only the side with three could hold a quorum. The two isolated nodes on the minority side did the hardest, bravest thing in engineering: they stepped down, refused writes, and stayed silent.</p>
+<p>To seal the last crack, Frank added <strong>fencing tokens</strong>—strictly increasing epoch numbers stamped onto every write. Even if an old, confused leader woke up from a long garbage-collection pause thinking it was still king, the storage layer checked its outdated token number and slammed the door in its face. The cluster couldn't lie anymore, because the math made two simultaneous kings impossible.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>In a split-brain, silence from the minority is not weakness—it is the math that keeps the truth from tearing in two.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="045-the-anatomy-of-a-failover.html">← Ch. 045</a>
+        <a class="btn" href="index.html">Chapters (46/100)</a>
+        <a class="btn" href="047-ghosts-in-the-packet-stream.html">Ch. 047 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>04. Konrad Zuse, the ENIAC Six & John von Neumann — History of Computers &amp; The Internet</title>
+  <style>
+  :root {
+    --bg: #090e24;
+    --card: #141c3d;
+    --border: rgba(247, 201, 108, 0.28);
+    --text: #f6f1e3;
+    --muted: #bfc9e6;
+    --gold: #f7c96c;
+    --cyan: #6de6ff;
+    --emerald: #4be3a6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(circle at 20% 0%, rgba(109,230,255,0.1), transparent 45%), var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.72;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 960px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 960px; margin: 0 auto; padding: 12px 22px 64px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(247,201,108,0.16); color: var(--gold); border: 1px solid rgba(247,201,108,0.4);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.18; margin-bottom: 8px; }
+  .sub { color: var(--cyan); font-size: 1.05rem; margin-bottom: 18px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.08rem; color: var(--text); }
+  .box {
+    margin: 18px 0; padding: 16px 20px; border-radius: 12px;
+    background: rgba(109,230,255,0.08); border-left: 4px solid var(--cyan);
+  }
+  .box.honest { background: rgba(247,201,108,0.1); border-left-color: var(--gold); }
+  .box-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--gold); color: #090e24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--cyan); }
+  .tile h3 { font-size: 1.08rem; color: #fff; }
+  .tile p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All 12 Pioneers (Timeline)</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 04 OF 12 · 1941–1945</div>
+      <h1>Konrad Zuse, the ENIAC Six & John von Neumann</h1>
+      <div class="sub ui">The First Real Electronic Computers</div>
+      <div class="art"><svg viewBox="0 0 640 280" role="img" aria-label="CPU and Memory connected by a stored-program bus with 6 glowing programmer stars"><rect width="640" height="280" rx="16" fill="#181533"/><rect x="64" y="88" width="176" height="110" rx="14" fill="#26204d" stroke="#fb923c" stroke-width="3"/><text x="152" y="138" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="22" font-weight="bold">CPU</text><text x="152" y="164" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="12">Runs Instructions</text><rect x="400" y="88" width="176" height="110" rx="14" fill="#26204d" stroke="#6de6ff" stroke-width="3"/><text x="488" y="138" text-anchor="middle" fill="#6de6ff" font-family="monospace" font-size="22" font-weight="bold">MEMORY</text><text x="488" y="164" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif" font-size="12">Code + Data Together</text><line x1="240" y1="128" x2="400" y2="128" stroke="#f7c96c" stroke-width="5"/><line x1="240" y1="158" x2="400" y2="158" stroke="#4be3a6" stroke-width="5"/><text x="320" y="114" text-anchor="middle" fill="#f7c96c" font-family="monospace" font-size="12">BUS (Z3 · ENIAC · 1945)</text></svg></div>
+      <div class="box ui">
+        <div class="box-title" style="color:var(--cyan)">What They Invented</div>
+        <p style="margin:0;font-size:0.98rem">First programmable binary computer (Z3), first electronic general computer (ENIAC), and stored-program architecture</p>
+      </div>
+      <p>In 1941 in Berlin, Konrad Zuse built the Z3 — the world’s first working, programmable, fully automatic binary digital computer, built from telephone relays in his parents’ living room.</p>
+<p>In 1945 in the United States, ENIAC became the first giant all-electronic general-purpose computer. Six brilliant women — Betty Holberton, Jean Bartik, Kay McNulty, Marlyn Wescoff, Ruth Lichterman, and Frances Spence — figured out how to wire and program its 18,000 vacuum tubes with zero manuals!</p>
+<p>At the same time, John von Neumann wrote down the "stored-program" blueprint: keep both data and instructions in the same memory. That made computers flexible — though decades later, copying huge data back and forth across one wire became known as the von Neumann bottleneck.</p>
+      <div class="box ui">
+        <div class="box-title" style="color:var(--emerald)">Why It Still Runs Inside Your Device Today</div>
+        <p style="margin:0;font-size:0.98rem">Almost every PC still uses the stored-program design — and modern engineering (like Awesome-OS) works hard to solve the von Neumann copying bottleneck.</p>
+      </div>
+      <div class="box honest ui">
+        <div class="box-title">Honest History Note</div>
+        <p style="margin:0;font-size:0.98rem">For decades, history books showed photos of the six ENIAC women standing next to the machine and mistakenly called them "models." They were the actual programmers who made ENIAC work!</p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="03-alan-turing.html">← 03. Alan Turing</a>
+        <a class="btn" href="index.html">Timeline (04/12)</a>
+        <a class="btn" href="05-grace-hopper.html">05. Grace Hopper →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

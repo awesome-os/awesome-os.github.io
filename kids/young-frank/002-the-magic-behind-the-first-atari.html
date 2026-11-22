@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 2: The Magic Behind the RF Switch — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 002 OF 100 · Act I · The CRT Glow &amp; First Machines</div>
+      <h1>Chapter 2: The Magic Behind the RF Switch</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="An open electronics box revealing glowing golden copper circuit tracks and friendly microchips"><rect width="640" height="300" rx="16" fill="#0d172e"/><rect x="130" y="56" width="380" height="196" rx="16" fill="#14293d" stroke="#4be3a6" stroke-width="3"/><g stroke="#f7c96c" stroke-width="3.5" fill="none"><path d="M170 110 H260 V150 H340"/><path d="M170 190 H240 V168 H340"/><path d="M400 130 H470 V105"/><path d="M400 175 H470 V200"/></g><rect x="290" y="112" width="110" height="82" rx="10" fill="#1e293b" stroke="#6de6ff" stroke-width="3"/><text x="345" y="158" text-anchor="middle" fill="#6de6ff" font-family="monospace" font-size="16" font-weight="bold">6502</text><circle cx="170" cy="110" r="7" fill="#f7c96c"/><circle cx="170" cy="190" r="7" fill="#4be3a6"/><circle cx="470" cy="105" r="7" fill="#6de6ff"/><circle cx="470" cy="200" r="7" fill="#fb923c"/></svg></div>
+      <p>Most kids who received an Atari spent their afternoons chasing higher numbers on the scoreboard, memorizing enemy patterns until their thumbs ached. Frank loved playing, too, yet within a week a different kind of itch began to tingle behind his eyes. Whenever he pushed the joystick forward and watched a tiny spaceship glide upward across the television screen, a stubborn question refused to leave him alone: <em>How does the glass know what my hand just did?</em></p>
+<p>He started with the parts he could see without breaking any house rules. Kneeling behind the television, he studied the tiny silver RF switchbox screwed to the back panel. Slide it one way and the screen showed the evening news floating invisibly through the sky; slide it the other way and the Atari's universe took over the exact same glass. That single metal slider blew his mind. It meant the spaceship wasn't painted inside the TV—it was traveling as a tiny electrical whisper down a thin black cable, disguised as a miniature radio station broadcasting straight into channel three.</p>
+<p>Next, he examined the cartridges. Each one had a spring-loaded plastic dust cover hiding a narrow row of gleaming gold-edged copper fingers. When he pressed a cartridge into the slot, he could feel those metal contacts biting gently into the socket inside the console. Swapping one plastic rectangle for another completely transformed the television: tanks became racing cars, racing cars became alien armadas. The machine itself had not changed at all. Everything different—the rules, the colors, the sounds—lived frozen inside that little black shell like sheet music waiting for a musician.</p>
+<p>One rainy afternoon, after the Atari had been running for two hours, Frank laid his palm gently across the black power brick plugged into the wall and then over the slatted vents on top of the console. Both were pleasantly warm, smelling faintly of heated dust and ozone. He leaned down and squinted through the narrow plastic ribs, catching glimpses of a dark green board studded with tiny striped cylinders and rectangular black chips with rows of silver legs.</p>
+<p>Something clicked inside Frank's mind as sharply as a joystick microswitch. There was no tiny fairy hiding inside the television, and no mysterious luck deciding whether a laser beam hit its target. Inside that warm box, electricity was racing through copper highways, flipping microscopic switches millions of times every second. Every beep was a pulse of voltage; every bright dot on the phosphor screen was the result of an invisible calculation performed with absolute precision.</p>
+<p>That evening, when he picked up the joystick again, he didn't feel like a player anymore. He felt like someone standing outside a locked workshop, peering through a narrow vent at the gears turning inside. Playing someone else's cartridge was thrilling, yes—but a quiet hunger had taken root in him. One day, he didn't just want to slide the cartridges in. He wanted to write the sheet music himself.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>The moment you stop seeing a machine as magic and start seeing it as electricity following rules, you take your first step toward becoming a builder.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="001-the-glow-of-the-first-atari.html">← Ch. 001</a>
+        <a class="btn" href="index.html">Chapters (2/100)</a>
+        <a class="btn" href="003-ready-flashing-in-blue.html">Ch. 003 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

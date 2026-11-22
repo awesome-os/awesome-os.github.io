@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>01. Ada Lovelace — History of Computers &amp; The Internet</title>
+  <style>
+  :root {
+    --bg: #090e24;
+    --card: #141c3d;
+    --border: rgba(247, 201, 108, 0.28);
+    --text: #f6f1e3;
+    --muted: #bfc9e6;
+    --gold: #f7c96c;
+    --cyan: #6de6ff;
+    --emerald: #4be3a6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(circle at 20% 0%, rgba(109,230,255,0.1), transparent 45%), var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.72;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 960px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 960px; margin: 0 auto; padding: 12px 22px 64px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(247,201,108,0.16); color: var(--gold); border: 1px solid rgba(247,201,108,0.4);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.18; margin-bottom: 8px; }
+  .sub { color: var(--cyan); font-size: 1.05rem; margin-bottom: 18px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.08rem; color: var(--text); }
+  .box {
+    margin: 18px 0; padding: 16px 20px; border-radius: 12px;
+    background: rgba(109,230,255,0.08); border-left: 4px solid var(--cyan);
+  }
+  .box.honest { background: rgba(247,201,108,0.1); border-left-color: var(--gold); }
+  .box-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--gold); color: #090e24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--cyan); }
+  .tile h3 { font-size: 1.08rem; color: #fff; }
+  .tile p { font-size: 0.9rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All 12 Pioneers (Timeline)</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 01 OF 12 · 1843</div>
+      <h1>Ada Lovelace</h1>
+      <div class="sub ui">The First Computer Programmer</div>
+      <div class="art"><svg viewBox="0 0 640 280" role="img" aria-label="Brass analytical engine gears connected to musical notes and an algorithm scroll"><rect width="640" height="280" rx="16" fill="#121a3a"/><circle cx="170" cy="145" r="64" fill="none" stroke="#f7c96c" stroke-width="8" stroke-dasharray="18 10"/><circle cx="170" cy="145" r="24" fill="#f7c96c" fill-opacity="0.25" stroke="#f7c96c" stroke-width="3"/><circle cx="275" cy="185" r="42" fill="none" stroke="#6de6ff" stroke-width="7" stroke-dasharray="14 8"/><rect x="355" y="48" width="230" height="184" rx="12" fill="#1b2654" stroke="#f7c96c" stroke-width="2.5"/><text x="470" y="88" text-anchor="middle" fill="#f7c96c" font-family="monospace" font-size="15" font-weight="bold">NOTE G · 1843</text><text x="380" y="122" fill="#e2e8f0" font-family="monospace" font-size="13">1. Load V1, V2</text><text x="380" y="148" fill="#6de6ff" font-family="monospace" font-size="13">2. Loop n = 1..k</text><text x="380" y="174" fill="#4be3a6" font-family="monospace" font-size="13">3. Output B(n)</text><text x="470" y="212" text-anchor="middle" fill="#ffd4a3" font-family="sans-serif" font-size="13">Numbers → Music &amp; Art</text></svg></div>
+      <div class="box ui">
+        <div class="box-title" style="color:var(--cyan)">What They Invented</div>
+        <p style="margin:0;font-size:0.98rem">The first published computer algorithm — and the vision of general-purpose computing</p>
+      </div>
+      <p>More than a hundred years before electric computers existed, a brilliant mathematician named Ada Lovelace studied Charles Babbage’s blueprint for a giant brass gear machine called the Analytical Engine.</p>
+<p>Everyone else thought the machine was just a fancy calculator for adding taxes and star charts. Ada saw the truth: if numbers can represent letters, musical notes, or colors, then a machine following exact step-by-step rules can compose music, draw pictures, and solve puzzles.</p>
+<p>In her famous Note G, she wrote out a step-by-step loop and variable table to compute Bernoulli numbers — the very first published computer program in human history.</p>
+      <div class="box ui">
+        <div class="box-title" style="color:var(--emerald)">Why It Still Runs Inside Your Device Today</div>
+        <p style="margin:0;font-size:0.98rem">Every loop, variable, and program running on your phone, game console, or laptop follows the exact symbolic idea Ada Lovelace wrote down in 1843.</p>
+      </div>
+      <div class="box honest ui">
+        <div class="box-title">Honest History Note</div>
+        <p style="margin:0;font-size:0.98rem">The very first programmer in history was a woman — and she understood that computers only do what we know how to order them to perform.</p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="index.html">← Book Cover</a>
+        <a class="btn" href="index.html">Timeline (01/12)</a>
+        <a class="btn" href="02-boole-and-shannon.html">02. George Boole & Claude Shannon →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

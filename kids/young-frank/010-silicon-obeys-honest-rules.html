@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 10: Silicon Obeys Honest Rules — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 010 OF 100 · Act I · The CRT Glow &amp; First Machines</div>
+      <h1>Chapter 10: Silicon Obeys Honest Rules</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A bright golden lighthouse beam cutting calmly through dramatic stormy clouds and waves"><defs><linearGradient id="f4-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b1124"/><stop offset="100%" stop-color="#1e293b"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f4-bg)"/><polygon points="320,92 640,30 640,154" fill="#fde047" opacity="0.18"/><polygon points="320,92 0,44 0,140" fill="#fde047" opacity="0.14"/><rect x="296" y="106" width="48" height="126" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><rect x="298" y="136" width="44" height="24" fill="#ef4444"/><rect x="298" y="182" width="44" height="24" fill="#ef4444"/><circle cx="320" cy="92" r="18" fill="#fde047"/><path d="M0 242 Q80 218 160 242 T320 242 T480 242 T640 242 L640 300 L0 300 Z" fill="#0284c7" opacity="0.55"/></svg></div>
+      <p>As autumn settled over the neighborhood, painting the evenings in early indigo, Frank sat at his desk with the bedroom light switched off, letting the soft hum of the monitor fill the quiet room. On the shelf beside him rested the milestones of his young world: the scuffed black Atari joystick whose rubber boot still carried the faint ridges of his thumb, a stack of 5.25-inch floppy disks labeled in neat blue ink, dog-eared reference manuals with cracked spines, and the glowing screen of his Amiga waiting patiently for his next line of code.</p>
+<p>Outside his window, the grown-up world often felt noisy, unpredictable, and unfair. People said one thing and meant another; rules bent depending on who was watching; hard work—like his father's long, quiet shifts—wasn't always rewarded as loudly as it deserved to be. Growing up meant learning how messy and complicated human life could be, and sometimes that weight sat heavy on a young chest.</p>
+<p>Yet whenever Frank placed his fingers on the home row of a keyboard and faced the phosphor glow, he entered a realm governed by a rarer kind of grace. Inside the machine, there were no favorites, no shortcuts, and no empty promises. A voltage was either high or low. A bit was either zero or one. If a loop ran past the end of an array, the screen crashed whether you were a billionaire or a kid in a small bedroom. And if your logic was clean, your timing exact, and your respect for the hardware sincere, the silicon answered with flawless, breathtaking loyalty.</p>
+<p>He thought back to the night his father had knelt on the living room carpet beside that cardboard Atari box, trading tired hours for a spark of light. Frank realized now that his father had given him far more than a collection of circuits. He had given him a compass. The discipline of tracing a bug without blaming the machine, the patience of listening to a floppy drive step across tracks, the joy of making three SID voices sing in harmony, and the courage to unscrew a case and look inside—all of it had quietly forged a builder's mind.</p>
+<p>Frank smiled in the blue glow, tapped a single key to wake the editor, and watched the cursor blink steadily back at him. Act One of his journey—the age of wonder, of first machines and warm CRT glass—was coming to a close. Ahead waited bigger networks, harder problems, and real-world storms where millions of voices would collide across the wires. He didn't know yet where the road would lead, only that he was ready to walk it, armed with a simple, unshakable truth: if you learn the honest rules of the machine, you can build almost anything.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>In a noisy and unpredictable world, silicon offers a rare pact: it never flatters and never lies, and if you meet it with honesty and craft, it will carry your imagination as far as you dare to build.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="009-screwdrivers-on-the-kitchen-table.html">← Ch. 009</a>
+        <a class="btn" href="index.html">Chapters (10/100)</a>
+        <a class="btn" href="011-the-386-and-486-ladder.html">Ch. 011 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

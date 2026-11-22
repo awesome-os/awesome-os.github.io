@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 26: The Undocumented Silence — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 026 OF 100 · Act III · Drama &amp; Misunderstandings</div>
+      <h1>Chapter 26: The Undocumented Silence</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="An open electronics box revealing glowing golden copper circuit tracks and friendly microchips"><rect width="640" height="300" rx="16" fill="#0d172e"/><rect x="130" y="56" width="380" height="196" rx="16" fill="#14293d" stroke="#4be3a6" stroke-width="3"/><g stroke="#f7c96c" stroke-width="3.5" fill="none"><path d="M170 110 H260 V150 H340"/><path d="M170 190 H240 V168 H340"/><path d="M400 130 H470 V105"/><path d="M400 175 H470 V200"/></g><rect x="290" y="112" width="110" height="82" rx="10" fill="#1e293b" stroke="#6de6ff" stroke-width="3"/><text x="345" y="158" text-anchor="middle" fill="#6de6ff" font-family="monospace" font-size="16" font-weight="bold">6502</text><circle cx="170" cy="110" r="7" fill="#f7c96c"/><circle cx="170" cy="190" r="7" fill="#4be3a6"/><circle cx="470" cy="105" r="7" fill="#6de6ff"/><circle cx="470" cy="200" r="7" fill="#fb923c"/></svg></div>
+      <p>Nobody warns you that the same vulnerability that makes young romance feel like flying also makes a small misunderstanding feel like a sudden drop in altitude. It happened on an ordinary Thursday in late November, over something so tiny that looking back, Frank could hardly believe how much smoke it produced.</p>
+<p>He had been buried three days deep in a stubborn project—a custom parser he was trying to get running cleanly before the weekend—and he had forgotten to answer a long, thoughtful message Lena had sent him the night before. In his head, silence just meant <em>I'm in the middle of a stack trace, I'll reply properly when my brain comes back up for air</em>. In Lena's head, silence after she had shared something personal about a fight with her parents felt like a door clicking quietly shut.</p>
+<p>The next afternoon in the hallway, when Frank walked up smiling and launched straight into explaining the bug he had just squashed, Lena gave him a polite, tight nod and said she had to meet a friend before class. Her voice was flat—not angry, which would have been easier to read, just cool and carefully sealed off. Frank blinked, caught off guard, and instead of asking what was wrong, his own bruised pride jumped in like a bad error handler. <em>Fine,</em> a stubborn voice whispered inside him. <em>If she doesn't want to talk, I won't bother her.</em></p>
+<p>For four miserable days, they orbited each other in a state of high-grade teenage cold war. Neither of them said a cruel word, yet the air between them crackled with unspoken hurt. Frank sat at his desk at night staring at the empty chat window, typing half a sentence, deleting it, typing a colder version, deleting that too. Every song on his stereo suddenly sounded like an accusation. Even his friends noticed; on the garage roof Saturday night, the drummer finally nudged his shoulder and muttered, &quot;Dude, you're debugging a human like she's a broken printer. Just go talk to her.&quot;</p>
+<p>The realization stung because it was completely true. When a computer gave him unexpected output, Frank never got defensive—he leaned in, checked his assumptions, and looked for what he had missed. Yet with the person he cared about most, he had let fear of looking foolish turn a simple miscommunication into a four-day fortress of silence.</p>
+<p>On Monday after school, his stomach tied in knots, Frank waited by the bicycle racks in a light drizzle until Lena walked out. He didn't bring an excuse or a speech. He just stood there with rain dampening his collar and said, &quot;I messed up. I read your message late, I got stuck in my own head, and I should have told you I cared instead of disappearing. I'm really sorry.&quot;</p>
+<p>For three long seconds, Lena just looked at him. Then the tight wall around her shoulders melted all at once, her eyes softened, and she let out a shaky laugh. &quot;I thought you were bored of me,&quot; she admitted quietly. &quot;Next time, just send three words so I know you're still there.&quot;</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Silence doesn't protect your pride—it only gives the people you care about room to imagine the worst.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="025-notes-passed-in-plain-text.html">← Ch. 025</a>
+        <a class="btn" href="index.html">Chapters (26/100)</a>
+        <a class="btn" href="027-non-deterministic-heartbeats.html">Ch. 027 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

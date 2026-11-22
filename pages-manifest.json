@@ -1,0 +1,1015 @@
+{
+  "schema": "b8g.gh-pages-manifest.v1",
+  "repo": "awesome-os/awesome-os.github.io",
+  "cname": "awesome-os.com",
+  "fileCount": 201,
+  "totalBytes": 12890157,
+  "skippedLargeFiles": [],
+  "files": [
+    {
+      "path": "b8g-app/assets/CesiumMan.glb",
+      "bytes": 438044,
+      "sha256": "b7001eaeea8254bd44773bcd247e78696d94169388fbb2a1800fc69434e777d9"
+    },
+    {
+      "path": "b8g-app/assets/DamagedHelmet.glb",
+      "bytes": 3773916,
+      "sha256": "a1e3b04de97b11de564ce6e53b95f02954a297f0008183ac63a4f5974f6b32d8"
+    },
+    {
+      "path": "b8g-app/assets/Fox.glb",
+      "bytes": 162852,
+      "sha256": "d97044e701822bac5a62696459b27d7b375aada5de8574ed4362edbba94771f7"
+    },
+    {
+      "path": "b8g-app/builder.html",
+      "bytes": 73379,
+      "sha256": "a605fbe43177d1e89760dadaaf4c8ada0476349b67b748b16e9a51cb48620613"
+    },
+    {
+      "path": "b8g-app/games/b8g-notebook.html",
+      "bytes": 47737,
+      "sha256": "9ea3209257fb9451c5ddc0f388b5101db2bf4015a560d5cddc89b6c49199abe1"
+    },
+    {
+      "path": "b8g-app/games/cozy-village.html",
+      "bytes": 9191,
+      "sha256": "0d9e619842057b029c0632488977ebd3dd535c10e67fbe8649726f8d27b86e61"
+    },
+    {
+      "path": "b8g-app/games/holonomic-world.html",
+      "bytes": 54573,
+      "sha256": "caee0d3bd8a8e1080674584935f84aa6304f0114bbecdd3cef13646d9747cacc"
+    },
+    {
+      "path": "b8g-app/games/pbr-studio.html",
+      "bytes": 31268,
+      "sha256": "4c982bb6089ee2fad2a17f844857cbea3325bc0068472ce6090fb152d9f22f71"
+    },
+    {
+      "path": "b8g-app/games/reality-sandbox.html",
+      "bytes": 78068,
+      "sha256": "bd8b34b2f6354dbe76f30179ea6eaff764fe67aae23613be17729905b24f2e7a"
+    },
+    {
+      "path": "b8g-app/games/sky-drift.html",
+      "bytes": 13350,
+      "sha256": "7dd407f76e4eff38554ad0867d5e69a286e014637d18a2465b1c37eb037d3caf"
+    },
+    {
+      "path": "b8g-app/games/world-composer.html",
+      "bytes": 15778,
+      "sha256": "a5b3674246119cb8508f7fc3e58131e8628b89fed7fb7cd3c16bf4053bb63f0d"
+    },
+    {
+      "path": "b8g-app/index.html",
+      "bytes": 9216,
+      "sha256": "8d3743504a6828b14d689127bb5e9f0d1c54657081b7125013202d1e6e34ee66"
+    },
+    {
+      "path": "blog/01-ending-the-browser-era-e2c-milestone.html",
+      "bytes": 24894,
+      "sha256": "256afdc7d5cc599f1d5bdc87e6870fd29a05679c9cc5d157474d7c2f56d470e7"
+    },
+    {
+      "path": "blog/02-evolving-beyond-lo-v8-snapshots-and-self-maintaining-ci.html",
+      "bytes": 20009,
+      "sha256": "4db1ab122719828bce02c8ff65c50ec45783a0a19a415eb521dfd1fcba9eaa73"
+    },
+    {
+      "path": "blog/03-adversarial-memory-model-review-capability-epochs.html",
+      "bytes": 23359,
+      "sha256": "934c76c6902d5c735bc2ee0acfb1b0cec95420ec1485462b9e08de9bfbe9e0a2"
+    },
+    {
+      "path": "blog/04-beyond-css-flat-array-layout-and-pluggable-window-managers.html",
+      "bytes": 26031,
+      "sha256": "95125fe2573234e8e07b2d38cfee4332ae0d16a49f22b88fec13a3e48c89b5e9"
+    },
+    {
+      "path": "blog/05-full-speed-internal-paced-legacy-host-debug-facade.html",
+      "bytes": 19958,
+      "sha256": "4ff71180075829b96d253c81c605a370f82290582a0a4c8b1095505a2f904168"
+    },
+    {
+      "path": "blog/06-dismantling-legacy-interfaces-hardforks-electron-cloud-collapse.html",
+      "bytes": 20172,
+      "sha256": "05e7952749ee361e164b051609801668d745dff76644d7d7919b3168eb542c7d"
+    },
+    {
+      "path": "blog/07-from-early-kernel-plans-to-b8g-sect-1-and-scalar-uvs.html",
+      "bytes": 20236,
+      "sha256": "a6afc0c4cbf0489004901062be0feb6119572bd8ab30c90bae2b2fb0e1d72ed5"
+    },
+    {
+      "path": "blog/08-empirical-proof-archive-constant-time-t2-boot-driver-fabric.html",
+      "bytes": 19557,
+      "sha256": "3781513a7bd632fb052e8e5c135279991b2293682df1311230983c5cffd9b5b5"
+    },
+    {
+      "path": "blog/09-deep-research-and-legacy-docs-index.html",
+      "bytes": 19234,
+      "sha256": "10c70f2eb7a34b108fcc3299d4d81e36c175ca476aa69affc0fb7549bb7b7ee3"
+    },
+    {
+      "path": "blog/10-executable-markdown-notebooks-and-dual-transport-docs.html",
+      "bytes": 18895,
+      "sha256": "bec2f8f1c0a3f862012255d6539d8309fa98b33d6115161e8fe6707538a0a9a9"
+    },
+    {
+      "path": "blog/11-stealify-composition-algebra-and-geometric-surface-language.html",
+      "bytes": 17360,
+      "sha256": "92d6f9dd793fea07e0fd902c0d9c24b29c67ac422e8178e679b09bc13ad05559"
+    },
+    {
+      "path": "blog/12-b8g-html-native-html-css-js-without-webkit.html",
+      "bytes": 18379,
+      "sha256": "8970654bc61b104e12848e37ae1a81cdaca574748f1b5c0fef531836ab53cf96"
+    },
+    {
+      "path": "blog/13-google-v8-chromium-side-challenge-and-verification-pipeline.html",
+      "bytes": 18703,
+      "sha256": "d28f9ec9e8e1f765e5c1be01b1f75e061d3b7a1845b1c16ef13a1e91c473dbb4"
+    },
+    {
+      "path": "blog/14-crash-recovery-to-zero-webkit-browser-command-playbook.html",
+      "bytes": 21359,
+      "sha256": "83a4c7c6b7d80377c53240916dfe9d9ee7ec950058658f2ce479c960a2d9cf55"
+    },
+    {
+      "path": "blog/15-b8g-xenon-1b-cognitive-core-and-atlaskv-memory.html",
+      "bytes": 18898,
+      "sha256": "a79137808dff86aa0b3e5e609b36e1ef78208a631c720a9558749f718ac23125"
+    },
+    {
+      "path": "blog/16-verified-benchmark-flex-sheet-and-chromium-sparse-attack.html",
+      "bytes": 22834,
+      "sha256": "884499a20937a2f6c46e3b1a14777595693abdbc39416a0d0e87af9eb4b6f917"
+    },
+    {
+      "path": "blog/17-chromium-first-class-section-autoupdate-telemetry-migration.html",
+      "bytes": 22603,
+      "sha256": "0fee65571811798d6b0d8b95b998a391658b3c3baad41466ef41e38e819f9674"
+    },
+    {
+      "path": "blog/18-inference-manager-execution-projection-os-peer.html",
+      "bytes": 18051,
+      "sha256": "2b78c2e8301a0b186cc4febdbf89eae70c922cd7af55f2fc5ed448c004427b4e"
+    },
+    {
+      "path": "blog/19-zero-wsl-zig-trade-sim-spotless-main-and-procedural-video.html",
+      "bytes": 22804,
+      "sha256": "69c7cd4b809e13ce20d1b14a0bc12bfc41371a82ef7ad10bb439480e0fc44ad3"
+    },
+    {
+      "path": "blog/20-real-chromium-compilation-zero-python-deps-b8g-abi-and-xenon-1b.html",
+      "bytes": 22222,
+      "sha256": "14e79ca0c15aefa60530a0dbadd25d849f3ab5ef8930e2428c4ec4a716a61b8a"
+    },
+    {
+      "path": "blog/21-9-layer-b8g-abi-chromium-concurrency-and-production-roi.html",
+      "bytes": 21748,
+      "sha256": "ea33d891459b4d81391be2201d14725c85792f26691ff74d2eac8b9ef5e7a27d"
+    },
+    {
+      "path": "blog/22-real-chromium-live-333-dep-audit-and-1987-holonomic-demoscene.html",
+      "bytes": 21891,
+      "sha256": "ed596c80781295b4acb0cf2be654b5791b733e109706cf34d8e1870f9ff49a66"
+    },
+    {
+      "path": "blog/24-holonomic-3d-reality-engine-pbr-physics-asog-and-safe-gates.html",
+      "bytes": 24132,
+      "sha256": "d13cf17a5f2cd9a35df9dcab3f05fc28c81e6ef7aa9b0a26f73ef2736e2779ed"
+    },
+    {
+      "path": "blog/24-sub-1-bit-llm-quantization-littlebit-and-b8g-edge-inference.html",
+      "bytes": 21482,
+      "sha256": "7432d4d0613732fafa6acc112a656a94e6d76ebcd8f447e1a9c4bffde8d95a2f"
+    },
+    {
+      "path": "blog/25-sovereign-hyperscaler-cas-raid-binary-boxing-and-universal-shims.html",
+      "bytes": 26629,
+      "sha256": "7bb5be572cbb2a87b066e426a541daede2361345680454d5ba9386b36e2ceb7d"
+    },
+    {
+      "path": "blog/index.html",
+      "bytes": 31567,
+      "sha256": "f105ffd516276349e69de40980ed6a9544d9ff704dbb495ec470bcad3e5ad6d7"
+    },
+    {
+      "path": "blog/step-wise-b8g-abi-v3-upgrade-and-offscreen-ram-demo-studio.html",
+      "bytes": 21477,
+      "sha256": "05fd386767416b80878aa930efb32de333724c2ae42af2230cef001f829ee3f0"
+    },
+    {
+      "path": "blog/video-production-guide-holonomic-e2c.html",
+      "bytes": 24756,
+      "sha256": "3214db78987c791ccdb0a77938df9af8ca628fec6de8622503b9a298b58b89b1"
+    },
+    {
+      "path": "book/00-evolutionary-lineage-and-master-comparison.html",
+      "bytes": 46352,
+      "sha256": "49e5cb25e30a3075520466054353a59b428a6c256c342b4a3ade54183681e9d5"
+    },
+    {
+      "path": "book/04-offscreen-ram-demo-compositor.html",
+      "bytes": 19583,
+      "sha256": "2eead216cf726c0d028228d2282c41880666383a1b2265fe82037f9e9ead48dc"
+    },
+    {
+      "path": "book/05-step-wise-abi-evolution-zero-flag-day.html",
+      "bytes": 18997,
+      "sha256": "b156cedad2ec9ed001b9c2a1d8c3e78751690f911f5d0aa0fea642c048d1b40a"
+    },
+    {
+      "path": "book/06-the-bare-metal-truth-four-eras-to-one-algebra.html",
+      "bytes": 28909,
+      "sha256": "9202a64eeaf31f661a350979267b4adf4e39ae35155a487f10e12b5546311da5"
+    },
+    {
+      "path": "book/ch01-end-of-von-neumann-compilation.html",
+      "bytes": 28397,
+      "sha256": "742aad267125ca5df0badc4cba8ca499903adbbf65ac4e1fb330dfd56c995f5e"
+    },
+    {
+      "path": "book/ch02-zero-ast-composition-algebra.html",
+      "bytes": 27450,
+      "sha256": "ab136b53921a020da6293bb5b4e26883980c742dd27ba520d9a349ab2e3d6918"
+    },
+    {
+      "path": "book/ch03-zero-header-b8g-abi-tables.html",
+      "bytes": 26826,
+      "sha256": "91a60d85eab1789759aa6de965436b1ffa3122c3df50eb2437bb33a02d920b9c"
+    },
+    {
+      "path": "book/ch04-content-addressed-cas-compilation.html",
+      "bytes": 27432,
+      "sha256": "730d1f0c691039f3efba6e2a6c33625a95f089febdc89cc59736690d344f9ea6"
+    },
+    {
+      "path": "book/ch05-wx-in-memory-linking-trampolines.html",
+      "bytes": 29443,
+      "sha256": "cc3e0da85a4eb9111552853c290782238af0a23876ca1f99e78292aeb12ee7af"
+    },
+    {
+      "path": "book/ch06-b8g-arena-v1-o1-origin-disposal.html",
+      "bytes": 27467,
+      "sha256": "6c4e449d965853a9f09590f8729ace591d6bac33db517c6fb85a071ebd8429af"
+    },
+    {
+      "path": "book/ch07-lock-free-ipcz-spsc-rings.html",
+      "bytes": 27408,
+      "sha256": "525e87ddc0d771effeb18f5864bdd86f06573025c73e14bd57c0c16e9464cc87"
+    },
+    {
+      "path": "book/ch08-mathematical-intersections-avsink.html",
+      "bytes": 26542,
+      "sha256": "dc02322987bf09353edb73cc3b329fcc4240d48048cace0eea948cfab6566eae"
+    },
+    {
+      "path": "book/ch09-ephemeral-capabilities-auto-revoke.html",
+      "bytes": 26505,
+      "sha256": "8b7e03916c5a7d738df205b24ae98e200e33c8b5dd3e2df0d9561bf08acb9f42"
+    },
+    {
+      "path": "book/ch10-zero-q-agentic-compilers.html",
+      "bytes": 27827,
+      "sha256": "01ee97a0f07ffba0566495baa6c0e2fa68070e8d206e9e4ea1ea942dcdacc01d"
+    },
+    {
+      "path": "book/ch11-mathematical-safe-gates-and-total-closure.html",
+      "bytes": 27836,
+      "sha256": "adddae96176675557b8201dbf6ffbed24c2b3aa9187dbb519ff0e78e7c3c0a07"
+    },
+    {
+      "path": "book/index.html",
+      "bytes": 36934,
+      "sha256": "f28161493ce3b5a808b2e253382f3f47bc86f548d98cdd600d46b6da10bf4c09"
+    },
+    {
+      "path": "book/white-dragon-book-build-at-the-speed-of-intent.html",
+      "bytes": 23383,
+      "sha256": "89f439960ec513b1df12b7108b2c93c62ee55915ebcffbe49066623ba5d9d503"
+    },
+    {
+      "path": "book/white-dragon-book-semantic-abi-stability.html",
+      "bytes": 19750,
+      "sha256": "7662193b4730c51f12bbb7415bb3606564a152745942422cc4778e837c9d59be"
+    },
+    {
+      "path": "book/white-dragon-book-strangler-fig-binary-facade.html",
+      "bytes": 20462,
+      "sha256": "ae4cb581f85974fc0380cbb3fe3e1d82338208a3c921e89b2d3965b538d4b076"
+    },
+    {
+      "path": "demos/01-enterprise-browser-demo.html",
+      "bytes": 10404,
+      "sha256": "8e14451c7ca7b5934be2bbf3074e4470cbcd21763fcd002645a48753f2c5cea6"
+    },
+    {
+      "path": "demos/01-enterprise-browser-demo.mp4",
+      "bytes": 746431,
+      "sha256": "ac3f1b6d754dcaa47ee9924cdaaba4e61bb82223ce5c0542c15239cfe1e1b488"
+    },
+    {
+      "path": "demos/02-sovereign-git-forge-demo.html",
+      "bytes": 10346,
+      "sha256": "007e9c3703f8c7faaf9375c1189ee5a1ca69888655958b45acfb4227afc1b97c"
+    },
+    {
+      "path": "demos/02-sovereign-git-forge-demo.mp4",
+      "bytes": 757866,
+      "sha256": "afaf8b0b6779c124ce39e3483ad3fbdcad85172ed0409dfde53225c1d39d52c7"
+    },
+    {
+      "path": "demos/03-universal-brain-ide-demo.html",
+      "bytes": 10487,
+      "sha256": "2e3206a3a4bf46ea60c41759529886bace719a23f9c59ab11ca20d7916e5767f"
+    },
+    {
+      "path": "demos/03-universal-brain-ide-demo.mp4",
+      "bytes": 805030,
+      "sha256": "4e89669742d96f661a226a678491d03e6ef71c91483a3b25785fe3f667064dc9"
+    },
+    {
+      "path": "demos/04-zero-copy-desktop-demo.html",
+      "bytes": 10579,
+      "sha256": "10deaa035d0fc4a6b619d7d2368903dca0ca07a9657302a69bc07b17e7db6740"
+    },
+    {
+      "path": "demos/04-zero-copy-desktop-demo.mp4",
+      "bytes": 743812,
+      "sha256": "c2507fe2b6943e13fb91074e7f6711fba8a645425fab72c6148c40d094ccf747"
+    },
+    {
+      "path": "demos/05-abi-v3-stepwise-upgrade-demo.html",
+      "bytes": 24868,
+      "sha256": "136da68f11f4815ae16e303ba6bb6b2e81e3f4ed1f5bb1cdb8d0d9d380f89850"
+    },
+    {
+      "path": "demos/05-abi-v3-stepwise-upgrade-demo.mp4",
+      "bytes": 750244,
+      "sha256": "6591cfa37d899fe2e9d7d71dcbe6520837f21c708ff31cab0e858aa7f7c1e7c1"
+    },
+    {
+      "path": "demos/asog-4dgs.html",
+      "bytes": 17465,
+      "sha256": "b6358f627d4449eca33cd56e92c27ad875fa48245d46a7bf22164452965d1cb6"
+    },
+    {
+      "path": "demos/index.html",
+      "bytes": 18822,
+      "sha256": "22dc60143b8625d23225cedf2906a6072803793bb369af6f8c819ae65c13d31f"
+    },
+    {
+      "path": "demos/nlnet-ngi0-grant-demo.html",
+      "bytes": 11177,
+      "sha256": "7b03cafc05f8ee35be386e1c13355878e4ec4a9ce35b29d7c570cb9e1ec8a8b8"
+    },
+    {
+      "path": "demos/nlnet-ngi0-grant-demo.mp4",
+      "bytes": 783235,
+      "sha256": "42303c971cd18d360a31f89937efbc0049ff3e7fa19a6e148f8c6eb1213d65a0"
+    },
+    {
+      "path": "demos/os-desktop.html",
+      "bytes": 26298,
+      "sha256": "3e831ed021c190564b1d5d4d8bae016f3dbaa119cdb2dd5b2652341f4919dffe"
+    },
+    {
+      "path": "demos/yc-b8g-sovereign-demo.html",
+      "bytes": 25534,
+      "sha256": "9c66d5920907b4d35473dc51de8d8e9686c62bdea86c9bd4c1e3b00b22d4103c"
+    },
+    {
+      "path": "demos/yc-b8g-sovereign-demo.mp4",
+      "bytes": 1013257,
+      "sha256": "e8c7c0a1ae068f47e59f848ee57dea7b53dd5fb2f4272346538261f907d881db"
+    },
+    {
+      "path": "evidence/benchmarks.html",
+      "bytes": 22805,
+      "sha256": "e5285205a6259ad3041d5a7228bc7384b04901a3871bb786d2fc89ef58599375"
+    },
+    {
+      "path": "evidence/index.html",
+      "bytes": 16788,
+      "sha256": "f652bc26d7552e2630b827b4ffa49915139876ae3459f7ff94b923a569ff4ed7"
+    },
+    {
+      "path": "evidence/scaling-math.html",
+      "bytes": 63447,
+      "sha256": "15609f49cffdaf1998a07f2805e9f65b4232f277beff9d29759ecf174f86133e"
+    },
+    {
+      "path": "evidence/security-formal.html",
+      "bytes": 44505,
+      "sha256": "c76562df267420d5ce13e99f7b32a2dbf213f98a85090ed73818c76f998deef9"
+    },
+    {
+      "path": "index.html",
+      "bytes": 47051,
+      "sha256": "6fb5050d4f51068373b9842924268d1e09377826f95e7488ac7be3e0739d48f7"
+    },
+    {
+      "path": "kids/history-of-computers/01-ada-lovelace.html",
+      "bytes": 6890,
+      "sha256": "7cf66f54dcf7dd77ee84d597a7156dd2b6b9aa9775e2e3d91e66d3116d56635d"
+    },
+    {
+      "path": "kids/history-of-computers/02-boole-and-shannon.html",
+      "bytes": 6756,
+      "sha256": "560953d43b38d584d3bd6616ab187d337b47eb7eb4f77cb271b02570f3ee96d5"
+    },
+    {
+      "path": "kids/history-of-computers/03-alan-turing.html",
+      "bytes": 6926,
+      "sha256": "77a56cdf05f8563df8b5ae7faadc61c6a2cfa8cfb4e58c06531205bf11ac907e"
+    },
+    {
+      "path": "kids/history-of-computers/04-zuse-eniac-von-neumann.html",
+      "bytes": 7177,
+      "sha256": "090181f09d9638c1cd8a12b7aa7740e027191d79d3387e348e2b57febdd6aeee"
+    },
+    {
+      "path": "kids/history-of-computers/05-grace-hopper.html",
+      "bytes": 7065,
+      "sha256": "00dae76bc00946d215768a46ab45ca16af446e7ba1a1e358e122717d125de178"
+    },
+    {
+      "path": "kids/history-of-computers/06-margaret-hamilton.html",
+      "bytes": 6889,
+      "sha256": "49db4b0e7419ecbb99703ac99a652148fbb74f4a46d47086e227a6c37ae7e3b0"
+    },
+    {
+      "path": "kids/history-of-computers/07-douglas-engelbart.html",
+      "bytes": 6559,
+      "sha256": "32dc24323dfdce75461084c2728de218171b9ba935366960565c745e9831e48f"
+    },
+    {
+      "path": "kids/history-of-computers/08-thompson-ritchie-unix-c.html",
+      "bytes": 6858,
+      "sha256": "f8bafb12d95477c5b706e815fe3f0303704b84b66709effa5a12c1a6ecb0b4ad"
+    },
+    {
+      "path": "kids/history-of-computers/09-cerf-kahn-perlman-internet.html",
+      "bytes": 7035,
+      "sha256": "4b2af7ef42ece718ee29d44222682d29c4296ea6a0567b882cd53db85358cac6"
+    },
+    {
+      "path": "kids/history-of-computers/10-tim-berners-lee.html",
+      "bytes": 6908,
+      "sha256": "3815f90115dbed1a40987209227de85fe0d7e6d79a4662cfd153569d37f7a783"
+    },
+    {
+      "path": "kids/history-of-computers/11-stallman-torvalds-open-source.html",
+      "bytes": 6605,
+      "sha256": "3cbec9790e1a326cbbd6a16b44036ac7343f902e2e88f379eb54b9813a18a626"
+    },
+    {
+      "path": "kids/history-of-computers/12-your-turn-builders.html",
+      "bytes": 6820,
+      "sha256": "d2f71b42b6777992001e8d48a10bb57699882f52941149e857b344b6f3e27c8d"
+    },
+    {
+      "path": "kids/history-of-computers/index.html",
+      "bytes": 9158,
+      "sha256": "2048e4f2eaaa4f384e24b89378e3b3ec4f15803645ce347bd07444185aabeef3"
+    },
+    {
+      "path": "kids/index.html",
+      "bytes": 6160,
+      "sha256": "27bf1a5941209041f24935b33f3cdffdcf4bffae8c3bf636204ce3982fd689d6"
+    },
+    {
+      "path": "kids/little-white-dragon/index.html",
+      "bytes": 104103,
+      "sha256": "2926263b13c9096751adca1c57d3036a86c796c0c753008a25b047a81c29d8e9"
+    },
+    {
+      "path": "kids/young-frank/001-the-glow-of-the-first-atari.html",
+      "bytes": 9305,
+      "sha256": "050d07fc746020f6edc38980b0053d3fd156eb80c67814dfb1a1b8290633d815"
+    },
+    {
+      "path": "kids/young-frank/002-the-magic-behind-the-first-atari.html",
+      "bytes": 8491,
+      "sha256": "7dfa2376b33bd611670b0f549500f933eea04c4c154c8648b3b69884a3c044dd"
+    },
+    {
+      "path": "kids/young-frank/003-ready-flashing-in-blue.html",
+      "bytes": 8522,
+      "sha256": "b20f8d149f5b84630e64347d07e8f2ca08698a56416024da7b1a5f8a85762271"
+    },
+    {
+      "path": "kids/young-frank/004-load-star-eight-one.html",
+      "bytes": 8260,
+      "sha256": "52108ed8b8b9c67aa415b19c4fcf14fef32d1e06f90f0aecd4cb741cc469e83a"
+    },
+    {
+      "path": "kids/young-frank/005-peek-poke-and-the-memory-map.html",
+      "bytes": 8625,
+      "sha256": "2eaf1bc996d0bb6d21bb2b5d1296c233ec5afa8843f0be0b93bf247cb6ec74fa"
+    },
+    {
+      "path": "kids/young-frank/006-songs-of-the-sid-chip.html",
+      "bytes": 8097,
+      "sha256": "a55d599f2a6dfe0102ac7a5ba2f409e2ab6f77731a9fbdd57093b40bdde85fbc"
+    },
+    {
+      "path": "kids/young-frank/007-two-brains-in-one-beige-case.html",
+      "bytes": 8930,
+      "sha256": "3165d43c5e2f2a740cf55a0abcfaaf14d4922c3568426f4f67f9c4bc538fb65a"
+    },
+    {
+      "path": "kids/young-frank/008-the-amiga-and-the-copper-rainbow.html",
+      "bytes": 8105,
+      "sha256": "dd767fbb6aeb7a27c81a7486eb0f341fb25ee8ae14875688b653ce404142f3e7"
+    },
+    {
+      "path": "kids/young-frank/009-screwdrivers-on-the-kitchen-table.html",
+      "bytes": 8438,
+      "sha256": "792b5ca5200666b1630aec11c37afd35114bda5b6a658a31863903de667dc2c0"
+    },
+    {
+      "path": "kids/young-frank/010-silicon-obeys-honest-rules.html",
+      "bytes": 8111,
+      "sha256": "7dd47a263cdd50e75528967952f54d7555d2d1e375488981b96f05bf8c62528b"
+    },
+    {
+      "path": "kids/young-frank/011-the-386-and-486-ladder.html",
+      "bytes": 9029,
+      "sha256": "cea4ab6532e5cabfe297015e6fdf65e11586930cce8b4b4fca4d7abf081c83bb"
+    },
+    {
+      "path": "kids/young-frank/012-jumpers-irqs-and-the-sound-blaster-war.html",
+      "bytes": 8924,
+      "sha256": "e9637f6d4b502f589bbd9cdd77bd374c15295328a13dbba98f0557825827c568"
+    },
+    {
+      "path": "kids/young-frank/013-the-os2-warp-experiment.html",
+      "bytes": 9580,
+      "sha256": "add569ee5e5258d74a4067daa9b985fc3d3158051cb631688deca5ec9887b56c"
+    },
+    {
+      "path": "kids/young-frank/014-windows-311-and-the-art-of-the-thin-shell.html",
+      "bytes": 8013,
+      "sha256": "1a0d5d45026b10a3c43e70f966d086dce12a5ab7a1cc63437a729eb4cebffa35"
+    },
+    {
+      "path": "kids/young-frank/015-clouds-of-95-and-the-fever-of-98.html",
+      "bytes": 8293,
+      "sha256": "bbcf80fa193d104cabcde505374759b02afff6fbfbd6ec440a8f0cafe4565aa7"
+    },
+    {
+      "path": "kids/young-frank/016-the-quiet-steel-of-nt-and-2000.html",
+      "bytes": 8447,
+      "sha256": "996fb7155f9a1b16ddefa710af3643750fd201558c7da2004b2462fd5e8454b4"
+    },
+    {
+      "path": "kids/young-frank/017-windows-xp-and-the-last-lean-horizon.html",
+      "bytes": 8421,
+      "sha256": "eb86d64400bb38d9b9deeda0d53f0153171c3959f8b88486d98331acab60dbf5"
+    },
+    {
+      "path": "kids/young-frank/018-glass-shadows-and-the-seven-truce.html",
+      "bytes": 8596,
+      "sha256": "69ffc8b45c161e80f43122783e973c63d2ccfbb7d35e1fc3a476abde2bf5a53a"
+    },
+    {
+      "path": "kids/young-frank/019-tiles-telemetry-and-the-noise-machine.html",
+      "bytes": 9281,
+      "sha256": "f65a21af8d7947b8b5734ee73d6521f9297a24c60a18fb5b65e0d22c821174f9"
+    },
+    {
+      "path": "kids/young-frank/020-xray-eyes-for-bloat-and-speed.html",
+      "bytes": 8434,
+      "sha256": "48a5fe646805da966f56f3e2824358eacf2dd89d5055ede7473fafe715f7aea6"
+    },
+    {
+      "path": "kids/young-frank/021-the-phosphor-midnight.html",
+      "bytes": 8909,
+      "sha256": "d6f52ec08b2bbf20bc00d3ea9cae243a3e0b4b9cba4aca2db774880c6a4ceace"
+    },
+    {
+      "path": "kids/young-frank/022-cassette-decks-and-clock-cycles.html",
+      "bytes": 8475,
+      "sha256": "6470610d39586eef1c0d3d672a361f5e82de5b6ee4d7a4572a2f535308603446"
+    },
+    {
+      "path": "kids/young-frank/023-the-roof-under-the-satellites.html",
+      "bytes": 8335,
+      "sha256": "8c05e9c030e5a8e6b42708afafc560bd354429ed0b5f0800dc9ac566dcafd2b3"
+    },
+    {
+      "path": "kids/young-frank/024-static-in-the-hallway.html",
+      "bytes": 8542,
+      "sha256": "2f8d4c7f8d6bf00c74036590f61221ad147883a85df170edc577c6d4e5afc761"
+    },
+    {
+      "path": "kids/young-frank/025-notes-passed-in-plain-text.html",
+      "bytes": 9094,
+      "sha256": "920f41ac223baf980a0a62ef66fe5cbe66c3a6add108df073c129439bb52e6af"
+    },
+    {
+      "path": "kids/young-frank/026-the-undocumented-silence.html",
+      "bytes": 8435,
+      "sha256": "61fecad13e6cc3727b6645dd27642e6a7bbe2ebde6d7649b2daa10bfd697a2db"
+    },
+    {
+      "path": "kids/young-frank/027-non-deterministic-heartbeats.html",
+      "bytes": 8606,
+      "sha256": "68acdd4ba692b7a8cd0e474865e1b4b4821059d2cd7fe7350e94b2c3c1aae014"
+    },
+    {
+      "path": "kids/young-frank/028-ten-layers-down.html",
+      "bytes": 8257,
+      "sha256": "27921dc6dbe43849bf0dc6c5a50c5e9e63d5055df9e7d1b38c6ebb8ed494fe88"
+    },
+    {
+      "path": "kids/young-frank/029-rain-on-the-bus-window.html",
+      "bytes": 8161,
+      "sha256": "7fba0041a97967d890a3f3bc55cb11e0a1deb2953647e5f860fd8eab6d401d39"
+    },
+    {
+      "path": "kids/young-frank/030-frequencies-of-becoming.html",
+      "bytes": 8060,
+      "sha256": "2f3c12c4fd5f748388dc45897a9ba0a9bfd0a7e4a21caf912cf807d1876be191"
+    },
+    {
+      "path": "kids/young-frank/031-the-jobs-nobody-wanted.html",
+      "bytes": 9506,
+      "sha256": "a76629f3b9d18f8bc274bf60bf08c0d55d32afe074e8d023cc1fc599384337dd"
+    },
+    {
+      "path": "kids/young-frank/032-the-ticket-reseller-labyrinth.html",
+      "bytes": 8777,
+      "sha256": "d3855ce91c1c564d0e544b85f6ce635a1af6af3345066a781e83a82d8f9edf28"
+    },
+    {
+      "path": "kids/young-frank/033-when-the-dom-fights-back.html",
+      "bytes": 9053,
+      "sha256": "5786b8efcdf2e448ca2d471446e707e49928158af8054f1d2206640cded25b69"
+    },
+    {
+      "path": "kids/young-frank/034-the-first-million-at-the-door.html",
+      "bytes": 8496,
+      "sha256": "9e4dbc071fd099129cbd7e8c74af6eb5bdf0b5f080a2ec9cafb0c0e48350bddb"
+    },
+    {
+      "path": "kids/young-frank/035-every-byte-and-millisecond.html",
+      "bytes": 8707,
+      "sha256": "170536a98b6647dd699bb159955644fdd661f3486dece7d532f244185f5e3e11"
+    },
+    {
+      "path": "kids/young-frank/036-the-thundering-herd-at-midnight.html",
+      "bytes": 8689,
+      "sha256": "1fcda6b17e78a318b1f3d85782fdc0b593fea6c152fae7d7e9dab54159a165ef"
+    },
+    {
+      "path": "kids/young-frank/037-bare-metal-survival.html",
+      "bytes": 9332,
+      "sha256": "d660dab2b42eb734f32a96590c3d60efff8fe9e11b682bc51fd03a4234d20714"
+    },
+    {
+      "path": "kids/young-frank/038-coffee-exhaustion-and-a-warm-voice.html",
+      "bytes": 8540,
+      "sha256": "7800a97b15520fd867812edcacc52b66768f327a38877f95f7360f90c74558ad"
+    },
+    {
+      "path": "kids/young-frank/039-the-anatomy-of-a-bloated-stack.html",
+      "bytes": 8757,
+      "sha256": "a5d5772edbe7cd8e238e55dc143885cad5fc9aaedecaf9d734bc9426e99259e7"
+    },
+    {
+      "path": "kids/young-frank/040-forged-under-real-load.html",
+      "bytes": 8058,
+      "sha256": "453827d655da5adda936ac9f7e9fe0b598c1fb47fb497e6588cdb27fd015922a"
+    },
+    {
+      "path": "kids/young-frank/041-the-sound-of-a-human-breath.html",
+      "bytes": 8448,
+      "sha256": "f544e28195cef8c87deeed4e3d608bf6ef0ce49ead17b530638b9da4d0b433ae"
+    },
+    {
+      "path": "kids/young-frank/042-the-vanished-notebooks.html",
+      "bytes": 8020,
+      "sha256": "3c20e1a976a36df6508fee58104166545c361c1f823780fd38d3a2be7b7a0801"
+    },
+    {
+      "path": "kids/young-frank/043-teaching-silicon-to-listen.html",
+      "bytes": 8756,
+      "sha256": "2e019905d869786fb5ec8f2967aeb95f00bf267c28b54ad65d0157042fbd1d75"
+    },
+    {
+      "path": "kids/young-frank/044-when-one-machine-is-a-lie.html",
+      "bytes": 7678,
+      "sha256": "93a2673d8d48c2c48434faca132d8fd8e0bf1583a4384ad0c312716e9c35acbc"
+    },
+    {
+      "path": "kids/young-frank/045-the-anatomy-of-a-failover.html",
+      "bytes": 8099,
+      "sha256": "cd76fb7e5cbf573cc0232ec9d2d4d665ab578780f46c0efec19658ce15965182"
+    },
+    {
+      "path": "kids/young-frank/046-the-split-brain-nightmare.html",
+      "bytes": 8097,
+      "sha256": "e93cadf6123eed809ec860236ac3f8bfa9211c1f4ef03ba681d895494d3bfe27"
+    },
+    {
+      "path": "kids/young-frank/047-ghosts-in-the-packet-stream.html",
+      "bytes": 8205,
+      "sha256": "6b42423cd923f0045a93d3f6ec80ddc54630d3c4e1899edb0ca905d8783315f3"
+    },
+    {
+      "path": "kids/young-frank/048-pulling-the-plug-on-purpose.html",
+      "bytes": 8059,
+      "sha256": "0de0aced59b2e8fd20ef120e8b3bdff047e6f4366b8726603d413a32373fea5f"
+    },
+    {
+      "path": "kids/young-frank/049-full-stack-resilience.html",
+      "bytes": 8646,
+      "sha256": "f46dfe7bcefbdf5d6174961138f3efb1cc09a428339ecdc705abdf6b65f63295"
+    },
+    {
+      "path": "kids/young-frank/050-reliability-is-math-not-luck.html",
+      "bytes": 7924,
+      "sha256": "85cde702c66851a090e075ad6421e324d92e68ee8414ff285b935e656b38e40f"
+    },
+    {
+      "path": "kids/young-frank/051-when-the-storm-hits-outside-the-terminal.html",
+      "bytes": 8062,
+      "sha256": "ba7ea35f0fdfc8cbb21c317cfe4feed8aaa5956443c830e99945373762698da8"
+    },
+    {
+      "path": "kids/young-frank/052-the-fracture-of-a-quiet-heartbreak.html",
+      "bytes": 7741,
+      "sha256": "662589fb83a3ecd30e6327466f92912066b6559c757d37ed6f23c7e7242defce"
+    },
+    {
+      "path": "kids/young-frank/053-wide-open-doors-and-the-easy-money.html",
+      "bytes": 7821,
+      "sha256": "ce368718c8612de91074b07ea6d34172ce262ba87d3b6a50c29971a8e2794465"
+    },
+    {
+      "path": "kids/young-frank/054-the-weight-of-saying-no.html",
+      "bytes": 7537,
+      "sha256": "256305c6731d919aa67ca863eef20e4a013facdf919444f9efecbd8f96dc98ac"
+    },
+    {
+      "path": "kids/young-frank/055-loyalty-when-the-lights-go-out.html",
+      "bytes": 8381,
+      "sha256": "208e211aca05dccce3e535b23ce5d09436adfdd07fc394928599ceac0a2536ab"
+    },
+    {
+      "path": "kids/young-frank/056-the-night-the-static-cleared.html",
+      "bytes": 7678,
+      "sha256": "311f99675d49fce6d51866ad835a6807bd0d3a77f000acd7c039ce02695ec43b"
+    },
+    {
+      "path": "kids/young-frank/057-two-cups-of-coffee-at-midnight.html",
+      "bytes": 7745,
+      "sha256": "a11f92932a8fb939226a9dc57cab3991d7517ed9d42895ec9879a19c709ae1e7"
+    },
+    {
+      "path": "kids/young-frank/058-learning-to-lower-the-firewall.html",
+      "bytes": 7524,
+      "sha256": "f39c36e0e997d0cd9d8cbf5011fa52bce4ff8760130776f8e35a33e3320cad1e"
+    },
+    {
+      "path": "kids/young-frank/059-a-warm-harbor-in-the-darkest-night.html",
+      "bytes": 7450,
+      "sha256": "f469d6be6ac252025db9eb0ffb0d01070eb90310d3fdd1621c8d3b4e5cc466a7"
+    },
+    {
+      "path": "kids/young-frank/060-standing-your-ground-with-a-full-heart.html",
+      "bytes": 7395,
+      "sha256": "c8daec7b34ce8452af7d915bc34f334ce429d03e399d81e3f53c3bc497e711eb"
+    },
+    {
+      "path": "kids/young-frank/061-the-quiet-after-the-storm.html",
+      "bytes": 8970,
+      "sha256": "da9b4db8c8de05840f5a5986fcf607d7b08d8113bb8d9d7d099965b06e7fec27"
+    },
+    {
+      "path": "kids/young-frank/062-the-promise-of-reproducibility.html",
+      "bytes": 8374,
+      "sha256": "593c428e35e727bdb9961e15b102f7a8af8b270cdfac562b3198de4006ffd80e"
+    },
+    {
+      "path": "kids/young-frank/063-the-thousand-runbooks.html",
+      "bytes": 8875,
+      "sha256": "b5cae4ff1930e241c165147b40e201b683ce69445c455880fbf3c78e4ee16e3e"
+    },
+    {
+      "path": "kids/young-frank/064-the-babel-of-runtimes.html",
+      "bytes": 8401,
+      "sha256": "5d8177205033eec98f21ac3e8c5cffbb80d6c7d50f36d14aa5122c4f91953c06"
+    },
+    {
+      "path": "kids/young-frank/065-layers-upon-layers.html",
+      "bytes": 8193,
+      "sha256": "746d150c3042ebd7cbf3f08d9b7dc9ef5aa5f0d47d907e043636b3274393af4c"
+    },
+    {
+      "path": "kids/young-frank/066-the-dependency-avalanche.html",
+      "bytes": 8256,
+      "sha256": "27d1ef10e6c4ba0ef2a00de214208bb08fd36a6e91b43bd82b5bed05902c6972"
+    },
+    {
+      "path": "kids/young-frank/067-the-midnight-argument-with-the-stack.html",
+      "bytes": 9278,
+      "sha256": "1f70e531e97a2e95020c60130462c23b2b35d329e17474aed35cab03711315dd"
+    },
+    {
+      "path": "kids/young-frank/068-drawing-the-mountain.html",
+      "bytes": 8325,
+      "sha256": "19e93a5cece6ae1de81e5354399ecd72b73f30dedf310069d347a4cb4fe4b719"
+    },
+    {
+      "path": "kids/young-frank/069-the-epiphany-of-unification.html",
+      "bytes": 8605,
+      "sha256": "e440d54cec814d5fc8e7c859ff94fd013eaa451046a3072accf567d7741b2953"
+    },
+    {
+      "path": "kids/young-frank/070-the-compass-points-to-the-engine.html",
+      "bytes": 7870,
+      "sha256": "8770dbf9686d9fa8cc2710ffe209668c6025ad8bc1613e08d6352140660dd324"
+    },
+    {
+      "path": "kids/young-frank/071-trusting-the-source-code-over-the-pitch.html",
+      "bytes": 8013,
+      "sha256": "dd1e153a6984729c08dda39c5f5ff0475aed274e916a46f4f0758200b2ce5afc"
+    },
+    {
+      "path": "kids/young-frank/072-inside-the-v8-engine-room.html",
+      "bytes": 8013,
+      "sha256": "ec849b4ed5e508348a3c2f05ee6b82d9f95e48d7da5bbd0a6b98d9f0aa11fa16"
+    },
+    {
+      "path": "kids/young-frank/073-chromium-as-an-operating-system.html",
+      "bytes": 8635,
+      "sha256": "35aef6184f38e980b30fd928912883b5559e4e5660f37fff0455e8c63578ea6c"
+    },
+    {
+      "path": "kids/young-frank/074-discovering-fuchsia-and-the-zircon-kernel.html",
+      "bytes": 7791,
+      "sha256": "b44aef2961f226e4a8cc0e03fcf3aab794696128c33dff44bdc6e779d1cd4de8"
+    },
+    {
+      "path": "kids/young-frank/075-the-architecture-of-capabilities.html",
+      "bytes": 8526,
+      "sha256": "0d47ef6068375aadd8628d4017b641004beb557dfaece95fa8dd9b4ffbbba214"
+    },
+    {
+      "path": "kids/young-frank/076-listening-to-the-open-council-tables.html",
+      "bytes": 7833,
+      "sha256": "b7e62fb1652d585617c6ede0d943f4a5040a1c2277ea2ca2e7d140acb84c4a50"
+    },
+    {
+      "path": "kids/young-frank/077-when-engineers-argue-in-public.html",
+      "bytes": 7707,
+      "sha256": "82443e72b5a7d7e95405c2a5628d23715e52598d87250731a86397e49c7b6ec5"
+    },
+    {
+      "path": "kids/young-frank/078-the-day-webcontainers-booted-in-a-tab.html",
+      "bytes": 7923,
+      "sha256": "3be73cc9d4be6ab724cebb0d68ff9fc9c8b80c34fdf6c04a41f90ecb49f9a99a"
+    },
+    {
+      "path": "kids/young-frank/079-the-bridge-nobody-else-saw.html",
+      "bytes": 8734,
+      "sha256": "25aa1315988e6334c2520f696beb3d30d8919027261b49dcede7872680966687"
+    },
+    {
+      "path": "kids/young-frank/080-drawing-the-blueprint-for-the-standards-fight.html",
+      "bytes": 7778,
+      "sha256": "3b18e3da356bc3ee1f7d285d6bfb0c96f109ad1831dd40146209a95936d69504"
+    },
+    {
+      "path": "kids/young-frank/081-the-hall-of-committees.html",
+      "bytes": 8286,
+      "sha256": "fa293bca33a5c3cba3cdf3467f00b9c894afd318623b3b46a538b8ca5d92092e"
+    },
+    {
+      "path": "kids/young-frank/082-the-ecma-stage-zero-wall.html",
+      "bytes": 7956,
+      "sha256": "d53571004dc4638e64964aeef7abe99db16a40fb070334d6621d411214f12496"
+    },
+    {
+      "path": "kids/young-frank/083-typescripts-invisible-ceiling.html",
+      "bytes": 7823,
+      "sha256": "60c349c8ccb70e507cac9c70fecd1453c6201af4dbd16716692abc2ac9b61bee"
+    },
+    {
+      "path": "kids/young-frank/084-wintercg-and-the-promise-of-one-runtime.html",
+      "bytes": 7907,
+      "sha256": "0430023096f27ce689735c6bc44f8f0ba18c120d95cfdfbcab4dc8039a38424a"
+    },
+    {
+      "path": "kids/young-frank/085-letters-to-the-node-maintainers.html",
+      "bytes": 8471,
+      "sha256": "602b2e9d77d48c68846a9fe8291c66afad9ec725ad5e8529dbbff4ee7aefe278"
+    },
+    {
+      "path": "kids/young-frank/086-the-vs-code-fork-labyrinth.html",
+      "bytes": 7632,
+      "sha256": "a7dc9af7a9113b6b698987dd9f6ff1cb90b5a1ecc3603d0b5f2581f7d462d1f5"
+    },
+    {
+      "path": "kids/young-frank/087-the-wall-of-silos.html",
+      "bytes": 7880,
+      "sha256": "e729294440e9c6bcaaea22b6e737cf2014fd3a52f9c369ca74fcd542edda9da8"
+    },
+    {
+      "path": "kids/young-frank/088-anger-at-the-locked-door.html",
+      "bytes": 7950,
+      "sha256": "ea4ecccb59519f0861ff3bf0fb6e52fd22fcaa7949cca91b80458ad2fd2b75ba"
+    },
+    {
+      "path": "kids/young-frank/089-accepting-the-block.html",
+      "bytes": 7449,
+      "sha256": "4e7a81a57a141918e1f327f3565961b9a341098ac1e7f73a68e2bb90d7597478"
+    },
+    {
+      "path": "kids/young-frank/090-back-to-the-math.html",
+      "bytes": 7797,
+      "sha256": "6f57c5aa8781263744f301dd5e03e6e0848b3458baac79534383c8f5d072806c"
+    },
+    {
+      "path": "kids/young-frank/091-the-quiet-watcher-of-early-ai.html",
+      "bytes": 8906,
+      "sha256": "d633a0c1950d402f01429f77fb7e0761c6388c7fdf1cba7786489df82cd75e64"
+    },
+    {
+      "path": "kids/young-frank/092-the-invention-of-prompt-algebra.html",
+      "bytes": 8094,
+      "sha256": "da6c9bc07ed2b9eb463a24f98557380e9e7691ead39f4bf636ebfd1fa49b76e9"
+    },
+    {
+      "path": "kids/young-frank/093-zero-header-proof-b8g-abi-v3.html",
+      "bytes": 8075,
+      "sha256": "a0c69340b5f77da732e4111e44347e68de81f43f94a502cf35539a48f4b640eb"
+    },
+    {
+      "path": "kids/young-frank/094-the-o1-heartbeat-of-b8g-arena-v1.html",
+      "bytes": 7858,
+      "sha256": "2501d0ccfa6788380b88d937c0d1c739ec1edbb8cbef6a7edc518147c786adb6"
+    },
+    {
+      "path": "kids/young-frank/095-safe-gates-and-honest-boundaries.html",
+      "bytes": 7701,
+      "sha256": "47603b25d1be9a4406284ebe4136f97a4de8fff361a680f5bfadc95254b48ab5"
+    },
+    {
+      "path": "kids/young-frank/096-the-content-addressed-forge.html",
+      "bytes": 7696,
+      "sha256": "64ec8f306fbf4383872e5a88ae0e21d1ae0e897a38065d7f331b35dc9d8c081e"
+    },
+    {
+      "path": "kids/young-frank/097-writing-the-white-dragon-book.html",
+      "bytes": 8572,
+      "sha256": "ffe335e4b5cb032be8dcd2753891caff059406c3fba1d0da5ce63181312cbe58"
+    },
+    {
+      "path": "kids/young-frank/098-when-the-mirror-woke-up.html",
+      "bytes": 7603,
+      "sha256": "80206f62e7d49e4d1b7a8a00839952bcd2dd587680afe4205973e37f4ff64723"
+    },
+    {
+      "path": "kids/young-frank/099-building-at-the-speed-of-intent.html",
+      "bytes": 8072,
+      "sha256": "369298667932c1384aafd0ce855385fed2bdd85054fd9e20508fa8798796270c"
+    },
+    {
+      "path": "kids/young-frank/100-the-final-alignment.html",
+      "bytes": 7867,
+      "sha256": "0b5dc0939bcd83bb8d88b29f6e6f47200d2441e5c4834209f00c82352eb437e7"
+    },
+    {
+      "path": "kids/young-frank/index.html",
+      "bytes": 49680,
+      "sha256": "c32e8f4b01086803920480d464cd2c054d8cf091d22db5c2a8e5ce7354c9325e"
+    },
+    {
+      "path": "nginx.conf",
+      "bytes": 750,
+      "sha256": "fa45eb858dc6c3aa52780766c5a59c4bd1ffd00be0351e18215d97b0a95f3b9b"
+    },
+    {
+      "path": "robots.txt",
+      "bytes": 67,
+      "sha256": "e87dcf18ab2bc019401df95e3625ab205adb6edc7dee229a967145cd0b91f5a8"
+    },
+    {
+      "path": "rss.xml",
+      "bytes": 7946,
+      "sha256": "e7b671e0afa20eb5adfc2ab9dbdd2283675a3de3b4cac33fca9b4dfac6679470"
+    },
+    {
+      "path": "sitemap.xml",
+      "bytes": 5587,
+      "sha256": "29aee51570322cfbcdb9f0a2b8876a9e86b489d882e026b884a7e32ee2f36146"
+    }
+  ]
+}

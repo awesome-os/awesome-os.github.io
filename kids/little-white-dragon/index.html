@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Little White Dragon &amp; The Honest Machine — Interactive Storybook</title>
+  <meta name="description" content="An illustrated twilight storybook starring Lumi the Little White Dragon — discovering how honest machines, crystal rules, and tiny recipes really work." />
+  <style>
+    :root {
+      --bg-deep: #090e24;
+      --bg-mid: #131b3d;
+      --card-bg: #172047;
+      --card-elevated: #1e2a59;
+      --text-main: #f6f1e3;
+      --text-muted: #bfc9e6;
+      --gold: #f7c96c;
+      --gold-soft: rgba(247, 201, 108, 0.22);
+      --cyan: #6de6ff;
+      --emerald: #4be3a6;
+      --border: rgba(247, 201, 108, 0.28);
+      --shadow: 0 24px 60px rgba(4, 7, 20, 0.6);
+      --font-story: Georgia, "Charter", "Cambria", "Times New Roman", serif;
+      --font-ui: ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(109, 230, 255, 0.11), transparent 34%),
+        radial-gradient(circle at 84% 18%, rgba(247, 201, 108, 0.12), transparent 38%),
+        radial-gradient(circle at 50% 92%, rgba(75, 227, 166, 0.09), transparent 44%),
+        linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+      color: var(--text-main);
+      font-family: var(--font-ui);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(12px);
+      background: rgba(9, 14, 36, 0.86);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0.7rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
+    }
+    .nav-link:hover {
+      color: var(--text-main);
+      border-color: var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      text-decoration: none;
+    }
+
+    .mode-toggle {
+      appearance: none;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.42rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+      background: rgba(247, 201, 108, 0.14);
+      color: var(--gold);
+      transition: all 0.18s ease;
+    }
+    .mode-toggle:hover,
+    .mode-toggle[aria-pressed="true"] {
+      background: var(--gold);
+      color: #101633;
+    }
+
+    .shell {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 3.5rem;
+    }
+
+    .jump-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .jump-pill {
+      appearance: none;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.82rem;
+      border-radius: 999px;
+      border: 1px solid rgba(191, 201, 230, 0.25);
+      background: rgba(23, 32, 71, 0.82);
+      color: var(--text-muted);
+      transition: transform 0.14s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+    .jump-pill:hover {
+      transform: translateY(-1px);
+      border-color: var(--cyan);
+      color: var(--text-main);
+    }
+    .jump-pill.is-active {
+      background: linear-gradient(135deg, var(--gold), #ffd98a);
+      color: #101633;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(247, 201, 108, 0.35);
+    }
+
+    .print-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding: 0.85rem 1.15rem;
+      border-radius: 14px;
+      background: rgba(75, 227, 166, 0.12);
+      border: 1px solid rgba(75, 227, 166, 0.4);
+      color: var(--text-main);
+      font-size: 0.92rem;
+    }
+
+    body.read-all-mode .print-banner {
+      display: flex;
+    }
+
+    .book-stage {
+      position: relative;
+    }
+
+    .story-page {
+      display: none;
+      background: linear-gradient(180deg, var(--card-bg) 0%, #131b3f 100%);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: clamp(1.35rem, 3.2vw, 2.6rem);
+      box-shadow: var(--shadow);
+      animation: pageTurn 0.28s ease-out;
+    }
+
+    .story-page.is-active {
+      display: block;
+    }
+
+    body.read-all-mode .story-page {
+      display: block;
+      margin-bottom: 2rem;
+      animation: none;
+    }
+
+    @keyframes pageTurn {
+      from { opacity: 0; transform: translateY(8px) scale(0.995); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Cover Page */
+    .cover-page {
+      text-align: center;
+    }
+    .cover-badge {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--emerald);
+      background: rgba(75, 227, 166, 0.14);
+      border: 1px solid rgba(75, 227, 166, 0.35);
+      border-radius: 999px;
+      padding: 0.28rem 0.9rem;
+      margin-bottom: 0.85rem;
+    }
+    .cover-title {
+      font-family: var(--font-story);
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      margin: 0 0 0.55rem;
+      color: var(--gold);
+      text-shadow: 0 2px 24px rgba(247, 201, 108, 0.28);
+    }
+    .cover-subtitle {
+      font-family: var(--font-story);
+      font-style: italic;
+      font-size: clamp(1.05rem, 2.3vw, 1.28rem);
+      color: var(--text-muted);
+      margin: 0 auto 1.4rem;
+      max-width: 38rem;
+    }
+
+    .cover-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      margin: 1.5rem 0 1.8rem;
+    }
+
+    .btn-primary, .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-weight: 800;
+      font-size: 0.96rem;
+      padding: 0.72rem 1.35rem;
+      border-radius: 999px;
+      border: none;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #ffd98a);
+      color: #101633;
+      box-shadow: 0 8px 24px rgba(247, 201, 108, 0.32);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(247, 201, 108, 0.45);
+    }
+    .btn-secondary {
+      background: rgba(109, 230, 255, 0.14);
+      color: var(--cyan);
+      border: 1px solid rgba(109, 230, 255, 0.4);
+    }
+    .btn-secondary:hover {
+      background: rgba(109, 230, 255, 0.24);
+      text-decoration: none;
+    }
+
+    .cover-toc {
+      text-align: left;
+      margin: 1.6rem auto 0;
+      padding: 1.2rem 1.35rem;
+      background: rgba(9, 14, 36, 0.45);
+      border: 1px solid rgba(191, 201, 230, 0.2);
+      border-radius: 16px;
+    }
+    .cover-toc h3 {
+      margin: 0 0 0.75rem;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+    .cover-toc ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0.5rem;
+    }
+    .cover-toc-link {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-align: left;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 0.55rem 0.75rem;
+      color: var(--text-main);
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
+      transition: all 0.16s ease;
+    }
+    .cover-toc-link:hover {
+      border-color: var(--gold);
+      background: rgba(247, 201, 108, 0.1);
+    }
+    .toc-num {
+      flex: 0 0 1.65rem;
+      height: 1.65rem;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.82rem;
+      background: rgba(109, 230, 255, 0.16);
+      color: var(--cyan);
+    }
+
+    .parent-note {
+      text-align: left;
+      margin-top: 1.4rem;
+      padding: 1rem 1.25rem;
+      border-radius: 14px;
+      background: rgba(75, 227, 166, 0.08);
+      border: 1px solid rgba(75, 227, 166, 0.25);
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+    .parent-note strong { color: var(--emerald); }
+
+    /* Chapter Pages */
+    .page-header {
+      margin-bottom: 1.2rem;
+    }
+    .chapter-kicker {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.35rem;
+    }
+    .chapter-title {
+      font-family: var(--font-story);
+      font-size: clamp(1.55rem, 3.6vw, 2.2rem);
+      line-height: 1.2;
+      margin: 0;
+      color: var(--gold);
+    }
+
+    .illustration-frame {
+      margin: 0 0 1.55rem;
+      padding: 0.65rem;
+      border-radius: 18px;
+      background: rgba(9, 14, 36, 0.62);
+      border: 1px solid rgba(247, 201, 108, 0.32);
+      box-shadow: inset 0 0 24px rgba(109, 230, 255, 0.08);
+    }
+    .illustration-frame svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+    .illustration-frame figcaption {
+      margin-top: 0.55rem;
+      text-align: center;
+      font-size: 0.86rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .story-prose {
+      font-family: var(--font-story);
+      font-size: clamp(1.06rem, 1.9vw, 1.18rem);
+      line-height: 1.82;
+      color: var(--text-main);
+    }
+    .story-prose p {
+      margin: 0 0 1.05rem;
+    }
+    .story-prose > p:first-of-type::first-letter {
+      float: left;
+      font-size: 3.1rem;
+      line-height: 0.88;
+      padding-right: 0.45rem;
+      padding-top: 0.15rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .story-prose strong { color: #fff8e2; }
+    .story-prose em { color: #d9eeff; }
+    .story-prose code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.88em;
+      padding: 0.12rem 0.4rem;
+      border-radius: 6px;
+      background: rgba(109, 230, 255, 0.14);
+      color: var(--cyan);
+    }
+    .story-prose h3, .story-prose h4 {
+      font-family: var(--font-ui);
+      color: var(--cyan);
+      margin: 1.5rem 0 0.6rem;
+    }
+    .story-list {
+      margin: 0.6rem 0 1.2rem;
+      padding-left: 1.45rem;
+    }
+    .story-list li { margin-bottom: 0.45rem; }
+    .story-quote {
+      margin: 1.2rem 0;
+      padding: 0.85rem 1.2rem;
+      border-left: 4px solid var(--cyan);
+      background: rgba(109, 230, 255, 0.08);
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+    }
+    .story-quote p:last-child { margin-bottom: 0; }
+    .story-divider {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 1.5rem 0;
+    }
+
+    /* Dragon Truth Callout Box */
+    .dragon-truth {
+      margin-top: 1.75rem;
+      padding: 1.15rem 1.35rem;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(247, 201, 108, 0.16), rgba(75, 227, 166, 0.14));
+      border: 1.5px solid rgba(247, 201, 108, 0.52);
+      box-shadow: 0 10px 26px rgba(4, 8, 24, 0.35);
+    }
+    .dragon-truth-label {
+      font-family: var(--font-ui);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+    }
+    .dragon-truth-text {
+      margin: 0;
+      font-family: var(--font-story);
+      font-size: 1.12rem;
+      line-height: 1.58;
+      color: #fffaf0;
+    }
+
+    .ending-card {
+      margin-top: 1.75rem;
+      padding: 1.25rem;
+      border-radius: 16px;
+      text-align: center;
+      background: rgba(109, 230, 255, 0.09);
+      border: 1px solid rgba(109, 230, 255, 0.3);
+    }
+    .ending-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+    }
+
+    /* Flip Controls */
+    .pager {
+      margin-top: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    body.read-all-mode .pager,
+    body.read-all-mode .jump-bar {
+      display: none;
+    }
+
+    .pager-btn {
+      appearance: none;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-weight: 800;
+      font-size: 0.94rem;
+      padding: 0.72rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card-elevated);
+      color: var(--text-main);
+      transition: all 0.16s ease;
+    }
+    .pager-btn:hover:not(:disabled) {
+      border-color: var(--gold);
+      background: rgba(247, 201, 108, 0.18);
+      color: var(--gold);
+    }
+    .pager-btn:disabled {
+      opacity: 0.36;
+      cursor: not-allowed;
+    }
+
+    .page-indicator {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .kbd-hint {
+      margin-top: 0.75rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(191, 201, 230, 0.72);
+    }
+    body.read-all-mode .kbd-hint { display: none; }
+
+    .site-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(191, 201, 230, 0.16);
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .story-page { animation: none; }
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #161a2e !important;
+      }
+      .topbar, .jump-bar, .pager, .kbd-hint, .print-banner, .cover-actions, .ending-card {
+        display: none !important;
+      }
+      .shell { max-width: 100%; padding: 0; }
+      .story-page {
+        display: block !important;
+        background: #ffffff !important;
+        color: #161a2e !important;
+        border: 1px solid #d4d8e8 !important;
+        box-shadow: none !important;
+        page-break-after: always;
+        break-after: page;
+        margin-bottom: 1.5rem;
+      }
+      .cover-title, .chapter-title, .dragon-truth-label { color: #1d2b64 !important; text-shadow: none !important; }
+      .story-prose, .dragon-truth-text, .cover-subtitle, .parent-note { color: #1b2038 !important; }
+      .dragon-truth {
+        background: #fdf6e3 !important;
+        border: 1.5px solid #d49b38 !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#cover" data-page="0">🐉 The Little White Dragon</a>
+      <nav class="nav-links" aria-label="Storybook navigation">
+        <a class="nav-link" href="/">awesome-os.com</a>
+        <a class="nav-link" href="/book/index.html">The White Dragon Book</a>
+        <button type="button" id="readAllToggle" class="mode-toggle" aria-pressed="false">📖 Read All (Print / PDF)</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <nav class="jump-bar" aria-label="Chapter Jump Bar">
+      <button type="button" class="jump-pill is-active" data-page="0" aria-current="page">Cover</button>
+          <button type="button" class="jump-pill" data-page="1" title="Chapter 1: The Honest Machine">Ch 1</button>
+          <button type="button" class="jump-pill" data-page="2" title="Chapter 2: The Messy Human Hands">Ch 2</button>
+          <button type="button" class="jump-pill" data-page="3" title="Chapter 3: The Tower of a Thousand Noisy Hats">Ch 3</button>
+          <button type="button" class="jump-pill" data-page="4" title="Chapter 4: The Tiny Recipe That Beat a Mountain of Pebbles">Ch 4</button>
+          <button type="button" class="jump-pill" data-page="5" title="Chapter 5: Lifting the Whole Tablecloth">Ch 5</button>
+          <button type="button" class="jump-pill" data-page="6" title="Chapter 6: The Tiny Doorway and the Giant Castle">Ch 6</button>
+          <button type="button" class="jump-pill" data-page="7" title="Chapter 7: Seeing Through the Shiny Box">Ch 7</button>
+          <button type="button" class="jump-pill" data-page="8" title="Chapter 8: The Three Magic Gates">Ch 8</button>
+    </nav>
+
+    <div class="print-banner" role="region" aria-label="Read All Mode">
+      <span><strong>Read All Mode:</strong> All 9 pages are open below for continuous reading or printing.</span>
+      <button type="button" id="printNowBtn" class="btn-primary" style="padding:0.45rem 1rem;font-size:0.86rem;">🖨️ Print / Save PDF</button>
+    </div>
+
+    <div class="book-stage" id="bookStage">
+      <article class="story-page cover-page is-active" id="cover" data-page="0" aria-label="Book Cover">
+        <span class="cover-badge">Illustrated Twilight Storybook · Ages 8–14</span>
+        <h1 class="cover-title">The Little White Dragon &amp; The Honest Machine</h1>
+        <p class="cover-subtitle">Seven bedtime adventures with Lumi the Little White Dragon — discovering the quiet crystal rules hiding underneath every computer.</p>
+
+        <figure class="illustration-frame">
+          <svg viewBox="0 0 640 340" role="img" aria-label="Lumi the Little White Dragon perched on an open starry storybook under a golden crescent moon" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cov-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b102b"/>
+      <stop offset="58%" stop-color="#192356"/>
+      <stop offset="100%" stop-color="#28316d"/>
+    </linearGradient>
+    <radialGradient id="cov-glow" cx="50%" cy="48%" r="44%">
+      <stop offset="0%" stop-color="#f7c96c" stop-opacity="0.34"/>
+      <stop offset="55%" stop-color="#6de6ff" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#0b102b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cov-wing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a8f4ff"/>
+      <stop offset="100%" stop-color="#4be3a6"/>
+    </linearGradient>
+    <linearGradient id="cov-book" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff8e7"/>
+      <stop offset="100%" stop-color="#e9d8b4"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="340" rx="18" fill="url(#cov-sky)"/>
+  <circle cx="320" cy="175" r="175" fill="url(#cov-glow)"/>
+  <!-- Starfield -->
+  <g fill="#fff4cf" opacity="0.9">
+    <circle cx="66" cy="48" r="2.2"/><circle cx="118" cy="86" r="1.4"/><circle cx="164" cy="36" r="1.8"/>
+    <circle cx="242" cy="54" r="1.5"/><circle cx="420" cy="42" r="2.3"/><circle cx="496" cy="74" r="1.5"/>
+    <circle cx="562" cy="46" r="2"/><circle cx="584" cy="122" r="1.6"/><circle cx="72" cy="148" r="1.6"/>
+    <path d="M138 56 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#f7c96c"/>
+    <path d="M518 112 l2.5 5.5 5.5 2.5 -5.5 2.5 -2.5 5.5 -2.5 -5.5 -5.5 -2.5 5.5 -2.5z" fill="#6de6ff"/>
+  </g>
+  <!-- Golden Crescent Moon -->
+  <path d="M524 46 A34 34 0 1 0 554 96 A27 27 0 1 1 524 46 Z" fill="#f7c96c"/>
+  <!-- Soft Twilight Hills -->
+  <path d="M0 292 Q150 248 320 278 T640 264 L640 340 L0 340 Z" fill="#12183b"/>
+  <!-- Open Storybook Platform -->
+  <g transform="translate(150,224)">
+    <path d="M10 38 Q170 64 330 38 L342 54 Q170 84 0 54 Z" fill="#8b5a2b"/>
+    <path d="M18 32 Q95 8 170 30 Q245 8 322 32 L330 48 Q245 26 170 48 Q95 26 10 48 Z" fill="url(#cov-book)"/>
+    <path d="M170 30 L170 50" stroke="#c2a46d" stroke-width="2.5"/>
+    <g stroke="#c9b48a" stroke-width="1.6" stroke-linecap="round" opacity="0.7">
+      <line x1="48" y1="26" x2="138" y2="29"/><line x1="56" y1="34" x2="142" y2="37"/>
+      <line x1="198" y1="29" x2="288" y2="26"/><line x1="196" y1="37" x2="282" y2="34"/>
+    </g>
+  </g>
+  <!-- Lumi the Little White Dragon (Centered, Heroic & Cute) -->
+  <g transform="translate(228,88)">
+    <!-- Tail curling softly -->
+    <path d="M36 140 Q-14 146 -18 112 Q-20 88 8 92" fill="none" stroke="#f5f7ff" stroke-width="14" stroke-linecap="round"/>
+    <polygon points="4,86 18,92 6,100" fill="#6de6ff"/>
+    <!-- Left & Right Wings -->
+    <path d="M62 84 Q12 36 8 78 Q24 94 56 106 Z" fill="url(#cov-wing)" opacity="0.88" stroke="#f5f7ff" stroke-width="2.5"/>
+    <path d="M116 84 Q174 32 180 76 Q160 96 126 106 Z" fill="url(#cov-wing)" opacity="0.92" stroke="#f5f7ff" stroke-width="2.5"/>
+    <!-- Body -->
+    <ellipse cx="90" cy="118" rx="44" ry="38" fill="#ffffff" stroke="#d9e6ff" stroke-width="2"/>
+    <!-- Warm Golden Belly Stripes -->
+    <path d="M66 112 Q90 124 114 112 M68 124 Q90 135 112 124 M74 136 Q90 144 106 136" fill="none" stroke="#f7c96c" stroke-width="3.2" stroke-linecap="round"/>
+    <!-- Head -->
+    <ellipse cx="90" cy="64" rx="36" ry="30" fill="#ffffff" stroke="#d9e6ff" stroke-width="2"/>
+    <!-- Cute Snout & Warm Smile -->
+    <ellipse cx="90" cy="74" rx="18" ry="12" fill="#f7faff"/>
+    <path d="M80 77 Q90 85 100 77" fill="none" stroke="#364173" stroke-width="2.6" stroke-linecap="round"/>
+    <!-- Little Golden Horns & Ears -->
+    <path d="M68 42 Q60 22 74 28 Z" fill="#f7c96c"/>
+    <path d="M112 42 Q120 22 106 28 Z" fill="#f7c96c"/>
+    <path d="M56 54 Q40 46 48 64 Z" fill="#c7f5ff"/>
+    <path d="M124 54 Q140 46 132 64 Z" fill="#c7f5ff"/>
+    <!-- Sparkling Eyes -->
+    <circle cx="76" cy="60" r="5.5" fill="#182046"/>
+    <circle cx="104" cy="60" r="5.5" fill="#182046"/>
+    <circle cx="74" cy="58" r="2.1" fill="#ffffff"/>
+    <circle cx="102" cy="58" r="2.1" fill="#ffffff"/>
+    <circle cx="78" cy="62" r="1" fill="#6de6ff"/>
+    <circle cx="106" cy="62" r="1" fill="#6de6ff"/>
+    <!-- Rosy Cheeks -->
+    <ellipse cx="64" cy="70" rx="5.5" ry="3" fill="#ff9eb5" opacity="0.45"/>
+    <ellipse cx="116" cy="70" rx="5.5" ry="3" fill="#ff9eb5" opacity="0.45"/>
+    <!-- Little Paws -->
+    <ellipse cx="66" cy="148" rx="12" ry="8" fill="#ffffff" stroke="#d9e6ff" stroke-width="2"/>
+    <ellipse cx="114" cy="148" rx="12" ry="8" fill="#ffffff" stroke="#d9e6ff" stroke-width="2"/>
+  </g>
+  <!-- Glowing Crystal Lantern Beside Lumi -->
+  <g transform="translate(432,174)">
+    <circle cx="24" cy="36" r="34" fill="#f7c96c" opacity="0.22"/>
+    <path d="M14 14 L34 14 L40 48 L8 48 Z" fill="#fff3c4" stroke="#f7c96c" stroke-width="2.5"/>
+    <rect x="10" y="8" width="28" height="7" rx="3" fill="#d49b3d"/>
+    <rect x="6" y="48" width="36" height="8" rx="3" fill="#d49b3d"/>
+    <path d="M24 22 L28 34 L24 42 L20 34 Z" fill="#ffae42"/>
+  </g>
+</svg>
+          <figcaption>Lumi the Little White Dragon opens the starry book of honest machines.</figcaption>
+        </figure>
+
+        <div class="cover-actions">
+          <button type="button" class="btn-primary" data-page="1">Start Reading · Chapter 1 →</button>
+          <a class="btn-secondary" href="/book/index.html">Grown-Up Companion: The White Dragon Book</a>
+        </div>
+
+        <section class="cover-toc" aria-label="Table of Contents">
+          <h3>Inside This Book</h3>
+          <ol>
+            <li><button type="button" class="cover-toc-link" data-page="1"><span class="toc-num">1</span><span class="toc-title">Chapter 1: The Honest Machine</span></button></li>
+              <li><button type="button" class="cover-toc-link" data-page="2"><span class="toc-num">2</span><span class="toc-title">Chapter 2: The Messy Human Hands</span></button></li>
+              <li><button type="button" class="cover-toc-link" data-page="3"><span class="toc-num">3</span><span class="toc-title">Chapter 3: The Tower of a Thousand Noisy Hats</span></button></li>
+              <li><button type="button" class="cover-toc-link" data-page="4"><span class="toc-num">4</span><span class="toc-title">Chapter 4: The Tiny Recipe That Beat a Mountain of Pebbles</span></button></li>
+              <li><button type="button" class="cover-toc-link" data-page="5"><span class="toc-num">5</span><span class="toc-title">Chapter 5: Lifting the Whole Tablecloth</span></button></li>
+              <li><button type="button" class="cover-toc-link" data-page="6"><span class="toc-num">6</span><span class="toc-title">Chapter 6: The Tiny Doorway and the Giant Castle</span></button></li>
+              <li><button type="button" class="cover-toc-link" data-page="7"><span class="toc-num">7</span><span class="toc-title">Chapter 7: Seeing Through the Shiny Box</span></button></li>
+              <li><button type="button" class="cover-toc-link" data-page="8"><span class="toc-num">8</span><span class="toc-title">Chapter 8: The Three Magic Gates</span></button></li>
+          </ol>
+        </section>
+
+        <aside class="dragon-truth" aria-label="Dragon Truth" style="text-align:left;">
+          <div class="dragon-truth-label">🐉 Dragon Truth</div>
+          <p class="dragon-truth-text">Every computer in the world is an honest machine — once you see its quiet rules, you are never lost inside the box.</p>
+        </aside>
+
+        <section class="parent-note" aria-label="Note for Parents and Teachers">
+          <strong>Note for Parents &amp; Teachers:</strong>
+          <div><p><em>The Little White Dragon &amp; The Honest Machine</em> is the kid-friendly companion to <a href="#"><strong>The White Dragon Book: The Post-Neumann Principles</strong></a>—our engineering book on modern compilers, memory safety, and clean systems architecture.</p>
+<p>Every story in this little book translates a real, foundational principle of computer science into everyday images that children (and adults!) can picture intuitively without a single word of intimidating jargon:</p>
+<p>| Chapter | Story Image | Real-World Computing Principle | | :--- | :--- | :--- | | <strong>1</strong> | Music boxes &amp; crystal sparks | <strong>Determinism</strong> — computers follow exact, repeatable rules | | <strong>2</strong> | Messy ink &amp; dropped crumbs | <strong>Debugging</strong> — bugs are human specification errors we can trace and fix | | <strong>3</strong> | The Tower of 1,000 Noisy Hats | <strong>Machine Fundamentals</strong> — all languages compile down to numbers, memory, and steps | | <strong>4</strong> | A 1-page recipe vs. painted pebbles | <strong>Procedural &amp; State-Delta Compression</strong> — sending rules instead of raw pixels | | <strong>5</strong> | Lifting the whole tablecloth | <strong><code>O(1)</code> Arena Memory Disposal</strong> — freeing an entire workspace at once with zero leaks | | <strong>6</strong> | A tiny doorway for a giant castle | <strong>Stable Minimal ABI Boundaries</strong> — evolving huge systems without breaking neighbors | | <strong>7</strong> | Seeing through the shiny box | <strong>Digital Literacy &amp; Agency</strong> — understanding first principles instead of being locked in |</p>
+<p>Read a chapter together aloud, ask your young reader what they think the <strong>Dragon Truth</strong> means in their own life, and remind them that the best builders in the world always start by asking <em>&quot;How does it really work underneath?&quot;</em></p></div>
+        </section>
+      </article>
+      
+      <article class="story-page chapter-page" id="chapter-1" data-page="1" aria-label="Chapter 1: The Honest Machine">
+        <header class="page-header">
+          <span class="chapter-kicker">Chapter 1 of 8</span>
+          <h2 class="chapter-title">Chapter 1: The Honest Machine</h2>
+        </header>
+
+        <figure class="illustration-frame">
+          <svg viewBox="0 0 640 360" role="img" aria-label="Lumi the Little White Dragon beside glowing golden lanterns and interlocking crystal clockwork gears" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="c1-sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1333"/>
+      <stop offset="60%" stop-color="#1b265c"/>
+      <stop offset="100%" stop-color="#173459"/>
+    </linearGradient>
+    <radialGradient id="c1-lantern-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd97d" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#ffd97d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="c1-gear" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6de6ff"/>
+      <stop offset="100%" stop-color="#4be3a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="16" fill="url(#c1-sky)"/>
+  <!-- Stars -->
+  <g fill="#fff2c2" opacity="0.8">
+    <circle cx="54" cy="44" r="1.8"/><circle cx="144" cy="30" r="1.4"/><circle cx="310" cy="40" r="2"/>
+    <circle cx="490" cy="34" r="1.6"/><circle cx="590" cy="64" r="2"/><circle cx="412" cy="72" r="1.3"/>
+  </g>
+  <!-- Hanging Lantern String -->
+  <path d="M0 58 Q180 102 360 72 T640 62" fill="none" stroke="#f7c96c" stroke-width="2" opacity="0.65"/>
+  <!-- Lantern 1 -->
+  <g transform="translate(88,68)">
+    <circle cx="20" cy="36" r="44" fill="url(#c1-lantern-glow)"/>
+    <line x1="20" y1="0" x2="20" y2="14" stroke="#f7c96c" stroke-width="2"/>
+    <rect x="10" y="14" width="20" height="6" rx="2" fill="#d99b38"/>
+    <rect x="8" y="20" width="24" height="32" rx="9" fill="#fff0b8" stroke="#f7c96c" stroke-width="2"/>
+    <circle cx="20" cy="36" r="6" fill="#ffad3b"/>
+    <rect x="10" y="52" width="20" height="5" rx="2" fill="#d99b38"/>
+  </g>
+  <!-- Lantern 2 -->
+  <g transform="translate(248,74)">
+    <circle cx="18" cy="32" r="38" fill="url(#c1-lantern-glow)"/>
+    <line x1="18" y1="0" x2="18" y2="12" stroke="#f7c96c" stroke-width="2"/>
+    <rect x="9" y="12" width="18" height="5" rx="2" fill="#d99b38"/>
+    <rect x="7" y="17" width="22" height="28" rx="8" fill="#e6fcff" stroke="#6de6ff" stroke-width="2"/>
+    <circle cx="18" cy="31" r="5" fill="#6de6ff"/>
+    <rect x="9" y="45" width="18" height="4" rx="2" fill="#d99b38"/>
+  </g>
+  <!-- Lantern 3 -->
+  <g transform="translate(520,66)">
+    <circle cx="20" cy="36" r="44" fill="url(#c1-lantern-glow)"/>
+    <line x1="20" y1="0" x2="20" y2="14" stroke="#f7c96c" stroke-width="2"/>
+    <rect x="10" y="14" width="20" height="6" rx="2" fill="#d99b38"/>
+    <rect x="8" y="20" width="24" height="32" rx="9" fill="#fff0b8" stroke="#f7c96c" stroke-width="2"/>
+    <circle cx="20" cy="36" r="6" fill="#ffad3b"/>
+    <rect x="10" y="52" width="20" height="5" rx="2" fill="#d99b38"/>
+  </g>
+  <!-- Clockwork Gears (Honest Crystal Mechanism) -->
+  <g transform="translate(425,198)" opacity="0.95">
+    <!-- Big Cyan Crystal Gear -->
+    <circle cx="0" cy="0" r="62" fill="none" stroke="url(#c1-gear)" stroke-width="14" stroke-dasharray="14 10"/>
+    <circle cx="0" cy="0" r="46" fill="#13254f" stroke="#6de6ff" stroke-width="3"/>
+    <circle cx="0" cy="0" r="14" fill="#f7c96c"/>
+    <line x1="-42" y1="0" x2="42" y2="0" stroke="#6de6ff" stroke-width="3"/>
+    <line x1="0" y1="-42" x2="0" y2="42" stroke="#6de6ff" stroke-width="3"/>
+    <!-- Interlocking Golden Gear -->
+    <g transform="translate(88,-48)">
+      <circle cx="0" cy="0" r="38" fill="none" stroke="#f7c96c" stroke-width="11" stroke-dasharray="10 8"/>
+      <circle cx="0" cy="0" r="27" fill="#1d2754" stroke="#f7c96c" stroke-width="2.5"/>
+      <circle cx="0" cy="0" r="9" fill="#4be3a6"/>
+    </g>
+    <!-- Small Emerald Gear -->
+    <g transform="translate(-84,56)">
+      <circle cx="0" cy="0" r="30" fill="none" stroke="#4be3a6" stroke-width="9" stroke-dasharray="8 7"/>
+      <circle cx="0" cy="0" r="20" fill="#13254f" stroke="#4be3a6" stroke-width="2.5"/>
+      <circle cx="0" cy="0" r="7" fill="#fff3c4"/>
+    </g>
+  </g>
+  <!-- Workshop Floor -->
+  <path d="M0 308 L640 308 L640 360 L0 360 Z" fill="#12183a"/>
+  <line x1="0" y1="308" x2="640" y2="308" stroke="#f7c96c" stroke-width="2" opacity="0.45"/>
+  <!-- Lumi the Little White Dragon inspecting the gears -->
+  <g transform="translate(112,158)">
+    <path d="M24 128 Q-20 132 -18 98 Q-16 82 10 88" fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="round"/>
+    <path d="M54 78 Q8 36 12 82 Q28 96 56 102 Z" fill="#6de6ff" stroke="#ffffff" stroke-width="2"/>
+    <path d="M104 76 Q146 38 148 80 Q132 96 104 102 Z" fill="#4be3a6" stroke="#ffffff" stroke-width="2"/>
+    <ellipse cx="80" cy="112" rx="38" ry="34" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <path d="M62 110 Q80 120 98 110 M64 122 Q80 131 96 122" fill="none" stroke="#f7c96c" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="86" cy="62" rx="32" ry="27" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <path d="M66 42 Q58 24 72 30 Z" fill="#f7c96c"/>
+    <path d="M106 42 Q114 24 100 30 Z" fill="#f7c96c"/>
+    <circle cx="76" cy="58" r="5" fill="#182046"/><circle cx="100" cy="58" r="5" fill="#182046"/>
+    <circle cx="74" cy="56" r="1.9" fill="#ffffff"/><circle cx="98" cy="56" r="1.9" fill="#ffffff"/>
+    <path d="M78 73 Q88 80 98 73" fill="none" stroke="#364173" stroke-width="2.4" stroke-linecap="round"/>
+    <!-- Paw raised gently toward a floating spark -->
+    <ellipse cx="122" cy="108" rx="11" ry="8" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <ellipse cx="62" cy="142" rx="12" ry="8" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <ellipse cx="98" cy="142" rx="12" ry="8" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+  </g>
+  <!-- Sparkles between Lumi and Gears -->
+  <g fill="#f7c96c">
+    <path d="M276 238 l4 9 9 4 -9 4 -4 9 -4 -9 -9 -4 9 -4z"/>
+    <circle cx="308" cy="220" r="3.5" fill="#6de6ff"/>
+    <circle cx="332" cy="242" r="2.8" fill="#4be3a6"/>
+  </g>
+</svg>
+          <figcaption>Lumi listens to the glowing lanterns and crystal clockwork gears humming in exact rhythm.</figcaption>
+        </figure>
+
+        <div class="story-prose">
+          <p><em>Where Lumi peeks past the rumor of ghosts and hears a music box singing in crystal time.</em></p>
+<p>High above the sleepy village of Lantern Hollow, inside a workshop smelling of pine shavings and warm copper, sat a quiet glass-and-brass machine.</p>
+<p>The village kids whispered wild stories about it.</p>
+<p>&quot;It&#39;s full of moody ghosts,&quot; warned Otto, clutching his satchel. &quot;Yesterday it painted a silver castle for me, and today it wouldn&#39;t even draw a teacup. Computers just do whatever they feel like!&quot;</p>
+<p>Lumi the Little White Dragon tilted her head. Her pearl-white scales always gave a faint, curious shimmer whenever someone blamed a mystery on magic. She fluttered down from the rafters, tucked her small wings neat against her sides, and pressed her cool snout close to the glass.</p>
+<p>No ghosts floated inside. No tiny wizards waved crooked wands.</p>
+<p>Instead, Lumi saw something far more wondrous: millions of microscopic lanterns blinking on and off in steady, rhythmic patterns, like fireflies keeping time to an invisible drum.</p>
+<h3>The Secret of the Brass Music Box</h3>
+<p>&quot;Listen closely,&quot; said Master Rowan, placing a small brass music box beside the machine. He wound the silver key and lifted the lid.</p>
+<p><em>Plink. Plink. Plong.</em></p>
+<p>&quot;Look at the spinning brass drum,&quot; Rowan whispered. &quot;Every time that tiny metal pin reaches the third tooth, what happens?&quot;</p>
+<p>&quot;It plays the high golden note,&quot; Lumi said.</p>
+<p>&quot;Does it ever wake up grumpy and play a frog croak instead?&quot;</p>
+<p>Lumi giggled, a puff of pale silver mist curling from her nostrils. &quot;Never! The pin is brass and the tooth is steel. It <em>has</em> to play the exact same note.&quot;</p>
+<p>&quot;That is the whole secret of the machine on this bench,&quot; Rowan smiled. &quot;People call it magic because it moves faster than a hummingbird&#39;s wings—millions of taps in a single heartbeat. When you see a painting appear, a violin song play, or a little hero leap across a screen, you are only watching millions of tiny lantern switches obeying crystal-clear rules.&quot;</p>
+<h3>Down to the Very Last Spark</h3>
+<p>Lumi watched as Rowan tapped a single brass key. Instantly, a tiny lantern lit on the left shelf, which nudged a lever on the second shelf, which rang a soft chime and painted a bright crescent moon across the glass.</p>
+<p>He reset the dial and tapped the exact same key again.</p>
+<p>The exact same lantern lit. The exact same lever tipped. The exact same crescent moon appeared, down to the tiniest speck of stardust.</p>
+<p>Lumi&#39;s golden eyes widened. Nothing in the machine was guessing. Nothing was rolling invisible dice in the dark. Every color on a screen, every note in a song, and every bounce of a ball in a game happened for a real, solid, crystal-clear reason.</p>
+<p>The machine wasn&#39;t a moody ghost at all.</p>
+<p>It was the most honest creature in the valley.</p>
+        </div>
+
+        <aside class="dragon-truth" aria-label="Dragon Truth">
+          <div class="dragon-truth-label">🐉 Dragon Truth</div>
+          <p class="dragon-truth-text">A computer is never a moody ghost or random magic—it is an honest machine that follows exact rules down to the very last spark.</p>
+        </aside>
+
+        
+      </article>
+
+      <article class="story-page chapter-page" id="chapter-2" data-page="2" aria-label="Chapter 2: The Messy Human Hands">
+        <header class="page-header">
+          <span class="chapter-kicker">Chapter 2 of 8</span>
+          <h2 class="chapter-title">Chapter 2: The Messy Human Hands</h2>
+        </header>
+
+        <figure class="illustration-frame">
+          <svg viewBox="0 0 640 360" role="img" aria-label="Messy spilled ink-blots on the left contrasted with glowing honest crystal rule tiles and Lumi on the right" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="c2-bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1638"/>
+      <stop offset="48%" stop-color="#1d224d"/>
+      <stop offset="100%" stop-color="#112b4a"/>
+    </linearGradient>
+    <linearGradient id="c2-tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6de6ff" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#4be3a6" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="16" fill="url(#c2-bg)"/>
+  <!-- Center Golden Divider Beam -->
+  <line x1="320" y1="28" x2="320" y2="332" stroke="#f7c96c" stroke-width="2" stroke-dasharray="6 6" opacity="0.55"/>
+  <!-- LEFT SIDE: Messy Ink-Blots & Crumpled Notes -->
+  <g transform="translate(36,44)">
+    <text x="122" y="18" text-anchor="middle" fill="#ff9eb5" font-family="Georgia,serif" font-size="14" font-weight="bold">Messy Ink-Blots</text>
+    <!-- Tipped Ink Bottle -->
+    <g transform="translate(46,162) rotate(-32)">
+      <rect x="0" y="14" width="44" height="50" rx="10" fill="#3a2f63" stroke="#b9a6ff" stroke-width="2"/>
+      <rect x="12" y="0" width="20" height="16" rx="3" fill="#504282" stroke="#b9a6ff" stroke-width="2"/>
+    </g>
+    <!-- Playful Ink Splatters -->
+    <path d="M124 202 Q156 178 188 198 Q224 192 228 224 Q244 250 206 258 Q174 276 144 252 Q104 250 112 220 Z" fill="#0b091c" stroke="#7c5cff" stroke-width="2"/>
+    <circle cx="242" cy="184" r="10" fill="#0b091c" stroke="#7c5cff" stroke-width="1.5"/>
+    <circle cx="96" cy="264" r="7" fill="#0b091c" stroke="#ff9eb5" stroke-width="1.5"/>
+    <circle cx="212" cy="166" r="5" fill="#0b091c"/>
+    <!-- Floating Tangled Scribble Notes -->
+    <g transform="translate(42,52) rotate(-10)">
+      <rect width="74" height="58" rx="6" fill="#fff2d6" opacity="0.92"/>
+      <path d="M12 18 Q26 10 38 22 T62 18 M12 36 Q28 46 44 30 T62 38" fill="none" stroke="#d9534f" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(154,66) rotate(12)">
+      <rect width="76" height="58" rx="6" fill="#ffe6eb" opacity="0.92"/>
+      <text x="38" y="37" text-anchor="middle" fill="#b8325a" font-family="monospace" font-size="18" font-weight="bold">?!#*</text>
+    </g>
+  </g>
+  <!-- RIGHT SIDE: Honest Crystal Rules + Lumi -->
+  <g transform="translate(348,44)">
+    <text x="128" y="18" text-anchor="middle" fill="#6de6ff" font-family="Georgia,serif" font-size="14" font-weight="bold">Honest Crystal Rules</text>
+    <!-- Neat Grid of Crystal Rule Tiles -->
+    <g transform="translate(24,42)">
+      <rect x="0" y="0" width="60" height="54" rx="10" fill="url(#c2-tile)" stroke="#6de6ff" stroke-width="2"/>
+      <text x="30" y="34" text-anchor="middle" fill="#f7c96c" font-family="monospace" font-size="18" font-weight="bold">IF</text>
+      <rect x="74" y="0" width="60" height="54" rx="10" fill="url(#c2-tile)" stroke="#4be3a6" stroke-width="2"/>
+      <text x="104" y="34" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="18" font-weight="bold">→</text>
+      <rect x="148" y="0" width="60" height="54" rx="10" fill="url(#c2-tile)" stroke="#6de6ff" stroke-width="2"/>
+      <text x="178" y="34" text-anchor="middle" fill="#4be3a6" font-family="monospace" font-size="18" font-weight="bold">DO</text>
+
+      <rect x="36" y="70" width="136" height="44" rx="10" fill="#12274a" stroke="#f7c96c" stroke-width="2"/>
+      <text x="104" y="97" text-anchor="middle" fill="#fff4cf" font-family="monospace" font-size="14">1 + 1 = 2 ✓</text>
+    </g>
+    <!-- Cute Lumi with a Magnifying Crystal -->
+    <g transform="translate(80,172)">
+      <ellipse cx="64" cy="84" rx="34" ry="28" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+      <path d="M48 84 Q64 93 80 84" fill="none" stroke="#f7c96c" stroke-width="3" stroke-linecap="round"/>
+      <ellipse cx="64" cy="40" rx="28" ry="24" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+      <path d="M46 22 Q40 8 52 14 Z" fill="#f7c96c"/>
+      <path d="M82 22 Q88 8 76 14 Z" fill="#f7c96c"/>
+      <circle cx="55" cy="38" r="4.5" fill="#182046"/><circle cx="75" cy="38" r="4.5" fill="#182046"/>
+      <circle cx="53.5" cy="36.5" r="1.6" fill="#ffffff"/><circle cx="73.5" cy="36.5" r="1.6" fill="#ffffff"/>
+      <path d="M56 50 Q64 56 72 50" fill="none" stroke="#364173" stroke-width="2.2" stroke-linecap="round"/>
+      <!-- Magnifying Glass -->
+      <circle cx="116" cy="52" r="18" fill="#6de6ff" fill-opacity="0.22" stroke="#f7c96c" stroke-width="3"/>
+      <line x1="102" y1="66" x2="88" y2="82" stroke="#f7c96c" stroke-width="5" stroke-linecap="round"/>
+      <path d="M110 47 L115 54 L124 44" fill="none" stroke="#4be3a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>
+          <figcaption>Spilled ink-blots on the left, honest crystal rule-tiles shining clearly on the right.</figcaption>
+        </figure>
+
+        <div class="story-prose">
+          <p><em>Where a purple fish wears three hats, and Lumi discovers why every broken rule leaves footprints.</em></p>
+<p>The very next morning, Lumi heard a loud groan echoing from the bakery down the lane.</p>
+<p>Inside, Barnaby the apprentice baker was waving his floury hands at his workbench machine. On the glass glowed a picture of a lopsided purple fish wearing three mismatched hats—and then the whole picture froze solid.</p>
+<p>&quot;See?!&quot; Barnaby shouted, tossing his apron onto a stool. &quot;The machine betrayed me! I asked it to draw a golden loaf of bread for our shop sign, and it <em>glitched</em>! Machines are sneaky!&quot;</p>
+<p>Lumi fluttered onto a warm sack of oats and peered at the frozen purple fish. Her scales didn&#39;t shimmer with fear; they glowed with detective curiosity.</p>
+<p>&quot;May I see the recipe card you gave it?&quot; Lumi asked gently.</p>
+<p>Barnaby slid a crumpled paper ribbon across the counter. It was covered in hurried pencil marks, a smear of blackberry jam, and two crossed-out lines.</p>
+<h3>The Most Loyal Kitchen Helper</h3>
+<p>Lumi unrolled the ribbon and held it up to the sunlight.</p>
+<p>&quot;Imagine you have the most loyal kitchen helper in the world,&quot; Lumi said, tapping the paper with a white claw. &quot;This helper never argues, never guesses, and never rolls its eyes. If you accidentally write <em>three cups of salt</em> instead of <em>three pinches of salt</em>, what will the helper bake?&quot;</p>
+<p>Barnaby winced. &quot;The saltiest bread in history.&quot;</p>
+<p>&quot;And would that mean the kitchen helper betrayed you?&quot;</p>
+<p>&quot;No...&quot; Barnaby admitted slowly. &quot;It just did exactly what my messy handwriting told it to do.&quot;</p>
+<p>Lumi pointed her claw right at the middle of Barnaby&#39;s paper ribbon. &quot;Look here! A blackberry crumb fell right onto the number <strong>3</strong>, turning it into an <strong>8</strong>—which is the shelf number for <em>purple fish</em> instead of <em>golden bread</em>. And down at the bottom, you wrote <em>put a hat on it whenever the bell rings</em>, but you forgot to write down when to <em>stop</em> putting hats on!&quot;</p>
+<h3>Why Honesty Is Your Superpower</h3>
+<p>Barnaby stared at the jam smudge, then burst out laughing. He wiped the crumb clean, wrote a neat <strong>3</strong>, and added one clear line: <em>stop after zero hats.</em></p>
+<p>He fed the tidy card back into the reader. Instantly, a warm, glowing golden loaf of bread appeared on the glass—not a single purple fin in sight.</p>
+<p>&quot;Wait a second,&quot; Barnaby said, his eyes lighting up. &quot;That means I&#39;m never helpless when something breaks!&quot;</p>
+<p>&quot;Exactly,&quot; Lumi beamed, fluttering happily in the warm bakery air. &quot;If a machine were truly haunted or random, all you could do is cross your fingers and hope. Because the machine is completely honest, every single mistake leaves clear footprints right back to the messy human rule or the dropped crumb.&quot;</p>
+<p>Whenever something goes sideways, you don&#39;t need to fear the machine. You just wash the jam off your hands, follow the footprints, and fix the rule.</p>
+        </div>
+
+        <aside class="dragon-truth" aria-label="Dragon Truth">
+          <div class="dragon-truth-label">🐉 Dragon Truth</div>
+          <p class="dragon-truth-text">When a program breaks, the machine never betrayed you—messy human hands left a crumb in the rules, which means you can always trace it and fix it.</p>
+        </aside>
+
+        
+      </article>
+
+      <article class="story-page chapter-page" id="chapter-3" data-page="3" aria-label="Chapter 3: The Tower of a Thousand Noisy Hats">
+        <header class="page-header">
+          <span class="chapter-kicker">Chapter 3 of 8</span>
+          <h2 class="chapter-title">Chapter 3: The Tower of a Thousand Noisy Hats</h2>
+        </header>
+
+        <figure class="illustration-frame">
+          <svg viewBox="0 0 640 360" role="img" aria-label="A wobbling tall tower of colorful noisy hats above a stone bridge with one calm glowing golden river underneath" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="c3-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e1435"/>
+      <stop offset="70%" stop-color="#1d275a"/>
+      <stop offset="100%" stop-color="#141e42"/>
+    </linearGradient>
+    <linearGradient id="c3-river" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f7c96c"/>
+      <stop offset="50%" stop-color="#6de6ff"/>
+      <stop offset="100%" stop-color="#4be3a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="16" fill="url(#c3-sky)"/>
+  <!-- Noisy Speech Squiggles Around the Tower -->
+  <g fill="none" stroke="#ff9eb5" stroke-width="2.2" stroke-linecap="round" opacity="0.8">
+    <path d="M180 78 L152 68 M176 112 L144 114 M192 146 L160 156"/>
+    <path d="M460 78 L488 68 M464 112 L496 114 M448 146 L480 156"/>
+  </g>
+  <g fill="#ffd4a3" font-family="monospace" font-size="13" font-weight="bold" opacity="0.85">
+    <text x="108" y="72">BLAH!</text><text x="86" y="118">MY HAT!</text><text x="498" y="74">LOUDER!</text><text x="502" y="122">NEW v99!</text>
+  </g>
+  <!-- The Wobbling Tower of Noisy Hats -->
+  <g transform="translate(242,26)">
+    <!-- Base Top Hat -->
+    <rect x="26" y="162" width="104" height="44" rx="6" fill="#4f4699" stroke="#c3bdff" stroke-width="2"/>
+    <rect x="10" y="200" width="136" height="12" rx="6" fill="#6d63c7"/>
+    <!-- Tilted Red Bowler -->
+    <g transform="translate(84,142) rotate(-7)">
+      <path d="M-42 18 Q-40 -18 0 -18 Q40 -18 42 18 Z" fill="#e05a7a" stroke="#ffd1dc" stroke-width="2"/>
+      <rect x="-52" y="14" width="104" height="9" rx="4" fill="#c44564"/>
+    </g>
+    <!-- Tilted Golden Crown -->
+    <g transform="translate(74,98) rotate(8)">
+      <polygon points="-36,24 -42,-10 -16,8 0,-18 16,8 42,-10 36,24" fill="#f7c96c" stroke="#fff4cf" stroke-width="2"/>
+    </g>
+    <!-- Green Wizard Hat on Top -->
+    <g transform="translate(82,56) rotate(-10)">
+      <polygon points="0,-38 -34,24 34,24" fill="#2cb685" stroke="#a6ffd9" stroke-width="2"/>
+      <ellipse cx="0" cy="24" rx="46" ry="8" fill="#1e8e68"/>
+      <circle cx="-4" cy="-8" r="3" fill="#f7c96c"/><circle cx="10" cy="6" r="2.5" fill="#f7c96c"/>
+    </g>
+  </g>
+  <!-- Quiet Stone Arch Foundation -->
+  <path d="M0 246 L640 246 L640 264 L0 264 Z" fill="#232c59"/>
+  <path d="M120 264 Q320 222 520 264 L520 278 L120 278 Z" fill="#1b234a"/>
+  <!-- One Quiet Golden-Cyan River Underneath -->
+  <path d="M0 276 Q160 264 320 278 T640 272 L640 360 L0 360 Z" fill="url(#c3-river)" opacity="0.26"/>
+  <path d="M0 296 Q160 282 320 298 T640 290" fill="none" stroke="url(#c3-river)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M0 322 Q180 310 340 326 T640 318" fill="none" stroke="#f7c96c" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+  <!-- Quiet Stepping Numbers in the River -->
+  <g font-family="monospace" font-size="14" font-weight="bold" fill="#fff7dc" opacity="0.9">
+    <text x="64" y="344">0</text><text x="150" y="346">1</text><text x="242" y="342">2</text>
+    <text x="410" y="344">3</text><text x="498" y="346">4</text><text x="576" y="342">5</text>
+  </g>
+  <!-- Lumi Sailing Calmly on the Quiet River -->
+  <g transform="translate(278,272)">
+    <path d="M4 42 Q42 58 80 42 L68 56 Q42 64 16 56 Z" fill="#fff4d2" stroke="#f7c96c" stroke-width="2"/>
+    <ellipse cx="42" cy="30" rx="18" ry="15" fill="#ffffff" stroke="#d5e6ff" stroke-width="1.8"/>
+    <path d="M32 16 Q28 6 36 10 Z" fill="#f7c96c"/><path d="M52 16 Q56 6 48 10 Z" fill="#f7c96c"/>
+    <circle cx="36" cy="28" r="2.8" fill="#182046"/><circle cx="48" cy="28" r="2.8" fill="#182046"/>
+    <path d="M38 35 Q42 39 46 35" fill="none" stroke="#364173" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+</svg>
+          <figcaption>A wobbling tower of noisy hats shouts above while one quiet golden river flows underneath.</figcaption>
+        </figure>
+
+        <div class="story-prose">
+          <p><em>Where Lumi flies past a thousand shouting megaphones to find one quiet golden river.</em></p>
+<p>Beyond the rolling hills of Lantern Hollow stood the loudest building Lumi had ever seen: the Tower of a Thousand Noisy Hats.</p>
+<p>It leaned and wobbled like a stack of mismatched teacups, reaching high into the clouds. From every balcony leaned grown-ups wearing dazzling, gleaming hats—velvet hats, neon hats, chrome hats, and tall golden crowns stamped with shiny company badges.</p>
+<p>Each grown-up held a giant megaphone and shouted over the neighbors.</p>
+<p>&quot;Speak <em>Sparkle-Tongue</em>!&quot; boomed a purple velvet hat. &quot;It&#39;s the only clever language!&quot;</p>
+<p>&quot;Nonsense!&quot; bellowed a shiny silver crown. &quot;Only <em>Mega-Speech</em> can talk to modern machines!&quot;</p>
+<p>&quot;No, buy <em>our</em> hat! Learn <em>our</em> thousand special words!&quot; roared hundreds more, until the whole valley rattled like a tin roof in a hailstorm.</p>
+<p>At the stone doorway below, a young traveler named Maya sat on her backpack with her hands pressed tight over her ears.</p>
+<p>&quot;How can anyone ever learn all of this?&quot; Maya sighed. &quot;There are a thousand secret languages up there. I&#39;ll never be smart enough to climb that tower.&quot;</p>
+<h3>Down in the Quiet Cellar</h3>
+<p>Lumi landed softly beside Maya&#39;s boots and nudged her elbow. &quot;Come see the cellar,&quot; Lumi whispered. &quot;Don&#39;t mind the noise upstairs.&quot;</p>
+<p>They slipped through a small mossy arch beneath the tower. All at once, the shouting faded to a distant hum. Down here, the stone hall was cool, calm, and bright with warm lantern light.</p>
+<p>Running straight through the middle of the floor was a single, crystal-clear golden river flowing gently into the Honest Machine.</p>
+<p>Above the river hung a thousand brass chutes leading down from all the noisy balconies. As Lumi and Maya watched, a big, fancy, complicated word from the <em>Mega-Speech</em> balcony tumbled down a chute—and the moment it touched the cellar air, its shiny hat vanished.</p>
+<p>All that splashed into the golden river were three humble, ordinary things.</p>
+<h3>The Only Three Things in the River</h3>
+<p>&quot;Look closely!&quot; Maya gasped, kneeling by the water&#39;s edge.</p>
+<p>Every single shout from every single hat—whether it came from a purple velvet crown or a neon megaphone—melted into the exact same quiet language:</p>
+<ol class="story-list">
+<li><strong>Numbers:</strong> Simple counts, like <code>7</code>, <code>42</code>, or <code>0</code>, glowing like smooth river stones.</li>
+<li><strong>Numbered Shelves:</strong> Tidy wooden cubbies along the wall where the machine sets a number down and picks it right back up whenever it needs it.</li>
+<li><strong>Exact Steps:</strong> Short, plain instructions—<em>add shelf 2 to shelf 3</em>, <em>check if shelf 5 is empty</em>, <em>turn left if the lantern is lit</em>.</li>
+</ol>
+<p>&quot;Wait,&quot; Maya whispered, a huge grin spreading across her face. &quot;That&#39;s <em>it</em>? All those loud hats upstairs are just fancy costumes wrapped around numbers, shelves, and exact steps?&quot;</p>
+<p>Lumi nodded, her pearl scales sparkling bright. &quot;The grown-ups love arguing about whose hat is shinier. Once you see the quiet river underneath, no noisy hat can ever scare you again.&quot;</p>
+        </div>
+
+        <aside class="dragon-truth" aria-label="Dragon Truth">
+          <div class="dragon-truth-label">🐉 Dragon Truth</div>
+          <p class="dragon-truth-text">Underneath a thousand loud programming languages and shiny corporate hats, every machine speaks the same quiet language of numbers, shelves, and exact steps.</p>
+        </aside>
+
+        
+      </article>
+
+      <article class="story-page chapter-page" id="chapter-4" data-page="4" aria-label="Chapter 4: The Tiny Recipe That Beat a Mountain of Pebbles">
+        <header class="page-header">
+          <span class="chapter-kicker">Chapter 4 of 8</span>
+          <h2 class="chapter-title">Chapter 4: The Tiny Recipe That Beat a Mountain of Pebbles</h2>
+        </header>
+
+        <figure class="illustration-frame">
+          <svg viewBox="0 0 640 360" role="img" aria-label="A giant heavy pile of painted pebbles on the left compared with Lumi carrying one tiny glowing golden recipe scroll across a starry bridge" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="c4-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0c1230"/>
+      <stop offset="100%" stop-color="#1e2a5c"/>
+    </linearGradient>
+    <radialGradient id="c4-scroll-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f7c96c" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#f7c96c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="360" rx="16" fill="url(#c4-sky)"/>
+  <!-- Stars -->
+  <g fill="#fff2c2" opacity="0.8">
+    <circle cx="90" cy="40" r="1.8"/><circle cx="290" cy="34" r="2"/><circle cx="480" cy="44" r="1.6"/><circle cx="570" cy="80" r="1.8"/>
+  </g>
+  <!-- Starry Bridge -->
+  <path d="M20 278 Q320 240 620 278" fill="none" stroke="#9ab4ff" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+  <path d="M20 292 Q320 254 620 292 L620 360 L20 360 Z" fill="#12183a" opacity="0.85"/>
+  <!-- LEFT: Huge Mountain of Heavy Painted Pebbles -->
+  <g transform="translate(34,116)">
+    <path d="M12 162 Q105 8 206 162 Z" fill="#2c335e" stroke="#6c78b8" stroke-width="2"/>
+    <g stroke="#0e1330" stroke-width="1">
+      <circle cx="62" cy="146" r="13" fill="#ff8fa3"/><circle cx="88" cy="148" r="14" fill="#ffd166"/>
+      <circle cx="116" cy="146" r="13" fill="#6de6ff"/><circle cx="144" cy="148" r="14" fill="#4be3a6"/>
+      <circle cx="170" cy="148" r="12" fill="#c792ea"/><circle cx="76" cy="124" r="13" fill="#6de6ff"/>
+      <circle cx="104" cy="122" r="14" fill="#ff9eb5"/><circle cx="132" cy="124" r="13" fill="#ffd166"/>
+      <circle cx="156" cy="126" r="12" fill="#70d6ff"/><circle cx="92" cy="98" r="13" fill="#4be3a6"/>
+      <circle cx="120" cy="98" r="13" fill="#c792ea"/><circle cx="106" cy="76" r="12" fill="#ffd166"/>
+    </g>
+    <text x="108" y="188" text-anchor="middle" fill="#b8c4e8" font-family="Georgia,serif" font-size="13">1,000,000 Heavy Pebbles</text>
+  </g>
+  <!-- CENTER-RIGHT: Tiny Glowing Recipe Scroll + Blossoming Picture -->
+  <g transform="translate(328,84)">
+    <circle cx="86" cy="92" r="76" fill="url(#c4-scroll-glow)"/>
+    <!-- Golden Recipe Scroll -->
+    <g transform="translate(48,60) rotate(-6)">
+      <rect x="0" y="0" width="76" height="58" rx="8" fill="#fff6d9" stroke="#f7c96c" stroke-width="3"/>
+      <rect x="-8" y="-4" width="12" height="66" rx="5" fill="#d99b38"/>
+      <rect x="72" y="-4" width="12" height="66" rx="5" fill="#d99b38"/>
+      <line x1="14" y1="18" x2="60" y2="18" stroke="#6d5228" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="14" y1="30" x2="54" y2="30" stroke="#2f85a6" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="14" y1="42" x2="46" y2="42" stroke="#2a9d74" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <!-- Magic Painting Beam Blooming from the Scroll -->
+    <path d="M126 84 Q174 50 202 74" fill="none" stroke="#6de6ff" stroke-width="3" stroke-dasharray="5 5"/>
+    <!-- Crystal Picture Frame Painted Fresh -->
+    <g transform="translate(174,36)">
+      <rect width="102" height="84" rx="10" fill="#13254f" stroke="#6de6ff" stroke-width="2.5"/>
+      <circle cx="76" cy="24" r="11" fill="#f7c96c"/>
+      <path d="M8 74 L38 40 L60 62 L76 46 L94 74 Z" fill="#4be3a6"/>
+      <path d="M8 74 L30 52 L54 74 Z" fill="#2c8f72"/>
+    </g>
+    <text x="128" y="218" text-anchor="middle" fill="#f7c96c" font-family="Georgia,serif" font-size="13" font-weight="bold">1 Tiny Crystal Recipe → Full Picture!</text>
+  </g>
+  <!-- Lumi Happily Flying with the Scroll -->
+  <g transform="translate(274,174)">
+    <path d="M22 30 Q-6 4 0 36 Q12 44 26 42 Z" fill="#6de6ff" stroke="#ffffff" stroke-width="1.8"/>
+    <ellipse cx="38" cy="48" rx="22" ry="18" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <ellipse cx="42" cy="22" rx="19" ry="16" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <path d="M32 8 Q28 -2 36 3 Z" fill="#f7c96c"/><path d="M52 8 Q56 -2 48 3 Z" fill="#f7c96c"/>
+    <circle cx="37" cy="20" r="3" fill="#182046"/><circle cx="49" cy="20" r="3" fill="#182046"/>
+    <path d="M39 28 Q43 32 47 28" fill="none" stroke="#364173" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
+          <figcaption>A heavy mountain of painted pebbles on the left vs. one tiny glowing Recipe Scroll that paints the whole world.</figcaption>
+        </figure>
+
+        <div class="story-prose">
+          <p><em>Where a single folded paper glider outraces a creaking caravan of a million painted stones.</em></p>
+<p>One crisp autumn evening, Lumi painted her favorite masterpiece on her workbench glass: a glowing peach-and-indigo sunset over the valley, a warm golden sun dipping behind the pines, twelve fireflies dancing in gentle loops, and a soft lullaby of wind chimes.</p>
+<p>&quot;Pip <em>has</em> to see this!&quot; Lumi cheered.</p>
+<p>Her best friend Pip lived on the far side of the wide Silver Bridge, and he had an Honest Machine right on his own kitchen table.</p>
+<p>Lumi trotted down to the bridge—and stopped short in amazement.</p>
+<h3>The Caravan of a Million Pebbles</h3>
+<p>The bridge was jammed from end to end with creaking wooden wagons pulled by panting oxen. Inside the wagons sat a <strong>mountain of tiny painted pebbles</strong>—one heavy stone for every single speck of color in a picture!</p>
+<p>&quot;Why are you hauling so many stones?&quot; Lumi asked a tired wagon driver.</p>
+<p>&quot;It&#39;s the only way folks know to send a moving picture!&quot; the driver puffed. &quot;Every single tiny dot of the sky gets its own painted pebble. And when a firefly moves one inch to the right, we have to haul a <em>whole new mountain of pebbles</em> for the next blink of the eye! Sixty mountains every single second!&quot;</p>
+<p>The Silver Bridge groaned under the weight. The wagons crept forward at a snail&#39;s pace, spilling dust and rattling every plank.</p>
+<p>Lumi looked back at her sunset painting, then at the groaning wagons, and her golden eyes lit up like twin lanterns.</p>
+<p>&quot;Wait a minute,&quot; Lumi murmured. &quot;My sunset isn&#39;t a million random, unrelated pebbles!&quot;</p>
+<h3>The One-Page Crystal Recipe</h3>
+<p>Lumi pulled a single sheet of crisp parchment from her satchel and dipped her quill in warm gold ink. Instead of packing a single pebble, she wrote down the <strong>exact rules</strong> of her little world:</p>
+<ul class="story-list">
+<li><em>Paint the sky smoothly from warm peach at the bottom to deep indigo at the top.</em></li>
+<li><em>Draw a golden circle for the sun, resting right where the valley meets the pines.</em></li>
+<li><em>Place twelve tiny lantern-dots for the fireflies, and nudge each one along a gentle figure-eight loop on every heartbeat.</em></li>
+<li><em>Ring three silver wind-chime notes—soft, clear, and steady—in time with the fireflies.</em></li>
+</ul>
+<p>The whole sunset, the whole dance, and the whole song fit neatly on <strong>one tiny page</strong>.</p>
+<p>Lumi folded the page into a sleek paper glider, puffed a gentle dragon breeze beneath its wings, and watched it sail effortlessly right over the stuck wagons and across the Silver Bridge in half a blink.</p>
+<h3>Painting on Your Friend&#39;s Table</h3>
+<p>On the far bank, Pip caught the glider, unfolded the tiny recipe, and placed it on his own Honest Machine.</p>
+<p>Because Pip&#39;s machine obeyed the exact same crystal rules as Lumi&#39;s, it didn&#39;t need a single heavy pebble from across the river. Right there on Pip&#39;s own table, his lanterns blinked awake—painting the exact same peach-and-indigo sunset, dancing the exact same twelve fireflies, and singing the exact same wind chimes.</p>
+<p>Not a single detail was lost. Not a single ox got tired.</p>
+<p>The mountain of pebbles was still halfway across the bridge, creaking and sweating, while Lumi and Pip were already waving at each other under the exact same painted sky.</p>
+        </div>
+
+        <aside class="dragon-truth" aria-label="Dragon Truth">
+          <div class="dragon-truth-label">🐉 Dragon Truth</div>
+          <p class="dragon-truth-text">You never need to haul a mountain of heavy painted pebbles across the bridge when a tiny crystal recipe lets your friend&#39;s honest machine paint the exact same world on their own table.</p>
+        </aside>
+
+        
+      </article>
+
+      <article class="story-page chapter-page" id="chapter-5" data-page="5" aria-label="Chapter 5: Lifting the Whole Tablecloth">
+        <header class="page-header">
+          <span class="chapter-kicker">Chapter 5 of 8</span>
+          <h2 class="chapter-title">Chapter 5: Lifting the Whole Tablecloth</h2>
+        </header>
+
+        <figure class="illustration-frame">
+          <svg viewBox="0 0 640 360" role="img" aria-label="Lumi the Little White Dragon lifting a shimmering starry tablecloth in one swoop to reveal a spotless glowing crystal table" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="c5-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1332"/>
+      <stop offset="100%" stop-color="#1a2658"/>
+    </linearGradient>
+    <linearGradient id="c5-cloth" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3c4fa8"/>
+      <stop offset="100%" stop-color="#222d6b"/>
+    </linearGradient>
+    <linearGradient id="c5-table" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4be3a6"/>
+      <stop offset="100%" stop-color="#6de6ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="16" fill="url(#c5-sky)"/>
+  <!-- Spotless Crystal Table Underneath -->
+  <g transform="translate(88,226)">
+    <rect x="28" y="28" width="16" height="84" rx="4" fill="#2b3872"/>
+    <rect x="420" y="28" width="16" height="84" rx="4" fill="#2b3872"/>
+    <polygon points="0,28 464,28 432,0 32,0" fill="#17385c" stroke="url(#c5-table)" stroke-width="3"/>
+    <!-- Clean Sparkles on Spotless Table -->
+    <path d="M126 14 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#4be3a6"/>
+    <path d="M286 10 l2.5 5.5 5.5 2.5 -5.5 2.5 -2.5 5.5 -2.5 -5.5 -5.5 -2.5 5.5 -2.5z" fill="#fff4cf"/>
+    <path d="M376 16 l3 6 6 3 -6 3 -3 6 -3 -6 -6 -3 6 -3z" fill="#6de6ff"/>
+  </g>
+  <!-- Sweeping Starry Tablecloth Being Lifted in One Breath -->
+  <path d="M124 224 Q206 112 368 128 Q476 140 520 74 Q484 186 346 196 Q234 202 152 246 Z" fill="url(#c5-cloth)" stroke="#f7c96c" stroke-width="2.5"/>
+  <!-- Crumbs & Tiny Sparks Swept Cleanly Inside the Cloth -->
+  <g fill="#f7c96c">
+    <circle cx="242" cy="176" r="4"/><circle cx="272" cy="162" r="3.5" fill="#ff9eb5"/>
+    <circle cx="304" cy="168" r="4.5" fill="#6de6ff"/><circle cx="340" cy="154" r="3.5"/>
+    <circle cx="384" cy="150" r="4" fill="#4be3a6"/><circle cx="426" cy="134" r="3.2" fill="#fff4cf"/>
+  </g>
+  <!-- Motion Swoop Arcs -->
+  <path d="M180 120 Q280 56 420 64" fill="none" stroke="#6de6ff" stroke-width="2.5" stroke-dasharray="8 8" opacity="0.8"/>
+  <path d="M210 92 Q310 38 446 46" fill="none" stroke="#f7c96c" stroke-width="2" stroke-dasharray="5 8" opacity="0.65"/>
+  <!-- Lumi Joyfully Lifting the Corner of the Tablecloth -->
+  <g transform="translate(466,46)">
+    <path d="M28 58 Q-6 22 2 56 Q16 66 32 68 Z" fill="#6de6ff" stroke="#ffffff" stroke-width="2"/>
+    <path d="M84 56 Q124 24 120 60 Q106 70 86 68 Z" fill="#4be3a6" stroke="#ffffff" stroke-width="2"/>
+    <ellipse cx="58" cy="80" rx="28" ry="24" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <ellipse cx="56" cy="42" rx="25" ry="21" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <path d="M42 24 Q36 10 48 16 Z" fill="#f7c96c"/><path d="M70 24 Q76 10 64 16 Z" fill="#f7c96c"/>
+    <circle cx="48" cy="40" r="4" fill="#182046"/><circle cx="66" cy="40" r="4" fill="#182046"/>
+    <circle cx="46.5" cy="38.5" r="1.5" fill="#ffffff"/><circle cx="64.5" cy="38.5" r="1.5" fill="#ffffff"/>
+    <path d="M49 51 Q57 57 65 51" fill="none" stroke="#364173" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <text x="320" y="336" text-anchor="middle" fill="#4be3a6" font-family="Georgia,serif" font-size="14" font-weight="bold">One clean lift — spotless in a single breath!</text>
+</svg>
+          <figcaption>Lumi lifts the starry tablecloth in one graceful sweep, leaving the crystal table spotless.</figcaption>
+        </figure>
+
+        <div class="story-prose">
+          <p>High in the glass conservatory above the valley sat the Hall of Craft Tables. Every afternoon, young inventors came there to paint star maps, fold paper birds, mix glowing ink, and cut out tiny silver moons.</p>
+<p>When Lumi the Little White Dragon flew through the open skylight, she heard a tired sigh.</p>
+<p>At the long oak table in the middle of the room stood Master Pip, the hall&#39;s keeper. He was hunched over the wood with a pair of brass tweezers and a magnifying glass, muttering to himself.</p>
+<p>&quot;One blue paper star... two droplets of gold paint... three specks of silver dust...&quot; Pip groaned, rubbing his aching back. &quot;Only nine thousand, nine hundred and ninety-seven crumbs left to go!&quot;</p>
+<p>Lumi fluttered down and perched gently on the edge of an inkwell. &quot;Why are you chasing every tiny crumb one by one?&quot; she asked.</p>
+<p>&quot;Because the next group of inventors arrives in a minute!&quot; Pip said, frantic. &quot;If I leave even <em>one</em> sticky speck of glue or <em>one</em> stray scrap of paper behind, it will ruin the next map. Yesterday I missed a tiny drop of red ink under a saucer, and by evening the whole table was gummed up so badly nobody could slide a single sheet of parchment across it!&quot;</p>
+<p>Lumi looked at the sprawling mess of glittering snippets, then glanced at a neatly folded bolt of woven starlight cloth sitting on a shelf nearby.</p>
+<p>&quot;Master Pip,&quot; Lumi said with a warm grin, &quot;may I show you a dragon trick before the next game starts?&quot;</p>
+<p>Together, they shook out a fresh, shimmering tablecloth and laid it flat across the clean oak table. Every corner tucked neatly over the edge.</p>
+<p>Soon, a dozen inventors rushed in. They snipped ten thousand paper stars, dribbled swirls of emerald paint, scattered glowing chalk dust, and built a whole paper village right on top of the cloth. They played freely, without worrying for a second about dropping a crumb.</p>
+<p>One boy accidentally tipped over a whole jar of sparkling silver sand. Master Pip gasped and reached for a dustpan, ready to panic.</p>
+<p>&quot;Leave it,&quot; Lumi chuckled, nudging Pip&#39;s elbow with her snout. &quot;Watch what happens when the bell rings.&quot;</p>
+<p>When the brass bell rang to end the afternoon, Master Pip reached nervously for his tweezers anyway—old habits were hard to break!</p>
+<p>&quot;Wait,&quot; Lumi whispered.</p>
+<p>She hopped lightly to the center, gathered all four corners of the starlight cloth in her small white paws, took one calm dragon breath, and lifted the whole tablecloth straight up in a single smooth sweep.</p>
+<p><em>Whoosh.</em></p>
+<p>Every single paper star, every paint droplet, every spilled grain of silver sand vanished inside the folded cloth at once.</p>
+<p>Master Pip stared at the oak table beneath. It was gleaming. Spotless. Not a single sticky speck remained.</p>
+<p>&quot;Wait a second,&quot; Pip breathed in amazement, running his hand across the smooth wood. &quot;Whether they dropped three crumbs, a jar of sand, or ten thousand paper stars...&quot;</p>
+<p>&quot;It takes the exact same single breath,&quot; Lumi said, folding her wings proudly. &quot;An Honest Machine works the very same way when you give a game or a drawing its own clean cloth on the memory table. Instead of sending a tired broom-keeper to hunt down ten thousand tiny leftovers one by one—and risking missing a hidden crumb that slows everything down—you simply lift the whole cloth when you are done.&quot;</p>
+<p>Lumi shook a brand-new starlight cloth out over the table, and it drifted down like fresh snow.</p>
+<p>Master Pip tossed his brass tweezers into a drawer and laughed out loud. &quot;No leftover mess, no missed specks, and the table is ready for the next adventure instantly!&quot;</p>
+        </div>
+
+        <aside class="dragon-truth" aria-label="Dragon Truth">
+          <div class="dragon-truth-label">🐉 Dragon Truth</div>
+          <p class="dragon-truth-text">You never need to chase ten thousand tiny crumbs one by one when you can spread a clean cloth first and lift the whole mess away in a single breath.</p>
+        </aside>
+
+        
+      </article>
+
+      <article class="story-page chapter-page" id="chapter-6" data-page="6" aria-label="Chapter 6: The Tiny Doorway and the Giant Castle">
+        <header class="page-header">
+          <span class="chapter-kicker">Chapter 6 of 8</span>
+          <h2 class="chapter-title">Chapter 6: The Tiny Doorway and the Giant Castle</h2>
+        </header>
+
+        <figure class="illustration-frame">
+          <svg viewBox="0 0 640 360" role="img" aria-label="A small glowing crystal doorway standing steady in front of a giant twilight castle with Lumi beside it" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="c6-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b102b"/>
+      <stop offset="100%" stop-color="#202a63"/>
+    </linearGradient>
+    <radialGradient id="c6-door-glow" cx="50%" cy="55%" r="55%">
+      <stop offset="0%" stop-color="#6de6ff" stop-opacity="0.65"/>
+      <stop offset="55%" stop-color="#4be3a6" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#0b102b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="360" rx="16" fill="url(#c6-sky)"/>
+  <!-- Stars -->
+  <g fill="#fff4cf" opacity="0.85">
+    <circle cx="72" cy="46" r="2"/><circle cx="148" cy="30" r="1.5"/><circle cx="520" cy="40" r="2.1"/><circle cx="584" cy="84" r="1.6"/>
+  </g>
+  <!-- Giant Twilight Castle Silhouette in Background -->
+  <g fill="#19214d" stroke="#45559c" stroke-width="1.6">
+    <rect x="116" y="138" width="408" height="148"/>
+    <rect x="138" y="88" width="54" height="198"/>
+    <polygon points="132,88 165,42 198,88"/>
+    <rect x="234" y="66" width="70" height="220"/>
+    <polygon points="226,66 269,16 312,66"/>
+    <rect x="348" y="76" width="66" height="210"/>
+    <polygon points="340,76 381,28 422,76"/>
+    <rect x="448" y="96" width="56" height="190"/>
+    <polygon points="442,96 476,52 510,96"/>
+  </g>
+  <!-- Warm Glowing Castle Windows -->
+  <g fill="#f7c96c" opacity="0.85">
+    <rect x="158" y="114" width="12" height="18" rx="6"/><rect x="158" y="152" width="12" height="18" rx="6"/>
+    <rect x="262" y="92" width="14" height="22" rx="7"/><rect x="262" y="136" width="14" height="22" rx="7"/>
+    <rect x="374" y="102" width="14" height="22" rx="7"/><rect x="374" y="146" width="14" height="22" rx="7"/>
+    <rect x="470" y="122" width="12" height="18" rx="6"/><rect x="470" y="160" width="12" height="18" rx="6"/>
+  </g>
+  <!-- Hill & Path -->
+  <path d="M0 286 Q320 256 640 286 L640 360 L0 360 Z" fill="#12183b"/>
+  <!-- Small, Rock-Steady Glowing Crystal Doorway in Foreground -->
+  <g transform="translate(262,174)">
+    <circle cx="58" cy="72" r="88" fill="url(#c6-door-glow)"/>
+    <path d="M18 134 L18 54 A40 40 0 0 1 98 54 L98 134 Z" fill="#10274d" stroke="#6de6ff" stroke-width="5"/>
+    <path d="M28 134 L28 58 A30 30 0 0 1 88 58 L88 134 Z" fill="#4be3a6" fill-opacity="0.22" stroke="#f7c96c" stroke-width="2.5"/>
+    <!-- Golden Keyhole Emblem -->
+    <circle cx="58" cy="74" r="9" fill="#f7c96c"/>
+    <polygon points="54,80 62,80 65,98 51,98" fill="#f7c96c"/>
+    <!-- Steady Stone Threshold -->
+    <rect x="6" y="130" width="104" height="12" rx="4" fill="#6de6ff"/>
+  </g>
+  <!-- Lumi Standing Proudly Beside the Crystal Doorway -->
+  <g transform="translate(174,218)">
+    <ellipse cx="42" cy="64" rx="24" ry="20" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <ellipse cx="44" cy="32" rx="20" ry="17" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <path d="M32 16 Q28 5 38 11 Z" fill="#f7c96c"/><path d="M56 16 Q60 5 50 11 Z" fill="#f7c96c"/>
+    <circle cx="38" cy="30" r="3.4" fill="#182046"/><circle cx="52" cy="30" r="3.4" fill="#182046"/>
+    <path d="M40 39 Q45 44 50 39" fill="none" stroke="#364173" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
+          <figcaption>A giant twilight castle rises behind one small, steady Crystal Doorway that never needs tearing down.</figcaption>
+        </figure>
+
+        <div class="story-prose">
+          <p>Beyond the misty pines stood the Castle of Forty Thousand Rooms. It was the grandest building in the whole kingdom, filled with spinning observatories, singing clocktowers, warm bakeries, and quiet libraries packed from floor to ceiling with star charts.</p>
+<p>Yet whenever Lumi flew past its towers, she heard the awful <em>CRASH! BANG! RUMBLE!</em> of stones tumbling down.</p>
+<p>She swooped down to the courtyard, where a dusty stonemason named Clara was wiping soot from her forehead.</p>
+<p>&quot;What happened?&quot; Lumi asked, dodging a puff of chalk dust. &quot;Did a storm hit the castle?&quot;</p>
+<p>&quot;Worse,&quot; Clara sighed, pointing at a towering pile of rubble. &quot;We wanted to put a smoother brass lock on the little lantern closet in Room Twelve Thousand.&quot;</p>
+<p>Lumi blinked her bright amber eyes. &quot;You knocked down half the castle just to change one lock?&quot;</p>
+<p>&quot;We had to!&quot; Clara groaned. &quot;Long ago, whoever built this castle mortared every room&#39;s walls directly into the rooms next door. The lantern closet&#39;s hinges were bolted to the library&#39;s floorboards, which were tied to the bakery&#39;s chimney, which held up the clocktower&#39;s roof! Whenever we try to polish a single window or upgrade one tiny latch, forty thousand rooms shake and we have to rebuild the whole fortress for hours and hours.&quot;</p>
+<p>Lumi paced thoughtfully along the courtyard stones, her tail tracing a neat circle in the dust.</p>
+<p>&quot;Clara,&quot; Lumi said gently, &quot;does the baker really need to know what color hinges are on the observatory&#39;s roof?&quot;</p>
+<p>&quot;Of course not!&quot; Clara chuckled. &quot;The baker only wants to know one thing: when I knock on the observatory&#39;s door and hand over a warm loaf of bread, will they tell me what time the moon rises?&quot;</p>
+<p>&quot;Then stop tying all the rooms together,&quot; Lumi smiled. &quot;Build one tiny, honest doorway instead.&quot;</p>
+<p>That afternoon, Clara and Lumi carved a small, crystal-clear archway at the entrance to the lantern wing. On the smooth stone frame, they engraved three simple, unchanging promises:</p>
+<ol class="story-list">
+<li><em>Ring the little silver bell.</em></li>
+<li><em>Pass your lantern through the arch.</em></li>
+<li><em>Receive a bright, freshly trimmed flame in return.</em></li>
+</ol>
+<p>That was all. No visitor ever had to know how the shelves inside were arranged, what oil the keepers used, or what kind of lock sat on the closet door.</p>
+<p>The baker came by at dusk to test it out. He rang the silver bell, passed his dim brass lantern through the crystal arch, and got back a warm golden flame in an instant. He didn&#39;t care a bit whether the lantern keepers had painted the inner walls blue or built three new staircases behind the door.</p>
+<p>The very next week, Clara swapped the old rusty latch for a gleaming new brass lock—and even added a wider skylight and quieter hinges—in less than a heartbeat. Outside the crystal doorway, the bakery kept baking, the clocktower kept chiming, and not a single stone in the other forty thousand rooms wobbled.</p>
+<p>&quot;Wait,&quot; Clara laughed, brushing stone dust off her apron. &quot;We didn&#39;t have to tear down a single wall! We didn&#39;t even wake the owls in the bell tower!&quot;</p>
+<p>&quot;And next year,&quot; Lumi said, her eyes twinkling, &quot;you can invent an even brighter lantern or a safer window behind that very same arch, and every friend in the castle will still know exactly how to ring the bell.&quot;</p>
+<p>&quot;It feels like magic,&quot; Clara whispered, admiring the quiet, steady doorway glowing softly in the twilight.</p>
+<p>&quot;Not magic,&quot; Lumi replied, warming her paws near a lantern. &quot;Just honesty. When a doorway keeps a small, clear promise that never breaks, everything behind it is free to grow smarter, faster, and safer forever.&quot;</p>
+        </div>
+
+        <aside class="dragon-truth" aria-label="Dragon Truth">
+          <div class="dragon-truth-label">🐉 Dragon Truth</div>
+          <p class="dragon-truth-text">One small, honest doorway that keeps its promise forever lets a giant castle grow and improve safely without ever tearing itself down.</p>
+        </aside>
+
+        
+      </article>
+
+      <article class="story-page chapter-page" id="chapter-7" data-page="7" aria-label="Chapter 7: Seeing Through the Shiny Box">
+        <header class="page-header">
+          <span class="chapter-kicker">Chapter 7 of 8</span>
+          <h2 class="chapter-title">Chapter 7: Seeing Through the Shiny Box</h2>
+        </header>
+
+        <figure class="illustration-frame">
+          <svg viewBox="0 0 640 360" role="img" aria-label="Lumi the Little White Dragon soaring freely into an open starry sky above glossy locked corporate boxes below" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="c7-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070c24"/>
+      <stop offset="55%" stop-color="#172459"/>
+      <stop offset="100%" stop-color="#22356b"/>
+    </linearGradient>
+    <radialGradient id="c7-aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f7c96c" stop-opacity="0.45"/>
+      <stop offset="60%" stop-color="#6de6ff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#070c24" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="c7-wing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6de6ff"/>
+      <stop offset="100%" stop-color="#4be3a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="16" fill="url(#c7-sky)"/>
+  <!-- Vast Starry Open Sky & Constellation Lines -->
+  <g stroke="#6de6ff" stroke-width="1.2" opacity="0.35">
+    <line x1="84" y1="62" x2="152" y2="44"/><line x1="152" y1="44" x2="206" y2="78"/>
+    <line x1="454" y1="54" x2="526" y2="38"/><line x1="526" y1="38" x2="578" y2="76"/>
+  </g>
+  <g fill="#fff4cf">
+    <circle cx="84" cy="62" r="2.8"/><circle cx="152" cy="44" r="2.4"/><circle cx="206" cy="78" r="2.2"/>
+    <circle cx="454" cy="54" r="2.6"/><circle cx="526" cy="38" r="3"/><circle cx="578" cy="76" r="2.2"/>
+    <circle cx="318" cy="30" r="2.2"/><circle cx="122" cy="118" r="1.8"/><circle cx="504" cy="118" r="1.8"/>
+    <path d="M182 36 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#f7c96c"/>
+    <path d="M482 88 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#6de6ff"/>
+  </g>
+  <!-- Shiny Locked Corporate Boxes Below -->
+  <g transform="translate(56,246)">
+    <!-- Box 1 -->
+    <rect x="0" y="24" width="116" height="84" rx="10" fill="#2d2252" stroke="#ff7aa8" stroke-width="2.5"/>
+    <line x1="58" y1="24" x2="58" y2="108" stroke="#ff7aa8" stroke-width="4" opacity="0.65"/>
+    <line x1="0" y1="66" x2="116" y2="66" stroke="#ff7aa8" stroke-width="4" opacity="0.65"/>
+    <rect x="46" y="54" width="24" height="22" rx="4" fill="#f7c96c"/>
+    <text x="58" y="98" text-anchor="middle" fill="#ffc4d9" font-family="monospace" font-size="11">LOCKED™</text>
+    <!-- Box 2 -->
+    <rect x="196" y="14" width="136" height="94" rx="10" fill="#232c59" stroke="#9e8cff" stroke-width="2.5"/>
+    <line x1="264" y1="14" x2="264" y2="108" stroke="#9e8cff" stroke-width="4" opacity="0.65"/>
+    <line x1="196" y1="60" x2="332" y2="60" stroke="#9e8cff" stroke-width="4" opacity="0.65"/>
+    <rect x="252" y="48" width="24" height="22" rx="4" fill="#f7c96c"/>
+    <text x="264" y="96" text-anchor="middle" fill="#d5ccff" font-family="monospace" font-size="11">RENT ME!</text>
+    <!-- Box 3 -->
+    <rect x="408" y="26" width="120" height="82" rx="10" fill="#2b244d" stroke="#ffae5c" stroke-width="2.5"/>
+    <line x1="468" y1="26" x2="468" y2="108" stroke="#ffae5c" stroke-width="4" opacity="0.65"/>
+    <line x1="408" y1="68" x2="528" y2="68" stroke="#ffae5c" stroke-width="4" opacity="0.65"/>
+    <rect x="456" y="56" width="24" height="22" rx="4" fill="#f7c96c"/>
+    <text x="468" y="98" text-anchor="middle" fill="#ffe0bd" font-family="monospace" font-size="11">NO PEEKING</text>
+  </g>
+  <!-- Lumi Soaring High and Free with Wide Open Wings -->
+  <g transform="translate(206,54)">
+    <circle cx="114" cy="78" r="96" fill="url(#c7-aura)"/>
+    <!-- Wide Spread Wings -->
+    <path d="M84 74 Q8 22 4 74 Q36 96 86 94 Z" fill="url(#c7-wing)" stroke="#ffffff" stroke-width="2.5"/>
+    <path d="M144 74 Q220 22 224 74 Q192 96 142 94 Z" fill="url(#c7-wing)" stroke="#ffffff" stroke-width="2.5"/>
+    <!-- Tail Streaming Behind -->
+    <path d="M114 114 Q114 148 92 158" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/>
+    <!-- Body & Head -->
+    <ellipse cx="114" cy="92" rx="32" ry="26" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <path d="M98 92 Q114 102 130 92" fill="none" stroke="#f7c96c" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="114" cy="54" rx="28" ry="23" fill="#ffffff" stroke="#d5e6ff" stroke-width="2"/>
+    <path d="M98 36 Q90 18 104 26 Z" fill="#f7c96c"/>
+    <path d="M130 36 Q138 18 124 26 Z" fill="#f7c96c"/>
+    <circle cx="104" cy="50" r="4.5" fill="#182046"/><circle cx="124" cy="50" r="4.5" fill="#182046"/>
+    <circle cx="102.5" cy="48.5" r="1.7" fill="#ffffff"/><circle cx="122.5" cy="48.5" r="1.7" fill="#ffffff"/>
+    <path d="M105 62 Q114 70 123 62" fill="none" stroke="#364173" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+</svg>
+          <figcaption>Lumi soars above locked, shiny corporate boxes into the vast, open starry sky.</figcaption>
+        </figure>
+
+        <div class="story-prose">
+          <p>At the far edge of the valley, where the road turned to smooth silver stone, glittered the Grand Carnival of Shiny Boxes.</p>
+<p>Music blared from brass horns. Giant chrome booths towered over the crowd, covered in swirling neon arrows and flashing banners that shouted:</p>
+<p><em>&quot;STEP INSIDE THE ULTRA-MAGIC CLOUD BOX!&quot;</em> <em>&quot;NEVER PEEK UNDER THE LID!&quot;</em> <em>&quot;PRESS THE ONE GLOWING BUTTON AND LET US THINK FOR YOU!&quot;</em></p>
+<p>Lumi landed softly on a lamppost and watched as curious travelers stepped into the booths. Inside each shiny box, the doors clicked shut. The travelers sat in plush velvet chairs like passengers on a locked train with painted windows. They could tap a glowing glass panel, and treats or pictures would pop out of a slot—but nobody could see how the gears turned, where their drawings were kept, or why the box sometimes froze.</p>
+<p>Whenever a box rattled or broke, a loud megaphone boomed from the roof: <em>&quot;Oops! Mysterious gremlins! Nothing you can do—just buy next year&#39;s even shinier box!&quot;</em></p>
+<p>A young girl named Maya stepped out of a booth looking frustrated and small. &quot;I wanted to make my own music-box song,&quot; she told Lumi, kicking a pebble. &quot;The shiny box wouldn&#39;t let me change a single note. Maybe computers are just too complicated for kids like me.&quot;</p>
+<p>Lumi hopped down beside Maya and let out a gentle puff of warm, golden sparks.</p>
+<p>&quot;Look closer, Maya,&quot; Lumi whispered. &quot;Ignore the neon signs for a moment and listen past the megaphones.&quot;</p>
+<p>Maya closed her eyes and listened. Beneath the booming carnival music, she heard a faint, steady <em>tick-tick-tick</em>—clean, quiet, and rhythmic, just like a music box.</p>
+<p>&quot;Every single one of those giant shiny boxes,&quot; Lumi said, &quot;is just an Honest Machine wearing a loud cardboard disguise. Underneath the chrome paint and fancy logos, there are no secret gremlins and no wizards. There are only the quiet rules you already know: exact steps, clean recipes, starlight tablecloths, and honest doorways.&quot;</p>
+<p>Maya&#39;s eyes widened. &quot;So the grown-ups who made the shiny boxes aren&#39;t using magic at all?&quot;</p>
+<p>&quot;Never,&quot; Lumi smiled. &quot;Loud banners only work when they convince you not to look underneath. Some people <em>want</em> you to believe computers are too mysterious to understand, because a puzzled passenger never asks to hold the steering wheel.&quot;</p>
+<p>Maya looked back at the towering chrome booth. Suddenly, the flashing neon arrows didn&#39;t look impressive anymore—they looked almost silly, like a giant cardboard crown balanced on top of a regular kitchen clock.</p>
+<p>&quot;If I know the quiet rules,&quot; Maya said slowly, a grin spreading across her face, &quot;I don&#39;t have to wait for someone else&#39;s box to hand me a song. I can write my own music-box recipe!&quot;</p>
+<p>&quot;Exactly,&quot; Lumi cheered, doing a joyful loop-de-loop in the twilight air. &quot;Once you understand the quiet, clear rules, the chrome walls turn transparent as glass. You can tell right away what a box is really doing—and whether it is helping you or trying to trap you.&quot;</p>
+<p>Lumi spread her snowy white wings and glided up toward the breezy hillside where the whole starry sky opened wide above the carnival lights. Maya ran up the grassy path behind her, laughing as the cool night wind brushed her face.</p>
+<p>From up on the hill, the neon booths looked tiny—and the sky belonged to anyone brave enough to learn how things truly work.</p>
+<p>&quot;Remember what you learned on our journey,&quot; Lumi said softly, tucking a glowing spark beside Maya&#39;s lantern. &quot;The machine is honest. Mistakes can always be found and fixed. Beneath a thousand noisy hats beats one simple language. A tiny recipe beats a mountain of pebbles. A clean cloth lifts the mess in one breath. And one steady doorway protects a whole castle.&quot;</p>
+<p>Maya looked out at the stars, her notebook already open in her hands.</p>
+<p>&quot;You never have to stay a trapped passenger inside someone else&#39;s shiny box,&quot; Lumi whispered. &quot;Once you see the honest rules underneath, you never feel lost. You become the builder.&quot;</p>
+        </div>
+
+        <aside class="dragon-truth" aria-label="Dragon Truth">
+          <div class="dragon-truth-label">🐉 Dragon Truth</div>
+          <p class="dragon-truth-text">Once you see the quiet, honest rules underneath the glitter, no shiny box can ever trap your mind — you become the builder, not the passenger.</p>
+        </aside>
+
+        
+      </article>
+
+      <article class="story-page chapter-page" id="chapter-8" data-page="8" aria-label="Chapter 8: The Three Magic Gates">
+        <header class="page-header">
+          <span class="chapter-kicker">Chapter 8 of 8</span>
+          <h2 class="chapter-title">Chapter 8: The Three Magic Gates</h2>
+        </header>
+
+        <figure class="illustration-frame">
+          <svg viewBox="0 0 640 360" role="img" aria-label="Three glowing mathematical safe gates guarding an island harbor: Bridge Checker, Three-Key Door, and Clean-Ink Inspector" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="c8-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b112d"/>
+      <stop offset="100%" stop-color="#192556"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="16" fill="url(#c8-sky)"/>
+  <!-- Starry ground -->
+  <path d="M0 278 Q320 258 640 278 L640 360 L0 360 Z" fill="#111a3e"/>
+  <!-- Gate 1: Bridge Checker (R subseteq M) -->
+  <g transform="translate(52,82)">
+    <rect x="0" y="24" width="152" height="170" rx="14" fill="#182552" stroke="#6de6ff" stroke-width="3"/>
+    <path d="M22 146 Q76 112 130 146" fill="none" stroke="#4be3a6" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="24" cy="146" r="7" fill="#f7c96c"/><circle cx="128" cy="146" r="7" fill="#4be3a6"/>
+    <text x="76" y="64" text-anchor="middle" fill="#6de6ff" font-family="monospace" font-size="14" font-weight="bold">GATE 1</text>
+    <text x="76" y="88" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Bridge Checker</text>
+    <text x="76" y="176" text-anchor="middle" fill="#f7c96c" font-family="monospace" font-size="13">R ⊆ M (0 broken)</text>
+  </g>
+  <!-- Gate 2: Three-Key Door (Triplet Parity) -->
+  <g transform="translate(244,64)">
+    <rect x="0" y="24" width="152" height="188" rx="14" fill="#1d2b5e" stroke="#f7c96c" stroke-width="3"/>
+    <circle cx="44" cy="136" r="14" fill="#6de6ff" fill-opacity="0.25" stroke="#6de6ff" stroke-width="2.5"/>
+    <circle cx="76" cy="136" r="14" fill="#f7c96c" fill-opacity="0.25" stroke="#f7c96c" stroke-width="2.5"/>
+    <circle cx="108" cy="136" r="14" fill="#4be3a6" fill-opacity="0.25" stroke="#4be3a6" stroke-width="2.5"/>
+    <text x="44" y="140" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10">sh</text>
+    <text x="76" y="140" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10">cmd</text>
+    <text x="108" y="140" text-anchor="middle" fill="#fff" font-family="monospace" font-size="10">ps1</text>
+    <text x="76" y="64" text-anchor="middle" fill="#f7c96c" font-family="monospace" font-size="14" font-weight="bold">GATE 2</text>
+    <text x="76" y="88" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Three-Key Door</text>
+    <text x="76" y="186" text-anchor="middle" fill="#4be3a6" font-family="monospace" font-size="12">Always 3 of 3</text>
+  </g>
+  <!-- Gate 3: Clean-Ink Inspector -->
+  <g transform="translate(436,82)">
+    <rect x="0" y="24" width="152" height="170" rx="14" fill="#182552" stroke="#4be3a6" stroke-width="3"/>
+    <circle cx="76" cy="132" r="22" fill="#4be3a6" fill-opacity="0.2" stroke="#4be3a6" stroke-width="3"/>
+    <path d="M66 132 L73 140 L88 123" fill="none" stroke="#4be3a6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="76" y="64" text-anchor="middle" fill="#4be3a6" font-family="monospace" font-size="14" font-weight="bold">GATE 3</text>
+    <text x="76" y="88" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Clean-Ink Check</text>
+    <text x="76" y="176" text-anchor="middle" fill="#6de6ff" font-family="monospace" font-size="12">0 messy codes</text>
+  </g>
+</svg>
+          <figcaption>Three glowing mathematical gates guard the harbor: the Bridge Checker, the Three-Key Door, and the Clean-Ink Inspector.</figcaption>
+        </figure>
+
+        <div class="story-prose">
+          <p>One morning, Lumi the Little White Dragon built a brand-new treehouse library on the far side of the island. She painted a bright wooden signpost in the town square that said: <strong>&quot;THIS WAY TO THE KIDS LIBRARY →&quot;</strong></p>
+<p>Then she swept the town square clean to make everything tidy—and accidentally swept away the treehouse library while leaving the signpost standing!</p>
+<p>When a friend followed the arrow, they walked straight into an empty patch of grass.</p>
+<p>&quot;Whoa!&quot; said Lumi, scratching her horns. &quot;I tested the bakery path and the harbor path, and they both worked! How did my library vanish?&quot;</p>
+<p>The Honest Machine blinked softly. <em>&quot;Because you only checked the two paths you remembered,&quot;</em> it said. <em>&quot;You didn&#39;t guard the island with the <strong>Three Safe Gates</strong>.&quot;</em></p>
+<h3>Gate 1: The Bridge Checker</h3>
+<p><em>&quot;First,&quot;</em> said the Honest Machine, <em>&quot;put a Bridge Checker at the edge of the island. Every single time you rebuild anything, the Bridge Checker walks <strong>every</strong> signpost on the entire island—not just the old ones! If even ONE arrow points to empty grass instead of a real building, the gate locks shut and tells you right away.&quot;</em></p>
+<p>Lumi smiled. &quot;So I never have to <em>remember</em> to check the new library. If there is a signpost, the Bridge Checker proves the building is really there!&quot;</p>
+<h3>Gate 2: The Three-Key Door</h3>
+<p><em>&quot;Second,&quot;</em> said the Honest Machine, <em>&quot;remember that friends visit the island using three different kinds of door-knocks—like three different computer shells. If you only stamp one key and forget the other two, half your friends get locked out!&quot;</em></p>
+<p>So Lumi built a <strong>Three-Key Stamp</strong>: every single door on the island gets all three keys stamped together in one click—never one, never two, always a complete triplet of three!</p>
+<h3>Gate 3: The Clean-Ink Inspector</h3>
+<p><em>&quot;And third,&quot;</em> said the Honest Machine, <em>&quot;before you hand a storybook to a reader, run the Clean-Ink Inspector over every page. Sometimes a writer leaves secret printer-codes like <code>$$ \mathcal{O} $$</code> on the paper by mistake. A human gets confused—the machine doesn&#39;t care unless you tell it to look! The Clean-Ink Inspector scans every page in the blink of an eye and catches any messy code before anyone ever sees it.&quot;</em></p>
+<p>Lumi placed all three gates at the harbor entrance. From that day on, no broken signpost, no missing key, and no messy printer-code ever left the island again.</p>
+        </div>
+
+        <aside class="dragon-truth" aria-label="Dragon Truth">
+          <div class="dragon-truth-label">🐉 Dragon Truth</div>
+          <p class="dragon-truth-text"><strong>Don&#39;t rely on memory to catch mistakes—build Mathematical Safe Gates: check that every arrow lands on something real, stamp every key in complete triplets, and inspect every page automatically before you ship.</strong></p>
+        </aside>
+
+        <div class="ending-card">
+          <p><strong>You finished Lumi's journey!</strong> Ready for the grown-up engineering companion?</p>
+          <div class="ending-links">
+            <a class="btn-primary" href="/book/index.html">Read The White Dragon Book →</a>
+            <a class="btn-secondary" href="/">Explore awesome-os.com</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <nav class="pager" aria-label="Page navigation">
+      <button type="button" id="prevBtn" class="pager-btn" disabled>← Previous Page</button>
+      <div id="pageIndicator" class="page-indicator" aria-live="polite">Cover · Page 1 of 9</div>
+      <button type="button" id="nextBtn" class="pager-btn">Next Page →</button>
+    </nav>
+    <p class="kbd-hint">Tip: Use your <strong>←</strong> and <strong>→</strong> arrow keys (or swipe) to turn pages.</p>
+
+    <footer class="site-footer">
+      <p>
+        Part of <a href="/">awesome-os.com</a> · Companion to <a href="/book/index.html"><em>The White Dragon Book</em></a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      const pages = Array.from(document.querySelectorAll('.story-page'));
+      const jumpButtons = Array.from(document.querySelectorAll('.jump-pill'));
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const indicator = document.getElementById('pageIndicator');
+      const readAllToggle = document.getElementById('readAllToggle');
+      const printNowBtn = document.getElementById('printNowBtn');
+      const stage = document.getElementById('bookStage');
+
+      let currentPage = 0;
+      let readAll = false;
+      const maxPage = pages.length - 1;
+
+      function pageFromHash() {
+        const h = (window.location.hash || '').replace(/^#/, '');
+        if (!h || h === 'cover') return 0;
+        const m = /^chapter-(d+)$/.exec(h);
+        if (m) {
+          const n = Number(m[1]);
+          if (n >= 1 && n <= maxPage) return n;
+        }
+        return 0;
+      }
+
+      function renderPage(index, updateHash = true) {
+        currentPage = Math.max(0, Math.min(maxPage, index));
+        pages.forEach((el, idx) => {
+          el.classList.toggle('is-active', idx === currentPage);
+        });
+        jumpButtons.forEach((btn) => {
+          const isCurrent = Number(btn.dataset.page) === currentPage;
+          btn.classList.toggle('is-active', isCurrent);
+          if (isCurrent) btn.setAttribute('aria-current', 'page');
+          else btn.removeAttribute('aria-current');
+        });
+        if (prevBtn) prevBtn.disabled = currentPage === 0;
+        if (nextBtn) nextBtn.disabled = currentPage === maxPage;
+        if (indicator) {
+          const label = currentPage === 0 ? 'Cover' : 'Chapter ' + currentPage;
+          indicator.textContent = label + ' · Page ' + (currentPage + 1) + ' of ' + pages.length;
+        }
+        if (updateHash) {
+          const nextHash = currentPage === 0 ? '#cover' : '#chapter-' + currentPage;
+          if (window.location.hash !== nextHash) {
+            history.replaceState(null, '', nextHash);
+          }
+        }
+        if (!readAll) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+
+      document.addEventListener('click', (ev) => {
+        const target = ev.target instanceof Element ? ev.target.closest('[data-page]') : null;
+        if (!target) return;
+        const pageNum = Number(target.getAttribute('data-page'));
+        if (Number.isNaN(pageNum)) return;
+        if (readAll) {
+          const el = pages[pageNum];
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+        ev.preventDefault();
+        renderPage(pageNum);
+      });
+
+      if (prevBtn) prevBtn.addEventListener('click', () => renderPage(currentPage - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => renderPage(currentPage + 1));
+
+      if (readAllToggle) {
+        readAllToggle.addEventListener('click', () => {
+          readAll = !readAll;
+          document.body.classList.toggle('read-all-mode', readAll);
+          readAllToggle.setAttribute('aria-pressed', String(readAll));
+          readAllToggle.textContent = readAll ? '📘 Back to Flip-Page Mode' : '📖 Read All (Print / PDF)';
+          if (!readAll) renderPage(currentPage, false);
+        });
+      }
+
+      if (printNowBtn) {
+        printNowBtn.addEventListener('click', () => window.print());
+      }
+
+      document.addEventListener('keydown', (ev) => {
+        if (readAll) return;
+        const tag = ev.target instanceof HTMLElement ? ev.target.tagName : '';
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+        if (ev.key === 'ArrowRight') {
+          ev.preventDefault();
+          renderPage(currentPage + 1);
+        } else if (ev.key === 'ArrowLeft') {
+          ev.preventDefault();
+          renderPage(currentPage - 1);
+        } else if (ev.key === 'Home') {
+          ev.preventDefault();
+          renderPage(0);
+        } else if (ev.key === 'End') {
+          ev.preventDefault();
+          renderPage(maxPage);
+        }
+      });
+
+      // Touch swipe support for tablets & phones
+      let touchStartX = 0;
+      let touchStartY = 0;
+      if (stage) {
+        stage.addEventListener('touchstart', (ev) => {
+          if (ev.touches.length !== 1) return;
+          touchStartX = ev.touches[0].clientX;
+          touchStartY = ev.touches[0].clientY;
+        }, { passive: true });
+        stage.addEventListener('touchend', (ev) => {
+          if (readAll || ev.changedTouches.length !== 1) return;
+          const dx = ev.changedTouches[0].clientX - touchStartX;
+          const dy = ev.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+            if (dx < 0) renderPage(currentPage + 1);
+            else renderPage(currentPage - 1);
+          }
+        }, { passive: true });
+      }
+
+      window.addEventListener('hashchange', () => {
+        if (!readAll) renderPage(pageFromHash(), false);
+      });
+
+      renderPage(pageFromHash(), false);
+    })();
+  </script>
+</body>
+</html>

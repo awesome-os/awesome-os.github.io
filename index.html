@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Awesome-OS — Sovereign Post-Neumann Computing &amp; B8G-ABI v3</title>
+  <meta name="description" content="One shared Chromium + V8 core powering Enterprise Browser, Sovereign Git Forge, Universal Brain IDE, and Zero-Copy Desktop Runtimes." />
+  <link rel="alternate" type="application/rss+xml" title="Awesome-OS Engineering Blog" href="/rss.xml" />
+  <style>
+:root {
+  --bg: #06090f;
+  --panel: #0c121e;
+  --card: #101827;
+  --border: #1e293b;
+  --border-hi: #38bdf866;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --cyan: #38bdf8;
+  --emerald: #4ade80;
+  --amber: #fbbf24;
+  --violet: #c084fc;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.65;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(56,189,248,0.08), transparent 36%),
+    radial-gradient(circle at 88% 14%, rgba(74,222,128,0.06), transparent 34%),
+    linear-gradient(to right, rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+}
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(6, 9, 15, 0.86);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -0.02em; color: #fff; font-size: 1.08rem; }
+.brand:hover { text-decoration: none; }
+.brand svg { width: 30px; height: 30px; }
+.badge { font-family: var(--mono); font-size: 11px; color: var(--emerald); background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); padding: 2px 8px; border-radius: 999px; }
+.nav-links { display: flex; gap: 20px; font-family: var(--mono); font-size: 13px; flex-wrap: wrap; }
+.nav-links a { color: var(--muted); }
+.nav-links a:hover, .nav-links a.active { color: #fff; text-decoration: none; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.hero { padding: 72px 0 48px; display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 40px; align-items: center; }
+@media (max-width: 880px) { .hero { grid-template-columns: 1fr; padding: 44px 0 32px; } }
+.eyebrow { font-family: var(--mono); font-size: 12px; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.hero h1 { font-size: clamp(2.1rem, 4.2vw, 3.35rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 18px; }
+.hero h1 span { background: linear-gradient(90deg, var(--cyan), var(--emerald)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { color: var(--muted); font-size: 1.08rem; max-width: 60ch; margin-bottom: 26px; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 8px;
+  font-family: var(--mono); font-size: 13px; font-weight: 600; border: 1px solid var(--border);
+  background: var(--card); color: #fff; transition: all 0.15s ease;
+}
+.btn:hover { border-color: var(--cyan); text-decoration: none; transform: translateY(-1px); }
+.btn-primary { background: linear-gradient(135deg, #0ea5e9, #10b981); border: none; color: #041019; }
+.btn-primary:hover { filter: brightness(1.08); }
+.hero-art { display: flex; justify-content: center; align-items: center; padding: 20px; background: radial-gradient(circle, rgba(56,189,248,0.12), transparent 68%); border-radius: 16px; border: 1px solid var(--border); }
+.hero-art svg { width: 100%; max-width: 340px; height: auto; filter: drop-shadow(0 16px 36px rgba(0,0,0,0.6)); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 14px; margin: 12px 0 56px; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+.stat .k { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat .v { font-family: var(--mono); font-size: 1.45rem; font-weight: 800; color: var(--cyan); margin-top: 4px; }
+.stat .v.em { color: var(--emerald); }
+.stat .v.am { color: var(--amber); }
+section { padding: 42px 0; border-top: 1px solid var(--border); }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.sec-head h2 { font-size: 1.65rem; letter-spacing: -0.02em; }
+.sec-head .sub { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 18px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.15s ease, transform 0.15s ease; }
+.card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+.card .tag { font-family: var(--mono); font-size: 11px; color: var(--emerald); text-transform: uppercase; }
+.card h3 { font-size: 1.1rem; line-height: 1.3; }
+.card p { color: var(--muted); font-size: 0.92rem; flex: 1; }
+.card .meta { font-family: var(--mono); font-size: 12px; color: var(--cyan); margin-top: 4px; }
+.demo-frame { background: #04070d; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.demo-frame iframe { width: 100%; height: 620px; border: 0; display: block; }
+.demo-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.demo-tab { font-family: var(--mono); font-size: 12px; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--panel); color: var(--muted); cursor: pointer; }
+.demo-tab.active, .demo-tab:hover { border-color: var(--cyan); color: #fff; background: rgba(56,189,248,0.12); }
+.diagram-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 18px; }
+.diagram-box { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; }
+.diagram-box svg { max-width: 100%; height: auto; max-height: 220px; }
+.diagram-box .cap { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 10px; }
+.article { max-width: 820px; margin: 44px auto 72px; }
+.article h1 { font-size: 2.1rem; line-height: 1.2; margin-bottom: 12px; }
+.article .byline { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.article h2 { font-size: 1.45rem; margin: 32px 0 12px; color: #fff; }
+.article h3 { font-size: 1.15rem; margin: 22px 0 8px; color: var(--cyan); }
+.article p { margin: 12px 0; color: #cbd5e1; }
+.article ul { margin: 12px 0 16px 22px; color: #cbd5e1; }
+.article li { margin: 6px 0; }
+.article blockquote { border-left: 3px solid var(--cyan); padding: 10px 16px; background: rgba(56,189,248,0.06); margin: 16px 0; color: #e2e8f0; border-radius: 0 8px 8px 0; }
+.article code { font-family: var(--mono); font-size: 0.88em; background: #131d2e; padding: 2px 6px; border-radius: 4px; color: var(--emerald); }
+.article pre { background: #090e18; border: 1px solid var(--border); border-radius: 10px; padding: 16px; overflow-x: auto; margin: 16px 0; }
+.article pre code { background: none; padding: 0; color: #e2e8f0; font-size: 13px; }
+.math-block {
+  font-family: "Cambria Math", "STIX Two Math", Georgia, "Times New Roman", serif;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  text-align: center;
+  background: rgba(12, 18, 30, 0.85);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cyan);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 18px 0;
+  overflow-x: auto;
+  color: #f8fafc;
+}
+.math-inline {
+  font-family: "Cambria Math", "STIX Two Math", Georgia, "Times New Roman", serif;
+  font-size: 1.02em;
+  color: #f8fafc;
+  white-space: nowrap;
+}
+.math-block var, .math-inline var { font-style: italic; }
+.math-rm { font-style: normal; font-family: var(--sans); font-size: 0.9em; }
+.math-block sub, .math-block sup, .math-inline sub, .math-inline sup { font-size: 0.72em; line-height: 0; }
+.math-bar { text-decoration: overline; }
+.math-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 3px; font-size: 0.92em; line-height: 1.2; }
+.math-frac .math-num { border-bottom: 1px solid #cbd5e1; padding: 0 4px 2px; }
+.math-frac .math-den { padding: 2px 4px 0; }
+.table-wrap { overflow-x: auto; margin: 18px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; }
+th { background: var(--panel); font-family: var(--mono); font-size: 12px; color: var(--cyan); }
+footer { border-top: 1px solid var(--border); padding: 36px 0; margin-top: 48px; color: var(--muted); font-family: var(--mono); font-size: 12px; }
+.foot-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+</style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <svg id="asset-app-icon" viewBox="0 0 256 256" width="256" height="256" xmlns="http://www.w3.org/2000/svg"><defs>
+    <!-- Crystal White & Prismatic Gradients -->
+    <linearGradient id="crystal-bright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-mid" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <linearGradient id="prism-spectrum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="25%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="75%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="prism-beam" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="obsidian-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b26"/>
+      <stop offset="50%" stop-color="#0d1118"/>
+      <stop offset="100%" stop-color="#07090e"/>
+    </linearGradient>
+
+    <radialGradient id="white-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32"/>
+      <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="green-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="red-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <linearGradient id="purple-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d8b4fe"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+
+    <filter id="prism-glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <pattern id="pcb-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.6"/>
+      <path d="M 10 0 L 10 15 L 25 30 L 40 30" fill="none" stroke="#334155" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="10" cy="15" r="1.5" fill="#475569"/>
+      <circle cx="25" cy="30" r="1.5" fill="#475569"/>
+    </pattern>
+  </defs>
+            <rect x="16" y="16" width="224" height="224" rx="52" fill="#0d111a" stroke="url(#prism-spectrum)" stroke-width="3"/>
+            <g transform="translate(128, 132)">
+              <polygon points="0,-82 -14,-54 0,-42 14,-54" fill="#ffffff"/>
+              <polygon points="-14,-54 -30,-68 -18,-44" fill="url(#crystal-bright)"/>
+              <polygon points="14,-54 30,-68 18,-44" fill="url(#crystal-mid)"/>
+              <polygon points="-18,-22 -84,-64 -62,-10" fill="url(#crystal-bright)"/>
+              <polygon points="18,-22 84,-64 62,-10" fill="url(#crystal-mid)"/>
+              <polygon points="0,-32 -32,6 0,52 32,6" fill="#ffffff"/>
+              <polygon points="0,-10 -14,8 0,26 14,8" fill="url(#prism-spectrum)"/>
+              <polygon points="0,52 -18,78 0,92 18,78" fill="url(#crystal-bright)"/>
+            </g>
+          </svg>
+        <span>AWESOME-OS</span>
+        <span class="badge">B8G-ABI v3</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/" class="active">Home</a>
+        <a href="/#demos" class="">Live Demos</a>
+        <a href="/#ventures">Ventures</a>
+        <a href="/#c-star-roi">ROI</a>
+        <a href="/book/index.html" class="">White Dragon Book</a>
+        <a href="/kids/index.html">Kids Book</a>
+        <a href="/b8g-app/index.html">b8g.app</a>
+        <a href="/evidence/index.html">Evidence Pack</a>
+        <a href="/blog/index.html" class="">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">SOVEREIGN POST-NEUMANN COMPUTING · B8G-ABI v3</div>
+        <h1>One Shared <span>Chromium + V8</span> Core. Nine Ecosystems. Zero Bloat.</h1>
+        <p>Awesome-OS replaces nine duplicate browser and runtime monoliths — Chrome, Electron, NW.js, VS Code, Node.js, Workerd, Wasmer, Terminal Chrome, and Enterprise Browsers — with one zero-header C11 <code>B8G-ABI</code> core and step-wise live upgrades in RAM.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#demos">Watch Live RAM Demos</a>
+          <a class="btn" href="/book/index.html">Read White Dragon Book</a>
+          <a class="btn" href="/blog/index.html">Engineering Blog (27)</a>
+        </div>
+      </div>
+      <div class="hero-art"><svg id="asset-dragon-crest" viewBox="0 0 400 360" width="400" height="360" xmlns="http://www.w3.org/2000/svg"><defs>
+    <!-- Crystal White & Prismatic Gradients -->
+    <linearGradient id="crystal-bright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-mid" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <linearGradient id="prism-spectrum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="25%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="75%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="prism-beam" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="obsidian-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b26"/>
+      <stop offset="50%" stop-color="#0d1118"/>
+      <stop offset="100%" stop-color="#07090e"/>
+    </linearGradient>
+
+    <radialGradient id="white-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32"/>
+      <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="green-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="red-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <linearGradient id="purple-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d8b4fe"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+
+    <filter id="prism-glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <pattern id="pcb-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.6"/>
+      <path d="M 10 0 L 10 15 L 25 30 L 40 30" fill="none" stroke="#334155" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="10" cy="15" r="1.5" fill="#475569"/>
+      <circle cx="25" cy="30" r="1.5" fill="#475569"/>
+    </pattern>
+  </defs>
+            <circle cx="200" cy="180" r="155" fill="url(#white-halo)"/>
+            <g transform="translate(200, 175)" filter="url(#prism-glow)">
+              <polygon points="-24,-22 -145,-115 -115,-45" fill="url(#crystal-bright)" stroke="#ffffff" stroke-width="0.7"/>
+              <polygon points="-145,-115 -175,-55 -115,-45" fill="url(#crystal-mid)"/>
+              <polygon points="-115,-45 -165,-10 -95,-5" fill="url(#crystal-shadow)"/>
+              <polygon points="-95,-5 -135,35 -65,18" fill="url(#crystal-mid)"/>
+              <polygon points="-24,-22 -115,-45 -65,18" fill="url(#crystal-bright)"/>
+              <polygon points="24,-22 145,-115 115,-45" fill="url(#crystal-bright)" stroke="#ffffff" stroke-width="0.7"/>
+              <polygon points="145,-115 175,-55 115,-45" fill="url(#crystal-mid)"/>
+              <polygon points="115,-45 165,-10 95,-5" fill="url(#crystal-shadow)"/>
+              <polygon points="95,-5 135,35 65,18" fill="url(#crystal-mid)"/>
+              <polygon points="24,-22 115,-45 65,18" fill="url(#crystal-bright)"/>
+              <polygon points="0,-125 -18,-88 0,-75 18,-88" fill="#ffffff"/>
+              <polygon points="-18,-88 -34,-118 -10,-98" fill="url(#crystal-bright)"/>
+              <polygon points="18,-88 34,-118 10,-98" fill="url(#crystal-mid)"/>
+              <polygon points="-18,-88 -42,-72 -12,-66" fill="url(#crystal-bright)"/>
+              <polygon points="0,-75 -20,-30 0,-15 20,-30" fill="url(#crystal-mid)"/>
+              <polygon points="0,-35 -36,10 0,65 36,10" fill="#ffffff" stroke="url(#prism-spectrum)" stroke-width="1.4"/>
+              <polygon points="0,-6 -14,12 0,30 14,12" fill="url(#prism-spectrum)"/>
+              <polygon points="-22,42 -48,78 -18,74" fill="url(#crystal-bright)"/>
+              <polygon points="22,42 48,78 18,74" fill="url(#crystal-mid)"/>
+              <polygon points="0,65 -24,108 0,145 24,108" fill="url(#crystal-bright)"/>
+              <polygon points="0,145 -32,168 0,185 16,162" fill="url(#crystal-mid)"/>
+            </g>
+          </svg></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="k">Shared Core</div><div class="v">88.69 MB</div></div>
+      <div class="stat"><div class="k">Duplicate V8</div><div class="v em">0 BYTES</div></div>
+      <div class="stat"><div class="k">Launcher Boot</div><div class="v">4.03 ms</div></div>
+      <div class="stat"><div class="k">ChromeMain Facade</div><div class="v am">11.8 KB</div></div>
+      <div class="stat"><div class="k">CloudSync Swap</div><div class="v em">350 µs</div></div>
+      <div class="stat"><div class="k">RAM Demo Engine</div><div class="v">194 fps</div></div>
+    </div>
+
+    <section id="demos">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">DETERMINISTIC 60 FPS VECTOR PLAYERS · 154× SMALLER THAN H.264</div>
+          <h2>Interactive Offscreen RAM Demos</h2>
+        </div>
+        <div class="sub">Zero OBS · Real live workspace execution · Fail-fast telemetry gate</div>
+      </div>
+      <div class="demo-tabs" id="demoTabs">
+        <button class="demo-tab active" data-html="/demos/os-desktop.html" data-mp4="" data-kb="">Live Interactive OS Desktop</button>
+<button class="demo-tab" data-html="/demos/asog-4dgs.html" data-mp4="" data-kb="">Live 4D Gaussian Splat (.asog / TRiGS)</button>
+<button class="demo-tab" data-html="/demos/yc-b8g-sovereign-demo.html" data-mp4="/demos/yc-b8g-sovereign-demo.mp4" data-kb="990 KB">YC Live Technical Proof</button>
+<button class="demo-tab" data-html="/demos/05-abi-v3-stepwise-upgrade-demo.html" data-mp4="/demos/05-abi-v3-stepwise-upgrade-demo.mp4" data-kb="733 KB">B8G-ABI v2 → v3 Step-Wise Upgrade</button>
+<button class="demo-tab" data-html="/demos/01-enterprise-browser-demo.html" data-mp4="/demos/01-enterprise-browser-demo.mp4" data-kb="729 KB">01 · Enterprise Browser</button>
+<button class="demo-tab" data-html="/demos/02-sovereign-git-forge-demo.html" data-mp4="/demos/02-sovereign-git-forge-demo.mp4" data-kb="740 KB">02 · Sovereign Git Forge</button>
+<button class="demo-tab" data-html="/demos/03-universal-brain-ide-demo.html" data-mp4="/demos/03-universal-brain-ide-demo.mp4" data-kb="786 KB">03 · Universal Brain + IDE</button>
+<button class="demo-tab" data-html="/demos/04-zero-copy-desktop-demo.html" data-mp4="/demos/04-zero-copy-desktop-demo.mp4" data-kb="726 KB">04 · Zero-Copy Desktop</button>
+<button class="demo-tab" data-html="/demos/nlnet-ngi0-grant-demo.html" data-mp4="/demos/nlnet-ngi0-grant-demo.mp4" data-kb="765 KB">NLnet / NGI0 Proof</button>
+      </div>
+      <div class="demo-frame">
+        <iframe id="demoFrame" src="/demos/os-desktop.html" title="Awesome-OS Live Interactive Demo"></iframe>
+      </div>
+      <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:12px;color:var(--muted)">
+        <span id="demoMeta">Live interactive OS desktop: drag windows, allocate real RAM slabs, hot-swap ABI, or type commands in b8g-shell · <a href="/demos/os-desktop.html" target="_blank" rel="noopener">Fullscreen ↗</a></span>
+        <a id="demoMp4Link" href="#" style="display:none" download>Download HD H.264 MP4 () ↓</a>
+      </div>
+    </section>
+
+    <section id="ventures">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">ONE SHARED CORE · FOUR COMMERCIAL PRODUCTS</div>
+          <h2>Sovereign Product Stack</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="tag">01 · ENTERPRISE SECURITY</div>
+          <h3>B8G Enterprise Browser</h3>
+          <p>11.8 KB Linux ELF / 149 KB Win64 <code>ChromeMain</code> binary facade, <code>350 µs</code> hot-swappable E2EE/Local Cloud Sync, and <code>233 µs</code> atomic <code>O(1)</code> RAM tab wipe.</p>
+          <div class="meta">$49/seat/yr · Zero fork rot</div>
+        </div>
+        <div class="card">
+          <div class="tag">02 · SELF-HOSTED DEVOPS</div>
+          <h3>B8G Sovereign Git Forge</h3>
+          <p>Zero-database Smart HTTP Git server with unlimited push sizes, Issues, Labels, 4-column Kanban boards, never-expiring PATs, and direct streaming binary releases.</p>
+          <div class="meta">Free Self-Hosted · $19/mo flat cloud</div>
+        </div>
+        <div class="card">
+          <div class="tag">03 · LOCAL-FIRST AI IDE</div>
+          <h3>B8G Universal Brain + VS Code</h3>
+          <p>Multi-tenant SHA-256 CAS code indexing, hybrid BM25 + vector retrieval, OpenRouter/Ollama BYOK, and dual-target VS Code Desktop + Web extension.</p>
+          <div class="meta">99.29% Electron-free Code-OSS</div>
+        </div>
+        <div class="card">
+          <div class="tag">04 · ZERO-COPY RUNTIME</div>
+          <h3>B8G Desktop App Runtime</h3>
+          <p>Drop-in <code>b8g-electron</code>, <code>b8g-nwjs</code>, <code>b8g_node.exe</code> (150.5 KB), and <code>b8g-workerd</code> all binding to one shared <code>v8.dll</code> with step-wise <code>B8G-ABI v3</code> upgrades.</p>
+          <div class="meta">0 MB duplicate Chromium per app</div>
+        </div>
+      </div>
+      <div class="diagram-strip">
+        <div class="diagram-box"><svg id="asset-prism-unification" viewBox="0 0 420 220" width="420" height="220" xmlns="http://www.w3.org/2000/svg"><defs>
+    <!-- Crystal White & Prismatic Gradients -->
+    <linearGradient id="crystal-bright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-mid" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <linearGradient id="prism-spectrum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="25%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="75%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="prism-beam" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="obsidian-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b26"/>
+      <stop offset="50%" stop-color="#0d1118"/>
+      <stop offset="100%" stop-color="#07090e"/>
+    </linearGradient>
+
+    <radialGradient id="white-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32"/>
+      <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="green-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="red-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <linearGradient id="purple-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d8b4fe"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+
+    <filter id="prism-glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <pattern id="pcb-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.6"/>
+      <path d="M 10 0 L 10 15 L 25 30 L 40 30" fill="none" stroke="#334155" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="10" cy="15" r="1.5" fill="#475569"/>
+      <circle cx="25" cy="30" r="1.5" fill="#475569"/>
+    </pattern>
+  </defs>
+            <!-- 5 Colored Layer Beams -->
+            <line x1="20" y1="50" x2="175" y2="95" stroke="#38bdf8" stroke-width="3"/>
+            <line x1="20" y1="80" x2="170" y2="103" stroke="#34d399" stroke-width="3"/>
+            <line x1="20" y1="110" x2="165" y2="110" stroke="#fbbf24" stroke-width="3"/>
+            <line x1="20" y1="140" x2="170" y2="117" stroke="#f87171" stroke-width="3"/>
+            <line x1="20" y1="170" x2="175" y2="125" stroke="#c084fc" stroke-width="3"/>
+
+            <text x="24" y="42" fill="#38bdf8" font-family="monospace" font-size="9.5">COMPILER</text>
+            <text x="24" y="72" fill="#34d399" font-family="monospace" font-size="9.5">LINKER</text>
+            <text x="24" y="102" fill="#fbbf24" font-family="monospace" font-size="9.5">ARENA</text>
+            <text x="24" y="132" fill="#f87171" font-family="monospace" font-size="9.5">OS</text>
+            <text x="24" y="162" fill="#c084fc" font-family="monospace" font-size="9.5">RUNTIME</text>
+
+            <!-- Central Crystal Prism -->
+            <polygon points="210,35 150,165 270,165" fill="url(#crystal-bright)" fill-opacity="0.18" stroke="#ffffff" stroke-width="2"/>
+            <polygon points="210,35 210,165 270,165" fill="url(#crystal-mid)" fill-opacity="0.25"/>
+
+            <!-- Unified White Light Beam -->
+            <line x1="242" y1="110" x2="395" y2="110" stroke="#ffffff" stroke-width="6" filter="url(#prism-glow)"/>
+            <text x="320" y="94" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="11" font-weight="bold">WHITE LIGHT</text>
+            <text x="320" y="130" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="9.5">ZERO-BLOAT ALGEBRA</text>
+          </svg><div class="cap">Prism Unification: 9 Monoliths → 1 B8G-ABI Core</div></div>
+        <div class="diagram-box"><svg id="asset-dragon-lineage" viewBox="0 0 460 220" width="460" height="220" xmlns="http://www.w3.org/2000/svg"><defs>
+    <!-- Crystal White & Prismatic Gradients -->
+    <linearGradient id="crystal-bright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-mid" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#64748b"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+
+    <linearGradient id="crystal-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+
+    <linearGradient id="prism-spectrum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="25%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="75%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="prism-beam" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="obsidian-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161b26"/>
+      <stop offset="50%" stop-color="#0d1118"/>
+      <stop offset="100%" stop-color="#07090e"/>
+    </linearGradient>
+
+    <radialGradient id="white-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32"/>
+      <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="green-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="red-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+
+    <linearGradient id="purple-dragon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d8b4fe"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+
+    <filter id="prism-glow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <pattern id="pcb-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.6"/>
+      <path d="M 10 0 L 10 15 L 25 30 L 40 30" fill="none" stroke="#334155" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="10" cy="15" r="1.5" fill="#475569"/>
+      <circle cx="25" cy="30" r="1.5" fill="#475569"/>
+    </pattern>
+  </defs>
+            <!-- Green 1977 -->
+            <g transform="translate(65, 95)">
+              <polygon points="0,-42 -36,-10 0,34 36,-10" fill="url(#green-dragon)" opacity="0.9"/>
+              <polygon points="-18,-18 -46,-38 -32,-6" fill="#34d399"/>
+              <polygon points="18,-18 46,-38 32,-6" fill="#059669"/>
+              <text x="0" y="58" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="11" font-weight="bold">GREEN</text>
+              <text x="0" y="74" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="10">1977</text>
+            </g>
+            <!-- Red 1986 -->
+            <g transform="translate(165, 95)">
+              <polygon points="0,-42 -36,-10 0,34 36,-10" fill="url(#red-dragon)" opacity="0.9"/>
+              <polygon points="-18,-18 -46,-38 -32,-6" fill="#f87171"/>
+              <polygon points="18,-18 46,-38 32,-6" fill="#b91c1c"/>
+              <text x="0" y="58" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="11" font-weight="bold">RED</text>
+              <text x="0" y="74" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="10">1986</text>
+            </g>
+            <!-- Purple 2006 -->
+            <g transform="translate(265, 95)">
+              <polygon points="0,-42 -36,-10 0,34 36,-10" fill="url(#purple-dragon)" opacity="0.9"/>
+              <polygon points="-18,-18 -46,-38 -32,-6" fill="#c084fc"/>
+              <polygon points="18,-18 46,-38 32,-6" fill="#6d28d9"/>
+              <text x="0" y="58" text-anchor="middle" fill="#d8b4fe" font-family="monospace" font-size="11" font-weight="bold">PURPLE</text>
+              <text x="0" y="74" text-anchor="middle" fill="#64748b" font-family="monospace" font-size="10">2006</text>
+            </g>
+            <!-- Convergence Beams -->
+            <line x1="95" y1="85" x2="345" y2="85" stroke="#10b981" stroke-width="1.5" opacity="0.7"/>
+            <line x1="195" y1="90" x2="345" y2="90" stroke="#ef4444" stroke-width="1.5" opacity="0.7"/>
+            <line x1="295" y1="95" x2="345" y2="95" stroke="#8b5cf6" stroke-width="1.5" opacity="0.7"/>
+            <!-- White 2026 -->
+            <g transform="translate(380, 95)" filter="url(#prism-glow)">
+              <polygon points="0,-52 -44,-12 0,44 44,-12" fill="#ffffff" stroke="url(#prism-spectrum)" stroke-width="1.5"/>
+              <polygon points="-22,-22 -56,-48 -38,-8" fill="url(#crystal-bright)"/>
+              <polygon points="22,-22 56,-48 38,-8" fill="url(#crystal-mid)"/>
+              <polygon points="0,-16 -14,2 0,20 14,2" fill="url(#prism-spectrum)"/>
+              <text x="0" y="64" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="12" font-weight="bold">WHITE</text>
+              <text x="0" y="80" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="10" font-weight="bold">2026</text>
+            </g>
+          </svg><div class="cap">The White Dragon Lineage (1977 → 2026)</div></div>
+      </div>
+    </section>
+
+    <section id="c-star-roi">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">METRIC |&gt; C*-PROJECTION · NAPKIN-VERIFIABLE ECONOMICS</div>
+          <h2>C*-Arithmetic — Executive ROI in 10 Seconds</h2>
+        </div>
+        <div class="sub">Decision-makers buy payback periods, risk elimination &amp; headcount leverage</div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="tag">CFO · CASH &amp; PAYBACK</div>
+          <h3>Flat Org License, Zero Per-Seat Tax</h3>
+          <p>Cuts <code>$60–$100/dev/mo</code> cloud AI SaaS by 60–80%, replaces per-seat Forge/CI and enterprise browser fees, and recovers <code>€75k–€105k/yr</code> in dev bloat time per 50 seats.</p>
+          <div class="meta">4.4x–7.2x Year-1 ROI · &lt; 60 days payback</div>
+        </div>
+        <div class="card">
+          <div class="tag">CTO · VELOCITY &amp; ARCHITECTURE</div>
+          <h3>Zero Flag-Day Rebuilds</h3>
+          <p><code>0</code> flag-day rebuilds via <code>B8G-ABI v3</code> (<code>offsetof == 0</code>), same-day Chromium CVE patching, zero 300 MB/app Electron or Conda bloat, and 5-day IDE-agnostic LSP drop-in.</p>
+          <div class="meta">0 flag-day rebuilds · 1 shared V8 core</div>
+        </div>
+        <div class="card">
+          <div class="tag">CISO · RISK &amp; COMPLIANCE</div>
+          <h3>Air-Gapped Sovereign Custody</h3>
+          <p><code>0 bytes</code> exfiltrated — local <code>llama.cpp</code> + <code>b8g-brain</code> inference, provable <code>233 µs</code> atomic <code>O(1)</code> RAM wipe between sessions, and 30–70% smaller transitive CVE surface.</p>
+          <div class="meta">0 bytes exfiltrated · 100% air-gap GDPR</div>
+        </div>
+        <div class="card">
+          <div class="tag">CEO / COO · STRATEGY &amp; OPS</div>
+          <h3>One Partner. Fixed-Scope Proof.</h3>
+          <p>Replace five disconnected US SaaS vendors with one central core engineering partner. Validate RAM, disk, CVE, and API savings live on 1 repo or workstation before any annual commitment.</p>
+          <div class="meta">5-Day €3,500 Paid Pilot · 60s proof video</div>
+        </div>
+      </div>
+      <div class="table-wrap" style="margin-top:24px">
+        <table>
+          <thead>
+            <tr>
+              <th>Org Size</th>
+              <th>Legacy Annual Drag</th>
+              <th>Annual Savings With B8G</th>
+              <th>B8G Flat License</th>
+              <th>Year-1 ROI</th>
+              <th>Payback Period</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>10 Devs</strong> <span style="color:var(--muted)">(Startup / Agency)</span></td>
+              <td>€28,000 – €45,000</td>
+              <td><strong>€18,000 – €30,000</strong></td>
+              <td>€1,788/yr <span style="color:var(--muted)">(€149/mo)</span></td>
+              <td><strong style="color:var(--emerald)">10x – 16x</strong></td>
+              <td><strong style="color:var(--cyan)">&lt; 35 days</strong></td>
+            </tr>
+            <tr>
+              <td><strong>50 Devs</strong> <span style="color:var(--muted)">(Mittelstand / Scale-Up)</span></td>
+              <td>€214,000 – €340,000</td>
+              <td><strong>€132,000 – €217,000</strong></td>
+              <td>€30,000/yr <span style="color:var(--muted)">(€2,500/mo)</span></td>
+              <td><strong style="color:var(--emerald)">4.4x – 7.2x</strong></td>
+              <td><strong style="color:var(--cyan)">&lt; 60 days</strong></td>
+            </tr>
+            <tr>
+              <td><strong>500 Devs</strong> <span style="color:var(--muted)">(Enterprise / OEM)</span></td>
+              <td>€2.1M – €3.4M</td>
+              <td><strong>€1.3M – €2.1M</strong></td>
+              <td>€60,000/yr <span style="color:var(--muted)">(€5,000/mo)</span></td>
+              <td><strong style="color:var(--emerald)">21x – 35x</strong></td>
+              <td><strong style="color:var(--cyan)">&lt; 17 days</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" style="margin-top:18px;border-color:var(--border-hi)">
+        <div class="tag">UNIVERSAL ENTRY · ZERO ANNUAL LOCK-IN</div>
+        <h3>5-Day €3,500 Paid Pilot — Deployed on Your Own Hardware</h3>
+        <p>Give us <strong>5 days</strong> and <strong>1 test repo or workstation</strong> for a flat <strong>€3,500</strong>. We measure your exact RAM, disk, CVE, and API-cost savings live and deliver a 60-second reproducible proof video for your CFO, CTO, and CISO. If the <code>&lt; 60 days</code> payback is not obvious, you walk away.</p>
+      </div>
+    </section>
+
+    <section id="latest-blog">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">LATEST FROM THE ENGINEERING LOG</div>
+          <h2>Recent Field Reports</h2>
+        </div>
+        <a class="btn" href="/blog/index.html">All 27 Posts →</a>
+      </div>
+      <div class="grid">
+        <a class="card" href="/blog/video-production-guide-holonomic-e2c.html" style="text-decoration:none;color:inherit">
+              <div class="tag">2026-11-19</div>
+              <h3>Film Script &amp; Visual Direction: Entering Unknown Territory — The Geometry of Living Software</h3>
+              <p>- **Palette:** Deep obsidian space (`#0D0F14`), electric cyan light planes (`#7DD3FC`), emerald proof pulses (`#4ADE80`), violet capability cones (`#C084FC`), and crisp white geometric lines.</p>
+              <div class="meta">Read report →</div>
+            </a>
+<a class="card" href="/blog/25-sovereign-hyperscaler-cas-raid-binary-boxing-and-universal-shims.html" style="text-decoration:none;color:inherit">
+              <div class="tag">2026-11-21</div>
+              <h3>Sovereign Hyperscaler, CAS-RAID, Binary Boxing &amp; Universal Shims: The 2026-11-21 Awesome-OS Unification Wave</h3>
+              <p>Field report from the 2026-11-21 unification wave: Boundary-Verified MoE, Universal Algebraic Error-Loop LSP, Proxmox-class 4-Zone B8G Hyper-Screen with WAL CAS-RAID, 99.55% T2-SDE bloat stripping (6,932 to 31 packages),</p>
+              <div class="meta">Read report →</div>
+            </a>
+<a class="card" href="/blog/24-sub-1-bit-llm-quantization-littlebit-and-b8g-edge-inference.html" style="text-decoration:none;color:inherit">
+              <div class="tag">2026-11-21</div>
+              <h3>0.1-Bit LLM Weights Explained: Samsung Research LittleBit, NanoQuant &amp; Awesome-OS Edge Inference</h3>
+              <p>How Samsung Research's LittleBit, LittleBit-2, and NanoQuant compress LLMs down to 0.1 bits per weight via low-rank binary factorization — the real math, the honest accuracy trade-offs, and how Awesome-OS pairs sub-1-bit</p>
+              <div class="meta">Read report →</div>
+            </a>
+<a class="card" href="/blog/24-holonomic-3d-reality-engine-pbr-physics-asog-and-safe-gates.html" style="text-decoration:none;color:inherit">
+              <div class="tag">2026-11-21</div>
+              <h3>Field Report #24: The B8G Holonomic 3D Reality Engine — Real-GPU WebGL2 PBR, Soft Shadows, 3D Collision &amp; Vehicle Physics, .asog 4DGS, and Mathematical Safe Gates</h3>
+              <p>Milestone report covering our zero-dependency Scriptable 3D Reality Engine (22/22 tests PASS, 0.933 ms/frame for 250 colliding bodies + raycast vehicle), real-GPU WebGL2 Cook-Torrance PBR + PCF shadows on b8g.app, native</p>
+              <div class="meta">Read report →</div>
+            </a>
+<a class="card" href="/blog/step-wise-b8g-abi-v3-upgrade-and-offscreen-ram-demo-studio.html" style="text-decoration:none;color:inherit">
+              <div class="tag">2026-11-20</div>
+              <h3>Ending Flag-Day Upgrades: Step-Wise B8G-ABI v2 → v3 Hot-Swap on Live Chromium</h3>
+              <p>How strict offset-0 prefix compatibility, struct_size guards, and runtime capability negotiation let Chromium subsystems upgrade step-wise in RAM from B8G-ABI v2 to v3 with zero flag-day rebuilds — plus live proof stampe</p>
+              <div class="meta">Read report →</div>
+            </a>
+<a class="card" href="/blog/22-real-chromium-live-333-dep-audit-and-1987-holonomic-demoscene.html" style="text-decoration:none;color:inherit">
+              <div class="tag">2026-11-20</div>
+              <h3>Entry #22: Real Upstream Chromium Live, 333-Dep Wrapper Audit, AVSinkIntersection &amp; The 1987 Holonomic Demoscene</h3>
+              <p>Real upstream Chromium chrome.exe (551 DLLs) built and launched live on Windows 11 with our ipcz SPSC fast-path and 3 zero-dep B8G-ABI DLLs; Tracks 1-7 100% done; 85.9% of Chromium third_party/ proven non-algo bloat; 5-A</p>
+              <div class="meta">Read report →</div>
+            </a>
+      </div>
+    </section>
+  </main>
+  <script>
+    const frame = document.getElementById('demoFrame');
+    const mp4Link = document.getElementById('demoMp4Link');
+    document.querySelectorAll('.demo-tab').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.demo-tab').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        frame.src = btn.dataset.html;
+        if (btn.dataset.mp4) {
+          mp4Link.href = btn.dataset.mp4;
+          mp4Link.textContent = 'Download HD H.264 MP4 (' + btn.dataset.kb + ') ↓';
+          mp4Link.style.display = 'inline';
+        } else {
+          mp4Link.style.display = 'none';
+        }
+      });
+    });
+  </script>
+  <footer>
+    <div class="wrap foot-inner">
+      <div>AWESOME-OS · <em>Nunquam ante, numquam iterum</em> · Built from source on bare metal.</div>
+      <div><a href="/blog/index.html">Blog</a> · <a href="/book/index.html">White Dragon Book</a> · <a href="/rss.xml">RSS</a></div>
+    </div>
+  </footer>
+</body>
+</html>

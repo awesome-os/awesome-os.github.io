@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 43: Teaching Silicon to Listen — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 043 OF 100 · Act V · Signal, Noise &amp; Empathy</div>
+      <h1>Chapter 43: Teaching Silicon to Listen</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="Young Frank sitting in warm twilight glow in front of a retro Atari console and glowing CRT television"><defs><linearGradient id="f1-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b1029"/><stop offset="100%" stop-color="#1b2250"/></linearGradient><radialGradient id="f1-glow" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#6de6ff" stop-opacity="0.45"/><stop offset="100%" stop-color="#6de6ff" stop-opacity="0"/></radialGradient></defs><rect width="640" height="300" rx="16" fill="url(#f1-bg)"/><circle cx="320" cy="140" r="170" fill="url(#f1-glow)"/><rect x="195" y="42" width="250" height="168" rx="18" fill="#2c334d" stroke="#f7c96c" stroke-width="3"/><rect x="215" y="60" width="210" height="132" rx="10" fill="#081229" stroke="#6de6ff" stroke-width="2.5"/><g fill="#f7c96c"><rect x="250" y="92" width="16" height="16" rx="2"/><rect x="272" y="108" width="16" height="16" rx="2"/><rect x="294" y="92" width="16" height="16" rx="2"/></g><polygon points="355,152 372,118 389,152" fill="#4be3a6"/><rect x="235" y="222" width="170" height="34" rx="6" fill="#1f2438" stroke="#fb923c" stroke-width="2.5"/><rect x="245" y="232" width="150" height="10" rx="2" fill="#92400e"/><rect x="440" y="218" width="44" height="38" rx="6" fill="#1f2438" stroke="#e2e8f0" stroke-width="2"/><line x1="462" y1="218" x2="462" y2="194" stroke="#f87171" stroke-width="5" stroke-linecap="round"/><circle cx="462" cy="190" r="7" fill="#f87171"/><circle cx="132" cy="186" r="24" fill="#fde68a"/><path d="M108 180 Q132 152 156 180" fill="#78350f"/><circle cx="140" cy="184" r="3" fill="#0f172a"/><path d="M104 256 Q132 212 162 256 Z" fill="#38bdf8"/></svg></div>
+      <p>Rebuilding the breathing model from the recovered fragments was only the beginning. The real battle began when Frank fed it recordings from the messy, uncooperative real world.</p>
+<p>In a sterile laboratory, a human breath looks clean and polite, like a textbook sine wave. In a real bedroom at two in the morning, a breath has to compete with the low sixty-hertz buzz of a refrigerator down the hall, the rustle of cotton sheets, a dog barking two blocks away, and the hiss of a cheap laptop microphone. Frank's first rebuilt model was embarrassingly gullible: it flagged a distant delivery truck downshifting at a red light as severe bronchial wheezing, and it mistook a muffled laugh for an erratic breathing spike.</p>
+<p>So he stopped treating the model like a magic black box and started treating it like an apprentice with good ears and zero common sense. He built a layered preprocessing pipeline that acted like a sound engineer's mixing board—notching out steady electrical hum, normalizing microphone sensitivity across wildly different devices, and teaching the model to compare each breath against the person's <em>own</em> baseline rather than some imaginary average human. Because nobody's lungs are identical. A marathon runner's resting rhythm looks nothing like an anxious teenager's or an older grandfather's.</p>
+<p>Late one Thursday night, the validation curves finally began to settle into something honest and steady. Precision climbed. False alarms dropped. Across the room, someone he cared deeply about had fallen asleep on the couch with a blanket pulled up to her chin, tired from waiting up for him while he chased one more bug. Frank took off his headphones and sat completely still in the amber glow of the desk lamp.</p>
+<p>He could hear the soft, rhythmic rise and fall of her breathing in the quiet room—in, pause, out, pause—an ancient clock ticking steadily in the dark. For a second, all the matrices, Fourier transforms, and gradient descents dissolved into something profoundly simple. Every chart on his screen was just a translation of that fragile, precious rhythm. You didn't tune a threshold just to win a benchmark score. You tuned it because a false positive meant waking someone up in terror, and a false negative meant failing someone who trusted you to watch over them while they slept.</p>
+<p>He gently pulled the blanket a little higher over her shoulder, walked back to his keyboard, and wrote a new set of edge-case tests—not for the math, not for the metrics, but for the people on the other side of the glass.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>When your software listens to human life, accuracy isn't a leaderboard number—it is a form of kindness.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="042-the-vanished-notebooks.html">← Ch. 042</a>
+        <a class="btn" href="index.html">Chapters (43/100)</a>
+        <a class="btn" href="044-when-one-machine-is-a-lie.html">Ch. 044 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

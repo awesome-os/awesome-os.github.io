@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 58: Learning to Lower the Firewall — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 058 OF 100 · Act VI · Vulnerability &amp; Trust</div>
+      <h1>Chapter 58: Learning to Lower the Firewall</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A bright golden lighthouse beam cutting calmly through dramatic stormy clouds and waves"><defs><linearGradient id="f4-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b1124"/><stop offset="100%" stop-color="#1e293b"/></linearGradient></defs><rect width="640" height="300" rx="16" fill="url(#f4-bg)"/><polygon points="320,92 640,30 640,154" fill="#fde047" opacity="0.18"/><polygon points="320,92 0,44 0,140" fill="#fde047" opacity="0.14"/><rect x="296" y="106" width="48" height="126" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><rect x="298" y="136" width="44" height="24" fill="#ef4444"/><rect x="298" y="182" width="44" height="24" fill="#ef4444"/><circle cx="320" cy="92" r="18" fill="#fde047"/><path d="M0 242 Q80 218 160 242 T320 242 T480 242 T640 242 L640 300 L0 300 Z" fill="#0284c7" opacity="0.55"/></svg></div>
+      <p>Even when you find something rare and luminous, old habits do not disappear overnight. Years of surviving emotional storms, broken promises, and high-pressure outages had taught Frank to build an airtight personal firewall. Whenever tension rose or a misunderstanding sparked, his oldest reflex kicked in automatically: go silent, pull back behind the monitor, and try to debug the feeling alone until it stopped hurting.</p>
+<p>The test arrived on a gray Sunday afternoon over something small that quickly grew teeth—a missed message, a stressed week, a sharp tone that sounded too much like old ghosts from the past. Within minutes, the warm apartment felt ten degrees colder. Frank felt the familiar iron shutter sliding down inside his chest. His fingers itched to grab his jacket, walk out into the cold, and disappear into lines of code where nobody could misread him.</p>
+<p>She stood across the room, arms wrapped around herself, hurt flickering in her eyes—not because they had disagreed, but because she could feel him vanishing right in front of her. <em>Don't lock me out, Frank,</em> she said softly, her voice steady even as it trembled. <em>I can handle a storm with you. I just can't fight a locked door.</em></p>
+<p>Those words stopped him cold with his hand halfway to the doorknob. He realized then that a firewall designed to keep danger out will also starve everything good trying to reach you. Running back to the terminal was easy; staying in the room when his voice shook and his pride stung was the hardest engineering challenge he had ever faced.</p>
+<p>Slowly, Frank let go of the handle, walked back across the rug, and sat down beside her. He didn't offer a neat speech or a clever defense. He told her the unadorned truth—that he was scared of messing this up, scared of losing the one place where he felt completely alive, and clumsy at showing his heart without armor. She reached out, took both of his hands in hers, and held on tight. That afternoon, Frank learned that real trust isn't the absence of storms; it is choosing to stay in the room and repair the breach together.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>A firewall built to keep pain out will also lock love away—true strength is staying in the room and lowering the shield.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="057-two-cups-of-coffee-at-midnight.html">← Ch. 057</a>
+        <a class="btn" href="index.html">Chapters (58/100)</a>
+        <a class="btn" href="059-a-warm-harbor-in-the-darkest-night.html">Ch. 059 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

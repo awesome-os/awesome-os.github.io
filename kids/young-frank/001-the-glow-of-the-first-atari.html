@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 1: The Glow of the First Atari — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 001 OF 100 · Act I · The CRT Glow &amp; First Machines</div>
+      <h1>Chapter 1: The Glow of the First Atari</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="Young Frank sitting in warm twilight glow in front of a retro Atari console and glowing CRT television"><defs><linearGradient id="f1-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0b1029"/><stop offset="100%" stop-color="#1b2250"/></linearGradient><radialGradient id="f1-glow" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#6de6ff" stop-opacity="0.45"/><stop offset="100%" stop-color="#6de6ff" stop-opacity="0"/></radialGradient></defs><rect width="640" height="300" rx="16" fill="url(#f1-bg)"/><circle cx="320" cy="140" r="170" fill="url(#f1-glow)"/><rect x="195" y="42" width="250" height="168" rx="18" fill="#2c334d" stroke="#f7c96c" stroke-width="3"/><rect x="215" y="60" width="210" height="132" rx="10" fill="#081229" stroke="#6de6ff" stroke-width="2.5"/><g fill="#f7c96c"><rect x="250" y="92" width="16" height="16" rx="2"/><rect x="272" y="108" width="16" height="16" rx="2"/><rect x="294" y="92" width="16" height="16" rx="2"/></g><polygon points="355,152 372,118 389,152" fill="#4be3a6"/><rect x="235" y="222" width="170" height="34" rx="6" fill="#1f2438" stroke="#fb923c" stroke-width="2.5"/><rect x="245" y="232" width="150" height="10" rx="2" fill="#92400e"/><rect x="440" y="218" width="44" height="38" rx="6" fill="#1f2438" stroke="#e2e8f0" stroke-width="2"/><line x1="462" y1="218" x2="462" y2="194" stroke="#f87171" stroke-width="5" stroke-linecap="round"/><circle cx="462" cy="190" r="7" fill="#f87171"/><circle cx="132" cy="186" r="24" fill="#fde68a"/><path d="M108 180 Q132 152 156 180" fill="#78350f"/><circle cx="140" cy="184" r="3" fill="#0f172a"/><path d="M104 256 Q132 212 162 256 Z" fill="#38bdf8"/></svg></div>
+      <p>The rain was tapping a slow, steady rhythm against the living room window when Frank heard his father's heavy boots on the front steps. It was late—past the hour when most neighborhood kitchens had already gone dark—and Frank's father carried the familiar scent of long shifts: damp wool, machine oil, and cold evening air. Under one arm, however, he held something unusual. It was a wide cardboard box with sharp corners and bright, futuristic lettering that looked as if it had been delivered straight from another century.</p>
+<p>His father set the box on the carpet without ceremony, rubbing the stiffness out of his knuckles before kneeling beside it. He did not make a grand speech. He had worked extra hours for weeks, trading quiet evenings and sore shoulders for a piece of molded plastic and silicon, because he had noticed the way Frank stared at electronics in shop windows—not just wanting to own them, but trying to figure out how they worked. &quot;Help me clear a spot by the television,&quot; he said softly, a tired smile tugging at the corner of his mouth.</p>
+<p>Inside the Styrofoam cradle sat the Atari: matte black casing, ribbed vents along the top, gleaming silver toggle switches, and a strip of warm faux-woodgrain across the front that looked oddly noble next to the family's bulky cathode-ray television. Two black joysticks coiled beside it like sleeping cobras, each crowned with a single bright orange fire button. Frank's hands trembled slightly as he lifted the console. It felt unexpectedly solid, humming with unspoken promise even before a single wire was connected.</p>
+<p>Together they crawled behind the heavy wooden TV cabinet, threading the coaxial cord into the little metal switchbox that bridged the antenna terminals. Frank's father turned the heavy plastic dial on the television to channel three. At first there was only hissing gray snow and the high-pitched whine of the CRT warming up. Then Frank slid the Atari's power switch up with a crisp mechanical <em>clack</em>.</p>
+<p>The static snapped away instantly, replaced by a field of electric color so vivid it painted blue and amber reflections across their faces. Bold geometric shapes hummed across the curved glass, accompanied by sharp, triumphant beeps from the television's paper speaker. Frank wrapped his left hand around the joystick base and pushed the rubber stick right. On screen, a tiny block of light obeyed at the exact millisecond his thumb moved—no hesitation, no delay, just pure, instantaneous cause and effect.</p>
+<p>For an hour, neither of them checked the clock. Frank's father took the second joystick, laughing in surprise when a stray pixel bounced past his paddle, his exhaustion melting away in the phosphor light. Frank felt something far deeper than the thrill of chasing a high score. Watching his father's face illuminated by that glowing glass, he understood two things at once: how much quiet sacrifice could live inside a single gift, and that the box on the floor was not merely a toy. It was a doorway.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>Every great journey into technology begins not with a specification sheet, but with a warm glow in a dark room and someone who believed your curiosity was worth working overtime for.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="index.html">← Book Cover</a>
+        <a class="btn" href="index.html">Chapters (1/100)</a>
+        <a class="btn" href="002-the-magic-behind-the-first-atari.html">Ch. 002 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>

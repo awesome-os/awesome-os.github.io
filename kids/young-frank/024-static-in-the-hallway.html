@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 24: Static in the Hallway — Young Frank &amp; The Atari Glow</title>
+  <style>
+  :root {
+    --bg: #0c0d24;
+    --card: #16183b;
+    --border: rgba(244, 114, 182, 0.3);
+    --gold: #f7c96c;
+    --rose: #f472b6;
+    --cyan: #6de6ff;
+    --text: #f8f2e9;
+    --muted: #c8cbe6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,114,182,0.14), transparent 45%),
+      radial-gradient(circle at 82% 10%, rgba(247,201,108,0.1), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+    line-height: 1.75;
+  }
+  .ui { font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; }
+  header {
+    max-width: 920px; margin: 0 auto; padding: 18px 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  header a { color: var(--gold); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 920px; margin: 0 auto; padding: 12px 22px 68px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 30px; box-shadow: 0 22px 54px rgba(0,0,0,0.48);
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 800;
+    background: rgba(244,114,182,0.16); color: var(--rose); border: 1px solid rgba(244,114,182,0.45);
+    margin-bottom: 10px;
+  }
+  h1 { font-size: clamp(1.85rem, 4vw, 2.55rem); line-height: 1.18; margin-bottom: 10px; }
+  .art { margin: 18px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  .art svg { display: block; width: 100%; height: auto; }
+  p { margin: 14px 0; font-size: 1.1rem; }
+  code { background: rgba(109,230,255,0.12); color: var(--cyan); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .note {
+    margin: 22px 0 6px; padding: 16px 20px; border-radius: 12px;
+    background: rgba(247,201,108,0.1); border-left: 4px solid var(--gold);
+  }
+  .note-title { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 6px; }
+  .pager {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 10px;
+    background: rgba(255,255,255,0.07); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.92rem;
+    border: 1px solid var(--border);
+  }
+  .btn:hover { background: var(--rose); color: #0c0d24; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 6px;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .tile h3 { font-size: 1.1rem; color: #fff; }
+  .tile p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+  <header class="ui">
+    <a href="index.html">← All Chapters</a>
+    <a href="../index.html">Kids Bookshelf</a>
+    <a href="/">Awesome-OS</a>
+  </header>
+  <main>
+    <article class="card">
+      <div class="badge ui">CHAPTER 024 OF 100 · Act III · First Crushes</div>
+      <h1>Chapter 24: Static in the Hallway</h1>
+      <div class="art"><svg viewBox="0 0 640 300" role="img" aria-label="A glowing golden bridge connecting a retro Atari console on the left to a radiant White Dragon star on the right"><rect width="640" height="300" rx="16" fill="#091026"/><path d="M90 210 Q320 90 550 150" fill="none" stroke="#f7c96c" stroke-width="5" stroke-linecap="round"/><rect x="52" y="192" width="110" height="44" rx="8" fill="#1e293b" stroke="#fb923c" stroke-width="3"/><text x="107" y="219" text-anchor="middle" fill="#fb923c" font-family="monospace" font-size="14" font-weight="bold">ATARI</text><circle cx="536" cy="148" r="46" fill="#6de6ff" fill-opacity="0.2" stroke="#6de6ff" stroke-width="3.5"/><text x="536" y="154" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="14" font-weight="bold">WHITE DRAGON</text><text x="320" y="264" text-anchor="middle" fill="#4be3a6" font-family="monospace" font-size="13">THE JOURNEY CONTINUES · ADD MORE CHAPTERS ANYTIME</text></svg></div>
+      <p>Frank prided himself on noticing patterns early. He could spot an off-by-one error in a wall of assembly before his cursor even reached the bottom of the screen, and he could tell from the pitch of a cooling fan when a bearing was about to fail. None of that prepared him for a Tuesday afternoon in October when a girl in his second-period class laughed at something terribly unfunny he had muttered under his breath, tilted her head with bright, curious eyes, and instantly crashed every background process in his brain.</p>
+<p>Her name was Lena. She wore a dark green jacket with sleeves slightly too long for her wrists, carried a canvas bag covered in smudged ink drawings, and had a habit of tapping the eraser of her pencil against her chin whenever she was about to ask a question nobody else had thought of. For weeks Frank had sat two rows diagonally behind her without realizing his life was about to divide neatly into &quot;before&quot; and &quot;after.&quot; Then one afternoon their teacher's projector sputtered out, Frank stood up to swap the blown fuse in the power strip, and when he turned around, Lena was watching him with an amused half-smile that felt like a sudden voltage spike straight behind his ribs.</p>
+<p>Suddenly, ordinary hallways turned into high-stakes obstacle courses. Frank, who could calmly debug a crashing driver at three in the morning, found himself forgetting how to hold a stack of books properly the moment he heard her laugh near the lockers. His internal clock went completely haywire: fifty minutes of math dragged like an eternity, while a ninety-second conversation with Lena by the bicycle racks vanished in what felt like four milliseconds, leaving him replaying every syllable for the next six hours to make sure he hadn't sounded like a malfunctioning toaster.</p>
+<p>He tried, hilariously at first, to apply engineering discipline to the situation. He told himself a crush was just neurochemistry—a temporary spike in adrenaline and dopamine that would normalize if he ignored it and focused on his projects. That theory lasted approximately eleven minutes, right up until Lena leaned over his desk during study hall, pointed at the neat columns of code in his notebook, and asked, &quot;Is that a game, or are you secretly building a spaceship?&quot; Her sleeve brushed the edge of his hand, and every rational model he had constructed evaporated into pure pink static.</p>
+<p>What startled him most wasn't just how nervous she made him; it was how intensely <em>alive</em> the world looked whenever she was near. Colors seemed turned up two notches. The gray autumn clouds outside the classroom window looked cinematic. Even the squeak of his own sneakers on the linoleum felt like part of a story that was finally getting good.</p>
+<p>Walking home that evening with his hands shoved deep into his pockets, Frank couldn't stop a bewildered grin from tugging at the corner of his mouth. He had spent years learning how to keep systems stable and predictable—and for the first time in his life, he didn't want to fix the glitch at all.</p>
+      <div class="note ui">
+        <div class="note-title">Frank's Memory Note</div>
+        <p style="margin:0;font-size:0.98rem"><strong>A real crush is the one unhandled interrupt you never actually want to catch—it wakes up parts of your heart you didn't know were wired.</strong></p>
+      </div>
+      <nav class="pager ui">
+        <a class="btn" href="023-the-roof-under-the-satellites.html">← Ch. 023</a>
+        <a class="btn" href="index.html">Chapters (24/100)</a>
+        <a class="btn" href="025-notes-passed-in-plain-text.html">Ch. 025 →</a>
+      </nav>
+    </article>
+  </main>
+</body>
+</html>
