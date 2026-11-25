@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Awesome-OS Documentation — Quickstart (Electron &amp; Linux Desktop)</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: #0b0e14; color: #e2e8f0;
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1 { font-size: 2rem; margin: 0 0 8px; color: #f8fafc; }
+    h2 {
+      margin: 36px 0 12px; padding-bottom: 6px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      color: #f8fafc; font-size: 1.25rem;
+    }
+    h3 { margin: 20px 0 8px; color: #bae6fd; font-size: 1rem; }
+    p.lead { color: #94a3b8; margin: 0 0 24px; font-size: 1.05rem; }
+    .pill {
+      display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #7dd3fc; margin-right: 6px;
+    }
+    pre {
+      background: #111622; border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 8px; padding: 14px 16px; overflow-x: auto;
+      font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; font-size: 13px;
+      color: #e2e8f0;
+    }
+    code {
+      font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+      background: rgba(148, 163, 184, 0.14); padding: 1px 5px; border-radius: 4px; font-size: 0.92em;
+    }
+    pre code { background: none; padding: 0; font-size: inherit; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+    th, td {
+      text-align: left; padding: 8px 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+    th { color: #94a3b8; font-weight: 600; }
+    nav { margin-bottom: 24px; font-size: 13px; color: #94a3b8; }
+    nav a { margin-right: 14px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav>
+      <a href="/">Home</a>
+      <a href="#bootstrap">1. Bootstrap</a>
+      <a href="#electron">2. Electron &amp; Sectium Shell</a>
+      <a href="#linux">3. Linux Desktop</a>
+      <a href="#commands">4. Core Commands</a>
+      <a href="https://github.com/awesome-os/holo-compiler/tree/main/docs">Full Holo Docs</a>
+    </nav>
+
+    <h1>Awesome-OS Documentation</h1>
+    <p class="lead">
+      Minimal, zero-bloat guide to get <strong>Electron / Sectium Browser Shell</strong> and the
+      <strong>Awesome-OS Linux Desktop</strong> running from one shared <code>v11</code> CAS
+      (<code>repository://</code> + <code>project://</code>).
+    </p>
+    <div>
+      <span class="pill">B8G_ABI_MAGIC_V3 (0x33564742)</span>
+      <span class="pill">v11 Hardlink CAS</span>
+      <span class="pill">Zero Duplicate Electron</span>
+      <span class="pill">MIT Rust Coreutils</span>
+    </div>
+
+    <h2 id="bootstrap">1. Bootstrap <code>holo-pm</code> &amp; <code>awesome-os-desktop</code></h2>
+    <p>Only two tools ever use a web bootstrap script: <code>holo-pm</code> and <code>awesome-os-desktop</code>. Everything else installs via <code>holo-pm</code> into your local <code>./bin/</code> as 0-byte hardlinks.</p>
+
+    <h3>Windows (PowerShell)</h3>
+    <pre><code># Bootstrap holo-pm (v11 CAS package manager + Git-versioned global index)
+irm https://github.com/awesome-os/holo-pm/releases/latest/download/install.ps1 | iex
+
+# Or launch Awesome-OS Desktop (26 KB native Win32 Install-on-Launch Greeter)
+irm https://awesome-os.com/install.ps1 | iex</code></pre>
+
+    <h3>Linux &amp; macOS</h3>
+    <pre><code># Bootstrap holo-pm
+curl -fsSL https://github.com/awesome-os/holo-pm/releases/latest/download/install.sh | sh
+
+# Or bootstrap Awesome-OS Desktop
+curl -fsSL https://awesome-os.com/install.sh | sh</code></pre>
+
+    <h2 id="electron">2. Get Electron &amp; Sectium Browser Shell Running</h2>
+    <p>
+      <code>sectium-browser</code> (<code>electron-sectium-browser-shell</code>) and
+      <code>code-oss</code> share <strong>one</strong> deduplicated Electron runtime in
+      <code>HOLO_CAS_DIR/v11</code> (<code>587 MB</code> combined RAM on Windows 11).
+    </p>
+    <pre><code># Install Electron + Sectium Browser Shell (hardlinks into ./bin/)
+holo-pm install repository://github.com/awesome-os/sectium-browser@main
+holo-pm install repository://github.com/awesome-os/code-oss@main
+
+# Or project &amp; run directly via project:// (0-byte hardlink)
+holo-project "project://node/sectium-browser?from=repository://github.com/awesome-os/sectium-browser@main"</code></pre>
+    <p>
+      <strong>Built-in Shell Shortcuts:</strong>
+      <code>Ctrl+B</code> (vertical tab sidebar) ·
+      <code>Tabgruppen</code> (colored collapsible groups) ·
+      <code>Ctrl+Shift+A</code> (Tab-Suche) ·
+      <code>Ctrl+\</code> (side-by-side Split Tabs).
+    </p>
+    <p>
+      For native post-Chromium display composition (Skia, Dawn WebGPU, Blink, Qt, Kitty-Ink TTY + first-class StealifyLang), see
+      <a href="https://github.com/awesome-os/sectium"><code>awesome-os/sectium</code></a>.
+    </p>
+
+    <h2 id="linux">3. Get Awesome-OS Linux Desktop Running</h2>
+    <p>
+      <strong>Launcher &equiv; Installer:</strong> Boot or run <code>awesome-os-desktop</code>, pick your
+      Desktop and Greeter on startup, and it projects on launch via <code>project://</code> +
+      <code>v11</code> CAS using static musl <a href="https://github.com/awesome-os/coreutils"><code>awesome-os/coreutils</code></a> (zero BusyBox coreutils).
+    </p>
+    <pre><code># Install awesome-os-desktop locally into ./bin/
+holo-pm install repository://github.com/awesome-os/awesome-os-desktop@main
+
+# Launch the Startup Desktop &amp; Greeter Chooser
+./bin/awesome-os-desktop
+
+# Or jump directly into a specific Linux Desktop projection:
+holo-project "project://coreutils/omarchy?from=repository://github.com/awesome-os/t2desktop-omarchy@main"
+holo-project "project://coreutils/noctalia?from=repository://github.com/awesome-os/t2desktop-noctalia@main"
+holo-project "project://node/kitty-ink?from=repository://github.com/awesome-os/awesome-os@main"</code></pre>
+
+    <h3>Bootable Linux ISO / OCI Image</h3>
+    <pre><code># Run minimal FROM scratch OCI container (static musl awesome-os/coreutils + v11 CAS)
+docker run --rm -it ghcr.io/awesome-os/t2linux:latest /bin/sh
+
+# Or download bootable UEFI/BIOS ISO (x86_64 / aarch64)
+# https://github.com/awesome-os/t2linux/releases/latest</code></pre>
+
+    <h2 id="commands">4. Core Commands Reference</h2>
+    <table>
+      <thead>
+        <tr><th>Task</th><th>Unified Command</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Install into local <code>./bin/</code> (0 collisions)</td><td><code>holo-pm install repository://github.com/awesome-os/&lt;repo&gt;@main</code></td></tr>
+        <tr><td>Install globally (collision-guarded)</td><td><code>holo-pm install -g repository://github.com/awesome-os/&lt;repo&gt;@main</code></td></tr>
+        <tr><td>Run ephemeral 0-byte worktree</td><td><code>holo-project "project://&lt;runtime&gt;/&lt;app&gt;?from=repository://..."</code></td></tr>
+        <tr><td>Stock Git over <code>repository://</code></td><td><code>git ls-remote repository://local/awesome-os/cargo</code></td></tr>
+        <tr><td>V8-native JSON query (replaces <code>jq</code>)</td><td><code>holo-jq -r ".schema" models/models-manifest.json</code></td></tr>
+        <tr><td>Override CAS directory</td><td><code>HOLO_CAS_DIR=/path/to/cas</code> (fallback: <code>B8G_GHOST_CACHE_DIR</code>)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Key Repositories</h2>
+    <ul>
+      <li><a href="https://github.com/awesome-os/awesome-os-desktop"><code>awesome-os/awesome-os-desktop</code></a> — Startup Desktop &amp; Greeter Chooser + <code>holo-display-*</code></li>
+      <li><a href="https://github.com/awesome-os/sectium"><code>awesome-os/sectium</code></a> — Universal Display Driver (Skia, Dawn, Blink, Qt, TTY) + StealifyLang</li>
+      <li><a href="https://github.com/awesome-os/sectium-browser"><code>awesome-os/sectium-browser</code></a> — Electron Sectium Browser Shell (<code>v0.7.3</code>)</li>
+      <li><a href="https://github.com/awesome-os/holo-pm"><code>awesome-os/holo-pm</code></a> — Self-hosted <code>v11</code> package manager, global lockfile index &amp; unified pins</li>
+      <li><a href="https://github.com/awesome-os/holo-compiler"><code>awesome-os/holo-compiler</code></a> — Self-hosted compiler, <code>holo-project</code>, <code>git-remote-repository</code> &amp; full <code>docs/</code></li>
+      <li><a href="https://github.com/awesome-os/coreutils"><code>awesome-os/coreutils</code></a> — MIT Rust GNU coreutils (<code>v0.1.0</code>, 4-OS multicall)</li>
+    </ul>
+  </main>
+</body>
+</html>
