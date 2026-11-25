@@ -152,15 +152,67 @@ docker run --rm -it ghcr.io/awesome-os/t2linux:latest /bin/sh
       </tbody>
     </table>
 
-    <h2>5. Key Repositories</h2>
-    <ul>
-      <li><a href="https://github.com/awesome-os/awesome-os-desktop"><code>awesome-os/awesome-os-desktop</code></a> — Startup Desktop &amp; Greeter Chooser + <code>holo-display-*</code></li>
-      <li><a href="https://github.com/awesome-os/sectium"><code>awesome-os/sectium</code></a> — Universal Display Driver (Skia, Dawn, Blink, Qt, TTY) + StealifyLang</li>
-      <li><a href="https://github.com/awesome-os/sectium-browser"><code>awesome-os/sectium-browser</code></a> — Electron Sectium Browser Shell (<code>v0.7.3</code>)</li>
-      <li><a href="https://github.com/awesome-os/holo-pm"><code>awesome-os/holo-pm</code></a> — Self-hosted <code>v11</code> package manager, global lockfile index &amp; unified pins</li>
-      <li><a href="https://github.com/awesome-os/holo-compiler"><code>awesome-os/holo-compiler</code></a> — Self-hosted compiler, <code>holo-project</code>, <code>git-remote-repository</code> &amp; full <code>docs/</code></li>
-      <li><a href="https://github.com/awesome-os/coreutils"><code>awesome-os/coreutils</code></a> — MIT Rust GNU coreutils (<code>v0.1.0</code>, 4-OS multicall)</li>
-    </ul>
+    <h2>5. Dev Documentation &amp; Core Holo Stack</h2>
+    <table>
+      <thead>
+        <tr><th>Component</th><th>Direct Dev Links</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Holo Compiler &amp; User Docs</strong></td>
+          <td>
+            <a href="https://github.com/awesome-os/holo-compiler">Repo</a> ·
+            <a href="https://github.com/awesome-os/holo-compiler/tree/main/docs">Central Docs</a> ·
+            <a href="https://github.com/awesome-os/holo-compiler/blob/main/docs/repository-and-project-uris.md"><code>repository://</code> &amp; <code>project://</code></a> ·
+            <a href="https://github.com/awesome-os/holo-compiler/blob/main/toolchains/selfhost-matrix.json">Selfhost Matrix</a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Holo PM &amp; Global <code>v11</code> Index</strong></td>
+          <td>
+            <a href="https://github.com/awesome-os/holo-pm">Repo</a> ·
+            <a href="https://github.com/awesome-os/holo-pm/blob/main/index/holo-compiler-lockfile.json">Global <code>v11</code> Lockfile</a> ·
+            <a href="https://github.com/awesome-os/holo-pm/blob/main/pins/holo-overrides.mts">Unified Pins (<code>.mts</code>)</a> ·
+            <a href="https://github.com/awesome-os/holo-pm/blob/main/bootstrap/selfhost-fixedpoint.mts"><code>CAS Q-Self</code> Proof</a> ·
+            <a href="https://github.com/awesome-os/holo-pm/blob/main/src/semantic-lane-splitter.mts">2-Lane Splitter</a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Sectium &amp; Desktop</strong></td>
+          <td>
+            <a href="https://github.com/awesome-os/sectium"><code>sectium</code> Universal Display Driver</a> ·
+            <a href="https://github.com/awesome-os/awesome-os-desktop"><code>awesome-os-desktop</code></a> ·
+            <a href="https://github.com/awesome-os/sectium-browser"><code>sectium-browser</code> (Electron Shell)</a> ·
+            <a href="https://github.com/awesome-os/code-oss"><code>code-oss</code></a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Runtimes, Coreutils &amp; Models</strong></td>
+          <td>
+            <a href="https://github.com/awesome-os/coreutils"><code>coreutils</code></a> ·
+            <a href="https://github.com/awesome-os/wasi-host"><code>wasi-host</code></a> ·
+            <a href="https://github.com/awesome-os/go-lang"><code>go-lang</code></a> ·
+            <a href="https://github.com/awesome-os/dart"><code>dart</code></a> ·
+            <a href="https://github.com/awesome-os/pnpm"><code>pnpm</code></a> ·
+            <a href="https://github.com/awesome-os/cargo"><code>cargo</code></a> ·
+            <a href="https://github.com/awesome-os/uv"><code>uv</code></a> ·
+            <a href="https://github.com/awesome-os/libuv"><code>libuv</code></a> ·
+            <a href="https://github.com/awesome-os/models"><code>models</code></a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Sovereign GitLab Forge</strong></td>
+          <td>
+            <a href="https://github.com/awesome-os/gitlab-foss"><code>gitlab-foss</code></a> ·
+            <a href="https://github.com/awesome-os/gitaly"><code>gitaly</code></a> ·
+            <a href="https://github.com/awesome-os/gitlab-runner"><code>gitlab-runner</code></a> ·
+            <a href="https://github.com/awesome-os/gitlab-shell"><code>gitlab-shell</code></a> ·
+            <a href="https://github.com/awesome-os/gitlab-pages"><code>gitlab-pages</code></a> ·
+            <a href="https://github.com/awesome-os/ory-polis"><code>ory-polis</code></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </main>
 </body>
 </html>
