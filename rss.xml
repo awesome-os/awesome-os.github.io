@@ -2,81 +2,81 @@
 <rss version="2.0">
 <channel>
   <title>Awesome-OS Engineering Blog</title>
-  <link>https://awesome-os.com/blog/index.html</link>
+  <link>https://awesome-os.github.io/blog/index.html</link>
   <description>Sovereign Post-Neumann Computing, B8G-ABI v3, and real-hardware benchmarks.</description>
   <item>
     <title>Film Script &amp; Visual Direction: Entering Unknown Territory — The Geometry of Living Software</title>
-    <link>https://awesome-os.com/blog/video-production-guide-holonomic-e2c.html</link>
+    <link>https://awesome-os.github.io/blog/video-production-guide-holonomic-e2c.html</link>
     <description>- **Palette:** Deep obsidian space (`#0D0F14`), electric cyan light planes (`#7DD3FC`), emerald proof pulses (`#4ADE80`), violet capability cones (`#C084FC`), and crisp white geometric lines.</description>
   </item>
   <item>
     <title>Sovereign Hyperscaler, CAS-RAID, Binary Boxing &amp; Universal Shims: The 2026-11-21 Awesome-OS Unification Wave</title>
-    <link>https://awesome-os.com/blog/25-sovereign-hyperscaler-cas-raid-binary-boxing-and-universal-shims.html</link>
+    <link>https://awesome-os.github.io/blog/25-sovereign-hyperscaler-cas-raid-binary-boxing-and-universal-shims.html</link>
     <description>Field report from the 2026-11-21 unification wave: Boundary-Verified MoE, Universal Algebraic Error-Loop LSP, Proxmox-class 4-Zone B8G Hyper-Screen with WAL CAS-RAID, 99.55% T2-SDE bloat stripping (6,932 to 31 packages),</description>
   </item>
   <item>
     <title>0.1-Bit LLM Weights Explained: Samsung Research LittleBit, NanoQuant &amp; Awesome-OS Edge Inference</title>
-    <link>https://awesome-os.com/blog/24-sub-1-bit-llm-quantization-littlebit-and-b8g-edge-inference.html</link>
+    <link>https://awesome-os.github.io/blog/24-sub-1-bit-llm-quantization-littlebit-and-b8g-edge-inference.html</link>
     <description>How Samsung Research's LittleBit, LittleBit-2, and NanoQuant compress LLMs down to 0.1 bits per weight via low-rank binary factorization — the real math, the honest accuracy trade-offs, and how Awesome-OS pairs sub-1-bit</description>
   </item>
   <item>
     <title>Field Report #24: The B8G Holonomic 3D Reality Engine — Real-GPU WebGL2 PBR, Soft Shadows, 3D Collision &amp; Vehicle Physics, .asog 4DGS, and Mathematical Safe Gates</title>
-    <link>https://awesome-os.com/blog/24-holonomic-3d-reality-engine-pbr-physics-asog-and-safe-gates.html</link>
+    <link>https://awesome-os.github.io/blog/24-holonomic-3d-reality-engine-pbr-physics-asog-and-safe-gates.html</link>
     <description>Milestone report covering our zero-dependency Scriptable 3D Reality Engine (22/22 tests PASS, 0.933 ms/frame for 250 colliding bodies + raycast vehicle), real-GPU WebGL2 Cook-Torrance PBR + PCF shadows on b8g.app, native</description>
   </item>
   <item>
     <title>Ending Flag-Day Upgrades: Step-Wise B8G-ABI v2 → v3 Hot-Swap on Live Chromium</title>
-    <link>https://awesome-os.com/blog/step-wise-b8g-abi-v3-upgrade-and-offscreen-ram-demo-studio.html</link>
+    <link>https://awesome-os.github.io/blog/step-wise-b8g-abi-v3-upgrade-and-offscreen-ram-demo-studio.html</link>
     <description>How strict offset-0 prefix compatibility, struct_size guards, and runtime capability negotiation let Chromium subsystems upgrade step-wise in RAM from B8G-ABI v2 to v3 with zero flag-day rebuilds — plus live proof stampe</description>
   </item>
   <item>
     <title>Entry #22: Real Upstream Chromium Live, 333-Dep Wrapper Audit, AVSinkIntersection &amp; The 1987 Holonomic Demoscene</title>
-    <link>https://awesome-os.com/blog/22-real-chromium-live-333-dep-audit-and-1987-holonomic-demoscene.html</link>
+    <link>https://awesome-os.github.io/blog/22-real-chromium-live-333-dep-audit-and-1987-holonomic-demoscene.html</link>
     <description>Real upstream Chromium chrome.exe (551 DLLs) built and launched live on Windows 11 with our ipcz SPSC fast-path and 3 zero-dep B8G-ABI DLLs; Tracks 1-7 100% done; 85.9% of Chromium third_party/ proven non-algo bloat; 5-A</description>
   </item>
   <item>
     <title>21 — The 9-Layer B8G-ABI Chromium Architecture: Where Multi-Processing, Per-Isolate Pools &amp; Lock-Free SPSC Belong</title>
-    <link>https://awesome-os.com/blog/21-9-layer-b8g-abi-chromium-concurrency-and-production-roi.html</link>
+    <link>https://awesome-os.github.io/blog/21-9-layer-b8g-abi-chromium-concurrency-and-production-roi.html</link>
     <description>Why we refactored 9 Chromium layers behind zero-header B8G-ABI static dispatch tables (&lt;1ms warm CAS rebuilds) and the exact production security &amp; performance blueprint for multi-processing vs per-Isolate multi-threading</description>
   </item>
   <item>
     <title>20 — Real Upstream Chromium Compilation, Zero-Python DEPS/CIPD, 5-Subsystem B8G-ABI Dispatch &amp; 1,499 tok/s Xenon-1B</title>
-    <link>https://awesome-os.com/blog/20-real-chromium-compilation-zero-python-deps-b8g-abi-and-xenon-1b.html</link>
+    <link>https://awesome-os.github.io/blog/20-real-chromium-compilation-zero-python-deps-b8g-abi-and-xenon-1b.html</link>
     <description>Completing the 3-pillar Chromium C++20 trifecta, compiling our real ipcz SPSC patch inside upstream Chromium src/ (2,236 TUs, exit 0), replacing gclient with an 8ms zero-Python DEPS+CIPD+GCS parser, shipping a 5-subsyste</description>
   </item>
   <item>
     <title>19 — Zero-WSL Hermetic Zig, 1.05 ns C++20 ipcz, 6-Agent Trade-Sim, Spotless main &amp; Procedural Video (b8g-video)</title>
-    <link>https://awesome-os.com/blog/19-zero-wsl-zig-trade-sim-spotless-main-and-procedural-video.html</link>
+    <link>https://awesome-os.github.io/blog/19-zero-wsl-zig-trade-sim-spotless-main-and-procedural-video.html</link>
     <description>How we bootstrapped a zero-WSL hermetic Zig toolchain, hit 1.05 ns/op (949M ops/sec) in native C++20 ipcz SPSC, stamped out a 6-agent log-first trading simulator, brought main from 18,275 to 0 open entries, and built a 2</description>
   </item>
   <item>
     <title>18 — The Inference Manager: Execution &lt;-&gt; Projection as a First-Class OS Peer to Task Manager</title>
-    <link>https://awesome-os.com/blog/18-inference-manager-execution-projection-os-peer.html</link>
+    <link>https://awesome-os.github.io/blog/18-inference-manager-execution-projection-os-peer.html</link>
     <description>Why classic OS Task Managers are blind to streaming LLMs, swarm-waits, and permission stalls — and how intersections/inference-manager (bin/b8g-infer) binds every inference execution 1:1 to a live Projection with Approve</description>
   </item>
   <item>
     <title>17 — First-Class Chromium Core: .b8p CAS Builds, Auto-Update, Telemetry &amp; Phased Migration (b8g-chromium)</title>
-    <link>https://awesome-os.com/blog/17-chromium-first-class-section-autoupdate-telemetry-migration.html</link>
+    <link>https://awesome-os.github.io/blog/17-chromium-first-class-section-autoupdate-telemetry-migration.html</link>
     <description>Promoting upstream Chromium (mojo/core, third_party/ipcz, blink/renderer/core/layout, components/viz) into a first-class B8G-SECT-1 subsystem (ChromiumBuildSection, ChromiumAutoUpdateSection, ChromiumCoreIntersection) wi</description>
   </item>
   <item>
     <title>16 — The Verified Benchmark Flex Sheet: V8 15.6.77 CAS, 66.8M ops/sec IPC, 25.1x B8G Xenon 1B &amp; Chromium Sparse Attack</title>
-    <link>https://awesome-os.com/blog/16-verified-benchmark-flex-sheet-and-chromium-sparse-attack.html</link>
+    <link>https://awesome-os.github.io/blog/16-verified-benchmark-flex-sheet-and-chromium-sparse-attack.html</link>
     <description>One consolidated, 100% reproducible benchmark flex sheet covering every verified metric in Awesome-OS — from 14.42s V8 15.6.77 .b8p CAS restores and 66.79M ops/sec SAB rings to 25.1x B8G Xenon 1B AtlasKV pruning and our </description>
   </item>
   <item>
     <title>15 — Introducing B8G Xenon 1B: Tiny Cognitive Core, AtlasKV Memory &amp; Awesome-OS Harness</title>
-    <link>https://awesome-os.com/blog/15-b8g-xenon-1b-cognitive-core-and-atlaskv-memory.html</link>
+    <link>https://awesome-os.github.io/blog/15-b8g-xenon-1b-cognitive-core-and-atlaskv-memory.html</link>
     <description>Why 90% of giant LLM parameters are wasted memorizing facts — and how B8G Xenon 1B fuses our 64B-aligned cognitive kernels with AtlasKV HiKVP memory (25.1x faster, -98.2% VRAM, 100% recall) and Awesome-OS's hermetic tool</description>
   </item>
   <item>
     <title>14 — From Crash Recovery to a Zero-WebKit Browser &amp; 66.8M ops/sec Pipeline: The Complete Command Playbook</title>
-    <link>https://awesome-os.com/blog/14-crash-recovery-to-zero-webkit-browser-command-playbook.html</link>
+    <link>https://awesome-os.github.io/blog/14-crash-recovery-to-zero-webkit-browser-command-playbook.html</link>
     <description>How one session went from a hard-crashed swarm to shipping host-debug-facade, 88% Git debloat, executable Markdown+alg notebooks, b8g-gen, Stealify Composition Algebra, a 7-target zero-WebKit b8g-browser rendering live g</description>
   </item>
   <item>
     <title>13 — The Google V8 &amp; Chromium Side-Challenge: Giving Back While Advancing Awesome-OS</title>
-    <link>https://awesome-os.com/blog/13-google-v8-chromium-side-challenge-and-verification-pipeline.html</link>
+    <link>https://awesome-os.github.io/blog/13-google-v8-chromium-side-challenge-and-verification-pipeline.html</link>
     <description>Our 3-phase inner-out modernization pipeline for V8 &amp; Chromium — starting with @awesome-os/b8g-cxx V8 build acceleration, Mojo/ipcz zero-copy SAB ring fast-paths (63.8M ops/sec, 14x faster), and Blink flat-array layout w</description>
   </item>
 </channel>

@@ -76,18 +76,15 @@
     <p>Only two tools ever use a web bootstrap script: <code>holo-pm</code> and <code>awesome-os-desktop</code>. Everything else installs via <code>holo-pm</code> into your local <code>./bin/</code> as 0-byte hardlinks.</p>
 
     <h3>Windows (PowerShell)</h3>
-    <pre><code># Bootstrap holo-pm (v11 CAS package manager + Git-versioned global index)
-irm https://github.com/awesome-os/holo-pm/releases/latest/download/install.ps1 | iex
+    <pre><code># Open the Web OOBE OPFS Installer in browser:
+# https://awesome-os.github.io/installer/
 
-# Or launch Awesome-OS Desktop (26 KB native Win32 Install-on-Launch Greeter)
-irm https://awesome-os.com/install.ps1 | iex</code></pre>
+# Or download &amp; launch Awesome-OS Desktop Greeter
+irm https://raw.githubusercontent.com/awesome-os/installer/main/START-HERE.bat -OutFile START-HERE.bat; .\START-HERE.bat</code></pre>
 
     <h3>Linux &amp; macOS</h3>
-    <pre><code># Bootstrap holo-pm
-curl -fsSL https://github.com/awesome-os/holo-pm/releases/latest/download/install.sh | sh
-
-# Or bootstrap Awesome-OS Desktop
-curl -fsSL https://awesome-os.com/install.sh | sh</code></pre>
+    <pre><code># Launch Awesome-OS Desktop &amp; v11 CAS Greeter
+curl -fsSL https://raw.githubusercontent.com/awesome-os/installer/main/start-here.sh | sh</code></pre>
 
     <h2 id="electron">2. Get Electron &amp; Sectium Browser Shell Running</h2>
     <p>
