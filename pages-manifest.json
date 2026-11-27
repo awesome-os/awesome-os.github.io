@@ -1,7 +1,7 @@
 {
   "schema": "b8g.gh-pages-manifest.v1",
   "repo": "awesome-os/awesome-os.github.io",
-  "cname": "awesome-os.com",
+  "cname": "awesome-os.github.io",
   "fileCount": 201,
   "totalBytes": 12890157,
   "skippedLargeFiles": [],
