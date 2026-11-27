@@ -2,7 +2,7 @@
 
 Generated automatically by the **Awesome-OS GitHub Pages Repo Pipeline** (`b8g-gh-pages`).
 
-- **Live URL:** https://awesome-os.com/
+- **Live URL:** https://awesome-os.github.io/
 - **Files Published:** 201 (12588.0 KiB)
 - **Manifest SHA-256:** `18ad3982ee98924f989e833ce7f0289cafedd94dd9b94de282e0fecc913c2bad`
 
